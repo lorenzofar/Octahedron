@@ -1,4 +1,5 @@
 ﻿using Windows.Security.Credentials;
+using Octokit;
 
 namespace Helper
 {
@@ -32,6 +33,24 @@ namespace Helper
             {
                 //THERE ARE NO CREDENTIALS, SO WE RETURN A NULL VALUE
                 return null;
+            }
+        }
+
+        public static bool LogIn(string username, string password)
+        {
+            try
+            {
+                var g_credentials = new Credentials(username, password);
+                var g_connection = new Connection(new ProductHeaderValue("GithubUWP"))
+                {
+                    Credentials = g_credentials
+                };
+                constants.g_client = new GitHubClient(g_connection);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 

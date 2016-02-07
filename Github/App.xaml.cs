@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Helper;
+using Windows.UI.Popups;
 
 namespace Github
 {
@@ -79,7 +80,15 @@ namespace Github
                 else
                 {
                     //TRY TO LOGIN
-                    rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
+                    if (utilities.LogIn(credential.UserName, credential.Password))
+                    {
+                        rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
+                    }
+                    else
+                    {
+                        new MessageDialog(constants.r_loader.GetString("login_error"), constants.r_loader.GetString("error")).ShowAsync();
+                        App.Current.Exit();
+                    }
                 }
             }
             Window.Current.Activate();
