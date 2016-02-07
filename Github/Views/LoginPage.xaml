@@ -5,10 +5,15 @@
     xmlns:local="using:Github.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Login}}"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Login}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel VerticalAlignment="Center" MaxWidth="480">
+            <!--GITHUB LOGO PLACEHOLDER-->
+            <TextBox x:Uid="username_input" Margin="12,6" Text="{Binding Path=username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <PasswordBox x:Uid="password_input" Margin="12,6" Password="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Uid="login_btn" Margin="12,6" Background="#669900" HorizontalAlignment="Stretch" Command="{Binding Path=login}"/>
+        </StackPanel>
     </Grid>
 </Page>

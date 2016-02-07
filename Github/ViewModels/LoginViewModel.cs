@@ -29,6 +29,7 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _password, value);
+                login.RaiseCanExecuteChanged();
             }
         }
 
@@ -43,7 +44,7 @@ namespace Github.ViewModels
                     {
                         //LOG IN TO GITHUB
                     },
-                    () => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password));
+                    () => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !username.Contains(" ") && !password.Contains(" "));
                 }
                 return _login;
             }
