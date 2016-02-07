@@ -21,5 +21,13 @@
                 return new LoginViewModel();
             }
         }
+
+        public ProfileViewModel Profile
+        {
+            get
+            {
+                return new ProfileViewModel();
+            }
+        }
     }
 }
