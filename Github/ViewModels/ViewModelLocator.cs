@@ -13,5 +13,13 @@
                 return new MainViewModel();
             }
         }
+
+        public LoginViewModel Login
+        {
+            get
+            {
+                return new LoginViewModel();
+            }
+        }
     }
 }
