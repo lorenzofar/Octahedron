@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Helper;
 
 namespace Github
 {
@@ -64,20 +65,23 @@ namespace Github
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
-                }
-
-                // Place the frame in the current Window
+                }                
                 Window.Current.Content = rootFrame;
             }
 
             if (rootFrame.Content == null)
             {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
+                var credential = utilities.GetCredential("login");
+                if(credential == null)
+                {
+                    rootFrame.Navigate(typeof(Views.LoginPage));
+                }
+                else
+                {
+                    //TRY TO LOGIN
+                    rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
+                }
             }
-            // Ensure the current window is active
             Window.Current.Activate();
         }
 
