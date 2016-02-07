@@ -24,14 +24,21 @@ namespace Helper
         public static PasswordCredential GetCredential(string resource)
         {
             var vault = new PasswordVault();
-            var credentials = vault.FindAllByResource(resource);
-            if(credentials.Count > 0)
+            try
             {
-                return credentials[0];
+                var credentials = vault.FindAllByResource(resource);
+                if (credentials.Count > 0)
+                {
+                    return credentials[0];
+                }
+                else
+                {
+                    //THERE ARE NO CREDENTIALS, SO WE RETURN A NULL VALUE
+                    return null;
+                }
             }
-            else
+            catch
             {
-                //THERE ARE NO CREDENTIALS, SO WE RETURN A NULL VALUE
                 return null;
             }
         }
