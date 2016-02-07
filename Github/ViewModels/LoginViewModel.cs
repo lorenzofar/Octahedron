@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Helper;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Github.ViewModels
 {
@@ -43,6 +46,14 @@ namespace Github.ViewModels
                     _login = new RelayCommand(() =>
                     {
                         //LOG IN TO GITHUB
+                        var login_result = utilities.LogIn(username, password);
+                        if (login_result)
+                        {
+                            //SAVE CREDENTIALS ON SUCCESFULL LOGIN
+                            utilities.SaveCredentials("login", username, password);
+                            Frame rootFrame = Window.Current.Content as Frame;
+                            rootFrame.Navigate(typeof(Views.MainPage));
+                        }
                     },
                     () => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !username.Contains(" ") && !password.Contains(" "));
                 }

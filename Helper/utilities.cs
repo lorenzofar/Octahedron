@@ -29,7 +29,7 @@ namespace Helper
                 var credentials = vault.FindAllByResource(resource);
                 if (credentials.Count > 0)
                 {
-                    return credentials[0];
+                    return vault.Retrieve(resource, credentials[0].UserName);
                 }
                 else
                 {

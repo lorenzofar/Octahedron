@@ -42,7 +42,7 @@ namespace Github
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -80,13 +80,14 @@ namespace Github
                 else
                 {
                     //TRY TO LOGIN
+
                     if (utilities.LogIn(credential.UserName, credential.Password))
                     {
                         rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
                     }
                     else
                     {
-                        new MessageDialog(constants.r_loader.GetString("login_error"), constants.r_loader.GetString("error")).ShowAsync();
+                        await new MessageDialog(constants.r_loader.GetString("login_error"), constants.r_loader.GetString("error")).ShowAsync();
                         App.Current.Exit();
                     }
                 }
