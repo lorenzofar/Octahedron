@@ -2,6 +2,11 @@
     x:Class="Github.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Github">
+    xmlns:local="using:Github"
+    xmlns:viewModel="using:Github.ViewModels">
+
+    <Application.Resources>
+        <viewModel:MainViewModel x:Key="MainViewModel"/>
+    </Application.Resources>
 
 </Application>
