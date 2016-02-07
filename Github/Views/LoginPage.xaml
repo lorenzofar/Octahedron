@@ -13,7 +13,7 @@
             <!--GITHUB LOGO PLACEHOLDER-->
             <TextBox x:Uid="username_input" Margin="12,6" Text="{Binding Path=username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <PasswordBox x:Uid="password_input" Margin="12,6" Password="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button x:Uid="login_btn" Margin="12,6" Background="#669900" HorizontalAlignment="Stretch" Command="{Binding Path=login}"/>
+            <Button x:Uid="login_btn" Margin="12,6" Background="#73C456" HorizontalAlignment="Stretch" Command="{Binding Path=login}"/>
         </StackPanel>
     </Grid>
 </Page>
