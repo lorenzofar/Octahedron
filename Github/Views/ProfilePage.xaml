@@ -5,10 +5,99 @@
     xmlns:local="using:Github.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Profile}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding Path=GetData}"/>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" >
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Viewbox MaxHeight="150" MaxWidth="150">
+                    <Ellipse Width="150" Height="150">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="user_pic" ImageSource="{Binding Path=user.AvatarUrl}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Viewbox>
+                <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Pivot>
+                <PivotItem x:Uid="info_pivot" Header="INFO">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <Grid x:Name="info_grid">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
+                                <FontIcon Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
+                                <FontIcon Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
+                                <TextBlock Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
+                                <TextBlock Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Email}"/>
+                                <TextBlock Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Blog}"/>
+                            </Grid>
+                            <Grid x:Name="stats_grid" Margin="0,24">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" x:Name="followers_panel">
+                                    <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Followers}"/>
+                                    <TextBlock Text="followers" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" x:Name="following_panel">
+                                    <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Following}"/>
+                                    <TextBlock Text="following" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" x:Name="repos_panel">
+                                    <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}"/>
+                                    <TextBlock Text="repos" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+                <PivotItem x:Uid="repos_pivot" Header="REPOS">
+
+                </PivotItem>
+                <PivotItem x:Uid="orgs_pivot" Header="ORGS">
+
+                </PivotItem>
+            </Pivot>
+        </Grid>        
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="share_btn" Label="Share">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE72D;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarToggleButton x:Name="follow_btn" Label="Follow">
+                <AppBarToggleButton.Icon>
+                    <FontIcon Glyph="&#xE8FA;"/>
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
