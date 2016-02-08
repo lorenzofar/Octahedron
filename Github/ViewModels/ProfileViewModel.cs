@@ -62,7 +62,13 @@ namespace Github.ViewModels
 
         private async void LoadData()
         {
-            user = await Helper.constants.g_client.User.Current();
+            try {
+                user = await Helper.constants.g_client.User.Current();
+            }
+            catch
+            {
+                Helpers.Communications.ShowDialog("login_error", "error");
+            }
         }
     }
 }

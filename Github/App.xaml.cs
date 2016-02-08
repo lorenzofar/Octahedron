@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Helper;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Helper;
-using Windows.UI.Popups;
 
 namespace Github
 {
@@ -42,7 +31,7 @@ namespace Github
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -87,7 +76,7 @@ namespace Github
                     }
                     else
                     {
-                        await new MessageDialog(constants.r_loader.GetString("login_error"), constants.r_loader.GetString("error")).ShowAsync();
+                        Helpers.Communications.ShowDialog("login_error", "error");
                         App.Current.Exit();
                     }
                 }
