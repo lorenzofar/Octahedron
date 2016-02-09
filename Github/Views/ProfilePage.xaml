@@ -24,7 +24,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                 </Viewbox>
-                <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+                <TextBlock Foreground="White" Margin="0,6" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -38,6 +38,7 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -46,11 +47,13 @@
                                 <FontIcon Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
                                 <FontIcon Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
                                 <FontIcon Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
-                                <FontIcon Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE121;"/>
+                                <FontIcon Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
+                                <FontIcon Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
                                 <TextBlock Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
                                 <TextBlock Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Email}"/>
                                 <TextBlock Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Blog}"/>
-                                <TextBlock Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt}"/>
+                                <TextBlock Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}"/>
+                                <TextBlock Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt}"/>
                             </Grid>
                             <Grid x:Name="stats_grid" Margin="0,24">
                                 <Grid.ColumnDefinitions>
@@ -66,7 +69,7 @@
                                     <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Following}"/>
                                     <TextBlock Text="following" HorizontalAlignment="Center"/>
                                 </StackPanel>
-                                <StackPanel Grid.Column="3" x:Name="repos_panel">
+                                <StackPanel Grid.Column="2" x:Name="repos_panel">
                                     <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}"/>
                                     <TextBlock Text="repos" HorizontalAlignment="Center"/>
                                 </StackPanel>
