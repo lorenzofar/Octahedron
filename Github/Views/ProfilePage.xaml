@@ -10,12 +10,6 @@
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Profile}"
     mc:Ignorable="d">
 
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding Path=GetData}"/>
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -43,6 +37,7 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -51,9 +46,11 @@
                                 <FontIcon Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
                                 <FontIcon Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
                                 <FontIcon Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
+                                <FontIcon Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE121;"/>
                                 <TextBlock Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
                                 <TextBlock Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Email}"/>
                                 <TextBlock Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Blog}"/>
+                                <TextBlock Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt}"/>
                             </Grid>
                             <Grid x:Name="stats_grid" Margin="0,24">
                                 <Grid.ColumnDefinitions>

@@ -1,6 +1,7 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Template10.Mvvm;
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Navigation;
 
 namespace Github.ViewModels
 {
@@ -45,30 +46,27 @@ namespace Github.ViewModels
             }
         }
 
-        private RelayCommand _GetData;
-        public RelayCommand GetData {
-            get
+        public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        {
+            if (!string.IsNullOrEmpty(parameter.ToString()))
             {
-                if (_GetData == null)
-                {
-                    _GetData = new RelayCommand(() =>
-                    {
-                        LoadData();
-                    });
-                }
-                return _GetData;
+                LoadData(parameter.ToString());
             }
+            return base.OnNavigatedToAsync(parameter, mode, state);
         }
 
-        private async void LoadData()
+        private async void LoadData(string username)
         {
-            try {
-                user = await Helper.constants.g_client.User.Current();
+            try
+            {
+                user = (await Helper.constants.g_client.User.Current()).Login == username ? await Helper.constants.g_client.User.Current() : await Helper.constants.g_client.User.Get(username);
             }
             catch
             {
                 Helpers.Communications.ShowDialog("login_error", "error");
             }
         }
+
+        
     }
 }
