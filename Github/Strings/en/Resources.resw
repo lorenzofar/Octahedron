@@ -120,6 +120,15 @@
   <data name="error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="followers_caption.Text" xml:space="preserve">
+    <value>followers</value>
+  </data>
+  <data name="following_caption.Text" xml:space="preserve">
+    <value>following</value>
+  </data>
+  <data name="follow_btn.Label" xml:space="preserve">
+    <value>Follow</value>
+  </data>
   <data name="login_btn.Content" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -128,6 +137,12 @@
   </data>
   <data name="password_input.PlaceholderText" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="repos_caption.Text" xml:space="preserve">
+    <value>repos</value>
+  </data>
+  <data name="share_btn.Label" xml:space="preserve">
+    <value>Share</value>
   </data>
   <data name="username_input.PlaceholderText" xml:space="preserve">
     <value>Username or email</value>

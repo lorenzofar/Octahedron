@@ -63,15 +63,15 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" x:Name="followers_panel">
                                     <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Followers}"/>
-                                    <TextBlock Text="followers" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Uid="followers_caption" HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" x:Name="following_panel">
                                     <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Following}"/>
-                                    <TextBlock Text="following" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Uid="following_caption" HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="2" x:Name="repos_panel">
                                     <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}"/>
-                                    <TextBlock Text="repos" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Uid="repos_caption" HorizontalAlignment="Center"/>
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
@@ -88,12 +88,12 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="share_btn" Label="Share">
+            <AppBarButton x:Uid="share_btn">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE72D;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarToggleButton x:Name="follow_btn" Label="Follow">
+            <AppBarToggleButton x:Uid="follow_btn">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE8FA;"/>
                 </AppBarToggleButton.Icon>
