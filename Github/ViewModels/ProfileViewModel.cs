@@ -20,8 +20,8 @@ namespace Github.ViewModels
             }
         }
 
-        private List<Octokit.Repository> _reposList;
-        public List<Octokit.Repository> repoList
+        private IReadOnlyList<Octokit.Repository> _reposList;
+        public IReadOnlyList<Octokit.Repository> repoList
         {
             get
             {
@@ -33,8 +33,8 @@ namespace Github.ViewModels
             }
         }
 
-        private List<Octokit.Organization> _orgsList;
-        public List<Octokit.Organization> orgsList
+        private IReadOnlyList<Octokit.Organization> _orgsList;
+        public IReadOnlyList<Octokit.Organization> orgsList
         {
             get
             {
@@ -59,7 +59,9 @@ namespace Github.ViewModels
         {
             try
             {
-                user = (await Helper.constants.g_client.User.Current()).Login == username ? await Helper.constants.g_client.User.Current() : await Helper.constants.g_client.User.Get(username);
+                user = await Helper.constants.g_client.User.Get(username);
+                repoList = await Helper.constants.g_client.Repository.GetAllForUser(username);
+                orgsList = await Helper.constants.g_client.Organization.GetAll(username);
             }
             catch
             {
