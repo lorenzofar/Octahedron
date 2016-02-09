@@ -13,6 +13,7 @@
 
     <Page.Resources>
         <converters:JoinDateConverter x:Key="JoinDateConverter"/>
+        <converters:InfoDisplayConverter x:Key="DisplayConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -49,16 +50,16 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <FontIcon Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
-                                <FontIcon Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
-                                <FontIcon Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
-                                <FontIcon Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
-                                <FontIcon Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
-                                <TextBlock Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
-                                <TextBlock Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Email}"/>
-                                <TextBlock Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Blog}"/>
-                                <TextBlock Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}"/>
-                                <TextBlock Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt, Converter={StaticResource JoinDateConverter}}"/>
+                                <FontIcon Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
+                                <FontIcon Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
+                                <FontIcon Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
+                                <FontIcon Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
+                                <FontIcon Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
+                                <TextBlock Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
+                                <TextBlock Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Email}"/>
+                                <TextBlock Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Blog}"/>
+                                <TextBlock Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}"/>
+                                <TextBlock Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt, Converter={StaticResource JoinDateConverter}}"/>
                             </Grid>
                             <Grid x:Name="stats_grid" Margin="0,24">
                                 <Grid.ColumnDefinitions>

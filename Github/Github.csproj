@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\InfoDisplayConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Helpers\Communications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
