@@ -7,8 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:Github.Converters"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Profile}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:JoinDateConverter x:Key="JoinDateConverter"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -53,7 +58,7 @@
                                 <TextBlock Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Email}"/>
                                 <TextBlock Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Blog}"/>
                                 <TextBlock Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}"/>
-                                <TextBlock Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt}"/>
+                                <TextBlock Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt, Converter={StaticResource JoinDateConverter}}"/>
                             </Grid>
                             <Grid x:Name="stats_grid" Margin="0,24">
                                 <Grid.ColumnDefinitions>

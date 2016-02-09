@@ -147,4 +147,7 @@
   <data name="username_input.PlaceholderText" xml:space="preserve">
     <value>Username or email</value>
   </data>
+  <data name="joinDate" xml:space="preserve">
+    <value>Joined on {0} at {1}</value>
+  </data>
 </root>
