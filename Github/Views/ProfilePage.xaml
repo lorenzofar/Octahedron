@@ -94,12 +94,12 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Uid="share_btn">
+            <AppBarButton x:Uid="share_btn" Command="{Binding Path=ShareUser}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE72D;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarToggleButton x:Uid="follow_btn">
+            <AppBarToggleButton x:Uid="follow_btn" Command="{Binding Path=FollowUser}" IsChecked="{Binding Path=following}">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE8FA;"/>
                 </AppBarToggleButton.Icon>

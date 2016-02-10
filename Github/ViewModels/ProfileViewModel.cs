@@ -2,11 +2,17 @@
 using Template10.Mvvm;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Command;
+using Helper;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace Github.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
+        private bool owner_profile;
+        private DataTransferManager dataTransferManager;
+
         private Octokit.User _user;
         public Octokit.User user
         {
@@ -46,11 +52,67 @@ namespace Github.ViewModels
             }
         }
 
+        private bool _following;
+        public bool following
+        {
+            get
+            {
+                return _following;
+            }
+            set
+            {
+                Set(ref _following, value);
+            }
+        }
+
+        private RelayCommand _ShareUser;
+        public RelayCommand ShareUser
+        {
+            get
+            {
+                if (_ShareUser == null)
+                {
+                    _ShareUser = new RelayCommand(() =>
+                    {
+                        DataTransferManager.ShowShareUI();
+                    });
+                }
+                return _ShareUser;
+            }
+        }
+
+        private RelayCommand _FollowUser;
+        public RelayCommand FollowUser
+        {
+
+            get
+            {
+                if (_FollowUser == null)
+                {
+                    _FollowUser = new RelayCommand(async () =>
+                    {
+                        var follower = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);
+                        if (follower)
+                        {
+                            await constants.g_client.User.Followers.Unfollow(user.Login);
+                        }
+                        else
+                        {
+                            await constants.g_client.User.Followers.Follow(user.Login);
+                        }
+                    }, () => !owner_profile);
+                }
+                return _FollowUser;
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (!string.IsNullOrEmpty(parameter.ToString()))
             {
                 LoadData(parameter.ToString());
+                this.dataTransferManager = DataTransferManager.GetForCurrentView();
+                this.dataTransferManager.DataRequested += OnDataRequested;
             }
             return base.OnNavigatedToAsync(parameter, mode, state);
         }
@@ -59,9 +121,12 @@ namespace Github.ViewModels
         {
             try
             {
-                user = await Helper.constants.g_client.User.Get(username);
-                repoList = await Helper.constants.g_client.Repository.GetAllForUser(username);
-                orgsList = await Helper.constants.g_client.Organization.GetAll(username);
+                user = await constants.g_client.User.Get(username);
+                repoList = await constants.g_client.Repository.GetAllForUser(username);
+                orgsList = await constants.g_client.Organization.GetAll(username);
+                following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);
+                owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
+                FollowUser.RaiseCanExecuteChanged();
             }
             catch
             {
@@ -69,6 +134,11 @@ namespace Github.ViewModels
             }
         }
 
-        
+        private void OnDataRequested(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataPackage userData = e.Request.Data;
+            userData.Properties.Title = $"{user.Name} - Github";
+            userData.SetWebLink(new System.Uri(user.HtmlUrl, System.UriKind.RelativeOrAbsolute));
+        }
     }
 }
