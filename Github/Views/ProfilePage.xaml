@@ -19,7 +19,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3.5*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" >
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
