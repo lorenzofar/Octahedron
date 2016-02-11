@@ -13,19 +13,6 @@ namespace Github.ViewModels
         private bool owner_profile;
         private DataTransferManager dataTransferManager;
 
-        private int _list_width;
-        public int list_width
-        {
-            get
-            {
-                return _list_width;
-            }
-            set
-            {
-                Set(ref _list_width, value);
-            }
-        }
-
         private Octokit.User _user;
         public Octokit.User user
         {
@@ -135,11 +122,11 @@ namespace Github.ViewModels
             try
             {
                 user = await constants.g_client.User.Get(username);
-                repoList = await constants.g_client.Repository.GetAllForUser(username);
-                orgsList = await constants.g_client.Organization.GetAll(username);
-                following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);
                 owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 FollowUser.RaiseCanExecuteChanged();
+                repoList = await constants.g_client.Repository.GetAllForUser(username);
+                orgsList = await constants.g_client.Organization.GetAll(username);
+                following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);              
             }
             catch
             {
