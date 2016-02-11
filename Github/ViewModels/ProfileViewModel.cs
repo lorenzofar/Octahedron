@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using Template10.Mvvm;
-using System.Threading.Tasks;
+﻿using Template10.Mvvm;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Command;
 using Helper;
 using Windows.ApplicationModel.DataTransfer;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Github.ViewModels
 {
@@ -106,6 +107,38 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand _OpenBlog;
+        public RelayCommand OpenBlog
+        {
+            get
+            {
+                if(_OpenBlog == null)
+                {
+                    _OpenBlog = new RelayCommand(async () =>
+                    {
+                       await Windows.System.Launcher.LaunchUriAsync(new Uri(user.Blog, UriKind.RelativeOrAbsolute));
+                    });
+                }
+                return _OpenBlog;
+            }
+        }
+
+        private RelayCommand _SendMail;
+        public RelayCommand SendMail
+        {
+            get
+            {
+                if (_SendMail == null)
+                {
+                    _SendMail = new RelayCommand(async () =>
+                    {
+                        await Windows.System.Launcher.LaunchUriAsync(new Uri(String.Format("mailto:{0}", user.Email), UriKind.RelativeOrAbsolute));
+                    });
+                }
+                return _SendMail;
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (!string.IsNullOrEmpty(parameter.ToString()))
@@ -138,7 +171,7 @@ namespace Github.ViewModels
         {
             DataPackage userData = e.Request.Data;
             userData.Properties.Title = $"{user.Name} - Github";
-            userData.SetWebLink(new System.Uri(user.HtmlUrl, System.UriKind.RelativeOrAbsolute));
+            userData.SetWebLink(new Uri(user.HtmlUrl, UriKind.RelativeOrAbsolute));
         }
     }
 }
