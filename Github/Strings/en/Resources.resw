@@ -150,4 +150,7 @@
   <data name="joinDate" xml:space="preserve">
     <value>Joined on {0} at {1}</value>
   </data>
+  <data name="updateDate" xml:space="preserve">
+    <value>Updated {0} - {1}</value>
+  </data>
 </root>

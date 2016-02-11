@@ -8,12 +8,14 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:Github.Converters"
+    xmlns:templates="using:Github.Templates"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Profile}"
     mc:Ignorable="d">
 
     <Page.Resources>
         <converters:JoinDateConverter x:Key="JoinDateConverter"/>
         <converters:InfoDisplayConverter x:Key="DisplayConverter"/>
+        <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -84,7 +86,13 @@
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem x:Uid="repos_pivot" Header="REPOS">
-
+                    <ListView x:Name="repos_listview" ItemsSource="{Binding Path=repoList}" SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>                                    
+                                    <templates:RepoListItem Width="{Binding ActualWidth, ElementName=repos_listview}" Margin="-12,0"/>
+                                </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </PivotItem>
                 <PivotItem x:Uid="orgs_pivot" Header="ORGS">
 

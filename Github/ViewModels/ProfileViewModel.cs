@@ -13,6 +13,19 @@ namespace Github.ViewModels
         private bool owner_profile;
         private DataTransferManager dataTransferManager;
 
+        private int _list_width;
+        public int list_width
+        {
+            get
+            {
+                return _list_width;
+            }
+            set
+            {
+                Set(ref _list_width, value);
+            }
+        }
+
         private Octokit.User _user;
         public Octokit.User user
         {
