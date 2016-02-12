@@ -13,7 +13,7 @@ namespace Github.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), "lorenzofar");
+            //App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), "lorenzofar");
             return base.OnNavigatedToAsync(parameter, mode, state);
         }
     }

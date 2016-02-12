@@ -1,6 +1,7 @@
 ﻿using Helper;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml;
 
 namespace Github
 {
@@ -38,7 +39,12 @@ namespace Github
 
         public override Task OnInitializeAsync(IActivatedEventArgs args)
         {
-            return base.OnInitializeAsync(args);
+            if ((Window.Current.Content as Views.Shell) == null)
+            {
+                var nav = NavigationServiceFactory(BackButton.Attach, ExistingContent.Include);
+                Window.Current.Content = new Views.Shell(nav);
+            }
+            return Task.CompletedTask;
         }
     }
 }
