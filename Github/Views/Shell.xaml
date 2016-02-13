@@ -9,7 +9,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <controls:HamburgerMenu x:Name="Menu" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" VisualStateWideMinWidth="1024" HamburgerBackground="{ThemeResource SystemControlHighlightChromeAltLowBrush}" HamburgerForeground="{ThemeResource SystemControlForegroundAltHighBrush}" NavAreaBackground="{ThemeResource SystemControlHighlightChromeAltLowBrush}" NavButtonCheckedBackground="{ThemeResource SystemControlBackgroundAccentBrush}" NavButtonForeground="White">
+    <controls:HamburgerMenu x:Name="Menu" 
+                            VisualStateNarrowMinWidth="0" 
+                            VisualStateNormalMinWidth="720" 
+                            VisualStateWideMinWidth="1024" 
+                            NavAreaBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                            NavButtonCheckedBackground="{ThemeResource SystemControlBackgroundAccentBrush}"
+                            NavButtonHoverBackground="#999999"
+                            NavButtonPressedBackground="{ThemeResource SystemControlBackgroundAccentBrush}"
+                            HamburgerBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                            HamburgerForeground="{ThemeResource SystemControlBackgroundAccentBrush}">
         <controls:HamburgerMenu.PrimaryButtons>
             <controls:HamburgerButtonInfo PageType="views:MainPage" ClearHistory="True">
                 <StackPanel Orientation="Horizontal">
@@ -17,7 +26,7 @@
                     <TextBlock Text="Home" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
-            <controls:HamburgerButtonInfo PageType="views:ReposPage" ClearHistory="True">
+            <controls:HamburgerButtonInfo PageType="views:ReposPage">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xE82D;" VerticalAlignment="Center" Width="48" Height="48" />
                     <TextBlock Text="Repositories" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
