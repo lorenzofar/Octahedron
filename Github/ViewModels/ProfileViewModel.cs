@@ -163,7 +163,7 @@ namespace Github.ViewModels
             }
             catch
             {
-                Helpers.Communications.ShowDialog("login_error", "error");
+                await Communications.ShowDialog("login_error", "error");
             }
         }
 

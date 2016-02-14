@@ -153,4 +153,7 @@
   <data name="updateDate" xml:space="preserve">
     <value>Updated {0} - {1}</value>
   </data>
+  <data name="credentials_error" xml:space="preserve">
+    <value>Username or password is not correct</value>
+  </data>
 </root>

@@ -22,9 +22,12 @@ namespace Github.Views
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        public LoginPage()
+        public static Template10.Services.NavigationService.INavigationService nav_service;
+
+        public LoginPage(Template10.Services.NavigationService.INavigationService nav)
         {
             this.InitializeComponent();
+            nav_service = nav;
         }
     }
 }

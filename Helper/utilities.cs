@@ -1,5 +1,6 @@
 ﻿using Windows.Security.Credentials;
 using Octokit;
+using System.Threading.Tasks;
 
 namespace Helper
 {
@@ -43,7 +44,7 @@ namespace Helper
             }
         }
 
-        public static bool LogIn(string username, string password)
+        public static async Task<bool> LogIn(string username, string password)
         {
             try
             {
@@ -53,13 +54,18 @@ namespace Helper
                     Credentials = g_credentials
                 };
                 constants.g_client = new GitHubClient(g_connection);
+                var user = await constants.g_client.User.Current();
                 return true;
+            }
+            catch(AuthorizationException)
+            {
+                await Communications.ShowDialog("credentials_error", "error");
+                return false;
             }
             catch
             {
                 return false;
             }
-        }
-
+        }        
     }
 }

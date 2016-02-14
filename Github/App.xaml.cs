@@ -17,34 +17,34 @@ namespace Github
 
         public override Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
-            var credential = utilities.GetCredential("login");
-            if (credential == null)
-            {
-                NavigationService.Navigate(typeof(Views.LoginPage));
-            }
-            else
-            {
-                if (utilities.LogIn(credential.UserName, credential.Password))
-                {
-                    NavigationService.Navigate(typeof(Views.MainPage), null);
-                }
-                else
-                {
-                    Helpers.Communications.ShowDialog("login_error", "error");
-                    App.Current.Exit();
-                }
-            }
             return Task.CompletedTask;
         }
 
-        public override Task OnInitializeAsync(IActivatedEventArgs args)
+        public override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             if ((Window.Current.Content as Views.Shell) == null)
             {
                 var nav = NavigationServiceFactory(BackButton.Attach, ExistingContent.Include);
-                Window.Current.Content = new Views.Shell(nav);
+                var credential = utilities.GetCredential("login");
+                if (credential == null)
+                {
+                    Window.Current.Content = new Views.LoginPage(nav);
+                }
+                else
+                {
+                    Window.Current.Content = new Views.Shell(nav);
+                    if (await utilities.LogIn(credential.UserName, credential.Password))
+                    {
+                        NavigationService.Navigate(typeof(Views.MainPage), null);
+                    }
+                    else
+                    {
+                        await Helper.Communications.ShowDialog("login_error", "error");
+                        App.Current.Exit();
+                    }
+                }
             }
-            return Task.CompletedTask;
+            return;
         }
     }
 }
