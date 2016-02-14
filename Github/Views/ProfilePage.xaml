@@ -39,7 +39,7 @@
                             </Ellipse.Fill>
                         </Ellipse>
                     </Viewbox>
-                    <TextBlock Foreground="White" Margin="0,6" Text="{Binding Path=user.Login}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+                    <TextBlock Foreground="White" Margin="0,6" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
