@@ -33,7 +33,7 @@
             </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.PrimaryButtons>
         <controls:HamburgerMenu.SecondaryButtons>
-            <controls:HamburgerButtonInfo PageType="views:ProfilePage" PageParameter="lorenzofar">
+            <controls:HamburgerButtonInfo PageType="views:ProfilePage" PageParameter="app_user!">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xE13D;" VerticalAlignment="Center" Width="48" Height="48" />
                     <TextBlock Text="Profile" VerticalAlignment="Center" Margin="12, 0, 0, 0" />

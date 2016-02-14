@@ -154,11 +154,11 @@ namespace Github.ViewModels
         {
             try
             {
-                user = await constants.g_client.User.Get(username);
+                user = username == "app_user!" ? await constants.g_client.User.Current() : await constants.g_client.User.Get(username);
                 owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 FollowUser.RaiseCanExecuteChanged();
-                repoList = await constants.g_client.Repository.GetAllForUser(username);
-                orgsList = await constants.g_client.Organization.GetAll(username);
+                repoList = await constants.g_client.Repository.GetAllForUser(user.Login);
+                orgsList = await constants.g_client.Organization.GetAll(user.Login);
                 following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);              
             }
             catch
