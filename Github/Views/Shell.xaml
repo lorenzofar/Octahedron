@@ -13,12 +13,11 @@
                             VisualStateNarrowMinWidth="0" 
                             VisualStateNormalMinWidth="720" 
                             VisualStateWideMinWidth="1024" 
-                            NavAreaBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                            NavAreaBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
                             NavButtonCheckedBackground="{ThemeResource SystemControlBackgroundAccentBrush}"
-                            NavButtonHoverBackground="#999999"
-                            NavButtonPressedBackground="{ThemeResource SystemControlBackgroundAccentBrush}"
+                            NavButtonHoverBackground="#99999999"
                             HamburgerBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-                            HamburgerForeground="{ThemeResource SystemControlBackgroundAccentBrush}">
+                            HamburgerForeground="{ThemeResource SystemControlForegroundBaseHighBrush}">
         <controls:HamburgerMenu.PrimaryButtons>
             <controls:HamburgerButtonInfo PageType="views:MainPage" ClearHistory="True">
                 <StackPanel Orientation="Horizontal">
@@ -48,5 +47,5 @@
             </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.SecondaryButtons>
     </controls:HamburgerMenu>
-    
+
 </Page>
