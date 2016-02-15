@@ -13,6 +13,12 @@
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Profile}"
     mc:Ignorable="d">
 
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="SizeChanged">
+            <core:InvokeCommandAction Command="{Binding UpdateListLayout}"/>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
     <Page.Resources>
         <converters:JoinDateConverter x:Key="JoinDateConverter"/>
         <converters:InfoDisplayConverter x:Key="DisplayConverter"/>

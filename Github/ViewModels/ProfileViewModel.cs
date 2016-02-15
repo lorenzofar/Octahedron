@@ -27,16 +27,16 @@ namespace Github.ViewModels
             }
         }
 
-        private IReadOnlyList<Octokit.Repository> _reposList;
+        private IReadOnlyList<Octokit.Repository> _repoList;
         public IReadOnlyList<Octokit.Repository> repoList
         {
             get
             {
-                return _reposList;
+                return _repoList;
             }
             set
             {
-                Set(ref _reposList, value);
+                Set(ref _repoList, value);
             }
         }
 
@@ -76,6 +76,24 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _following, value);
+            }
+        }
+
+        private RelayCommand _UpdateListLayout;
+        public RelayCommand UpdateListLayout
+        {
+            get
+            {
+                if(_UpdateListLayout == null)
+                {
+                    _UpdateListLayout = new RelayCommand(() =>
+                    {
+                        var repos = repoList;
+                        repoList = null;
+                        repoList = repos;
+                    });
+                }
+                return _UpdateListLayout;
             }
         }
 
