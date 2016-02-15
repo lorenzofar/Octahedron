@@ -23,24 +23,25 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="profile_txt" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="profile_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3.5*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" >
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Viewbox MaxHeight="150" MaxWidth="150">
-                        <Ellipse Width="150" Height="150">
+                <Viewbox Margin="0,12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Ellipse Width="150" Height="150" MaxHeight="150" MaxWidth="150">
                             <Ellipse.Fill>
                                 <ImageBrush x:Name="user_pic" ImageSource="{Binding Path=user.AvatarUrl}"/>
                             </Ellipse.Fill>
                         </Ellipse>
-                    </Viewbox>
-                    <TextBlock Foreground="White" Margin="0,6" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
-                </StackPanel>
+                        <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+                    </StackPanel>
+                </Viewbox>
             </Grid>
             <Grid Grid.Row="1">
                 <Pivot>
@@ -75,6 +76,7 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0" x:Name="followers_panel">
                                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Followers}"/>
@@ -87,6 +89,10 @@
                                     <StackPanel Grid.Column="2" x:Name="repos_panel">
                                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}"/>
                                         <TextBlock x:Uid="repos_caption" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="3" x:Name="starred_panel">
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=starredRepos}"/>
+                                        <TextBlock x:Uid="starred_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -107,9 +113,7 @@
                 </Pivot>
             </Grid>
         </Grid>
-    </Grid>
-    <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Grid.Row="2">
             <AppBarButton x:Uid="share_btn" Command="{Binding Path=ShareUser}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE72D;"/>
@@ -121,5 +125,5 @@
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>

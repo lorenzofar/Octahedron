@@ -42,7 +42,7 @@
             <controls:HamburgerButtonInfo PageType="views:SettingsPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Setting" VerticalAlignment="Center" Width="48" Height="48" />
-                    <TextBlock x:Name="profile_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                    <TextBlock x:Uid="settings_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.SecondaryButtons>

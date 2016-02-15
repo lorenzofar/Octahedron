@@ -107,7 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Communications.cs" />
+    <Compile Include="communications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="constants.cs" />
     <Compile Include="utilities.cs" />
