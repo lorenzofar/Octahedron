@@ -141,20 +141,17 @@ namespace Github.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            if (!string.IsNullOrEmpty(parameter.ToString()))
-            {
-                LoadData(parameter.ToString());
-                this.dataTransferManager = DataTransferManager.GetForCurrentView();
-                this.dataTransferManager.DataRequested += OnDataRequested;
-            }
+            LoadData(parameter);
+            this.dataTransferManager = DataTransferManager.GetForCurrentView();
+            this.dataTransferManager.DataRequested += OnDataRequested;
             return base.OnNavigatedToAsync(parameter, mode, state);
         }
 
-        private async void LoadData(string username)
+        private async void LoadData(object username)
         {
             try
             {
-                user = username == "app_user!" ? await constants.g_client.User.Current() : await constants.g_client.User.Get(username);
+                user = username == null ? await constants.g_client.User.Current() : await constants.g_client.User.Get(username.ToString());
                 owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 FollowUser.RaiseCanExecuteChanged();
                 repoList = await constants.g_client.Repository.GetAllForUser(user.Login);
