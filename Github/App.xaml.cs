@@ -39,7 +39,7 @@ namespace Github
                     }
                     else
                     {
-                        await Helper.Communications.ShowDialog("login_error", "error");
+                        await Helper.communications.ShowDialog("login_error", "error");
                         App.Current.Exit();
                     }
                 }

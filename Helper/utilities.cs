@@ -59,7 +59,7 @@ namespace Helper
             }
             catch(AuthorizationException)
             {
-                await Communications.ShowDialog("credentials_error", "error");
+                await communications.ShowDialog("credentials_error", "error");
                 return false;
             }
             catch

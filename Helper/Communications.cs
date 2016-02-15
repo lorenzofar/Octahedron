@@ -4,7 +4,7 @@ using Windows.UI.Popups;
 
 namespace Helper
 {
-    public class Communications
+    public class communications
     {
         public static async Task ShowDialog(string content_resource, string title_resource)
         {
