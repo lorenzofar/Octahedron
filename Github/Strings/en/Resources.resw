@@ -156,4 +156,25 @@
   <data name="credentials_error" xml:space="preserve">
     <value>Username or password is not correct</value>
   </data>
+  <data name="home_txt.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="info_pivot-Header" xml:space="preserve">
+    <value>INFO</value>
+  </data>
+  <data name="orgs_pivot.Header" xml:space="preserve">
+    <value>ORGS</value>
+  </data>
+  <data name="profile_txt.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="repos_pivot.Header" xml:space="preserve">
+    <value>REPOS</value>
+  </data>
+  <data name="repos_txt.Text" xml:space="preserve">
+    <value>Repositories</value>
+  </data>
+  <data name="settings_txt.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

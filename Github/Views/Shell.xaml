@@ -22,13 +22,13 @@
             <controls:HamburgerButtonInfo PageType="views:MainPage" ClearHistory="True">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xE10F;" VerticalAlignment="Center" Width="48" Height="48" />
-                    <TextBlock Text="Home" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                    <TextBlock x:Uid="home_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
             <controls:HamburgerButtonInfo PageType="views:ReposPage">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xE82D;" VerticalAlignment="Center" Width="48" Height="48" />
-                    <TextBlock Text="Repositories" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                    <TextBlock x:Uid="repos_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.PrimaryButtons>
@@ -36,13 +36,13 @@
             <controls:HamburgerButtonInfo PageType="views:ProfilePage">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xE13D;" VerticalAlignment="Center" Width="48" Height="48" />
-                    <TextBlock Text="Profile" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                    <TextBlock x:Uid="profile_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
             <controls:HamburgerButtonInfo PageType="views:SettingsPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Setting" VerticalAlignment="Center" Width="48" Height="48" />
-                    <TextBlock Text="Settings" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                    <TextBlock x:Name="profile_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.SecondaryButtons>
