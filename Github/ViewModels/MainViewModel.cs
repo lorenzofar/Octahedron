@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
+using Helper;
+using System.Linq;
 
 namespace Github.ViewModels
 {
@@ -11,10 +13,28 @@ namespace Github.ViewModels
         {            
         }
 
+        private IReadOnlyList<Octokit.Notification> _notifications;
+        public IReadOnlyList<Octokit.Notification> notifications
+        {
+            get
+            {
+                return _notifications;
+            }
+            set
+            {
+                Set(ref _notifications, value);
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            //App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), "lorenzofar");
+            LoadNotifications();
             return base.OnNavigatedToAsync(parameter, mode, state);
+        }
+
+        private async void LoadNotifications()
+        {
+            notifications = (await constants.g_client.Notification.GetAllForCurrent()).Where(x => x.Unread == true).ToList();
         }
     }
 }

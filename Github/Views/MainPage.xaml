@@ -15,7 +15,20 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
-        <Grid Grid.Row="1">            
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding Path=notifications}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="6,0" Text="{Binding Path=Subject.Type}"/>
+                            <StackPanel>
+                                <TextBlock Margin="6,0" Text="{Binding Path=Subject.Title}"/>
+                                <TextBlock Margin="6,0" Text="{Binding Path=Repository.FullName}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
     
