@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="Github.Views.RepoDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Github.Views"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RepoDetail}"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Text="REPOSITORY">
+        </controls:PageHeader>
+
+        <Pivot Grid.Row="1">
+            <PivotItem x:Uid="info_txt" Header="INFO">
+                
+            </PivotItem>
+            <PivotItem Header="ISSUES">
+                
+            </PivotItem>
+            <PivotItem Header="PULL"></PivotItem>
+            <PivotItem Header="CONTRIBUTORS"></PivotItem>
+        </Pivot>
+
+        <CommandBar Grid.Row="2">
+            
+        </CommandBar>
+
+    </Grid>
+</Page>

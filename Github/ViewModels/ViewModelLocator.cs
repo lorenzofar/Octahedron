@@ -29,5 +29,13 @@
                 return new ProfileViewModel();
             }
         }
+
+        public ProfileViewModel RepoDetail
+        {
+            get
+            {
+                return new RepoDetailViewModel();
+            }
+        }
     }
 }
