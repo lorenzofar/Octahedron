@@ -183,4 +183,7 @@
   <data name="profile_header.Text" xml:space="preserve">
     <value>PROFILE</value>
   </data>
+  <data name="login_splash.Text" xml:space="preserve">
+    <value>Logging in</value>
+  </data>
 </root>

@@ -1,0 +1,16 @@
+﻿<UserControl
+    x:Class="Github.Views.Splash"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Github.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Foreground="White" Margin="0,0,0,12" x:Uid="login_splash" Text="Logging in"/>
+            <ProgressRing IsActive="True" Foreground="White" Width="50" Height="50"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -13,6 +13,7 @@ namespace Github
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
+            SplashFactory = e => new Views.Splash(e);
         }
 
         public override Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
