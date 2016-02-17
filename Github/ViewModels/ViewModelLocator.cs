@@ -30,7 +30,7 @@
             }
         }
 
-        public ProfileViewModel RepoDetail
+        public RepoDetailViewModel RepoDetail
         {
             get
             {
