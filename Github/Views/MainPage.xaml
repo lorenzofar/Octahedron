@@ -45,7 +45,7 @@
                 </uwp:SwipeListView.ItemLeftBehavior>
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemSwipe">
-                        <core:InvokeCommandAction Command="{Binding Path=MarkNotificationRead}" CommandParameter="{Binding SwipedItem, ElementName=list}"/>
+                        <core:InvokeCommandAction Command="{Binding Path=MarkNotificationRead}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </uwp:SwipeListView>
