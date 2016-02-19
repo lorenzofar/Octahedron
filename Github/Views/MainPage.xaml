@@ -4,6 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Github.Views"
     xmlns:controls="using:Template10.Controls"
+    xmlns:uwp="using:Universal.UI.Xaml.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Main}"
@@ -13,23 +16,43 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1">
-            <ListView ItemsSource="{Binding Path=notifications}">
-                <ListView.ItemTemplate>
+            <uwp:SwipeListView x:Name="list" ItemsSource="{Binding Path=notifications}" SelectionMode="None" ItemRightBackground="#73C456">
+                <uwp:SwipeListView.ItemTemplate>
+                    <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="6,0" Text="{Binding Path=Subject.Type}"/>
+                                    <StackPanel>
+                                        <TextBlock Margin="6,3" Text="{Binding Path=Subject.Title}"/>
+                                        <TextBlock Margin="6,3" Text="{Binding Path=Repository.FullName}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                    </DataTemplate>
+                </uwp:SwipeListView.ItemTemplate>
+                <uwp:SwipeListView.ItemRightContentTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="6,0" Text="{Binding Path=Subject.Type}"/>
-                            <StackPanel>
-                                <TextBlock Margin="6,0" Text="{Binding Path=Subject.Title}"/>
-                                <TextBlock Margin="6,0" Text="{Binding Path=Repository.FullName}"/>
-                            </StackPanel>
+                            <FontIcon Margin="12,0" Glyph="&#xE10B;"/>
+                            <TextBlock Text="Mark as read" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </uwp:SwipeListView.ItemRightContentTemplate>
+                <uwp:SwipeListView.ItemLeftBehavior>
+                    <uwp:SwipeListBehavior>Disabled</uwp:SwipeListBehavior>
+                </uwp:SwipeListView.ItemLeftBehavior>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="ItemSwipe">
+                        <core:InvokeCommandAction Command="{Binding Path=MarkNotificationRead}" CommandParameter="{Binding SwipedItem, ElementName=list}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </uwp:SwipeListView>
         </Grid>
+        <CommandBar Grid.Row="2">
+            <AppBarButton Label="Refresh" Icon="Refresh" Command="{Binding Path=RefreshFeed}"/>
+        </CommandBar>
     </Grid>
     
 </Page>
