@@ -15,8 +15,8 @@ namespace Github.ViewModels
         {            
         }
 
-        private IReadOnlyList<Octokit.Notification> _notifications;
-        public IReadOnlyList<Octokit.Notification> notifications
+        private List<Octokit.Notification> _notifications;
+        public List<Octokit.Notification> notifications
         {
             get
             {
@@ -56,14 +56,16 @@ namespace Github.ViewModels
                             Octokit.Notification readNotification = swipeArgs.SwipedItem as Octokit.Notification;
                             try
                             {
-                                await constants.g_client.Notification.MarkAsRead(int.Parse(readNotification.Id));
-                                LoadNotifications();
+                                var n_raw = notifications;
+                                n_raw.Remove(readNotification);
+                                notifications = null;
+                                notifications = n_raw;
+                                await constants.g_client.Notification.MarkAsRead(int.Parse(readNotification.Id));    
                             }
                             catch
                             {
                                 await communications.ShowDialog("login_error", "error");
                             }
-
                         }
                     });
                 }
