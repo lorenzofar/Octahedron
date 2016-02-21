@@ -12,7 +12,7 @@
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
     </UserControl.Resources>
     
-    <Grid Width="{Binding Width}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>

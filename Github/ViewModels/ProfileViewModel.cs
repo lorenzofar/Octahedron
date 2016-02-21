@@ -79,24 +79,6 @@ namespace Github.ViewModels
             }
         }
 
-        private RelayCommand _UpdateListLayout;
-        public RelayCommand UpdateListLayout
-        {
-            get
-            {
-                if(_UpdateListLayout == null)
-                {
-                    _UpdateListLayout = new RelayCommand(() =>
-                    {
-                        var repos = repoList;
-                        repoList = null;
-                        repoList = repos;
-                    });
-                }
-                return _UpdateListLayout;
-            }
-        }
-
         private RelayCommand _ShareUser;
         public RelayCommand ShareUser
         {
