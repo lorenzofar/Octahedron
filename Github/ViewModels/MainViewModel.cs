@@ -6,6 +6,8 @@ using Helper;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using Universal.UI.Xaml.Controls;
+using Github.Models;
+using System.Collections.ObjectModel;
 
 namespace Github.ViewModels
 {
@@ -25,6 +27,19 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _notifications, value);
+            }
+        }
+
+        private ObservableCollection<GroupInfoList> _groups;
+        public ObservableCollection<GroupInfoList> groups
+        {
+            get
+            {
+                return _groups;
+            }
+            set
+            {
+                Set(ref _groups, value);
             }
         }
 
@@ -83,7 +98,22 @@ namespace Github.ViewModels
         {
             try
             {
+                groups = new ObservableCollection<GroupInfoList>();
                 notifications = (await constants.g_client.Notification.GetAllForCurrent()).Where(x => x.Unread == true).ToList();
+                var query = from item in notifications
+                            group item by item.Repository.FullName.ToUpper() into r
+                            orderby r.Key
+                            select new { GroupName = r.Key, Items = r };
+                foreach (var g in query)
+                {
+                    GroupInfoList info = new GroupInfoList();
+                    info.Key = g.GroupName;
+                    foreach (var item in g.Items)
+                    {
+                        info.Add(item);
+                    }
+                    groups.Add(info);
+                }
             }
             catch
             {

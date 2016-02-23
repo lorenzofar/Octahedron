@@ -8,6 +8,8 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:Github.Converters"
+    xmlns:data="using:Octokit"
+    xmlns:models="using:Github.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Main}"
@@ -15,6 +17,7 @@
 
     <Page.Resources>
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <CollectionViewSource x:Name="notificationsCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
     <Grid>
@@ -25,7 +28,7 @@
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1">
-            <uwp:SwipeListView x:Name="list" ItemsSource="{Binding Path=notifications}" SelectionMode="None" ItemRightBackground="#73C456">
+            <uwp:SwipeListView x:Name="list" ItemsSource="{x:Bind notificationsCVS.View}" SelectionMode="None" ItemRightBackground="#73C456">
                 <uwp:SwipeListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,12">
@@ -57,6 +60,16 @@
                         <core:InvokeCommandAction Command="{Binding Path=MarkNotificationRead}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
+                <uwp:SwipeListView.GroupStyle>
+                        <GroupStyle >
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate x:DataType="models:GroupInfoList">
+                                    <TextBlock Text="{x:Bind Key}" 
+                                       Style="{ThemeResource TitleTextBlockStyle}"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
         </Grid>
         <CommandBar Grid.Row="2">
