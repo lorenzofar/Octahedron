@@ -7,10 +7,15 @@
     xmlns:uwp="using:Universal.UI.Xaml.Controls"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:Github.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Main}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +36,7 @@
                             <FontIcon Glyph="&#xE8EC;"/>
                             <StackPanel Grid.Column="1" Margin="12,0">
                                     <TextBlock Text="{Binding Path=Subject.Title}"/>
-                                    <TextBlock Foreground="#999999" Text="{Binding Path=Repository.FullName}"/>
+                                <TextBlock Foreground="#999999" Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
