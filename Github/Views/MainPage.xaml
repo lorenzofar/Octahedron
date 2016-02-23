@@ -38,7 +38,7 @@
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xE8EC;"/>
                             <StackPanel Grid.Column="1" Margin="12,0">
-                                    <TextBlock Text="{Binding Path=Subject.Title}"/>
+                                    <TextBlock Text="{Binding Path=Subject.Title}" TextWrapping="Wrap"/>
                                 <TextBlock Foreground="#999999" Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>
                             </StackPanel>
                         </Grid>
@@ -64,8 +64,7 @@
                         <GroupStyle >
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate x:DataType="models:GroupInfoList">
-                                    <TextBlock Text="{x:Bind Key}" 
-                                       Style="{ThemeResource TitleTextBlockStyle}"/>
+                                    <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}"/>
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
