@@ -8,13 +8,14 @@ using GalaSoft.MvvmLight.Command;
 using Universal.UI.Xaml.Controls;
 using Github.Models;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Controls;
 
 namespace Github.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         public MainViewModel()
-        {            
+        {
         }
 
         private List<Octokit.Notification> _notifications;
@@ -43,12 +44,67 @@ namespace Github.ViewModels
             }
         }
 
+        private bool _selecting = false;
+        public bool selecting
+        {
+            get
+            {
+                return _selecting;
+            }
+            set
+            {
+                Set(ref _selecting, value);
+            }
+        }
+
+        private List<object> _selectedItems;
+        public List<object> selectedItems
+        {
+            get
+            {
+                if (_selectedItems == null)
+                {
+                    _selectedItems = new List<object>();
+                }
+                return _selectedItems;
+            }
+            set
+            {
+                Set(ref _selectedItems, value);
+            }
+        }
+
+        private RelayCommand<object> _SelectionChanged;
+        public RelayCommand<object> SelectionChanged
+        {
+            get
+            {
+                if (_SelectionChanged == null)
+                {
+                    _SelectionChanged = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as SelectionChangedEventArgs;
+                        foreach (var item in args.AddedItems)
+                        {
+                            selectedItems.Add(item);
+                        }
+                        foreach (var item in args.RemovedItems)
+                        {
+                            selectedItems.Remove(item);
+                        }
+                    });
+                }
+
+                return _SelectionChanged;
+            }
+        }
+
         private RelayCommand _RefreshFeed;
         public RelayCommand RefreshFeed
         {
             get
             {
-                if(_RefreshFeed == null)
+                if (_RefreshFeed == null)
                 {
                     _RefreshFeed = new RelayCommand(LoadNotifications);
                 }
@@ -61,30 +117,93 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_MarkNotificationRead == null)
+                if (_MarkNotificationRead == null)
                 {
-                    _MarkNotificationRead = new RelayCommand<object>( async(e) =>
-                    {
-                        if (e != null)
-                        {
-                            var swipeArgs = e as ItemSwipeEventArgs;
-                            Octokit.Notification readNotification = swipeArgs.SwipedItem as Octokit.Notification;
-                            try
-                            {
-                                var n_raw = notifications;
-                                n_raw.Remove(readNotification);
-                                notifications = null;
-                                notifications = n_raw;
-                                await constants.g_client.Notification.MarkAsRead(int.Parse(readNotification.Id));    
-                            }
-                            catch
-                            {
-                                await communications.ShowDialog("login_error", "error");
-                            }
-                        }
-                    });
+                    _MarkNotificationRead = new RelayCommand<object>(async (e) =>
+                   {
+                       if (e != null)
+                       {
+                           var swipeArgs = e as ItemSwipeEventArgs;
+                           Octokit.Notification readNotification = swipeArgs.SwipedItem as Octokit.Notification;
+                           try
+                           {
+                               constants.g_client.Notification.MarkAsRead(int.Parse(readNotification.Id));
+                               var n_raw = notifications;
+                               n_raw.Remove(readNotification);
+                               notifications = null;
+                               notifications = n_raw;
+                               GroupList();
+                           }
+                           catch
+                           {
+                               await communications.ShowDialog("login_error", "error");
+                           }
+                       }
+                   });
                 }
                 return _MarkNotificationRead;
+            }
+        }
+
+        private RelayCommand _SelectItems;
+        public RelayCommand SelectItems
+        {
+            get
+            {
+                if (_SelectItems == null)
+                {
+                    _SelectItems = new RelayCommand(() =>
+                    {
+                        selecting = true;
+                    });
+                }
+                return _SelectItems;
+            }
+        }
+
+        private RelayCommand _DeleteItems;
+        public RelayCommand DeleteItems
+        {
+            get
+            {
+                if (_DeleteItems == null)
+                {
+                    _DeleteItems = new RelayCommand(async () =>
+                    {
+                        foreach (var item in selectedItems)
+                        {
+                            if (item != null)
+                            {
+                                var notification = item as Octokit.Notification;
+                                notifications.Remove(notification);
+                                constants.g_client.Notification.MarkAsRead(int.Parse(notification.Id));
+                            }
+                        }
+                        var n_raw = notifications;
+                        notifications = null;
+                        notifications = n_raw;
+                        selectedItems = null;
+                        selecting = false;
+                        GroupList();
+                    });
+                }
+                return _DeleteItems;
+            }
+        }
+
+        private RelayCommand _CancelSelection;
+        public RelayCommand CancelSelection
+        {
+            get
+            {
+                if (_CancelSelection == null)
+                {
+                    _CancelSelection = new RelayCommand(() => {
+                        selectedItems = null;
+                        selecting = false;
+                    });
+                }
+                return _CancelSelection;
             }
         }
 
@@ -97,23 +216,9 @@ namespace Github.ViewModels
         private async void LoadNotifications()
         {
             try
-            {
-                groups = new ObservableCollection<GroupInfoList>();
+            {                
                 notifications = (await constants.g_client.Notification.GetAllForCurrent()).Where(x => x.Unread == true).ToList();
-                var query = from item in notifications
-                            group item by item.Repository.FullName.ToUpper() into r
-                            orderby r.Key
-                            select new { GroupName = r.Key, Items = r };
-                foreach (var g in query)
-                {
-                    GroupInfoList info = new GroupInfoList();
-                    info.Key = g.GroupName;
-                    foreach (var item in g.Items)
-                    {
-                        info.Add(item);
-                    }
-                    groups.Add(info);
-                }
+                GroupList();
             }
             catch
             {
@@ -121,6 +226,23 @@ namespace Github.ViewModels
             }
         }
 
-        
-    }
+        private void GroupList()
+        {
+            groups = new ObservableCollection<GroupInfoList>();
+            var query = from item in notifications
+                        group item by item.Repository.FullName.ToUpper() into r
+                        orderby r.Key
+                        select new { GroupName = r.Key, Items = r };
+            foreach (var g in query)
+            {
+                GroupInfoList info = new GroupInfoList();
+                info.Key = g.GroupName;
+                foreach (var item in g.Items)
+                {
+                    info.Add(item);
+                }
+                groups.Add(info);
+            }
+        }
+    } 
 }

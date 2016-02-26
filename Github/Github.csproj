@@ -99,7 +99,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Converters\InfoDisplayConverter.cs" />
+    <Compile Include="Converters\ListSelectionConverter.cs" />
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
