@@ -20,6 +20,7 @@
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:ListSelectionConverter x:Key="ListSelectionConverter"/>
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
+        <converters:NotificationIconConverter x:Key="NotificationIconConverter"/>
         <CollectionViewSource x:Name="notificationsCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -39,7 +40,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <FontIcon Glyph="&#xE8EC;"/>
+                            <FontIcon Glyph="{Binding Path=Subject.Type, Converter={StaticResource NotificationIconConverter}}"/>
                             <StackPanel Grid.Column="1" Margin="12,0">
                                     <TextBlock Text="{Binding Path=Subject.Title}" TextWrapping="Wrap"/>
                                 <TextBlock Foreground="#999999" Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>

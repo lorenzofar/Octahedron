@@ -103,6 +103,7 @@
     <Compile Include="Converters\InfoDisplayConverter.cs" />
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />
+    <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
