@@ -186,4 +186,7 @@
   <data name="login_splash.Text" xml:space="preserve">
     <value>Logging in</value>
   </data>
+  <data name="notifications_placeholder.Text" xml:space="preserve">
+    <value>There are no notifications</value>
+  </data>
 </root>

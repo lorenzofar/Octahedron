@@ -19,6 +19,7 @@
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:ListSelectionConverter x:Key="ListSelectionConverter"/>
+        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
         <CollectionViewSource x:Name="notificationsCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -75,6 +76,7 @@
                         </GroupStyle>
                 </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
+            <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         <CommandBar Grid.Row="2">
             <AppBarButton Command="{Binding Path=SelectItems}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Select" Icon="Bullets"/>
