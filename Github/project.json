@@ -4,7 +4,7 @@
     "MvvmLight": "5.2.0",
     "Octokit": "0.18.0",
     "SwipeListView": "1.1.0",
-    "Template10": "1.1.4"
+    "Template10": "1.1.5"
   },
   "frameworks": {
     "uap10.0": {}

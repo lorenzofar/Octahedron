@@ -9,6 +9,7 @@ using Universal.UI.Xaml.Controls;
 using Github.Models;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
+using System;
 
 namespace Github.ViewModels
 {
@@ -31,7 +32,7 @@ namespace Github.ViewModels
             }
         }
 
-        private ObservableCollection<GroupInfoList> _groups;
+        private ObservableCollection<GroupInfoList> _groups = new ObservableCollection<GroupInfoList>();
         public ObservableCollection<GroupInfoList> groups
         {
             get
@@ -127,7 +128,7 @@ namespace Github.ViewModels
                            Octokit.Notification readNotification = swipeArgs.SwipedItem as Octokit.Notification;
                            try
                            {
-                               constants.g_client.Notification.MarkAsRead(int.Parse(readNotification.Id));
+                               constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(readNotification.Id));
                                var n_raw = notifications;
                                n_raw.Remove(readNotification);
                                notifications = null;
@@ -175,8 +176,8 @@ namespace Github.ViewModels
                             if (item != null)
                             {
                                 var notification = item as Octokit.Notification;
-                                notifications.Remove(notification);
-                                constants.g_client.Notification.MarkAsRead(int.Parse(notification.Id));
+                                notifications.Remove(notification);                                
+                                constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(notification.Id));
                             }
                         }
                         var n_raw = notifications;
@@ -216,8 +217,10 @@ namespace Github.ViewModels
         private async void LoadNotifications()
         {
             try
-            {                
-                notifications = (await constants.g_client.Notification.GetAllForCurrent()).Where(x => x.Unread == true).ToList();
+            {
+                var n_list = await constants.g_client.Activity.Notifications.GetAllForCurrent(new Octokit.NotificationsRequest { Before = DateTime.Now });
+                notifications = null;
+                notifications = n_list.ToList();
                 GroupList();
             }
             catch
@@ -228,7 +231,7 @@ namespace Github.ViewModels
 
         private void GroupList()
         {
-            groups = new ObservableCollection<GroupInfoList>();
+            groups.Clear();
             var query = from item in notifications
                         group item by item.Repository.FullName.ToUpper() into r
                         orderby r.Key
