@@ -171,21 +171,28 @@ namespace Github.ViewModels
                 {
                     _DeleteItems = new RelayCommand(async () =>
                     {
-                        foreach (var item in selectedItems)
+                        try
                         {
-                            if (item != null)
+                            foreach (var item in selectedItems)
                             {
-                                var notification = item as Octokit.Notification;
-                                notifications.Remove(notification);                                
-                                constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(notification.Id));
+                                if (item != null)
+                                {
+                                    var notification = item as Octokit.Notification;
+                                    notifications.Remove(notification);
+                                    constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(notification.Id));
+                                }
                             }
+                            var n_raw = notifications;
+                            notifications = null;
+                            notifications = n_raw;
+                            selectedItems = null;
+                            selecting = false;
+                            GroupList();
                         }
-                        var n_raw = notifications;
-                        notifications = null;
-                        notifications = n_raw;
-                        selectedItems = null;
-                        selecting = false;
-                        GroupList();
+                        catch
+                        {
+                            await communications.ShowDialog("login_error", "error");
+                        }
                     });
                 }
                 return _DeleteItems;
