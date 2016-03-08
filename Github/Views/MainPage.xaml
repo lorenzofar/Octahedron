@@ -77,6 +77,9 @@
                         </GroupStyle>
                 </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
+            <Viewbox Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+            </Viewbox>
             <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         <CommandBar Grid.Row="2">

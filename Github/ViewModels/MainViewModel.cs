@@ -75,6 +75,19 @@ namespace Github.ViewModels
             }
         }
 
+        private bool _loading = false;
+        public bool loading
+        {
+            get
+            {
+                return _loading;
+            }
+            set
+            {
+                Set(ref _loading, value);
+            }
+        }
+
         private RelayCommand<object> _SelectionChanged;
         public RelayCommand<object> SelectionChanged
         {
@@ -225,13 +238,16 @@ namespace Github.ViewModels
         {
             try
             {
+                loading = true;
                 var n_list = await constants.g_client.Activity.Notifications.GetAllForCurrent(new Octokit.NotificationsRequest { Before = DateTime.Now });
                 notifications = null;
                 notifications = n_list.ToList();
                 GroupList();
+                loading = false;
             }
             catch
             {
+                loading = false;
                 await communications.ShowDialog("login_error", "error");
             }
         }
