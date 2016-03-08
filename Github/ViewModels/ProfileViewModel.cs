@@ -6,6 +6,7 @@ using Windows.ApplicationModel.DataTransfer;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Github.ViewModels
 {
@@ -168,7 +169,8 @@ namespace Github.ViewModels
                 owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 FollowUser.RaiseCanExecuteChanged();
                 following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);
-                repoList = await constants.g_client.Repository.GetAllForUser(user.Login);
+                var repos = await constants.g_client.Repository.GetAllForUser(user.Login);
+                repoList = repos.OrderByDescending(x => x.UpdatedAt).ToList();
                 orgsList = await constants.g_client.Organization.GetAll(user.Login);
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
             }
