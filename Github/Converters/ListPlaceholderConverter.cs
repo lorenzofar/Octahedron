@@ -11,8 +11,16 @@ namespace Github.Converters
         {
             if (value != null)
             {
-                var cvs = value as List<Octokit.Notification>;
-                return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                if(parameter.ToString() == "main")
+                {
+                    var cvs = value as List<Octokit.Notification>;
+                    return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
+                else
+                {
+                    var cvs = value as List<Octokit.Repository>;
+                    return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
             }
             else
             {

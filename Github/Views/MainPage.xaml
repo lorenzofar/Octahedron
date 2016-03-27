@@ -80,7 +80,7 @@
             <Viewbox Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
             </Viewbox>
-            <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         <CommandBar Grid.Row="2">
             <AppBarButton Command="{Binding Path=SelectItems}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Select" Icon="Bullets"/>

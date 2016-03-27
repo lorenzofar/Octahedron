@@ -30,6 +30,14 @@
             }
         }
 
+        public ReposViewModel Repos
+        {
+            get
+            {
+                return new ReposViewModel();
+            }
+        }
+
         public RepoDetailViewModel RepoDetail
         {
             get
