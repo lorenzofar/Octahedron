@@ -54,35 +54,64 @@ namespace Github.ViewModels
             }
         }
 
-        private RelayCommand _ShowFilterMenu;
-        public RelayCommand ShowFilterMenu
+        private int _sortIndex = 0;
+        public int sortIndex
         {
             get
             {
-                if(_ShowFilterMenu == null)
-                {
-                    _ShowFilterMenu = new RelayCommand(() =>
-                    {
-
-                    });
-                }
-                return _ShowFilterMenu;
+                return _sortIndex;
+            }
+            set
+            {
+                Set(ref _sortIndex, value);
             }
         }
 
-        private RelayCommand _ShowSortMenu;
-        public RelayCommand ShowSortMenu
+        private int _filterIndex = 0;
+        public int filterIndex
         {
             get
             {
-                if (_ShowSortMenu == null)
-                {
-                    _ShowSortMenu = new RelayCommand(() =>
-                    {
+                return _filterIndex;
+            }
+            set
+            {
+                Set(ref _filterIndex, value);
+            }
+        }
 
+        private RelayCommand<object> _SelectFilter;
+        public RelayCommand<object> SelectFilter
+        {
+            get
+            {
+                if(_SelectFilter == null)
+                {
+                    _SelectFilter = new RelayCommand<object>((parameter) =>
+                    {
+                        int index = int.Parse(parameter.ToString());
+                        filterIndex = index;
                     });
                 }
-                return _ShowSortMenu;
+                return _SelectFilter;
+            }
+        }
+
+        private RelayCommand<object> _SelectSort;
+        public RelayCommand<object> SelectSort
+        {
+            get
+            {
+                if (_SelectSort == null)
+                {
+                    _SelectSort = new RelayCommand<object>((parameter) =>
+                    {
+                        int index = int.Parse(parameter.ToString());
+                        sortIndex = index;
+                        LoadRepos();
+                    });
+                }
+                return _SelectSort;
             }
         }
 
@@ -106,7 +135,7 @@ namespace Github.ViewModels
         {
             groups.Clear();
             var query = from item in repos
-                        group item by item.Name[0].ToString().ToUpper() into r
+                        group item by groupRule(item) into r
                         orderby r.Key
                         select new { GroupName = r.Key, Items = r };
             foreach (var g in query)
@@ -118,6 +147,20 @@ namespace Github.ViewModels
                     info.Add(item);
                 }
                 groups.Add(info);
+            }
+        }
+
+        private object groupRule(Repository repo)
+        {
+            switch (_sortIndex)
+            {
+                default:
+                case 0: //SORT BY NAME
+                    return repo.Name[0].ToString().ToUpper();
+                    break;
+                case 1: //SORT BY LANGUAGE
+                    return repo.Language;
+                    break;
             }
         }
     }

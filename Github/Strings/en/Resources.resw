@@ -189,4 +189,16 @@
   <data name="notifications_placeholder.Text" xml:space="preserve">
     <value>There are no notifications</value>
   </data>
+  <data name="sort_language.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="sort_name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="filter_btn.Label" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="sort_btn.Label" xml:space="preserve">
+    <value>Sort</value>
+  </data>
 </root>

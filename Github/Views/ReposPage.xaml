@@ -16,6 +16,7 @@
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
+        <converters:PopupIndexConverter x:Key="PopupIndexConverter"/>
         <CollectionViewSource x:Name="reposCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -56,8 +57,15 @@
         </Viewbox>
 
         <CommandBar Grid.Row="2">
-            <AppBarButton x:Uid="filter_btn" Command="{Binding Path=ShowFilterMenu}" Label="Filter" Icon="Filter"/>
-            <AppBarButton x:Uid="sort_btn" Command="{Binding Path=ShowSortMenu}" Label="Sort" Icon="Sort"/>
+            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Command="{Binding Path=ShowFilterMenu}" Icon="Filter"/>
+            <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="sort_name" Command="{Binding Path=SelectSort}" CommandParameter="0" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="sort_language" Command="{Binding Path=SelectSort}" CommandParameter="1" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
         </CommandBar>
 
     </Grid>

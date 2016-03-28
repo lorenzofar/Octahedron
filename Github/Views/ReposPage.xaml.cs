@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Helper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +27,11 @@ namespace Github.Views
         public ReposPage()
         {
             this.InitializeComponent();
+        }
+
+        private void sort_btn_Click(object sender, RoutedEventArgs e)
+        {
+            sort_btn.Flyout.ShowAt(sort_btn);
         }
     }
 }
