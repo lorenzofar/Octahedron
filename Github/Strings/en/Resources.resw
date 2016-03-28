@@ -201,4 +201,22 @@
   <data name="sort_btn.Label" xml:space="preserve">
     <value>Sort</value>
   </data>
+  <data name="filter_all.Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="filter_member.Text" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="filter_owner.Text" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="filter_private.Text" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="filter_public.Text" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="repos_placeholder.Text" xml:space="preserve">
+    <value>No repository found</value>
+  </data>
 </root>

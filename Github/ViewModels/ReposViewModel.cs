@@ -85,12 +85,13 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_SelectFilter == null)
+                if (_SelectFilter == null)
                 {
                     _SelectFilter = new RelayCommand<object>((parameter) =>
                     {
                         int index = int.Parse(parameter.ToString());
                         filterIndex = index;
+                        LoadRepos();
                     });
                 }
                 return _SelectFilter;
@@ -124,11 +125,32 @@ namespace Github.ViewModels
         private async void LoadRepos()
         {
             loading = true;
-            var r_list = await constants.g_client.Repository.GetAllForCurrent();
+            var r_list = await constants.g_client.Repository.GetAllForCurrent(new RepositoryRequest { Type = repoType });
             repos = null;
             repos = r_list.ToList();
             GroupList();
             loading = false;
+        }
+
+        private RepositoryType repoType
+        {
+            get
+            {
+                switch (filterIndex)
+                {
+                    default:
+                    case 0:
+                        return RepositoryType.All;
+                    case 1:
+                        return RepositoryType.Public;
+                    case 2:
+                        return RepositoryType.Private;
+                    case 3:
+                        return RepositoryType.Member;
+                    case 4:
+                        return RepositoryType.Owner;
+                }
+            }
         }
 
         private void GroupList()
@@ -157,10 +179,8 @@ namespace Github.ViewModels
                 default:
                 case 0: //SORT BY NAME
                     return repo.Name[0].ToString().ToUpper();
-                    break;
                 case 1: //SORT BY LANGUAGE
                     return repo.Language;
-                    break;
             }
         }
     }

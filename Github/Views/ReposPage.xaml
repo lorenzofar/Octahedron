@@ -49,15 +49,25 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        
-        <TextBlock Grid.Row="1" x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, Converter={StaticResource ListPlaceholderConverter},ConverterParameter=repos}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
         </Viewbox>
 
         <CommandBar Grid.Row="2">
-            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Command="{Binding Path=ShowFilterMenu}" Icon="Filter"/>
+            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=SelectFilter}" CommandParameter="0" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_public" Command="{Binding Path=SelectFilter}" CommandParameter="1" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_private" Command="{Binding Path=SelectFilter}" CommandParameter="2" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_member" Command="{Binding Path=SelectFilter}" CommandParameter="3" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
+                        <MenuFlyoutItem x:Uid="filter_owner" Command="{Binding Path=SelectFilter}" CommandParameter="4" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
                 <AppBarButton.Flyout>
                     <MenuFlyout>

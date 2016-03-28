@@ -24,7 +24,7 @@ namespace Github.Converters
             }
             else
             {
-                return Visibility.Collapsed;
+                return Visibility.Visible;
             }
         }
 

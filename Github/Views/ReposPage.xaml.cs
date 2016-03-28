@@ -33,5 +33,10 @@ namespace Github.Views
         {
             sort_btn.Flyout.ShowAt(sort_btn);
         }
+
+        private void filter_btn_Click(object sender, RoutedEventArgs e)
+        {
+            filter_btn.Flyout.ShowAt(filter_btn);
+        }
     }
 }
