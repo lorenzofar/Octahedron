@@ -228,4 +228,7 @@
   <data name="stars_txt.Text" xml:space="preserve">
     <value>stars</value>
   </data>
+  <data name="repoDetail_header.Text" xml:space="preserve">
+    <value>REPOSITORY</value>
+  </data>
 </root>

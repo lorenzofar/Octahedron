@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Text="REPOSITORY">
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720">
         </controls:PageHeader>
 
         <Pivot Grid.Row="1">
