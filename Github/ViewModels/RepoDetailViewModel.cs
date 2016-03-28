@@ -7,12 +7,26 @@ using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using Helper;
 using Windows.UI.Xaml.Navigation;
+using Octokit;
 
 namespace Github.ViewModels
 {
     public class RepoDetailViewModel : ViewModelBase
     {
         private bool owner;
+
+        private Repository _repo;
+        public Repository repo
+        {
+            get
+            {
+                return _repo;
+            }
+            set
+            {
+                Set(ref _repo, value);
+            }
+        }
 
         private bool _starred;
         public bool starred
@@ -57,9 +71,10 @@ namespace Github.ViewModels
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            if(parameter != null)
+            if (parameter != null)
             {
-                var repo = (Octokit.Repository)parameter;
+                string[] repoInfo = parameter.ToString().Split('/');
+                repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);

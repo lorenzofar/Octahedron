@@ -219,4 +219,13 @@
   <data name="repos_placeholder.Text" xml:space="preserve">
     <value>No repository found</value>
   </data>
+  <data name="forks_txt.Text" xml:space="preserve">
+    <value>forks</value>
+  </data>
+  <data name="issues_txt.Text" xml:space="preserve">
+    <value>issues</value>
+  </data>
+  <data name="stars_txt.Text" xml:space="preserve">
+    <value>stars</value>
+  </data>
 </root>
