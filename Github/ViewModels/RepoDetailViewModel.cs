@@ -8,6 +8,7 @@ using Template10.Services.NavigationService;
 using Helper;
 using Windows.UI.Xaml.Navigation;
 using Octokit;
+using GalaSoft.MvvmLight.Command;
 
 namespace Github.ViewModels
 {
@@ -67,25 +68,72 @@ namespace Github.ViewModels
             }
         }
 
-        Octokit.WatchedClient watch;
+        #region COMMANDS
+        private RelayCommand _WatchRepo;
+        public RelayCommand WatchRepo
+        {
+            get
+            {
+                if (_WatchRepo == null)
+                {
+                    _WatchRepo = new RelayCommand(() =>
+                    {
+                        if (!watched)
+                        {
+                            constants.g_client.Activity.Watching.UnwatchRepo(repo.Owner.Login, repo.Name);
+                        }
+                        else
+                        {
+                            constants.g_client.Activity.Watching.WatchRepo(repo.Owner.Login, repo.Name, new NewSubscription { Subscribed = true });
+                        }
+                    });
+                }
+                return _WatchRepo;
+            }
+        }
+
+        private RelayCommand _StarRepo;
+        public RelayCommand StarRepo
+        {
+            get
+            {
+                if(_StarRepo == null)
+                {
+                    _StarRepo = new RelayCommand(() =>
+                    {
+                        if (!starred)
+                        {
+                            constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
+                        }
+                        else
+                        {
+                            constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
+                        }
+                        LoadRepo(repo.FullName);
+                    });
+                }
+                return _StarRepo;
+            }
+        }
+        #endregion
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (parameter != null)
             {
-                string[] repoInfo = parameter.ToString().Split('/');
-                repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
-                owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
-                watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
-                starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
-                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name);
+                LoadRepo(parameter);
             }
             return;
         }
 
-        public void io()
+        private async void LoadRepo(object info)
         {
-            
+            string[] repoInfo = info.ToString().Split('/');
+            repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
+            owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
+            watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
+            starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
+            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name);
         }
     }
 }

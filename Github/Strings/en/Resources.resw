@@ -231,4 +231,10 @@
   <data name="repoDetail_header.Text" xml:space="preserve">
     <value>REPOSITORY</value>
   </data>
+  <data name="star_btn.Label" xml:space="preserve">
+    <value>Star</value>
+  </data>
+  <data name="watch_btn.Label" xml:space="preserve">
+    <value>Watch</value>
+  </data>
 </root>

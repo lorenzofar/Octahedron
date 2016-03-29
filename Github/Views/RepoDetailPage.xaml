@@ -16,9 +16,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720">
-        </controls:PageHeader>
-
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        
         <Pivot Grid.Row="1">
             <PivotItem x:Uid="info_txt" Header="INFO">
                 <Grid>
@@ -62,6 +61,12 @@
         </Pivot>
 
         <CommandBar Grid.Row="2">
+            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding Path=WatchRepo}" IsChecked="{Binding Path=watched, Mode=TwoWay}">
+                <AppBarToggleButton.Icon>
+                    <FontIcon Glyph="&#xE052;"/>
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
+            <AppBarToggleButton x:Uid="star_btn" Command="{Binding Path=StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding Path=starred, Mode=TwoWay}"/>
             
         </CommandBar>
 
