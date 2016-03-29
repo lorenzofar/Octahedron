@@ -99,7 +99,12 @@
                         </ScrollViewer>
                     </PivotItem>
                     <PivotItem x:Uid="repos_pivot">
-                        <ListView x:Name="repos_listview" ItemsSource="{Binding Path=repoList}" SelectionMode="None">
+                        <ListView x:Name="repos_listview" ItemsSource="{Binding Path=repoList}" SelectionMode="None" IsItemClickEnabled="True">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <templates:RepoListItem Margin="-12,0"/>

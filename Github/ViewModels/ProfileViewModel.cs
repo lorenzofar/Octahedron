@@ -1,12 +1,14 @@
-﻿using Template10.Mvvm;
-using Windows.UI.Xaml.Navigation;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using Helper;
-using Windows.ApplicationModel.DataTransfer;
+using Octokit;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
+using Template10.Mvvm;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Github.ViewModels
 {
@@ -15,8 +17,8 @@ namespace Github.ViewModels
         private bool owner_profile;
         private DataTransferManager dataTransferManager;
 
-        private Octokit.User _user;
-        public Octokit.User user
+        private User _user;
+        public User user
         {
             get
             {
@@ -28,8 +30,8 @@ namespace Github.ViewModels
             }
         }
 
-        private IReadOnlyList<Octokit.Repository> _repoList;
-        public IReadOnlyList<Octokit.Repository> repoList
+        private IReadOnlyList<Repository> _repoList;
+        public IReadOnlyList<Repository> repoList
         {
             get
             {
@@ -41,8 +43,8 @@ namespace Github.ViewModels
             }
         }
 
-        private IReadOnlyList<Octokit.Organization> _orgsList;
-        public IReadOnlyList<Octokit.Organization> orgsList
+        private IReadOnlyList<Organization> _orgsList;
+        public IReadOnlyList<Organization> orgsList
         {
             get
             {
@@ -150,6 +152,27 @@ namespace Github.ViewModels
                     });
                 }
                 return _SendMail;
+            }
+        }
+
+        private RelayCommand<object> _OpenRepo;
+        public RelayCommand<object> OpenRepo
+        {
+            get
+            {
+                if (_OpenRepo == null)
+                {
+                    _OpenRepo = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var repo = args.ClickedItem as Repository;
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
+                        }
+                    });
+                }
+                return _OpenRepo;
             }
         }
 
