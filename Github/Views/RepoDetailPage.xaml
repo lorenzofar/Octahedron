@@ -5,12 +5,18 @@
     xmlns:local="using:Github.Views"
     xmlns:controls="using:Template10.Controls"
     xmlns:templates="using:Github.Templates"
+    xmlns:converters="using:Github.Converters"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RepoDetail}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:InfoDisplayConverter x:Key="InfoConverter"/>
+        <converters:ForkConverter x:Key="ForkConverter"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -30,6 +36,13 @@
                     </Grid.RowDefinitions>
                     <StackPanel Padding="12" Background="{StaticResource SystemControlBackgroundAccentBrush}">
                         <TextBlock Text="{Binding Path=repo.Name}" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" />
+                        <TextBlock Text="{Binding Path=repo.Parent, Converter={StaticResource ForkConverter}}" Visibility="{Binding Path=repo.Parent, Converter={StaticResource InfoConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,6" HorizontalAlignment="Center">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Tapped">
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenParent}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </TextBlock>
                         <TextBlock Text="{Binding Path=repo.Owner.Login}" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">

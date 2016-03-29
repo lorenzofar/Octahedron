@@ -166,6 +166,22 @@ namespace Github.ViewModels
                 return _OpenUser;
             }
         }
+
+        private RelayCommand<object> _OpenParent;
+        public RelayCommand<object> OpenParent
+        {
+            get
+            {
+                if (_OpenParent == null)
+                {
+                    _OpenParent = new RelayCommand<object>((e) =>
+                    {
+                        App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.Parent.FullName);
+                    });
+                }
+                return _OpenParent;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)

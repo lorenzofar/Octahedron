@@ -246,4 +246,7 @@
   <data name="contributors_header.Text" xml:space="preserve">
     <value>CONTRIBUTORS</value>
   </data>
+  <data name="forkedFrom" xml:space="preserve">
+    <value>Forked from</value>
+  </data>
 </root>
