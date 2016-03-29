@@ -5,13 +5,13 @@ using Windows.UI.Xaml.Data;
 
 namespace Github.Converters
 {
-    internal class ListPlaceholderConverter : IValueConverter
+    class ListPlaceholderConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value != null)
             {
-                if (parameter.ToString() == "main")
+                if(parameter.ToString() == "main")
                 {
                     var cvs = value as List<Octokit.Notification>;
                     return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;

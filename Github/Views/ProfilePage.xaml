@@ -14,33 +14,33 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <converters:JoinDateConverter x:Key="JoinDateConverter" />
-        <converters:InfoDisplayConverter x:Key="DisplayConverter" />
-        <converters:UpdateDateConverter x:Key="UpdateDateConverter" />
-        <converters:UserNameConverter x:Key="UserNameConverter" />
+        <converters:JoinDateConverter x:Key="JoinDateConverter"/>
+        <converters:InfoDisplayConverter x:Key="DisplayConverter"/>
+        <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <converters:UserNameConverter x:Key="UserNameConverter"/>
     </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="profile_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="profile_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="3.5*" />
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3.5*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+            <Grid Grid.Row="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" >
                 <Viewbox Margin="0,12" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Ellipse Width="150" Height="150" MaxHeight="150" MaxWidth="150">
                             <Ellipse.Fill>
-                                <ImageBrush x:Name="user_pic" ImageSource="{Binding Path=user.AvatarUrl}" />
+                                <ImageBrush x:Name="user_pic" ImageSource="{Binding Path=user.AvatarUrl}"/>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                        <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
                     </StackPanel>
                 </Viewbox>
             </Grid>
@@ -51,49 +51,49 @@
                             <StackPanel>
                                 <Grid x:Name="info_grid">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <FontIcon Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;" />
-                                    <FontIcon Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;" />
-                                    <FontIcon Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;" />
-                                    <FontIcon Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;" />
-                                    <FontIcon Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;" />
-                                    <TextBlock Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}" />
-                                    <HyperlinkButton Command="{Binding Path=SendMail}" Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Path=user.Email}" />
-                                    <HyperlinkButton Command="{Binding Path=OpenBlog}" Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Path=user.Blog}" />
-                                    <TextBlock Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}" />
-                                    <TextBlock Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt, Converter={StaticResource JoinDateConverter}}" />
+                                    <FontIcon Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
+                                    <FontIcon Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
+                                    <FontIcon Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
+                                    <FontIcon Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
+                                    <FontIcon Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
+                                    <TextBlock Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
+                                    <HyperlinkButton Command="{Binding Path=SendMail}" Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Path=user.Email}"/>
+                                    <HyperlinkButton Command="{Binding Path=OpenBlog}" Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Path=user.Blog}"/>
+                                    <TextBlock Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}"/>
+                                    <TextBlock Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt, Converter={StaticResource JoinDateConverter}}"/>
                                 </Grid>
                                 <Grid x:Name="stats_grid" Margin="0,24">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0" x:Name="followers_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Followers}" />
-                                        <TextBlock x:Uid="followers_caption" HorizontalAlignment="Center" />
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Followers}"/>
+                                        <TextBlock x:Uid="followers_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" x:Name="following_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Following}" />
-                                        <TextBlock x:Uid="following_caption" HorizontalAlignment="Center" />
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Following}"/>
+                                        <TextBlock x:Uid="following_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" x:Name="repos_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}" />
-                                        <TextBlock x:Uid="repos_caption" HorizontalAlignment="Center" />
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}"/>
+                                        <TextBlock x:Uid="repos_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="3" x:Name="starred_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=starredRepos}" />
-                                        <TextBlock x:Uid="starred_caption" HorizontalAlignment="Center" />
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=starredRepos}"/>
+                                        <TextBlock x:Uid="starred_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -103,60 +103,60 @@
                         <ListView x:Name="repos_listview" ItemsSource="{Binding Path=repoList}" SelectionMode="None" IsItemClickEnabled="True">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}" />
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:RepoListItem Margin="-12,0" />
+                                    <templates:RepoListItem Margin="-12,0"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
                     </PivotItem>
-
+                    
                     <PivotItem x:Uid="orgs_pivot">
                     </PivotItem>
-
+                    
                     <PivotItem x:Uid="followers_pivot">
                         <ListView ItemsSource="{Binding Path=followersList}" IsItemClickEnabled="True" SelectionMode="None">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}" />
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}"/>
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:UserListItem />
+                                    <templates:UserListItem/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                             </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
                     </PivotItem>
-
+                    
                     <PivotItem x:Uid="following_pivot">
                         <ListView ItemsSource="{Binding Path=followingList}" IsItemClickEnabled="True" SelectionMode="None">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}" />
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}"/>
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:UserListItem />
+                                    <templates:UserListItem/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
@@ -167,12 +167,12 @@
         <CommandBar Grid.Row="2">
             <AppBarButton x:Uid="share_btn" Command="{Binding Path=ShareUser}">
                 <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE72D;" />
+                    <FontIcon Glyph="&#xE72D;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarToggleButton x:Uid="follow_btn" Command="{Binding Path=FollowUser}" IsChecked="{Binding Path=following}">
                 <AppBarToggleButton.Icon>
-                    <FontIcon Glyph="&#xE8FA;" />
+                    <FontIcon Glyph="&#xE8FA;"/>
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
         </CommandBar>

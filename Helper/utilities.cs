@@ -1,6 +1,6 @@
-﻿using Octokit;
+﻿using Windows.Security.Credentials;
+using Octokit;
 using System.Threading.Tasks;
-using Windows.Security.Credentials;
 
 namespace Helper
 {
@@ -57,7 +57,7 @@ namespace Helper
                 var user = await constants.g_client.User.Current();
                 return true;
             }
-            catch (AuthorizationException)
+            catch(AuthorizationException)
             {
                 await communications.ShowDialog("credentials_error", "error");
                 return false;
@@ -66,6 +66,6 @@ namespace Helper
             {
                 return false;
             }
-        }
+        }        
     }
 }

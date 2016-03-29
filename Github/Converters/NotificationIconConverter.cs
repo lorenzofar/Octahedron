@@ -1,9 +1,10 @@
 ﻿using System;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
 namespace Github.Converters
 {
-    internal class NotificationIconConverter : IValueConverter
+    class NotificationIconConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -14,11 +15,9 @@ namespace Github.Converters
                 case "issue":
                     glyph = "\uE783";
                     break;
-
                 case "pullrequest":
                     glyph = "\uEC0A";
                     break;
-
                 case "release":
                     glyph = "\uE8EC";
                     break;

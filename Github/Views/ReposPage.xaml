@@ -15,74 +15,75 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <converters:UpdateDateConverter x:Key="UpdateDateConverter" />
-        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter" />
-        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter" />
-        <converters:PopupIndexConverter x:Key="PopupIndexConverter" />
+        <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
+        <converters:PopupIndexConverter x:Key="PopupIndexConverter"/>
         <CollectionViewSource x:Name="reposCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:PageHeader Frame="{x:Bind Frame}" Text="REPOSITORIES" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
+        <controls:PageHeader Frame="{x:Bind Frame}" Text="REPOSITORIES" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
         <ListView Grid.Row="1" x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None" IsItemClickEnabled="True">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
-                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}" />
+                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <templates:RepoListItem />
+                    <templates:RepoListItem/>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate x:DataType="models:GroupInfoList">
-                            <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}" />
+                            <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}"/>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
 
-        <TextBlock Grid.Row="1" x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="1" x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80" />
+            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
         </Viewbox>
 
         <CommandBar Grid.Row="2">
             <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=SelectFilter}" CommandParameter="0" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}" />
-                        <MenuFlyoutItem x:Uid="filter_public" Command="{Binding Path=SelectFilter}" CommandParameter="1" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}" />
-                        <MenuFlyoutItem x:Uid="filter_private" Command="{Binding Path=SelectFilter}" CommandParameter="2" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}" />
-                        <MenuFlyoutItem x:Uid="filter_member" Command="{Binding Path=SelectFilter}" CommandParameter="3" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}" />
-                        <MenuFlyoutItem x:Uid="filter_owner" Command="{Binding Path=SelectFilter}" CommandParameter="4" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}" />
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=SelectFilter}" CommandParameter="0" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_public" Command="{Binding Path=SelectFilter}" CommandParameter="1" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_private" Command="{Binding Path=SelectFilter}" CommandParameter="2" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_member" Command="{Binding Path=SelectFilter}" CommandParameter="3" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
+                        <MenuFlyoutItem x:Uid="filter_owner" Command="{Binding Path=SelectFilter}" CommandParameter="4" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="sort_name" Command="{Binding Path=SelectSort}" CommandParameter="0" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}" />
-                        <MenuFlyoutItem x:Uid="sort_language" Command="{Binding Path=SelectSort}" CommandParameter="1" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}" />
+                        <MenuFlyoutItem x:Uid="sort_name" Command="{Binding Path=SelectSort}" CommandParameter="0" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="sort_language" Command="{Binding Path=SelectSort}" CommandParameter="1" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
+
     </Grid>
 </Page>

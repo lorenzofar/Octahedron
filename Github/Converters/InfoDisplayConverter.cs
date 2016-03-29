@@ -1,10 +1,11 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
 namespace Github.Converters
 {
-    internal class InfoDisplayConverter : IValueConverter
+    class InfoDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

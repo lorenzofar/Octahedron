@@ -1,21 +1,22 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Github.Models;
-using Helper;
-using Octokit;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight.Command;
+using Github.Models;
+using System.Collections.ObjectModel;
+using Octokit;
 using Windows.UI.Xaml.Navigation;
+using Helper;
+using Windows.UI.Xaml.Controls;
 
 namespace Github.ViewModels
 {
     public class ReposViewModel : ViewModelBase
     {
         private List<Repository> _repos;
-
         public List<Repository> repos
         {
             get
@@ -29,7 +30,6 @@ namespace Github.ViewModels
         }
 
         private ObservableCollection<GroupInfoList> _groups = new ObservableCollection<GroupInfoList>();
-
         public ObservableCollection<GroupInfoList> groups
         {
             get
@@ -43,7 +43,6 @@ namespace Github.ViewModels
         }
 
         private bool _loading = false;
-
         public bool loading
         {
             get
@@ -57,7 +56,6 @@ namespace Github.ViewModels
         }
 
         private int _sortIndex = 0;
-
         public int sortIndex
         {
             get
@@ -71,7 +69,6 @@ namespace Github.ViewModels
         }
 
         private int _filterIndex = 0;
-
         public int filterIndex
         {
             get
@@ -85,7 +82,6 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _SelectFilter;
-
         public RelayCommand<object> SelectFilter
         {
             get
@@ -104,7 +100,6 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _SelectSort;
-
         public RelayCommand<object> SelectSort
         {
             get
@@ -123,20 +118,19 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _OpenRepo;
-
         public RelayCommand<object> OpenRepo
         {
             get
             {
-                if (_OpenRepo == null)
+                if(_OpenRepo == null)
                 {
                     _OpenRepo = new RelayCommand<object>((e) =>
                     {
                         var args = e as ItemClickEventArgs;
-                        if (args != null && args.ClickedItem != null)
+                        if(args != null && args.ClickedItem != null)
                         {
                             var repo = args.ClickedItem as Repository;
-                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage),repo.FullName);
                         }
                     });
                 }
@@ -169,16 +163,12 @@ namespace Github.ViewModels
                     default:
                     case 0:
                         return RepositoryType.All;
-
                     case 1:
                         return RepositoryType.Public;
-
                     case 2:
                         return RepositoryType.Private;
-
                     case 3:
                         return RepositoryType.Member;
-
                     case 4:
                         return RepositoryType.Owner;
                 }
@@ -211,7 +201,6 @@ namespace Github.ViewModels
                 default:
                 case 0: //SORT BY NAME
                     return repo.Name[0].ToString().ToUpper();
-
                 case 1: //SORT BY LANGUAGE
                     return repo.Language;
             }
