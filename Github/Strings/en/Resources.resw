@@ -243,4 +243,7 @@
   <data name="following_pivot.Header" xml:space="preserve">
     <value>FOLLOWING</value>
   </data>
+  <data name="contributors_header.Text" xml:space="preserve">
+    <value>CONTRIBUTORS</value>
+  </data>
 </root>

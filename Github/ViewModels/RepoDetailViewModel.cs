@@ -9,6 +9,7 @@ using Helper;
 using Windows.UI.Xaml.Navigation;
 using Octokit;
 using GalaSoft.MvvmLight.Command;
+using Windows.UI.Xaml.Controls;
 
 namespace Github.ViewModels
 {
@@ -65,6 +66,19 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _issues, value);
+            }
+        }
+
+        private IReadOnlyList<RepositoryContributor> _contributorsList;
+        public IReadOnlyList<RepositoryContributor> contributorsList
+        {
+            get
+            {
+                return _contributorsList;
+            }
+            set
+            {
+                Set(ref _contributorsList, value);
             }
         }
 
@@ -131,6 +145,27 @@ namespace Github.ViewModels
                 return _OpenProfile;
             }
         }
+
+        private RelayCommand<object> _OpenUser;
+        public RelayCommand<object> OpenUser
+        {
+            get
+            {
+                if (_OpenUser == null)
+                {
+                    _OpenUser = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var user = args.ClickedItem as RepositoryContributor;
+                            App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), user.Login);
+                        }
+                    });
+                }
+                return _OpenUser;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
@@ -150,6 +185,7 @@ namespace Github.ViewModels
             watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
             starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
             issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name);
+            contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
         }
     }
 }
