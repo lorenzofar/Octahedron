@@ -237,4 +237,10 @@
   <data name="watch_btn.Label" xml:space="preserve">
     <value>Watch</value>
   </data>
+  <data name="followers_pivot.Header" xml:space="preserve">
+    <value>FOLLOWERS</value>
+  </data>
+  <data name="following_pivot.Header" xml:space="preserve">
+    <value>FOLLOWING</value>
+  </data>
 </root>

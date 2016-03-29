@@ -17,6 +17,7 @@
         <converters:JoinDateConverter x:Key="JoinDateConverter"/>
         <converters:InfoDisplayConverter x:Key="DisplayConverter"/>
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <converters:UserNameConverter x:Key="UserNameConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -117,8 +118,48 @@
                             </ListView.ItemContainerStyle>
                         </ListView>
                     </PivotItem>
+                    
                     <PivotItem x:Uid="orgs_pivot">
-
+                    </PivotItem>
+                    
+                    <PivotItem x:Uid="followers_pivot">
+                        <ListView ItemsSource="{Binding Path=followersList}" IsItemClickEnabled="True" SelectionMode="None">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:UserListItem/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </PivotItem>
+                    
+                    <PivotItem x:Uid="following_pivot">
+                        <ListView ItemsSource="{Binding Path=followingList}" IsItemClickEnabled="True" SelectionMode="None">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:UserListItem/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
                     </PivotItem>
                 </Pivot>
             </Grid>

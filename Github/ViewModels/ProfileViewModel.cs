@@ -56,6 +56,32 @@ namespace Github.ViewModels
             }
         }
 
+        private IReadOnlyList<User> _followingList;
+        public IReadOnlyList<User> followingList
+        {
+            get
+            {
+                return _followingList;
+            }
+            set
+            {
+                Set(ref _followingList, value);
+            }
+        }
+
+        private IReadOnlyList<User> _followersList;
+        public IReadOnlyList<User> followersList
+        {
+            get
+            {
+                return _followersList;
+            }
+            set
+            {
+                Set(ref _followersList, value);
+            }
+        }
+
         private int _starredRepos;
         public int starredRepos
         {
@@ -176,6 +202,27 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand<object> _OpenUser;
+        public RelayCommand<object> OpenUser
+        {
+            get
+            {
+                if (_OpenUser == null)
+                {
+                    _OpenUser = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var user = args.ClickedItem as User;
+                            App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), user.Login);
+                        }
+                    });
+                }
+                return _OpenUser;
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             LoadData(parameter);
@@ -195,6 +242,8 @@ namespace Github.ViewModels
                 var repos = await constants.g_client.Repository.GetAllForUser(user.Login);
                 repoList = repos.OrderByDescending(x => x.UpdatedAt).ToList();
                 orgsList = await constants.g_client.Organization.GetAll(user.Login);
+                followersList = await constants.g_client.User.Followers.GetAll(user.Login);
+                followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
             }
             catch
