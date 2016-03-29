@@ -7,6 +7,8 @@
     xmlns:models="using:Github.Models"
     xmlns:controls="using:Template10.Controls"
     xmlns:converters="using:Github.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Repos}"
@@ -28,7 +30,12 @@
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="REPOSITORIES" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
-        <ListView Grid.Row="1" x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None">
+        <ListView Grid.Row="1" x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None" IsItemClickEnabled="True">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <templates:RepoListItem/>

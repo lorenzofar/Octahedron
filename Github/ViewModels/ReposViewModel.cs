@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using Octokit;
 using Windows.UI.Xaml.Navigation;
 using Helper;
+using Windows.UI.Xaml.Controls;
 
 namespace Github.ViewModels
 {
@@ -113,6 +114,27 @@ namespace Github.ViewModels
                     });
                 }
                 return _SelectSort;
+            }
+        }
+
+        private RelayCommand<object> _OpenRepo;
+        public RelayCommand<object> OpenRepo
+        {
+            get
+            {
+                if(_OpenRepo == null)
+                {
+                    _OpenRepo = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if(args != null && args.ClickedItem != null)
+                        {
+                            var repo = args.ClickedItem as Repository;
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage),repo.FullName);
+                        }
+                    });
+                }
+                return _OpenRepo;
             }
         }
 
