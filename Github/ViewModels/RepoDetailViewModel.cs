@@ -99,15 +99,15 @@ namespace Github.ViewModels
             {
                 if(_StarRepo == null)
                 {
-                    _StarRepo = new RelayCommand(() =>
+                    _StarRepo = new RelayCommand(async() =>
                     {
                         if (!starred)
                         {
-                            constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
+                           await constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
                         }
                         else
                         {
-                            constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
+                           await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
                         }
                         LoadRepo(repo.FullName);
                     });
@@ -117,13 +117,13 @@ namespace Github.ViewModels
         }
         #endregion
 
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (parameter != null)
             {
                 LoadRepo(parameter);
             }
-            return;
+            return Task.CompletedTask;
         }
 
         private async void LoadRepo(object info)
