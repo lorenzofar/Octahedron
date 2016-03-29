@@ -97,22 +97,38 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_StarRepo == null)
+                if (_StarRepo == null)
                 {
-                    _StarRepo = new RelayCommand(async() =>
+                    _StarRepo = new RelayCommand(async () =>
                     {
                         if (!starred)
                         {
-                           await constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
+                            await constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
                         }
                         else
                         {
-                           await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
+                            await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
                         }
                         LoadRepo(repo.FullName);
                     });
                 }
                 return _StarRepo;
+            }
+        }
+
+        private RelayCommand _OpenProfile;
+        public RelayCommand OpenProfile
+        {
+            get
+            {
+                if (_OpenProfile == null)
+                {
+                    _OpenProfile = new RelayCommand(() =>
+                    {
+                        App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), repo.Owner.Login);
+                    });
+                }
+                return _OpenProfile;
             }
         }
         #endregion
