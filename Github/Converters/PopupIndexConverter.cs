@@ -1,12 +1,11 @@
 ﻿using System;
 using Windows.UI;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
 namespace Github.Converters
 {
-    class PopupIndexConverter : IValueConverter
+    internal class PopupIndexConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

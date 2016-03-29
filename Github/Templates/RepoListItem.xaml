@@ -9,26 +9,25 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <converters:UpdateDateConverter x:Key="UpdateDateConverter" />
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <FontIcon VerticalAlignment="Center" Glyph="&#xE82D;" FontSize="28"/>
+        <FontIcon VerticalAlignment="Center" Glyph="&#xE82D;" FontSize="28" />
         <StackPanel Margin="6,0" Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock Text="{Binding Path=Name}"/>
-            <TextBlock Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#999999"/>
+            <TextBlock Text="{Binding Path=Name}" />
+            <TextBlock Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#999999" />
         </StackPanel>
-        <TextBlock Margin="6,0" Text="{Binding Language}" Grid.Column="2" VerticalAlignment="Center"/>
+        <TextBlock Margin="6,0" Text="{Binding Language}" Grid.Column="2" VerticalAlignment="Center" />
         <StackPanel Margin="12,0" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding StargazersCount}"/>
-            <FontIcon Margin="3,0" Glyph="&#xE735;" Foreground="Gold"/>
+            <TextBlock Text="{Binding StargazersCount}" />
+            <FontIcon Margin="3,0" Glyph="&#xE735;" Foreground="Gold" />
         </StackPanel>
     </Grid>
-    
 </UserControl>

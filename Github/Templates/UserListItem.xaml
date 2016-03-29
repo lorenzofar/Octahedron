@@ -9,21 +9,21 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <converters:UserNameConverter x:Key="UserNameConverter"/>
+        <converters:UserNameConverter x:Key="UserNameConverter" />
     </UserControl.Resources>
 
     <Grid Margin="0,12">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Ellipse Width="48" Height="48" MaxHeight="48" MaxWidth="48">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding Path=AvatarUrl}"/>
+                <ImageBrush ImageSource="{Binding Path=AvatarUrl}" />
             </Ellipse.Fill>
         </Ellipse>
         <Grid Margin="12,0" VerticalAlignment="Center" Grid.Column="1">
-            <TextBlock Text="{Binding Path=Login}"/>
+            <TextBlock Text="{Binding Path=Login}" />
         </Grid>
     </Grid>
 </UserControl>

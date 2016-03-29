@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 
 namespace Github.Converters
 {
-    class BoolVisibilityConverter : IValueConverter
+    internal class BoolVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

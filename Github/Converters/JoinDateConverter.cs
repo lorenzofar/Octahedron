@@ -9,7 +9,6 @@ namespace Github.Converters
         {
             DateTime joinDateTime = ((DateTimeOffset)value).DateTime;
             return String.Format(Helper.constants.r_loader.GetString("joinDate"), Helper.constants.shortDateFormatter.Format(joinDateTime), Helper.constants.shortTimeFormatter.Format(joinDateTime));
-
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

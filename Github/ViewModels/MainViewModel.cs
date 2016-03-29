@@ -1,15 +1,15 @@
-﻿using Template10.Mvvm;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Navigation;
-using Helper;
-using System.Linq;
-using GalaSoft.MvvmLight.Command;
-using Universal.UI.Xaml.Controls;
+﻿using GalaSoft.MvvmLight.Command;
 using Github.Models;
-using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Controls;
+using Helper;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Template10.Mvvm;
+using Universal.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Github.ViewModels
 {
@@ -20,6 +20,7 @@ namespace Github.ViewModels
         }
 
         private List<Octokit.Notification> _notifications;
+
         public List<Octokit.Notification> notifications
         {
             get
@@ -33,6 +34,7 @@ namespace Github.ViewModels
         }
 
         private ObservableCollection<GroupInfoList> _groups = new ObservableCollection<GroupInfoList>();
+
         public ObservableCollection<GroupInfoList> groups
         {
             get
@@ -46,6 +48,7 @@ namespace Github.ViewModels
         }
 
         private bool _selecting = false;
+
         public bool selecting
         {
             get
@@ -59,6 +62,7 @@ namespace Github.ViewModels
         }
 
         private List<object> _selectedItems;
+
         public List<object> selectedItems
         {
             get
@@ -76,6 +80,7 @@ namespace Github.ViewModels
         }
 
         private bool _loading = false;
+
         public bool loading
         {
             get
@@ -89,6 +94,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _SelectionChanged;
+
         public RelayCommand<object> SelectionChanged
         {
             get
@@ -114,6 +120,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _RefreshFeed;
+
         public RelayCommand RefreshFeed
         {
             get
@@ -127,6 +134,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _MarkNotificationRead;
+
         public RelayCommand<object> MarkNotificationRead
         {
             get
@@ -160,6 +168,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _SelectItems;
+
         public RelayCommand SelectItems
         {
             get
@@ -176,6 +185,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _DeleteItems;
+
         public RelayCommand DeleteItems
         {
             get
@@ -213,13 +223,15 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _CancelSelection;
+
         public RelayCommand CancelSelection
         {
             get
             {
                 if (_CancelSelection == null)
                 {
-                    _CancelSelection = new RelayCommand(() => {
+                    _CancelSelection = new RelayCommand(() =>
+                    {
                         selectedItems = null;
                         selecting = false;
                     });
@@ -270,5 +282,5 @@ namespace Github.ViewModels
                 groups.Add(info);
             }
         }
-    } 
+    }
 }

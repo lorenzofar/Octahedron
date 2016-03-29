@@ -18,6 +18,7 @@ namespace Github.ViewModels
         private DataTransferManager dataTransferManager;
 
         private User _user;
+
         public User user
         {
             get
@@ -31,6 +32,7 @@ namespace Github.ViewModels
         }
 
         private IReadOnlyList<Repository> _repoList;
+
         public IReadOnlyList<Repository> repoList
         {
             get
@@ -44,6 +46,7 @@ namespace Github.ViewModels
         }
 
         private IReadOnlyList<Organization> _orgsList;
+
         public IReadOnlyList<Organization> orgsList
         {
             get
@@ -57,6 +60,7 @@ namespace Github.ViewModels
         }
 
         private IReadOnlyList<User> _followingList;
+
         public IReadOnlyList<User> followingList
         {
             get
@@ -70,6 +74,7 @@ namespace Github.ViewModels
         }
 
         private IReadOnlyList<User> _followersList;
+
         public IReadOnlyList<User> followersList
         {
             get
@@ -83,6 +88,7 @@ namespace Github.ViewModels
         }
 
         private int _starredRepos;
+
         public int starredRepos
         {
             get
@@ -96,6 +102,7 @@ namespace Github.ViewModels
         }
 
         private bool _following;
+
         public bool following
         {
             get
@@ -109,6 +116,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _ShareUser;
+
         public RelayCommand ShareUser
         {
             get
@@ -125,9 +133,9 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _FollowUser;
+
         public RelayCommand FollowUser
         {
-
             get
             {
                 if (_FollowUser == null)
@@ -150,15 +158,16 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _OpenBlog;
+
         public RelayCommand OpenBlog
         {
             get
             {
-                if(_OpenBlog == null)
+                if (_OpenBlog == null)
                 {
                     _OpenBlog = new RelayCommand(async () =>
                     {
-                       await Windows.System.Launcher.LaunchUriAsync(new Uri(user.Blog, UriKind.RelativeOrAbsolute));
+                        await Windows.System.Launcher.LaunchUriAsync(new Uri(user.Blog, UriKind.RelativeOrAbsolute));
                     });
                 }
                 return _OpenBlog;
@@ -166,6 +175,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _SendMail;
+
         public RelayCommand SendMail
         {
             get
@@ -182,6 +192,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _OpenRepo;
+
         public RelayCommand<object> OpenRepo
         {
             get
@@ -203,6 +214,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand<object> _OpenUser;
+
         public RelayCommand<object> OpenUser
         {
             get

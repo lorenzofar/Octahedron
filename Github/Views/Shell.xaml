@@ -9,10 +9,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <controls:HamburgerMenu x:Name="Menu" 
-                            VisualStateNarrowMinWidth="0" 
-                            VisualStateNormalMinWidth="720" 
-                            VisualStateWideMinWidth="1024" 
+    <controls:HamburgerMenu x:Name="Menu"
+                            VisualStateNarrowMinWidth="0"
+                            VisualStateNormalMinWidth="720"
+                            VisualStateWideMinWidth="1024"
                             NavAreaBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
                             NavButtonCheckedBackground="{ThemeResource SystemControlBackgroundAccentBrush}"
                             NavButtonHoverBackground="#99999999"
@@ -47,5 +47,4 @@
             </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.SecondaryButtons>
     </controls:HamburgerMenu>
-
 </Page>

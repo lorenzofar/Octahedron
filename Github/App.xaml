@@ -9,5 +9,4 @@
     <common:BootStrapper.Resources>
         <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
     </common:BootStrapper.Resources>
-
 </common:BootStrapper>

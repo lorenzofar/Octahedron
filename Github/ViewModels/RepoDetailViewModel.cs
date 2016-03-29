@@ -1,14 +1,10 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using Helper;
+using Octokit;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using Template10.Services.NavigationService;
-using Helper;
 using Windows.UI.Xaml.Navigation;
-using Octokit;
-using GalaSoft.MvvmLight.Command;
 
 namespace Github.ViewModels
 {
@@ -17,6 +13,7 @@ namespace Github.ViewModels
         private bool owner;
 
         private Repository _repo;
+
         public Repository repo
         {
             get
@@ -30,6 +27,7 @@ namespace Github.ViewModels
         }
 
         private bool _starred;
+
         public bool starred
         {
             get
@@ -43,6 +41,7 @@ namespace Github.ViewModels
         }
 
         private bool _watched;
+
         public bool watched
         {
             get
@@ -56,6 +55,7 @@ namespace Github.ViewModels
         }
 
         private IReadOnlyList<Octokit.Issue> _issues;
+
         public IReadOnlyList<Octokit.Issue> issues
         {
             get
@@ -69,7 +69,9 @@ namespace Github.ViewModels
         }
 
         #region COMMANDS
+
         private RelayCommand _WatchRepo;
+
         public RelayCommand WatchRepo
         {
             get
@@ -93,6 +95,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _StarRepo;
+
         public RelayCommand StarRepo
         {
             get
@@ -117,6 +120,7 @@ namespace Github.ViewModels
         }
 
         private RelayCommand _OpenProfile;
+
         public RelayCommand OpenProfile
         {
             get
@@ -131,7 +135,8 @@ namespace Github.ViewModels
                 return _OpenProfile;
             }
         }
-        #endregion
+
+        #endregion COMMANDS
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
