@@ -122,15 +122,15 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_OpenRepo == null)
+                if (_OpenRepo == null)
                 {
                     _OpenRepo = new RelayCommand<object>((e) =>
                     {
                         var args = e as ItemClickEventArgs;
-                        if(args != null && args.ClickedItem != null)
+                        if (args != null && args.ClickedItem != null)
                         {
                             var repo = args.ClickedItem as Repository;
-                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage),repo.FullName);
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
                         }
                     });
                 }
@@ -146,12 +146,20 @@ namespace Github.ViewModels
 
         private async void LoadRepos()
         {
-            loading = true;
-            var r_list = await constants.g_client.Repository.GetAllForCurrent(new RepositoryRequest { Type = repoType });
-            repos = null;
-            repos = r_list.ToList();
-            GroupList();
-            loading = false;
+            try
+            {
+                loading = true;
+                var r_list = await constants.g_client.Repository.GetAllForCurrent(new RepositoryRequest { Type = repoType });
+                repos = null;
+                repos = r_list.ToList();
+                GroupList();
+                loading = false;
+            }
+            catch
+            {
+                loading = false;
+                await communications.ShowDialog("login_error", "error");
+            }
         }
 
         private RepositoryType repoType

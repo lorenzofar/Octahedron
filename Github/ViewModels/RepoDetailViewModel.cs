@@ -90,15 +90,23 @@ namespace Github.ViewModels
             {
                 if (_WatchRepo == null)
                 {
-                    _WatchRepo = new RelayCommand(() =>
+                    _WatchRepo = new RelayCommand(async () =>
                     {
-                        if (!watched)
+                        try
                         {
-                            constants.g_client.Activity.Watching.UnwatchRepo(repo.Owner.Login, repo.Name);
+
+                            if (!watched)
+                            {
+                                await constants.g_client.Activity.Watching.UnwatchRepo(repo.Owner.Login, repo.Name);
+                            }
+                            else
+                            {
+                                await constants.g_client.Activity.Watching.WatchRepo(repo.Owner.Login, repo.Name, new NewSubscription { Subscribed = true });
+                            }
                         }
-                        else
+                        catch
                         {
-                            constants.g_client.Activity.Watching.WatchRepo(repo.Owner.Login, repo.Name, new NewSubscription { Subscribed = true });
+                            await communications.ShowDialog("login_error", "error");
                         }
                     });
                 }
@@ -115,15 +123,22 @@ namespace Github.ViewModels
                 {
                     _StarRepo = new RelayCommand(async () =>
                     {
-                        if (!starred)
+                        try
                         {
-                            await constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
+                            if (!starred)
+                            {
+                                await constants.g_client.Activity.Starring.RemoveStarFromRepo(repo.Owner.Login, repo.Name);
+                            }
+                            else
+                            {
+                                await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
+                            }
+                            LoadRepo(repo.FullName);
                         }
-                        else
+                        catch
                         {
-                            await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
+                            await communications.ShowDialog("login_error", "error");
                         }
-                        LoadRepo(repo.FullName);
                     });
                 }
                 return _StarRepo;
@@ -195,13 +210,20 @@ namespace Github.ViewModels
 
         private async void LoadRepo(object info)
         {
-            string[] repoInfo = info.ToString().Split('/');
-            repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
-            owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
-            watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
-            starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
-            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name);
-            contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+            try
+            {
+                string[] repoInfo = info.ToString().Split('/');
+                repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
+                owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
+                watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
+                starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
+                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name);
+                contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+            }
+            catch
+            {
+                await communications.ShowDialog("login_error", "error");
+            }
         }
     }
 }
