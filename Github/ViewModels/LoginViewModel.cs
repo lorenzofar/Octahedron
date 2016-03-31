@@ -37,6 +37,19 @@ namespace Github.ViewModels
             }
         }
 
+        private bool _loggingIn = false;
+        public bool loggingIn
+        {
+            get
+            {
+                return _loggingIn;
+            }
+            set
+            {
+                Set(ref _loggingIn, value);
+            }
+        }
+
         private RelayCommand _login;
         public RelayCommand login
         {
@@ -47,6 +60,7 @@ namespace Github.ViewModels
                     _login = new RelayCommand(async() =>
                     {
                         //LOG IN TO GITHUB
+                        loggingIn = true;
                         var login_result = await utilities.LogIn(username, password);
                         if (login_result)
                         {
@@ -55,8 +69,13 @@ namespace Github.ViewModels
                             Window.Current.Content = new Views.Shell(Views.LoginPage.nav_service);
                             App.Current.NavigationService.Navigate(typeof(Views.MainPage));
                         }
+                        else
+                        {
+                            loggingIn = false;
+                            login.RaiseCanExecuteChanged();
+                        }
                     },
-                    () => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !username.Contains(" ") && !password.Contains(" "));
+                    () => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !username.Contains(" ") && !password.Contains(" ") && !loggingIn);
                 }
                 return _login;
             }
