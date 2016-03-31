@@ -97,6 +97,30 @@
                 </Grid>
             </PivotItem>
             <PivotItem Header="ISSUES">
+                <ListView ItemsSource="{Binding Path=issues}" SelectionMode="None" IsItemClickEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Glyph="&#xE783;" VerticalAlignment="Center"/>
+                                <StackPanel Margin="6,0" Grid.Column="1">
+                                    <TextBlock Text="{Binding Path=Title}"/>
+                                    <TextBlock Text="{Binding Path=UpdatedAt}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Path=Number}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </PivotItem>
             <PivotItem Header="PULL"></PivotItem>
         </Pivot>
