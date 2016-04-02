@@ -26,5 +26,10 @@ namespace Github.Views
         {
             this.InitializeComponent();
         }
+
+        private void filter_btn_Click(object sender, RoutedEventArgs e)
+        {
+            filter_btn.Flyout.ShowAt(filter_btn);
+        }
     }
 }

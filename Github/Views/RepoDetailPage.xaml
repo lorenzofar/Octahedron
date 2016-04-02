@@ -16,6 +16,8 @@
     <Page.Resources>
         <converters:InfoDisplayConverter x:Key="InfoConverter"/>
         <converters:ForkConverter x:Key="ForkConverter"/>
+        <converters:PivotBarConverter x:Key="PivotBarConverter"/>
+        <converters:PopupIndexConverter x:Key="PopupIndexConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -126,12 +128,24 @@
         </Pivot>
 
         <CommandBar Grid.Row="2">
-            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding Path=WatchRepo}" IsChecked="{Binding Path=watched, Mode=TwoWay}">
+            <!--INFO TAB-->
+            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding Path=WatchRepo}" IsChecked="{Binding Path=watched, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE052;" />
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
-            <AppBarToggleButton x:Uid="star_btn" Command="{Binding Path=StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding Path=starred, Mode=TwoWay}" />
+            <AppBarToggleButton x:Uid="star_btn" Command="{Binding Path=StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding Path=starred, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
+            <!--ISSUES TAB-->
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_btn" Click="filter_btn_Click" Icon="Filter" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterIssues}" CommandParameter="0" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterIssues}" CommandParameter="1" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssues}" CommandParameter="2" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
         </CommandBar>
     </Grid>
 </Page>

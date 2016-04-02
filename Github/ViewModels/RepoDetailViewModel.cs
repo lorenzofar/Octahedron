@@ -69,6 +69,36 @@ namespace Github.ViewModels
             }
         }
 
+        private int _issuesIndex = 0;
+        public int issuesIndex
+        {
+            get
+            {
+                return _issuesIndex;
+            }
+            set
+            {
+                Set(ref _issuesIndex, value);
+            }
+        }
+
+        private ItemState issuesState
+        {
+            get
+            {
+                switch (issuesIndex)
+                {
+                    default:
+                    case 0:
+                        return ItemState.Open;
+                    case 1:
+                        return ItemState.Closed;
+                    case 2:
+                        return ItemState.All;
+                }
+            }
+        }
+
         private IReadOnlyList<Octokit.Issue> _issues;
         public IReadOnlyList<Octokit.Issue> issues
         {
@@ -210,6 +240,23 @@ namespace Github.ViewModels
                 return _OpenParent;
             }
         }
+
+        private RelayCommand<object> _FilterIssues;
+        public RelayCommand<object> FilterIssues
+        {
+            get
+            {
+                if(_FilterIssues == null)
+                {
+                    _FilterIssues = new RelayCommand<object>((index) =>
+                    {
+                        issuesIndex = int.Parse(index.ToString());
+                        LoadRepo(repo.FullName);
+                    });
+                }
+                return _FilterIssues;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
@@ -230,13 +277,13 @@ namespace Github.ViewModels
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
-                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name);
+                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest { State = issuesState });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
             }
             catch
             {
                 await communications.ShowDialog("login_error", "error");
             }
-        }
+        }        
     }
 }
