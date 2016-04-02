@@ -29,7 +29,7 @@
 
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
 
-        <Pivot Grid.Row="1" SelectedIndex="{Binding Path=pivotIndex}">
+        <Pivot Grid.Row="1" SelectedIndex="{Binding Path=pivotIndex, Mode=TwoWay}">
             <PivotItem x:Uid="info_txt" Header="INFO">
                 <Grid>
                     <Grid.RowDefinitions>
