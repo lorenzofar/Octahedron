@@ -56,6 +56,19 @@ namespace Github.ViewModels
             }
         }
 
+        private int _pivotIndex = 0;
+        public int pivotIndex
+        {
+            get
+            {
+                return _pivotIndex;
+            }
+            set
+            {
+                Set(ref _pivotIndex, value);
+            }
+        }
+
         private IReadOnlyList<Octokit.Issue> _issues;
         public IReadOnlyList<Octokit.Issue> issues
         {
