@@ -17,6 +17,19 @@ namespace Github.ViewModels
     {
         private bool owner;
 
+        private bool _loading = false;
+        public bool loading
+        {
+            get
+            {
+                return _loading;
+            }
+            set
+            {
+                Set(ref _loading, value);
+            }
+        }
+
         private Repository _repo;
         public Repository repo
         {
@@ -323,6 +336,7 @@ namespace Github.ViewModels
         {
             try
             {
+                loading = true;
                 string[] repoInfo = info.ToString().Split('/');
                 repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
@@ -330,9 +344,11 @@ namespace Github.ViewModels
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
                 issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+                loading = false;
             }
             catch
             {
+                loading = false;
                 await communications.ShowDialog("login_error", "error");
             }
         }
