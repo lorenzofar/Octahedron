@@ -6,7 +6,11 @@
     xmlns:converters="using:Github.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">   
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:IssueStateConverter x:Key="IssueStateConverter"/>
+    </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">
         <Grid.ColumnDefinitions>
@@ -14,7 +18,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon Glyph="&#xE783;" VerticalAlignment="Center"/>
+        <FontIcon Glyph="&#xE783;" Foreground="{Binding Path=State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Center"/>
         <StackPanel Margin="12,0" Grid.Column="1">
             <TextBlock Text="{Binding Path=Title}"/>
             <TextBlock Text="{Binding Path=UpdatedAt}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>

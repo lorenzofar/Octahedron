@@ -107,6 +107,7 @@
     <Compile Include="Converters\ForkConverter.cs" />
     <Compile Include="Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Converters\InfoDisplayConverter.cs" />
+    <Compile Include="Converters\IssueStateConverter.cs" />
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
@@ -117,6 +118,9 @@
     <Compile Include="Converters\UserNameConverter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\IssuesListItem.xaml.cs">
+      <DependentUpon>IssuesListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Templates\RepoListItem.xaml.cs">
       <DependentUpon>RepoListItem.xaml</DependentUpon>
     </Compile>
@@ -176,6 +180,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Templates\IssuesListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templates\RepoListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
