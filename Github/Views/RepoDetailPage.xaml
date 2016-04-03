@@ -18,6 +18,7 @@
         <converters:ForkConverter x:Key="ForkConverter"/>
         <converters:PivotBarConverter x:Key="PivotBarConverter"/>
         <converters:PopupIndexConverter x:Key="PopupIndexConverter"/>
+        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -99,18 +100,21 @@
                 </Grid>
             </PivotItem>
             <PivotItem Header="ISSUES">
-                <ListView ItemsSource="{Binding Path=issues}" SelectionMode="None" IsItemClickEnabled="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <templates:IssuesListItem/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                <Grid>
+                    <ListView ItemsSource="{Binding Path=issues}" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:IssuesListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <TextBlock x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
             </PivotItem>
             <PivotItem Header="PULL"></PivotItem>
         </Pivot>

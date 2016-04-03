@@ -280,7 +280,7 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_FilterIssues == null)
+                if (_FilterIssues == null)
                 {
                     _FilterIssues = new RelayCommand<object>((index) =>
                     {
@@ -335,6 +335,6 @@ namespace Github.ViewModels
             {
                 await communications.ShowDialog("login_error", "error");
             }
-        }        
+        }
     }
 }
