@@ -127,9 +127,15 @@
             <AppBarButton x:Uid="filter_btn" x:Name="filter_btn" Click="filter_btn_Click" Icon="Filter" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterIssues}" CommandParameter="0" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterIssues}" CommandParameter="1" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssues}" CommandParameter="2" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssues}" CommandParameter="0" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterIssues}" CommandParameter="1" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterIssues}" CommandParameter="2" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssuesUser}" CommandParameter="0" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_assigned" Command="{Binding Path=FilterIssuesUser}" CommandParameter="1" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_created" Command="{Binding Path=FilterIssuesUser}" CommandParameter="2" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_mentioned" Command="{Binding Path=FilterIssuesUser}" CommandParameter="3" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
+                        <MenuFlyoutItem x:Uid="filter_subscribed" Command="{Binding Path=FilterIssuesUser}" CommandParameter="4" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>

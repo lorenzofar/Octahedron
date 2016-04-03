@@ -258,4 +258,16 @@
   <data name="new_btn.Label" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="filter_assigned.Text" xml:space="preserve">
+    <value>Assigned</value>
+  </data>
+  <data name="filter_created.Text" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="filter_mentioned.Text" xml:space="preserve">
+    <value>Mentioned</value>
+  </data>
+  <data name="filter_subscribed.Text" xml:space="preserve">
+    <value>Subscribed</value>
+  </data>
 </root>

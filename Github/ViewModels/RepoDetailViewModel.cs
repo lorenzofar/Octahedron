@@ -69,7 +69,7 @@ namespace Github.ViewModels
             }
         }
 
-        private int _issuesIndex = 0;
+        private int _issuesIndex = 1;
         public int issuesIndex
         {
             get
@@ -82,6 +82,19 @@ namespace Github.ViewModels
             }
         }
 
+        private int _issuesFilterIndex = 0;
+        public int issuesFilterIndex
+        {
+            get
+            {
+                return _issuesFilterIndex;
+            }
+            set
+            {
+                Set(ref _issuesFilterIndex, value);
+            }
+        }
+
         private ItemState issuesState
         {
             get
@@ -90,11 +103,32 @@ namespace Github.ViewModels
                 {
                     default:
                     case 0:
-                        return ItemState.Open;
-                    case 1:
-                        return ItemState.Closed;
-                    case 2:
                         return ItemState.All;
+                    case 1:
+                        return ItemState.Open;
+                    case 2:
+                        return ItemState.Closed;
+                }
+            }
+        }
+
+        private IssueFilter issuesFilter
+        {
+            get
+            {
+                switch (issuesFilterIndex)
+                {
+                    default:
+                    case 0:
+                        return IssueFilter.All;
+                    case 1:
+                        return IssueFilter.Assigned;
+                    case 2:
+                        return IssueFilter.Created;
+                    case 3:
+                        return IssueFilter.Mentioned;
+                    case 4:
+                        return IssueFilter.Subscribed;
                 }
             }
         }
@@ -257,6 +291,23 @@ namespace Github.ViewModels
                 return _FilterIssues;
             }
         }
+
+        private RelayCommand<object> _FilterIssuesUser;
+        public RelayCommand<object> FilterIssuesUser
+        {
+            get
+            {
+                if (_FilterIssuesUser == null)
+                {
+                    _FilterIssuesUser = new RelayCommand<object>((index) =>
+                    {
+                        issuesFilterIndex = int.Parse(index.ToString());
+                        LoadRepo(repo.FullName);
+                    });
+                }
+                return _FilterIssuesUser;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
@@ -277,7 +328,7 @@ namespace Github.ViewModels
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
-                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest { State = issuesState });
+                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
             }
             catch
