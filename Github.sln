@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Windows
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github", "Github\Github.csproj", "{4DCAB783-0171-4666-88A4-4A5E8222AE0F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{8772780E-44A5-468D-9769-30285921AA9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Girhub Android", "Girhub Android\Girhub Android.csproj", "{215290AD-3F67-44C8-8569-27B01137628A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,30 @@ Global
 		{8772780E-44A5-468D-9769-30285921AA9B}.Release|x64.Build.0 = Release|x64
 		{8772780E-44A5-468D-9769-30285921AA9B}.Release|x86.ActiveCfg = Release|x86
 		{8772780E-44A5-468D-9769-30285921AA9B}.Release|x86.Build.0 = Release|x86
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|ARM.Build.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|ARM.Deploy.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|x64.Build.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|x86.Build.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|ARM.Build.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|ARM.Deploy.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|x64.ActiveCfg = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|x64.Build.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|x64.Deploy.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|x86.ActiveCfg = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|x86.Build.0 = Release|Any CPU
+		{215290AD-3F67-44C8-8569-27B01137628A}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
