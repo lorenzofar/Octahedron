@@ -26,6 +26,8 @@ namespace Github_Android
 		
 		public static void UpdateIdValues()
 		{
+			global::GalaSoft.MvvmLight.Resource.String.ApplicationName = global::Github_Android.Resource.String.ApplicationName;
+			global::GalaSoft.MvvmLight.Resource.String.Hello = global::Github_Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
