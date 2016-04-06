@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Girhub_Android.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Github_Android.Resource", IsApplication=true)]
 
-namespace Girhub_Android
+namespace Github_Android
 {
 	
 	

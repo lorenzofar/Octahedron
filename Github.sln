@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github", "Github\Github.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{8772780E-44A5-468D-9769-30285921AA9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Girhub Android", "Girhub Android\Girhub Android.csproj", "{215290AD-3F67-44C8-8569-27B01137628A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github Android", "Girhub Android\Github Android.csproj", "{215290AD-3F67-44C8-8569-27B01137628A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
