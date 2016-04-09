@@ -364,6 +364,23 @@ namespace Github.ViewModels
                 return _FilterIssuesUser;
             }
         }
+
+        private RelayCommand<object> _FilterPulls;
+        public RelayCommand<object> FilterPulls
+        {
+            get
+            {
+                if (_FilterPulls == null)
+                {
+                    _FilterPulls = new RelayCommand<object>((index) =>
+                    {
+                        pullsIndex = int.Parse(index.ToString());
+                        LoadRepo(repo.FullName);
+                    });
+                }
+                return _FilterPulls;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
