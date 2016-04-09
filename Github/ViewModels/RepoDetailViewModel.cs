@@ -108,6 +108,19 @@ namespace Github.ViewModels
             }
         }
 
+        private int _pullsIndex;
+        public int pullsIndex
+        {
+            get
+            {
+                return _pullsIndex;
+            }
+            set
+            {
+                Set(ref _pullsIndex, value);
+            }
+        }
+
         private ItemState issuesState
         {
             get
@@ -146,8 +159,25 @@ namespace Github.ViewModels
             }
         }
 
-        private IReadOnlyList<Octokit.Issue> _issues;
-        public IReadOnlyList<Octokit.Issue> issues
+        private ItemState pullsState
+        {
+            get
+            {
+                switch (pullsIndex)
+                {
+                    default:
+                    case 0:
+                        return ItemState.All;
+                    case 1:
+                        return ItemState.Open;
+                    case 2:
+                        return ItemState.Closed;                        
+                }
+            }
+        }
+
+        private IReadOnlyList<Issue> _issues;
+        public IReadOnlyList<Issue> issues
         {
             get
             {
@@ -156,6 +186,19 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _issues, value);
+            }
+        }
+
+        private IReadOnlyList<PullRequest> _pulls;
+        public IReadOnlyList<PullRequest> pulls
+        {
+            get
+            {
+                return _pulls;
+            }
+            set
+            {
+                Set(ref _pulls, value);
             }
         }
 
@@ -343,6 +386,7 @@ namespace Github.ViewModels
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
                 issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter });
+                pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
                 loading = false;
             }
