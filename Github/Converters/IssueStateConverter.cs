@@ -11,7 +11,7 @@ namespace Github.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             ItemState state = (ItemState)value;
-            return state == ItemState.Open ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
+            return state == ItemState.Open ? new SolidColorBrush(Color.FromArgb(255, 108, 198, 68)) : new SolidColorBrush(Color.FromArgb(255, 189, 44, 0));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
