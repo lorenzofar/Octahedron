@@ -276,4 +276,7 @@
   <data name="pulls_placeholder.Text" xml:space="preserve">
     <value>There are no pull requests</value>
   </data>
+  <data name="login_progress.Text" xml:space="preserve">
+    <value>Logging In</value>
+  </data>
 </root>
