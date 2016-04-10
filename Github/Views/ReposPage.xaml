@@ -19,6 +19,7 @@
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
         <converters:PopupIndexConverter x:Key="PopupIndexConverter"/>
+        <converters:BoolConverter x:Key="BoolConverter"/>
         <CollectionViewSource x:Name="reposCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -30,41 +31,42 @@
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="REPOSITORIES" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
-        <ListView Grid.Row="1" x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None" IsItemClickEnabled="True">
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="ItemClick">
-                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
-                </core:EventTriggerBehavior>
-            </interactivity:Interaction.Behaviors>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <templates:RepoListItem/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate x:DataType="models:GroupInfoList">
-                            <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}"/>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </ListView.GroupStyle>
-        </ListView>
-
-        <TextBlock Grid.Row="1" x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
+        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <ListView x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None" IsItemClickEnabled="True">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="ItemClick">
+                        <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <templates:RepoListItem/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate x:DataType="models:GroupInfoList">
+                                <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+            </ListView>
+            <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+        
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
         </Viewbox>
 
         <CommandBar Grid.Row="2">
-            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
+            <AppBarButton IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=SelectFilter}" CommandParameter="0" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -75,7 +77,7 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
+            <AppBarButton IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="sort_name" Command="{Binding Path=SelectSort}" CommandParameter="0" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
