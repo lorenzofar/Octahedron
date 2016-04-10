@@ -108,7 +108,7 @@ namespace Github.ViewModels
             }
         }
 
-        private int _pullsIndex;
+        private int _pullsIndex = 1;
         public int pullsIndex
         {
             get

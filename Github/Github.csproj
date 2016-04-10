@@ -114,6 +114,7 @@
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />
     <Compile Include="Converters\PopupIndexConverter.cs" />
+    <Compile Include="Converters\PullStateConverter.cs" />
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Converters\UserNameConverter.cs" />
@@ -121,6 +122,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\IssuesListItem.xaml.cs">
       <DependentUpon>IssuesListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\PullsListItem.xaml.cs">
+      <DependentUpon>PullsListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\RepoListItem.xaml.cs">
       <DependentUpon>RepoListItem.xaml</DependentUpon>
@@ -182,6 +186,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Templates\IssuesListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\PullsListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

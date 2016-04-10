@@ -120,6 +120,18 @@
             </PivotItem>
             <PivotItem Header="PULL">
                 <Grid>
+                    <ListView ItemsSource="{Binding Path=pulls}" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:PullsListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                     <TextBlock x:Uid="pulls_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=pulls, ConverterParameter='pulls', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
