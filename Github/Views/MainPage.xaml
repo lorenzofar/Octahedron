@@ -21,17 +21,18 @@
         <converters:ListSelectionConverter x:Key="ListSelectionConverter"/>
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
         <converters:NotificationIconConverter x:Key="NotificationIconConverter"/>
+        <converters:BoolConverter x:Key="BoolConverter"/>
         <CollectionViewSource x:Name="notificationsCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <uwp:SwipeListView x:Name="list" SelectionMode="{Binding Path=selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" ItemRightBackground="#73C456">
                 <uwp:SwipeListView.ItemTemplate>
                     <DataTemplate>
@@ -77,16 +78,18 @@
                         </GroupStyle>
                 </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
-            <Viewbox Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
-            </Viewbox>
             <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
+
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        </Viewbox>
+
         <CommandBar Grid.Row="2">
-            <AppBarButton Command="{Binding Path=SelectItems}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Select" Icon="Bullets"/>
-            <AppBarButton Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Refresh" Icon="Refresh" Command="{Binding Path=RefreshFeed}"/>
-            <AppBarButton Command="{Binding Path=DeleteItems}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Delete" Icon="Delete"/>
-            <AppBarButton Command="{Binding Path=CancelSelection}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Cancel" Icon="Cancel"/>
+            <AppBarButton Command="{Binding Path=SelectItems}" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Select" Icon="Bullets"/>
+            <AppBarButton IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Refresh" Icon="Refresh" Command="{Binding Path=RefreshFeed}"/>
+            <AppBarButton Command="{Binding Path=DeleteItems}" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Delete" Icon="Delete"/>
+            <AppBarButton Command="{Binding Path=CancelSelection}" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Cancel" Icon="Cancel"/>
         </CommandBar>
     </Grid>
     
