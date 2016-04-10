@@ -6,9 +6,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace Girhub_Android
+namespace Github_Android
 {
-    [Activity(Label = "Girhub_Android", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Github_Android", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         int count = 1;
