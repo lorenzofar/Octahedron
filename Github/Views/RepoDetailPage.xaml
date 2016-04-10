@@ -118,7 +118,11 @@
                     <TextBlock x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="PULL"></PivotItem>
+            <PivotItem Header="PULL">
+                <Grid>
+                    <TextBlock x:Uid="pulls_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=pulls, ConverterParameter='pulls', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </PivotItem>
         </Pivot>
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>

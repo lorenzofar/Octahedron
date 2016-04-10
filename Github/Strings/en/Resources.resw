@@ -273,4 +273,7 @@
   <data name="issues_placeholder.Text" xml:space="preserve">
     <value>There are no issues</value>
   </data>
+  <data name="pulls_placeholder.Text" xml:space="preserve">
+    <value>There are no pull requests</value>
+  </data>
 </root>

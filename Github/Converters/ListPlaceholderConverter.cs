@@ -21,6 +21,11 @@ namespace Github.Converters
                     var cvs = value as IReadOnlyList<Octokit.Issue>;
                     return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
                 }
+                else if(parameter.ToString() == "pulls")
+                {
+                    var cvs = value as IReadOnlyList<Octokit.PullRequest>;
+                    return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
                 else
                 {
                     var cvs = value as List<Octokit.Repository>;
