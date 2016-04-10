@@ -17,6 +17,19 @@ namespace Github.ViewModels
         private bool owner_profile;
         private DataTransferManager dataTransferManager;
 
+        private bool _loading = false;
+        public bool loading
+        {
+            get
+            {
+                return _loading;
+            }
+            set
+            {
+                Set(ref _loading, value);
+            }
+        }
+
         private User _user;
         public User user
         {
@@ -235,6 +248,7 @@ namespace Github.ViewModels
         {
             try
             {
+                loading = true;
                 user = username == null ? await constants.g_client.User.Current() : await constants.g_client.User.Get(username.ToString());
                 owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 FollowUser.RaiseCanExecuteChanged();
@@ -245,10 +259,12 @@ namespace Github.ViewModels
                 followersList = await constants.g_client.User.Followers.GetAll(user.Login);
                 followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
+                loading = false;
             }
             catch
             {
                 await communications.ShowDialog("login_error", "error");
+                loading = false;
             }
         }
 
