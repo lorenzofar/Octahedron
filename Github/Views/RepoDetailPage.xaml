@@ -140,16 +140,16 @@
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar Grid.Row="2">
+        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <!--INFO TAB-->
-            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding Path=WatchRepo}" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" IsChecked="{Binding Path=watched, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
+            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding Path=WatchRepo}" IsChecked="{Binding Path=watched, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
                 <AppBarToggleButton.Icon>
-                    <FontIcon Glyph="&#xE052;" />
+                    <FontIcon Glyph="&#xE052;"/>
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
-            <AppBarToggleButton x:Uid="star_btn" Command="{Binding Path=StarRepo}" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding Path=starred, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
+            <AppBarToggleButton x:Uid="star_btn" Command="{Binding Path=StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding Path=starred, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
             <!--ISSUES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter"  Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssues}" CommandParameter="0" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -164,9 +164,9 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Uid="new_btn" Icon="Add" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
             <!--PULLS TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterPulls}" CommandParameter="0" Background="{Binding Path=pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>

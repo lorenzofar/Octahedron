@@ -65,8 +65,8 @@
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar Grid.Row="2">
-            <AppBarButton IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
+        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=SelectFilter}" CommandParameter="0" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -77,7 +77,7 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
+            <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="sort_name" Command="{Binding Path=SelectSort}" CommandParameter="0" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
