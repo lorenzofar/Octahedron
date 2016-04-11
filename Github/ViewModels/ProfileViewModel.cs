@@ -258,8 +258,8 @@ namespace Github.ViewModels
                 orgsList = await constants.g_client.Organization.GetAll(user.Login);
                 followersList = await constants.g_client.User.Followers.GetAll(user.Login);
                 followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
+		loading = false;
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
-                loading = false;
             }
             catch
             {
