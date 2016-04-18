@@ -108,6 +108,7 @@
     <Compile Include="Converters\ForkConverter.cs" />
     <Compile Include="Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Converters\InfoDisplayConverter.cs" />
+    <Compile Include="Converters\IssueDateConverter.cs" />
     <Compile Include="Converters\IssueStateConverter.cs" />
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />

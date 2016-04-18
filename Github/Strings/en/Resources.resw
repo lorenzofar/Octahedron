@@ -279,4 +279,7 @@
   <data name="login_progress.Text" xml:space="preserve">
     <value>Logging In</value>
   </data>
+  <data name="issueDate" xml:space="preserve">
+    <value>Opened {0} by {1}</value>
+  </data>
 </root>
