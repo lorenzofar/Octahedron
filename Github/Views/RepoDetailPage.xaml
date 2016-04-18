@@ -37,24 +37,24 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <StackPanel Padding="12" Background="{StaticResource SystemControlBackgroundAccentBrush}">
-                            <TextBlock Text="{Binding Path=repo.Name}" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" />
-                            <TextBlock Text="{Binding Path=repo.Parent, Converter={StaticResource ForkConverter}}" Visibility="{Binding Path=repo.Parent, Converter={StaticResource InfoConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,6" HorizontalAlignment="Center">
+                            <TextBlock Foreground="White" Text="{Binding Path=repo.Name}" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock Foreground="White" Text="{Binding Path=repo.Parent, Converter={StaticResource ForkConverter}}" Visibility="{Binding Path=repo.Parent, Converter={StaticResource InfoConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,6" HorizontalAlignment="Center">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
                                     <core:InvokeCommandAction Command="{Binding Path=OpenParent}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             </TextBlock>
-                            <TextBlock Text="{Binding Path=repo.Owner.Login}" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}">
+                            <TextBlock Foreground="White" Text="{Binding Path=repo.Owner.Login}" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
                                     <core:InvokeCommandAction Command="{Binding Path=OpenProfile}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             </TextBlock>
-                            <TextBlock Text="{Binding Path=repo.Language}" HorizontalAlignment="Center" />
+                            <TextBlock Foreground="White" Text="{Binding Path=repo.Language}" HorizontalAlignment="Center" />
                             <ScrollViewer Margin="12" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=repo.Description}" MaxHeight="100" TextWrapping="Wrap" />
+                                <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.Description}" MaxHeight="100" TextWrapping="Wrap" />
                             </ScrollViewer>
                             <Grid Margin="0,6,0,0">
                                 <Grid.ColumnDefinitions>
@@ -63,16 +63,16 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <StackPanel HorizontalAlignment="Center">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Path=repo.ForksCount}" Style="{ThemeResource TitleTextBlockStyle}" />
-                                    <TextBlock HorizontalAlignment="Center" x:Uid="forks_txt" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.ForksCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="forks_txt" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Path=repo.StargazersCount}" Style="{ThemeResource TitleTextBlockStyle}" />
-                                    <TextBlock HorizontalAlignment="Center" x:Uid="stars_txt" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.StargazersCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="stars_txt" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Path=repo.OpenIssuesCount}" Style="{ThemeResource TitleTextBlockStyle}" />
-                                    <TextBlock HorizontalAlignment="Center" x:Uid="issues_txt" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.OpenIssuesCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="issues_txt" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
