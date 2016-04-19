@@ -381,6 +381,25 @@ namespace Github.ViewModels
                 return _FilterPulls;
             }
         }
+
+        private RelayCommand<object> _OpenIssue;
+        public RelayCommand<object> OpenIssue
+        {
+            get
+            {
+                if(_OpenIssue == null)
+                {
+                    _OpenIssue = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        var issue = args.ClickedItem as Issue;
+                        string issueData = $"{repo.Owner.Login}/{repo.Name}/{issue.Number}";
+                        App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
+                    });
+                }
+                return _OpenIssue;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)

@@ -102,6 +102,11 @@
             <PivotItem Header="ISSUES">
                 <Grid>
                     <ListView ItemsSource="{Binding Path=issues}" SelectionMode="None" IsItemClickEnabled="True">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding Path=OpenIssue}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:IssuesListItem/>
