@@ -13,7 +13,7 @@ namespace Github.Converters
                 Issue issue = value as Issue;
                 var user = issue.User.Login;
                 var openDate = issue.CreatedAt;
-                return String.Format(Helper.constants.r_loader.GetString("issueDate"), Helper.constants.shortDateFormatter.Format(openDate), user);
+                return String.Format(Helper.constants.r_loader.GetString(issue.State == ItemState.Open ? "openDate" : "closedDate"), Helper.constants.shortDateFormatter.Format(openDate), user);
             }
             else
             {

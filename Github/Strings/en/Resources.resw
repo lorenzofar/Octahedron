@@ -279,10 +279,13 @@
   <data name="login_progress.Text" xml:space="preserve">
     <value>Logging In</value>
   </data>
-  <data name="issueDate" xml:space="preserve">
+  <data name="openDate" xml:space="preserve">
     <value>Opened {0} by {1}</value>
   </data>
   <data name="issueDetail_header.Text" xml:space="preserve">
     <value>ISSUE</value>
+  </data>
+  <data name="closedDate" xml:space="preserve">
+    <value>Closed {0} by {1}</value>
   </data>
 </root>
