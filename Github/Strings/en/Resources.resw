@@ -282,4 +282,7 @@
   <data name="issueDate" xml:space="preserve">
     <value>Opened {0} by {1}</value>
   </data>
+  <data name="issueDetail_header.Text" xml:space="preserve">
+    <value>ISSUE</value>
+  </data>
 </root>
