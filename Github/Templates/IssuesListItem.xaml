@@ -12,6 +12,7 @@
         <converters:IssueStateConverter x:Key="IssueStateConverter"/>
         <converters:IssueDateConverter x:Key="IssueDateConverter"/>
         <converters:IssueLabelsConverter x:Key="IssueLabelsConverter"/>
+        <converters:NumberConverter x:Key="NumberConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">
@@ -26,6 +27,6 @@
             <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,3" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
             <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" Content="{Binding Converter={StaticResource IssueLabelsConverter}}"/>
         </StackPanel>
-        <TextBlock Grid.Column="2" VerticalAlignment="Top" Text="{Binding Path=Number}"/>
+        <TextBlock Grid.Column="2" VerticalAlignment="Top" Text="{Binding Path=Number, Converter={StaticResource NumberConverter}}"/>
     </Grid>
 </UserControl>

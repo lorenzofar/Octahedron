@@ -114,6 +114,7 @@
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
+    <Compile Include="Converters\NumberConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />
     <Compile Include="Converters\PopupIndexConverter.cs" />
     <Compile Include="Converters\PullStateConverter.cs" />

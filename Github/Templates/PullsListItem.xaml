@@ -10,6 +10,7 @@
 
     <UserControl.Resources>
         <converters:PullStateConverter x:Key="PullStateConverter"/>
+        <converters:NumberConverter x:Key="NUmberConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">
@@ -23,6 +24,6 @@
             <TextBlock Text="{Binding Path=Title}"/>
             <TextBlock Text="{Binding Path=UpdatedAt}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
         </StackPanel>
-        <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Path=Number}"/>
+        <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Path=Number, Converter={StaticResource NumberConverter}}"/>
     </Grid>
 </UserControl>
