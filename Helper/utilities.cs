@@ -1,6 +1,9 @@
-﻿using Windows.Security.Credentials;
-using Octokit;
+﻿using Octokit;
+using System.Globalization;
 using System.Threading.Tasks;
+using Windows.Security.Credentials;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace Helper
 {
@@ -67,5 +70,13 @@ namespace Helper
                 return false;
             }
         }        
+
+        public static SolidColorBrush ConvertHexToBrush(string hexColor)
+        {
+            byte r = byte.Parse(hexColor.Substring(0, 2), NumberStyles.HexNumber);
+            byte g = byte.Parse(hexColor.Substring(2, 2), NumberStyles.HexNumber);
+            byte b = byte.Parse(hexColor.Substring(4, 2), NumberStyles.HexNumber);
+            return new SolidColorBrush(Color.FromArgb(255, r, g, b));
+        } 
     }
 }

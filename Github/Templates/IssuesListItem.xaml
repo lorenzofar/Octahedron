@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <converters:IssueStateConverter x:Key="IssueStateConverter"/>
         <converters:IssueDateConverter x:Key="IssueDateConverter"/>
+        <converters:IssueLabelsConverter x:Key="IssueLabelsConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">
@@ -19,11 +20,12 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon Glyph="&#xE783;" Foreground="{Binding Path=State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Center"/>
+        <FontIcon Glyph="&#xE783;" Foreground="{Binding Path=State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top"/>
         <StackPanel Margin="12,0" Grid.Column="1">
-            <TextBlock Text="{Binding Path=Title}"/>
-            <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
+            <TextBlock Text="{Binding Path=Title}" TextWrapping="WrapWholeWords"/>
+            <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,3" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
+            <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" Content="{Binding Converter={StaticResource IssueLabelsConverter}}"/>
         </StackPanel>
-        <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Path=Number}"/>
+        <TextBlock Grid.Column="2" VerticalAlignment="Top" Text="{Binding Path=Number}"/>
     </Grid>
 </UserControl>
