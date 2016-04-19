@@ -16,6 +16,7 @@
     <Page.Resources>
         <converters:IssueStateConverter x:Key="IssueStateConverter"/>
         <converters:NumberConverter x:Key="NumberConverter"/>
+        <converters:IssueDateConverter x:Key="IssueDateConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -35,15 +36,22 @@
             </Grid.RowDefinitions>
             <Grid Background="{Binding Path=issue.State, Converter={StaticResource IssueStateConverter}}">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Ellipse Margin="12" Width="48" Height="48" VerticalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding Path=issue.User.AvatarUrl}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <ScrollViewer Grid.Column="1" VerticalAlignment="Center" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="12">
-                        <TextBlock Text="{Binding Path=issue.Title}" TextWrapping="Wrap" MaxHeight="200"/>
+                        <TextBlock Text="{Binding Path=issue.Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" MaxHeight="200"/>
+                        <TextBlock Text="{Binding Path=issue, Converter={StaticResource IssueDateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
                     </StackPanel>
                 </ScrollViewer>
-                <TextBlock Margin="12" Grid.Column="1" VerticalAlignment="Top" Text="{Binding issue.Number, Converter={StaticResource NumberConverter}}"/>
+                <TextBlock Text="{Binding issue.Number, Converter={StaticResource NumberConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="12" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
 

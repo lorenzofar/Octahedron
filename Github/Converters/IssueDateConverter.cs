@@ -8,10 +8,17 @@ namespace Github.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            Issue issue = value as Issue;
-            var user = issue.User.Login;
-            var openDate = issue.CreatedAt;
-            return String.Format(Helper.constants.r_loader.GetString("issueDate"), Helper.constants.shortDateFormatter.Format(openDate), user);
+            if (value != null)
+            {
+                Issue issue = value as Issue;
+                var user = issue.User.Login;
+                var openDate = issue.CreatedAt;
+                return String.Format(Helper.constants.r_loader.GetString("issueDate"), Helper.constants.shortDateFormatter.Format(openDate), user);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
