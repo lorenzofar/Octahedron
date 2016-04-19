@@ -45,5 +45,13 @@
                 return new RepoDetailViewModel();
             }
         }
+
+        public IssueViewModel Issue
+        {
+            get
+            {
+                return new IssueViewModel();
+            }
+        }
     }
 }
