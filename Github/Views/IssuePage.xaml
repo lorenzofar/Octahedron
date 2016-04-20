@@ -17,6 +17,8 @@
         <converters:IssueStateConverter x:Key="IssueStateConverter"/>
         <converters:NumberConverter x:Key="NumberConverter"/>
         <converters:IssueDateConverter x:Key="IssueDateConverter"/>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <converters:BoolConverter x:Key="BoolConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -28,7 +30,7 @@
 
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="issueDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -55,7 +57,11 @@
             </Grid>
         </Grid>
 
-        <CommandBar Grid.Row="2">
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        </Viewbox>
+
+        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             
         </CommandBar>
 
