@@ -31,7 +31,7 @@
                         <Setter Target="comments_panel.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="880"/>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
                     </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
