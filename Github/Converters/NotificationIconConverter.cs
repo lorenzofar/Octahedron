@@ -21,6 +21,9 @@ namespace Github.Converters
                 case "release":
                     glyph = "\uE8EC";
                     break;
+                case "commit":
+                    glyph = "\uE9A1";
+                    break;
             }
             return glyph;
         }
