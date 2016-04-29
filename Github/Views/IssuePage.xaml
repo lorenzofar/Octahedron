@@ -69,14 +69,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <FontIcon Glyph="&#xE7C1;" Margin="6" VerticalAlignment="Top"/>
-                            <FontIcon Glyph="&#xE13D;" Margin="6" Grid.Row="1" VerticalAlignment="Top"/>
-                            <FontIcon Glyph="&#xE12A;" Margin="6" Grid.Row="2" VerticalAlignment="Top"/>
-                            <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,0" Grid.Column="1" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding issue.Assignee, Converter={StaticResource AssigneeConverter}}" Margin="12,0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="12,0" Grid.Column="1" Grid.Row="2" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center"/>
+                            <FontIcon Glyph="&#xE7C1;" Margin="0,6" VerticalAlignment="Top"/>
+                            <FontIcon Glyph="&#xE13D;" Margin="0,6" Grid.Row="1" VerticalAlignment="Top"/>
+                            <FontIcon Glyph="&#xE12A;" Margin="0,6" Grid.Row="2" VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,6,0,6" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding issue.Assignee, Converter={StaticResource AssigneeConverter}}" Margin="12,6,0,6" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="12,6,0,6" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center"/>
                         </Grid>
                     </ScrollViewer>
                 </PivotItem>
