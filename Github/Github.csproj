@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="Converters\AssigneeConverter.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
     <Compile Include="Converters\ForkConverter.cs" />
     <Compile Include="Converters\BoolVisibilityConverter.cs" />
