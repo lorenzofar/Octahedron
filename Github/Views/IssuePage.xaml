@@ -57,7 +57,11 @@
             </Grid>
             <Pivot Grid.Row="1">
                 <PivotItem x:Uid="info_pivot" Header="INFO">
-                    
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="{Binding issue.Body}" TextWrapping="WrapWholeWords"/>
+                        </StackPanel>
+                    </ScrollViewer>
                 </PivotItem>
                 <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
                     
