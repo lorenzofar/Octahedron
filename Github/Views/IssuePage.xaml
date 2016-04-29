@@ -81,7 +81,18 @@
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
-
+                    <ListView ItemsSource="{Binding comments}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:CommentReceived/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </PivotItem>
                 <PivotItem x:Uid="labels_pivot" Header="LABELS">
 

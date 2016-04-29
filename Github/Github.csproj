@@ -126,6 +126,12 @@
     <Compile Include="Converters\UserNameConverter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\CommentReceived.xaml.cs">
+      <DependentUpon>CommentReceived.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\CommentsSent.xaml.cs">
+      <DependentUpon>CommentsSent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Templates\IssuesListItem.xaml.cs">
       <DependentUpon>IssuesListItem.xaml</DependentUpon>
     </Compile>
@@ -195,6 +201,14 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Templates\CommentReceived.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\CommentsSent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templates\IssuesListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
