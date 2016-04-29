@@ -288,4 +288,10 @@
   <data name="closedDate" xml:space="preserve">
     <value>Closed {0} by {1}</value>
   </data>
+  <data name="comments_pivot.Header" xml:space="preserve">
+    <value>COMMENTS</value>
+  </data>
+  <data name="labels_pivot.Header" xml:space="preserve">
+    <value>LABELS</value>
+  </data>
 </root>

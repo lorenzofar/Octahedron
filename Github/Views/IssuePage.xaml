@@ -55,6 +55,17 @@
                 </ScrollViewer>
                 <TextBlock Text="{Binding issue.Number, Converter={StaticResource NumberConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="12" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
+            <Pivot Grid.Row="1">
+                <PivotItem x:Uid="info_pivot" Header="INFO">
+                    
+                </PivotItem>
+                <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
+                    
+                </PivotItem>
+                <PivotItem x:Uid="labels_pivot" Header="LABELS">
+                    
+                </PivotItem>
+            </Pivot>
         </Grid>
 
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -62,7 +73,7 @@
         </Viewbox>
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
-            
+
         </CommandBar>
 
     </Grid>
