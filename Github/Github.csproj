@@ -104,7 +104,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AssigneeConverter.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\DescriptionConverter.cs" />
     <Compile Include="Converters\ForkConverter.cs" />
     <Compile Include="Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Converters\InfoDisplayConverter.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Converters\IssueStateConverter.cs" />
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />
+    <Compile Include="Converters\MilestoneConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NumberConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />

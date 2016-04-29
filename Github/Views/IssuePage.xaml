@@ -19,6 +19,9 @@
         <converters:IssueDateConverter x:Key="IssueDateConverter"/>
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
+        <converters:AssigneeConverter x:Key="AssigneeConverter"/>
+        <converters:MilestoneConverter x:Key="MilestoneConverter"/>
+        <converters:DescriptionConverter x:Key="DescriptionConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -58,16 +61,30 @@
             <Pivot Grid.Row="1">
                 <PivotItem x:Uid="info_pivot" Header="INFO">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <TextBlock Text="{Binding issue.Body}" TextWrapping="WrapWholeWords"/>
-                        </StackPanel>
+                        <Grid VerticalAlignment="Top" Margin="0,12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Glyph="&#xE7C1;" Margin="6" VerticalAlignment="Top"/>
+                            <FontIcon Glyph="&#xE13D;" Margin="6" Grid.Row="1" VerticalAlignment="Top"/>
+                            <FontIcon Glyph="&#xE12A;" Margin="6" Grid.Row="2" VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,0" Grid.Column="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding issue.Assignee, Converter={StaticResource AssigneeConverter}}" Margin="12,0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="12,0" Grid.Column="1" Grid.Row="2" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center"/>
+                        </Grid>
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
-                    
+
                 </PivotItem>
                 <PivotItem x:Uid="labels_pivot" Header="LABELS">
-                    
+
                 </PivotItem>
             </Pivot>
         </Grid>

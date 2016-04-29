@@ -294,4 +294,16 @@
   <data name="labels_pivot.Header" xml:space="preserve">
     <value>LABELS</value>
   </data>
+  <data name="assignedTo" xml:space="preserve">
+    <value>Assigned to {0}</value>
+  </data>
+  <data name="noDescription" xml:space="preserve">
+    <value>No description</value>
+  </data>
+  <data name="noMilestone" xml:space="preserve">
+    <value>No milestone</value>
+  </data>
+  <data name="notAssigned" xml:space="preserve">
+    <value>Not assigned yet</value>
+  </data>
 </root>
