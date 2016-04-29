@@ -1,9 +1,9 @@
-﻿using Template10.Mvvm;
+﻿using Helper;
 using Octokit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Template10.Mvvm;
 using Windows.UI.Xaml.Navigation;
-using Helper;
 
 namespace Github.ViewModels
 {
@@ -35,6 +35,19 @@ namespace Github.ViewModels
             }
         }
 
+        private IReadOnlyList<IssueComment> _comments;
+        public IReadOnlyList<IssueComment> comments
+        {
+            get
+            {
+                return _comments;
+            }
+            set
+            {
+                Set(ref _comments, value);
+            }
+        }
+
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if(parameter != null)
@@ -44,7 +57,8 @@ namespace Github.ViewModels
                     loading = true;
                     string[] issueData = parameter.ToString().Split('/');
                     issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
-                    loading = false;                  
+                    comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
+                    loading = false;
                 }
                 catch
                 {
