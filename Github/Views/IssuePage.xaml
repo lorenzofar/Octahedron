@@ -81,7 +81,7 @@
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
-                    <ListView ItemsSource="{Binding comments}">
+                    <ListView ItemsSource="{Binding comments}" SelectionMode="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:CommentReceived/>
