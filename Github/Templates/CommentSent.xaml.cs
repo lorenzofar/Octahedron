@@ -17,9 +17,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Github.Templates
 {
-    public sealed partial class CommentsSent : UserControl
+    public sealed partial class CommentSent : UserControl
     {
-        public CommentsSent()
+        public CommentSent()
         {
             this.InitializeComponent();
         }
