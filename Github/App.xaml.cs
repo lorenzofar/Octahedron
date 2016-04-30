@@ -7,6 +7,8 @@ namespace Github
 {
     sealed partial class App : Template10.Common.BootStrapper
     {
+        public static string user { get; set; }
+
         public App()
         {
             this.InitializeComponent();
@@ -33,6 +35,7 @@ namespace Github
                     Window.Current.Content = new Views.Shell(nav);
                     if (await utilities.LogIn(credential.UserName, credential.Password))
                     {
+                        user = (await constants.g_client.User.Current()).Login;
                         NavigationService.Navigate(typeof(Views.MainPage), null);
                     }
                     else
