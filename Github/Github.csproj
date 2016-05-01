@@ -133,7 +133,7 @@
     <Compile Include="Templates\CommentSent.xaml.cs">
       <DependentUpon>CommentSent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Templates\CommentsTemplateSelector.cs" />
+    <Compile Include="Templates\IssueCommentsTemplateSelector.cs" />
     <Compile Include="Templates\IssuesListItem.xaml.cs">
       <DependentUpon>IssuesListItem.xaml</DependentUpon>
     </Compile>

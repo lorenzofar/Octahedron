@@ -14,7 +14,7 @@
         <converters:DateConverter x:Key="DateConverter"/>
     </UserControl.Resources>
 
-    <Grid Margin="0,12">
+    <Grid Margin="0,12" HorizontalAlignment="Right">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
@@ -29,8 +29,14 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="{Binding Body}" Margin="12" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="1" Margin="12,6" HorizontalAlignment="Left" Text="{Binding CreatedAt, Converter={StaticResource DateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
-            <TextBlock Grid.Row="1" Margin="12,6" HorizontalAlignment="Right" Text="{Binding User.Login}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="12,6" HorizontalAlignment="Left" Text="{Binding CreatedAt, Converter={StaticResource DateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                <TextBlock Grid.Column="1" Margin="12,6" HorizontalAlignment="Right" Text="{Binding User.Login}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+            </Grid>
         </Grid>
         <Polygon Grid.Column="1" Margin="0,24,4,0" Points="0,0 12,0 0,12" VerticalAlignment="Top">
             <Polygon.Fill>

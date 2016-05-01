@@ -82,14 +82,23 @@
                 </PivotItem>
                 <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
                     <ListView ItemsSource="{Binding comments}" SelectionMode="None">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <templates:CommentReceived/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                        <ListView.ItemTemplateSelector>
+                            <templates:IssueCommentsTemplateSelector>
+                                <templates:IssueCommentsTemplateSelector.receivedTemplate>
+                                    <DataTemplate>
+                                        <templates:CommentReceived/>
+                                    </DataTemplate>
+                                </templates:IssueCommentsTemplateSelector.receivedTemplate>
+                                <templates:IssueCommentsTemplateSelector.sentTemplate>
+                                    <DataTemplate>
+                                        <templates:CommentSent/>
+                                    </DataTemplate>
+                                </templates:IssueCommentsTemplateSelector.sentTemplate>
+                            </templates:IssueCommentsTemplateSelector>
+                        </ListView.ItemTemplateSelector>
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
