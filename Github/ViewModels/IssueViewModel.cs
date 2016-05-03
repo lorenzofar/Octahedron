@@ -1,5 +1,7 @@
-﻿using Helper;
+﻿using GalaSoft.MvvmLight.Command;
+using Helper;
 using Octokit;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Template10.Mvvm;
@@ -9,6 +11,8 @@ namespace Github.ViewModels
 {
     public class IssueViewModel : ViewModelBase
     {
+        private string[] issueData { get; set; }
+
         private bool _loading;
         public bool loading
         {
@@ -35,6 +39,7 @@ namespace Github.ViewModels
             }
         }
 
+        #region COMMENTS
         private IReadOnlyList<IssueComment> _comments;
         public IReadOnlyList<IssueComment> comments
         {
@@ -48,25 +53,63 @@ namespace Github.ViewModels
             }
         }
 
+        private string _comment;
+        public string comment
+        {
+            get
+            {
+                return _comment;
+            }
+            set
+            {
+                Set(ref _comment, value);
+                SendComment.RaiseCanExecuteChanged();
+            }
+        }
+
+        private RelayCommand _SendComment;
+        public RelayCommand SendComment
+        {
+            get
+            {
+                if(_SendComment == null)
+                {
+                    _SendComment = new RelayCommand(async() =>
+                    {
+                        await constants.g_client.Issue.Comment.Create(issueData[0], issueData[1], int.Parse(issueData[2]), comment);
+                        comment = "";
+                        LoadComments();
+                    }, () => !string.IsNullOrWhiteSpace(comment));
+                }
+                return _SendComment;
+            }
+        }
+        #endregion
+
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            if(parameter != null)
+            if (parameter != null)
             {
                 try
                 {
                     loading = true;
-                    string[] issueData = parameter.ToString().Split('/');
+                    issueData = parameter.ToString().Split('/');
                     issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
-                    comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
+                    LoadComments();
                     loading = false;
                 }
                 catch
                 {
-                   await communications.ShowDialog("login_error", "error");
+                    await communications.ShowDialog("login_error", "error");
                     loading = false;
                 }
             }
             return;
+        }
+
+        private async void LoadComments()
+        {
+            comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
         }
     }
 }

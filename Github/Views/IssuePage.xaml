@@ -81,27 +81,52 @@
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
-                    <ListView ItemsSource="{Binding comments}" SelectionMode="None">
-                        <ListView.ItemTemplateSelector>
-                            <templates:IssueCommentsTemplateSelector>
-                                <templates:IssueCommentsTemplateSelector.receivedTemplate>
-                                    <DataTemplate>
-                                        <templates:CommentReceived/>
-                                    </DataTemplate>
-                                </templates:IssueCommentsTemplateSelector.receivedTemplate>
-                                <templates:IssueCommentsTemplateSelector.sentTemplate>
-                                    <DataTemplate>
-                                        <templates:CommentSent/>
-                                    </DataTemplate>
-                                </templates:IssueCommentsTemplateSelector.sentTemplate>
-                            </templates:IssueCommentsTemplateSelector>
-                        </ListView.ItemTemplateSelector>
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView ItemsSource="{Binding comments}" SelectionMode="None">
+                            <ListView.ItemTemplateSelector>
+                                <templates:IssueCommentsTemplateSelector>
+                                    <templates:IssueCommentsTemplateSelector.receivedTemplate>
+                                        <DataTemplate>
+                                            <templates:CommentReceived/>
+                                        </DataTemplate>
+                                    </templates:IssueCommentsTemplateSelector.receivedTemplate>
+                                    <templates:IssueCommentsTemplateSelector.sentTemplate>
+                                        <DataTemplate>
+                                            <templates:CommentSent/>
+                                        </DataTemplate>
+                                    </templates:IssueCommentsTemplateSelector.sentTemplate>
+                                </templates:IssueCommentsTemplateSelector>
+                            </ListView.ItemTemplateSelector>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button VerticalAlignment="Top">
+                                <Button.Content>
+                                    <FontIcon Glyph="&#xE16C;"/>
+                                </Button.Content>
+                            </Button>
+                            <TextBox Text="{Binding comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="commentBox" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="0" Grid.Column="1" PlaceholderText="Leave a comment"/>
+                            <Button Command="{Binding SendComment}" VerticalAlignment="Top" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="2">
+                                <Button.Content>
+                                    <FontIcon Glyph="&#xE724;"/>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </PivotItem>
                 <PivotItem x:Uid="labels_pivot" Header="LABELS">
 

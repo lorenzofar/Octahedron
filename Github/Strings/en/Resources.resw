@@ -306,4 +306,13 @@
   <data name="notAssigned" xml:space="preserve">
     <value>Not assigned yet</value>
   </data>
+  <data name="commentBox.PlaceholderText" xml:space="preserve">
+    <value>Leave a comment</value>
+  </data>
+  <data name="commentSent" xml:space="preserve">
+    <value>The comment has been succesfully added</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Success</value>
+  </data>
 </root>
