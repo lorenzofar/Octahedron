@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Template10.Mvvm;
+using Windows.Storage;
 using Windows.UI.Xaml.Navigation;
 
 namespace Github.ViewModels
@@ -72,9 +73,9 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_SendComment == null)
+                if (_SendComment == null)
                 {
-                    _SendComment = new RelayCommand(async() =>
+                    _SendComment = new RelayCommand(async () =>
                     {
                         await constants.g_client.Issue.Comment.Create(issueData[0], issueData[1], int.Parse(issueData[2]), comment);
                         comment = "";

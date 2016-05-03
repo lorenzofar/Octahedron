@@ -110,19 +110,13 @@
                         </ListView>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Button VerticalAlignment="Top">
+                            <TextBox Text="{Binding comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="100" x:Uid="commentBox" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundAccentBrush}" PlaceholderText="Leave a comment"/>
+                            <Button Command="{Binding SendComment}" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1">
                                 <Button.Content>
-                                    <FontIcon Glyph="&#xE16C;"/>
-                                </Button.Content>
-                            </Button>
-                            <TextBox Text="{Binding comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="commentBox" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="0" Grid.Column="1" PlaceholderText="Leave a comment"/>
-                            <Button Command="{Binding SendComment}" VerticalAlignment="Top" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="2">
-                                <Button.Content>
-                                    <FontIcon Glyph="&#xE724;"/>
+                                    <FontIcon Glyph="&#xE724;" VerticalAlignment="Center"/>
                                 </Button.Content>
                             </Button>
                         </Grid>
