@@ -122,18 +122,22 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_AddLabel == null)
+                if (_AddLabel == null)
                 {
-                    _AddLabel = new RelayCommand(async() =>
+                    _AddLabel = new RelayCommand(async () =>
                     {
                         var label = new NewLabel(labelName, utilities.ConvertColorToHex(labelColor)) { Name = labelName, Color = utilities.ConvertColorToHex(labelColor) };
                         try
                         {
                             await constants.g_client.Issue.Labels.Create(issueData[0], issueData[1], label);
                         }
-                        catch { } //LABEL ALREADY EXISTS
+                        catch //LABEL ALREADY EXISTS
+                        {
+                            var labelOld = await constants.g_client.Issue.Labels.Get(issueData[0], issueData[1], label.Name);
+                            labelColor = utilities.ConvertHexToColor(labelOld.Color);
+                        }
                         string[] labels = { label.Name };
-                        await constants.g_client.Issue.Labels.AddToIssue(issueData[0], issueData[1],int.Parse(issueData[2]),labels);
+                        await constants.g_client.Issue.Labels.AddToIssue(issueData[0], issueData[1], int.Parse(issueData[2]), labels);
                         labelName = "";
                         LoadData();
                     }, () => !string.IsNullOrWhiteSpace(labelName));
