@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="Converters\AssigneeConverter.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\ColorBrushConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
     <Compile Include="Converters\ForkConverter.cs" />
@@ -280,6 +281,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Syncfusion.SfColorPickers.UWP">
+      <HintPath>D:\Syncfusion\13.3.0.7\Assemblies for Universal Windows\10.0\Syncfusion.SfColorPickers.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.UWP, Version=13.3460.0.7, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Syncfusion\13.3.0.7\Assemblies for Universal Windows\10.0\Syncfusion.SfShared.UWP.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

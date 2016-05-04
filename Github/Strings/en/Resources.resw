@@ -315,4 +315,7 @@
   <data name="success" xml:space="preserve">
     <value>Success</value>
   </data>
+  <data name="labelBox.PlaceholderText" xml:space="preserve">
+    <value>Add a label</value>
+  </data>
 </root>

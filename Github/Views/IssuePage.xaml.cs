@@ -26,5 +26,10 @@ namespace Github.Views
         {
             this.InitializeComponent();
         }
+
+        private void pickColorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            pickColorBtn.Flyout.ShowAt(pickColorBtn);
+        }
     }
 }
