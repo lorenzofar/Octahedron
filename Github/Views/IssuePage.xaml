@@ -123,7 +123,18 @@
                     </Grid>
                 </PivotItem>
                 <PivotItem x:Uid="labels_pivot" Header="LABELS">
-
+                    <ListView ItemsSource="{Binding issue.Labels}" SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:LabelsListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </PivotItem>
             </Pivot>
         </Grid>
