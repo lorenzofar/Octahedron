@@ -77,6 +77,25 @@ namespace Helper
             byte g = byte.Parse(hexColor.Substring(2, 2), NumberStyles.HexNumber);
             byte b = byte.Parse(hexColor.Substring(4, 2), NumberStyles.HexNumber);
             return new SolidColorBrush(Color.FromArgb(255, r, g, b));
-        } 
+        }
+
+        public static Color ConvertHexToColor(string hexColor)
+        {
+            byte r = byte.Parse(hexColor.Substring(0, 2), NumberStyles.HexNumber);
+            byte g = byte.Parse(hexColor.Substring(2, 2), NumberStyles.HexNumber);
+            byte b = byte.Parse(hexColor.Substring(4, 2), NumberStyles.HexNumber);
+            return Color.FromArgb(255, r, g, b);
+        }
+
+        public static string ConvertColorToHex(Color color)
+        {
+            string r = color.R.ToString("X");
+            string g = color.G.ToString("X");
+            string b = color.B.ToString("X");
+            r = r.Length == 1 ? $"0{r}" : r;
+            g = g.Length == 1 ? $"0{g}" : g;
+            b = b.Length == 1 ? $"0{b}" : b;
+            return $"{r}{g}{b}";
+        }
     }
 }
