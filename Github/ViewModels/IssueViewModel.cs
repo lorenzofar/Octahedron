@@ -179,7 +179,7 @@ namespace Github.ViewModels
 
         #endregion;
 
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (parameter != null)
             {
