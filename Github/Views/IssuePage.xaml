@@ -98,7 +98,14 @@
                                     </templates:IssueCommentsTemplateSelector.receivedTemplate>
                                     <templates:IssueCommentsTemplateSelector.sentTemplate>
                                         <DataTemplate>
-                                            <templates:CommentSent/>
+                                            <Grid x:Name="commentGrid" RightTapped="labelGrid_RightTapped">
+                                                <FlyoutBase.AttachedFlyout>
+                                                    <MenuFlyout>
+                                                        <MenuFlyoutItem x:Uid="removeBtn" IsEnabled="{Binding owner}" Text="Remove" Click="removeCommentBtn_Click"/>
+                                                    </MenuFlyout>
+                                                </FlyoutBase.AttachedFlyout>
+                                                <templates:CommentSent/>
+                                            </Grid>
                                         </DataTemplate>
                                     </templates:IssueCommentsTemplateSelector.sentTemplate>
                                 </templates:IssueCommentsTemplateSelector>

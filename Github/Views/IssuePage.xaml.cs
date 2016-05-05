@@ -38,5 +38,16 @@ namespace Github.Views
                 flyoutBase.ShowAt(senderElement);
             }
         }
+
+        private void removeCommentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            Octokit.IssueComment comment = (Octokit.IssueComment)element.DataContext;
+            if (comment != null)
+            {
+                var viewmodel = DataContext as ViewModels.IssueViewModel;
+                viewmodel?.RemoveComment.Execute(comment.Id);
+            }
+        }
     }
 }

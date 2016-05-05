@@ -100,6 +100,23 @@ namespace Github.ViewModels
                 return _SendComment;
             }
         }
+
+        private RelayCommand<object> _RemoveComment;
+        public RelayCommand<object> RemoveComment
+        {
+            get
+            {
+                if(_RemoveComment == null)
+                {
+                    _RemoveComment = new RelayCommand<object>(async(object comment) =>
+                    {
+                        await constants.g_client.Issue.Comment.Delete(issueData[0], issueData[1], int.Parse(comment.ToString()));
+                        LoadData();
+                    });
+                }
+                return _RemoveComment;
+            }
+        }
         #endregion
 
         #region LABELS
@@ -186,7 +203,7 @@ namespace Github.ViewModels
                 issueData = parameter.ToString().Split('/');
                 LoadData();
             }
-            return;
+            return Task.CompletedTask;
         }
 
         private async void LoadData()
