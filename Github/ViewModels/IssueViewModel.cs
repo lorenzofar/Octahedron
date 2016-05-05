@@ -68,6 +68,23 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand _CloseIssue;
+        public RelayCommand CloseIssue
+        {
+            get
+            {
+                if(_CloseIssue == null)
+                {
+                    _CloseIssue = new RelayCommand(async() =>
+                    {
+                        await constants.g_client.Issue.Update(issueData[0], issueData[1], int.Parse(issueData[2]), new IssueUpdate { State = ItemState.Closed });
+                        LoadData();
+                    });
+                }
+                return _CloseIssue;
+            }
+        }
+
         #region COMMENTS
         private IReadOnlyList<IssueComment> _comments;
         public IReadOnlyList<IssueComment> comments
