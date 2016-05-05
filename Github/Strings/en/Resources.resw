@@ -286,7 +286,7 @@
     <value>ISSUE</value>
   </data>
   <data name="closedDate" xml:space="preserve">
-    <value>Closed {0} by {1}</value>
+    <value>Closed {0}{1}</value>
   </data>
   <data name="comments_pivot.Header" xml:space="preserve">
     <value>COMMENTS</value>
