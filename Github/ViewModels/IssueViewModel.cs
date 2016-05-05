@@ -42,6 +42,19 @@ namespace Github.ViewModels
             }
         }
 
+        private bool _closeable;
+        public bool closeable
+        {
+            get
+            {
+                return _closeable;
+            }
+            set
+            {
+                Set(ref _closeable, value);
+            }
+        }
+
         private Issue _issue;
         public Issue issue
         {
@@ -214,6 +227,7 @@ namespace Github.ViewModels
                 owner = issueData[0] == App.user;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
+                closeable = owner && issue.State != ItemState.Closed;
                 loading = false;
             }
             catch

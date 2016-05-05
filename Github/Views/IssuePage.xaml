@@ -188,7 +188,7 @@
         </Viewbox>
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
-            <AppBarButton x:Uid="closeBtn" Label="Close" IsEnabled="{Binding owner}">
+            <AppBarButton x:Uid="closeBtn" Label="Close" IsEnabled="{Binding closeable}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE25B;"/>
                 </AppBarButton.Icon>
