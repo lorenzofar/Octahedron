@@ -132,7 +132,14 @@
                         <ListView ItemsSource="{Binding issue.Labels}" SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:LabelsListItem/>
+                                    <Grid x:Name="labelGrid" RightTapped="labelGrid_RightTapped">
+                                        <FlyoutBase.AttachedFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem x:Uid="removeBtn" IsEnabled="{Binding owner}" Text="Remove" Click="removeLabelBtn_Click"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.AttachedFlyout>
+                                        <templates:LabelsListItem/>
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
@@ -174,7 +181,11 @@
         </Viewbox>
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
-
+            <AppBarButton x:Uid="closeBtn" Label="Close" IsEnabled="{Binding owner}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE25B;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
         </CommandBar>
 
     </Grid>

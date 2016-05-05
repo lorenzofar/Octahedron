@@ -29,6 +29,19 @@ namespace Github.ViewModels
             }
         }
 
+        private bool _owner;
+        public bool owner
+        {
+            get
+            {
+                return _owner;
+            }
+            set
+            {
+                Set(ref _owner, value);
+            }
+        }
+
         private Issue _issue;
         public Issue issue
         {
@@ -146,6 +159,23 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand<object> _RemoveLabel;
+        public RelayCommand<object> RemoveLabel
+        {
+            get
+            {
+                if(_RemoveLabel == null)
+                {
+                    _RemoveLabel = new RelayCommand<object>(async(object label) =>
+                    {
+                        await constants.g_client.Issue.Labels.RemoveFromIssue(issueData[0], issueData[1], int.Parse(issueData[2]), label.ToString());
+                        LoadData();
+                    });
+                }
+                return _RemoveLabel;
+            }
+        }
+
 
         #endregion;
 
@@ -164,6 +194,7 @@ namespace Github.ViewModels
             try
             {
                 loading = true;
+                owner = issueData[0] == App.user;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
                 loading = false;

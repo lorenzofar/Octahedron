@@ -318,4 +318,10 @@
   <data name="labelBox.PlaceholderText" xml:space="preserve">
     <value>Add a label</value>
   </data>
+  <data name="closeBtn.Label" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="removeBtn.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
 </root>
