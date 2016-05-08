@@ -151,6 +151,7 @@
     <Compile Include="Templates\UserListItem.xaml.cs">
       <DependentUpon>UserListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AssignViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -158,6 +159,9 @@
     <Compile Include="ViewModels\RepoDetailViewModel.cs" />
     <Compile Include="ViewModels\ReposViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\Dialogs\AssignDialog.xaml.cs">
+      <DependentUpon>AssignDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IssuePage.xaml.cs">
       <DependentUpon>IssuePage.xaml</DependentUpon>
     </Compile>
@@ -236,6 +240,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dialogs\AssignDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IssuePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -285,6 +293,9 @@
   <ItemGroup>
     <Reference Include="Syncfusion.SfColorPickers.UWP">
       <HintPath>D:\Syncfusion\13.3.0.7\Assemblies for Universal Windows\10.0\Syncfusion.SfColorPickers.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.UWP">
+      <HintPath>D:\Syncfusion\13.3.0.7\Assemblies for Universal Windows\10.0\Syncfusion.SfInput.UWP.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfShared.UWP, Version=13.3460.0.7, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

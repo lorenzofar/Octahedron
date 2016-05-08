@@ -53,5 +53,13 @@
                 return new IssueViewModel();
             }
         }
+
+        public AssignViewModel Assign
+        {
+            get
+            {
+                return new AssignViewModel();
+            }
+        }
     }
 }

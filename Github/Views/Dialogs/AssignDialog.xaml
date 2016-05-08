@@ -1,0 +1,33 @@
+﻿<ContentDialog
+    x:Class="Github.Views.Dialogs.AssignDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Github.Views.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:templates="using:Github.Templates"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Assign}"
+    mc:Ignorable="d"
+    Title="ASSIGN ISSUE"
+    PrimaryButtonText="Assign"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+        <AutoSuggestBox PlaceholderText="Type the username" 
+                        QueryIcon="Find" 
+                        Margin="0,12" 
+                        AutoMaximizeSuggestionArea="True"
+                        ItemsSource="{Binding assignSuggestions}"
+                        UpdateTextOnSelect="True"
+                        
+                        Text="{Binding assignSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <AutoSuggestBox.ItemTemplate>
+            <DataTemplate>
+                <templates:UserListItem/>
+            </DataTemplate>
+        </AutoSuggestBox.ItemTemplate>        
+        </AutoSuggestBox>
+</ContentDialog>

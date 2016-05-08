@@ -49,5 +49,10 @@ namespace Github.Views
                 viewmodel?.RemoveComment.Execute(comment.Id);
             }
         }
+
+        private void assignBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new Dialogs.AssignDialog().ShowAsync();
+        }
     }
 }

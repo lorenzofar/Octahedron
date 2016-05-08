@@ -9,6 +9,7 @@
     xmlns:media="using:Syncfusion.UI.Xaml.Controls.Media"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:editors="using:Syncfusion.UI.Xaml.Controls.Input"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Issue}"
@@ -188,6 +189,7 @@
         </Viewbox>
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+            <AppBarButton x:Uid="assignBtn" IsEnabled="{Binding owner}" x:Name="assignBtn" Icon="AddFriend" Click="assignBtn_Click"/>
             <AppBarButton x:Uid="closeBtn" Command="{Binding CloseIssue}" Label="Close" IsEnabled="{Binding closeable}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE25B;"/>
