@@ -47,6 +47,10 @@ namespace Github.ViewModels
                 {
                 }
             }
+            else
+            {
+                assignSuggestions = null;
+            }
         }
     }
 }

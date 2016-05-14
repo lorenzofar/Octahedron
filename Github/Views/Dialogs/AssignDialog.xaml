@@ -21,8 +21,7 @@
                         Margin="0,12" 
                         AutoMaximizeSuggestionArea="True"
                         ItemsSource="{Binding assignSuggestions}"
-                        UpdateTextOnSelect="True"
-                        
+                        UpdateTextOnSelect="True"                        
                         Text="{Binding assignSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <AutoSuggestBox.ItemTemplate>
             <DataTemplate>
