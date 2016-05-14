@@ -19,8 +19,11 @@ namespace Github.Views.Dialogs
 {
     public sealed partial class AssignDialog : ContentDialog
     {
-        public AssignDialog()
+        public static object dataContext { get; set; }
+
+        public AssignDialog(object vmDataContext)
         {
+            dataContext = vmDataContext;
             this.InitializeComponent();
         }
 

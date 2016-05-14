@@ -85,6 +85,23 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand<string> _AssignIssue;
+        public RelayCommand<string> AssignIssue
+        {
+            get
+            {
+                if(_AssignIssue == null)
+                {
+                    _AssignIssue = new RelayCommand<string>(async(string assignee) =>
+                    {
+                        await constants.g_client.Issue.Update(issueData[0], issueData[1], int.Parse(issueData[2]), new IssueUpdate() { Assignee = assignee });
+                        LoadData();
+                    });
+                }
+                return _AssignIssue;
+            }
+        }
+
         #region COMMENTS
         private IReadOnlyList<IssueComment> _comments;
         public IReadOnlyList<IssueComment> comments

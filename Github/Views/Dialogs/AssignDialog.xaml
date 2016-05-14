@@ -13,20 +13,29 @@
     Title="ASSIGN ISSUE"
     PrimaryButtonText="Assign"
     SecondaryButtonText="Cancel"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="PrimaryButtonClick">
+            <core:InvokeCommandAction Command="{Binding ConfirmAssignment}"/>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
         <AutoSuggestBox PlaceholderText="Type the username" 
                         QueryIcon="Find" 
                         Margin="0,12" 
                         AutoMaximizeSuggestionArea="True"
                         ItemsSource="{Binding assignSuggestions}"
-                        UpdateTextOnSelect="True"                        
+                        UpdateTextOnSelect="True"   
                         Text="{Binding assignSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <AutoSuggestBox.ItemTemplate>
             <DataTemplate>
                 <templates:UserListItem/>
             </DataTemplate>
-        </AutoSuggestBox.ItemTemplate>        
+        </AutoSuggestBox.ItemTemplate>
+        <interactivity:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="SuggestionChosen">
+                <core:InvokeCommandAction Command="{Binding ChooseSuggestion}"/>
+            </core:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
         </AutoSuggestBox>
 </ContentDialog>
