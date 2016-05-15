@@ -324,4 +324,7 @@
   <data name="removeBtn.Text" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="invalid_user" xml:space="preserve">
+    <value>This user does not exist</value>
+  </data>
 </root>

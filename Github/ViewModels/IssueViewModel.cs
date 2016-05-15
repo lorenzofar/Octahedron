@@ -94,8 +94,19 @@ namespace Github.ViewModels
                 {
                     _AssignIssue = new RelayCommand<string>(async(string assignee) =>
                     {
-                        await constants.g_client.Issue.Update(issueData[0], issueData[1], int.Parse(issueData[2]), new IssueUpdate() { Assignee = assignee });
-                        LoadData();
+                        try
+                        {
+                            await constants.g_client.Issue.Update(issueData[0], issueData[1], int.Parse(issueData[2]), new IssueUpdate() { Assignee = assignee });
+                            LoadData();
+                        }
+                        catch (ApiValidationException)
+                        {
+                            await communications.ShowDialog("invalid_user", "error");
+                        }
+                        catch
+                        {
+                            await communications.ShowDialog("login_error", "error");
+                        }
                     });
                 }
                 return _AssignIssue;
