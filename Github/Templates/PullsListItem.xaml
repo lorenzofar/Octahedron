@@ -10,7 +10,7 @@
 
     <UserControl.Resources>
         <converters:PullStateConverter x:Key="PullStateConverter"/>
-        <converters:NumberConverter x:Key="NUmberConverter"/>
+        <converters:NumberConverter x:Key="NumberConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">

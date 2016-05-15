@@ -215,6 +215,19 @@ namespace Github.ViewModels
             }
         }
 
+        private IReadOnlyList<Milestone> _milestonesList;
+        public IReadOnlyList<Milestone> milestonesList
+        {
+            get
+            {
+                return _milestonesList;
+            }
+            set
+            {
+                Set(ref _milestonesList, value);
+            }
+        }
+
         #region COMMANDS
         private RelayCommand _WatchRepo;
         public RelayCommand WatchRepo
@@ -424,6 +437,7 @@ namespace Github.ViewModels
                 issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter });
                 pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+                milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name);
                 loading = false;
             }
             catch

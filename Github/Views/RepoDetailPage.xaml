@@ -138,6 +138,20 @@
                     <TextBlock x:Uid="pulls_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=pulls, ConverterParameter='pulls', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
+            <PivotItem Header="MILESTONES">
+                <ListView ItemsSource="{Binding milestonesList}" SelectionMode="None" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:MilestonesListItem/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </PivotItem>
         </Pivot>
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>

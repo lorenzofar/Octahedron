@@ -119,6 +119,7 @@
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />
     <Compile Include="Converters\MilestoneConverter.cs" />
+    <Compile Include="Converters\MilestoneProgressConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NumberConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />
@@ -141,6 +142,9 @@
     </Compile>
     <Compile Include="Templates\LabelsListItem.xaml.cs">
       <DependentUpon>LabelsListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\MilestonesListItem.xaml.cs">
+      <DependentUpon>MilestonesListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\PullsListItem.xaml.cs">
       <DependentUpon>PullsListItem.xaml</DependentUpon>
@@ -229,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\LabelsListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\MilestonesListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
