@@ -13,6 +13,7 @@
         <converters:IssueDateConverter x:Key="IssueDateConverter"/>
         <converters:IssueLabelsConverter x:Key="IssueLabelsConverter"/>
         <converters:NumberConverter x:Key="NumberConverter"/>
+        <converters:InfoDisplayConverter x:Key="InfoDisplayConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">
@@ -21,6 +22,7 @@
                 <VisualState>
                     <VisualState.Setters>
                         <Setter Target="comments_panel.Visibility" Value="Collapsed"/>
+                        <Setter Target="assignee_icon.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
@@ -29,6 +31,7 @@
                 <VisualState>
                     <VisualState.Setters>
                         <Setter Target="comments_panel.Visibility" Value="Visible"/>
+                        <Setter Target="assignee_icon.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="720"/>
@@ -41,6 +44,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <FontIcon Glyph="&#xE783;" Foreground="{Binding Path=State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top"/>
         <StackPanel Margin="12,0" Grid.Column="1">
@@ -48,10 +52,15 @@
             <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,0,0,3" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
             <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" Content="{Binding Converter={StaticResource IssueLabelsConverter}}"/>
         </StackPanel>
-        <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2" Margin="12,0">
+        <Ellipse Visibility="{Binding Assignee, Converter={StaticResource InfoDisplayConverter}}" Grid.Column="2" Margin="12,0" x:Name="assignee_icon" Width="24" Height="24" VerticalAlignment="Top">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding Assignee.AvatarUrl}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="3" Margin="12,0">
             <FontIcon Glyph="&#xE15F;"/>
             <TextBlock Text="{Binding Path=Comments}" Margin="6,0,0,0"/>
         </StackPanel>
-        <TextBlock Grid.Column="3" VerticalAlignment="Top" Text="{Binding Path=Number, Converter={StaticResource NumberConverter}}"/>
+        <TextBlock Grid.Column="4" VerticalAlignment="Top" Text="{Binding Path=Number, Converter={StaticResource NumberConverter}}"/>
     </Grid>
 </UserControl>
