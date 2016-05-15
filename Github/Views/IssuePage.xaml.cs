@@ -51,8 +51,15 @@ namespace Github.Views
         }
 
         private void assignBtn_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             new Dialogs.AssignDialog(this.DataContext).ShowAsync();
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            Octokit.IssueComment comment = (Octokit.IssueComment)element.DataContext;
+            new Dialogs.EditIssueCommentDialog(this.DataContext, comment).ShowAsync();
         }
     }
 }

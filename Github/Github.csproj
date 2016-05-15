@@ -152,6 +152,7 @@
       <DependentUpon>UserListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AssignViewModel.cs" />
+    <Compile Include="ViewModels\EditIssueCommentViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -161,6 +162,9 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Dialogs\AssignDialog.xaml.cs">
       <DependentUpon>AssignDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditIssueCommentDialog.xaml.cs">
+      <DependentUpon>EditIssueCommentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IssuePage.xaml.cs">
       <DependentUpon>IssuePage.xaml</DependentUpon>
@@ -241,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\AssignDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\EditIssueCommentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

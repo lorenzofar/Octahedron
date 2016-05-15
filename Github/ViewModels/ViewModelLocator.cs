@@ -61,5 +61,13 @@
                 return new AssignViewModel();
             }
         }
+
+        public EditIssueCommentViewModel EditIssueComment
+        {
+            get
+            {
+                return new EditIssueCommentViewModel();
+            }
+        }
     }
 }

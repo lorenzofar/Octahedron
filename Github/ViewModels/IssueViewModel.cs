@@ -175,6 +175,24 @@ namespace Github.ViewModels
                 return _RemoveComment;
             }
         }
+
+        private RelayCommand<object> _EditComment;
+        public RelayCommand<object> EditComment
+        {
+            get
+            {
+                if(_EditComment == null)
+                {
+                    _EditComment = new RelayCommand<object>(async(object commentInfo) =>
+                    {
+                        string[] info = commentInfo as string[];
+                        await constants.g_client.Issue.Comment.Update(issueData[0], issueData[1], int.Parse(info[0]), info[1]);
+                        LoadData();
+                    });
+                }
+                return _EditComment;
+            }
+        }
         #endregion
 
         #region LABELS
@@ -252,7 +270,7 @@ namespace Github.ViewModels
         }
 
 
-        #endregion;        
+        #endregion;                
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
