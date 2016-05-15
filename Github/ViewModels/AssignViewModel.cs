@@ -5,6 +5,7 @@ using Octokit;
 using System.Collections.Generic;
 using Template10.Mvvm;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace Github.ViewModels
 {
@@ -20,7 +21,20 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _assignSearch, value);
-                LoadUsers();
+                suggestionsOpen = !string.IsNullOrWhiteSpace(_assignSearch);                
+            }
+        }
+
+        private bool _suggestionsOpen = true;
+        public bool suggestionsOpen
+        {
+            get
+            {
+                return _suggestionsOpen;
+            }
+            set
+            {
+                Set(ref _suggestionsOpen, value);
             }
         }
 
@@ -72,6 +86,42 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand _SubmitQuery;
+        public RelayCommand SubmitQuery
+        {
+            get
+            {
+                if (_SubmitQuery == null)
+                {
+                    _SubmitQuery = new RelayCommand(() =>
+                    {
+                        LoadUsers();
+                    });
+                }
+                return _SubmitQuery;
+            }
+        }
+
+        private RelayCommand<object> _KeyDown;
+        public RelayCommand<object> KeyDown
+        {
+            get
+            {
+                if (_KeyDown == null)
+                {
+                    _KeyDown = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as KeyRoutedEventArgs;
+                        if (args.Key == Windows.System.VirtualKey.Enter)
+                        {
+                            LoadUsers();
+                        }
+                    });
+                }
+                return _KeyDown;
+            }
+        }
+
         private RelayCommand _ConfirmAssignment;
         public RelayCommand ConfirmAssignment
         {
@@ -86,6 +136,22 @@ namespace Github.ViewModels
                     });
                 }
                 return _ConfirmAssignment;
+            }
+        }
+
+        private RelayCommand _HideSuggestions;
+        public RelayCommand HideSuggestions
+        {
+            get
+            {
+                if (_HideSuggestions == null)
+                {
+                    _HideSuggestions = new RelayCommand(() =>
+                    {
+                        suggestionsOpen = false;
+                    });
+                }
+                return _HideSuggestions;
             }
         }
 

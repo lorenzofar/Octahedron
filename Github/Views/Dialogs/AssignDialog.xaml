@@ -23,9 +23,8 @@
         <AutoSuggestBox PlaceholderText="Type the username" 
                         QueryIcon="Find" 
                         Margin="0,12" 
-                        AutoMaximizeSuggestionArea="True"
                         ItemsSource="{Binding assignSuggestions}"
-                        UpdateTextOnSelect="True"   
+                        IsSuggestionListOpen="{Binding suggestionsOpen}"
                         Text="{Binding assignSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <AutoSuggestBox.ItemTemplate>
             <DataTemplate>
@@ -33,8 +32,17 @@
             </DataTemplate>
         </AutoSuggestBox.ItemTemplate>
         <interactivity:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="QuerySubmitted">
+                <core:InvokeCommandAction Command="{Binding SubmitQuery}"/>
+            </core:EventTriggerBehavior>
+            <core:EventTriggerBehavior EventName="KeyDown">
+                <core:InvokeCommandAction Command="{Binding KeyPressed}"/>
+            </core:EventTriggerBehavior>
             <core:EventTriggerBehavior EventName="SuggestionChosen">
                 <core:InvokeCommandAction Command="{Binding ChooseSuggestion}"/>
+            </core:EventTriggerBehavior>
+            <core:EventTriggerBehavior EventName="LostFocus">
+                <core:InvokeCommandAction Command="{Binding HideSuggestions}"/>
             </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
         </AutoSuggestBox>
