@@ -20,11 +20,12 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-        <AutoSuggestBox PlaceholderText="Type the username" 
+        <AutoSuggestBox x:Uid="userSearchBox"
+                        PlaceholderText="Type the username"                         
                         QueryIcon="Find" 
                         Margin="0,12" 
                         ItemsSource="{Binding assignSuggestions}"
-                        IsSuggestionListOpen="{Binding suggestionsOpen}"
+                        IsSuggestionListOpen="{Binding suggestionsOpen}" 
                         Text="{Binding assignSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <AutoSuggestBox.ItemTemplate>
             <DataTemplate>

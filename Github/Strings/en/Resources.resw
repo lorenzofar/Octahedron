@@ -327,4 +327,10 @@
   <data name="invalid_user" xml:space="preserve">
     <value>This user does not exist</value>
   </data>
+  <data name="assignBtn.Label" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="userSearchBox.PlaceholderText" xml:space="preserve">
+    <value>Type the username</value>
+  </data>
 </root>
