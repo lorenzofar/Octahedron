@@ -345,4 +345,10 @@
   <data name="editIssueCommentDialog.Title" xml:space="preserve">
     <value>EDIT COMMENT</value>
   </data>
+  <data name="dueDate" xml:space="preserve">
+    <value>Due on {0}</value>
+  </data>
+  <data name="noDueDate" xml:space="preserve">
+    <value>No due date</value>
+  </data>
 </root>
