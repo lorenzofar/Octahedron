@@ -121,6 +121,7 @@
     <Compile Include="Converters\ListSelectionConverter.cs" />
     <Compile Include="Converters\MilestoneConverter.cs" />
     <Compile Include="Converters\MilestoneProgressConverter.cs" />
+    <Compile Include="Converters\MilestoneStatsConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NumberConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />

@@ -348,6 +348,9 @@
   <data name="dueDate" xml:space="preserve">
     <value>Due on {0}</value>
   </data>
+  <data name="milestoneStats" xml:space="preserve">
+    <value>{0}% complete  {1} open  {2} closed</value>
+  </data>
   <data name="noDueDate" xml:space="preserve">
     <value>No due date</value>
   </data>
