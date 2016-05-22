@@ -76,7 +76,7 @@
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
-                        <ListView Grid.Row="1" Margin="0,12" ItemsSource="{Binding Path=contributorsList}" IsItemClickEnabled="True" SelectionMode="None">
+                        <ListView Margin="0,12" ItemsSource="{Binding Path=contributorsList}" IsItemClickEnabled="True" SelectionMode="None">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="ItemClick">
                                     <core:InvokeCommandAction Command="{Binding Path=OpenUser}" />
@@ -96,6 +96,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
+                        <TextBlock x:Uid="contributors_placeholder" TextWrapping="Wrap" Visibility="{Binding contributorsList, ConverterParameter='contributors', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

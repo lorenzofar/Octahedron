@@ -363,4 +363,7 @@
   <data name="milestones_placeholder.Text" xml:space="preserve">
     <value>There are no milestones</value>
   </data>
+  <data name="contributors_placeholder.Text" xml:space="preserve">
+    <value>There are no contributors</value>
+  </data>
 </root>
