@@ -139,18 +139,21 @@
                 </Grid>
             </PivotItem>
             <PivotItem Header="MILESTONES">
-                <ListView ItemsSource="{Binding milestonesList}" SelectionMode="None" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <templates:MilestonesListItem/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                <Grid>
+                    <ListView ItemsSource="{Binding milestonesList}" SelectionMode="None" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:MilestonesListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <TextBlock x:Uid="milestones_placeholder" TextWrapping="Wrap" Visibility="{Binding milestonesList, ConverterParameter='milestones', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
             </PivotItem>
         </Pivot>
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
