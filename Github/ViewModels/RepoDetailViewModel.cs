@@ -121,6 +121,19 @@ namespace Github.ViewModels
             }
         }
 
+        private int _milestonesIndex = 1;
+        public int milestonesIndex
+        {
+            get
+            {
+                return _milestonesIndex;
+            }
+            set
+            {
+                Set(ref _milestonesIndex, value);
+            }
+        }
+
         private ItemState issuesState
         {
             get
@@ -172,6 +185,23 @@ namespace Github.ViewModels
                         return ItemState.Open;
                     case 2:
                         return ItemState.Closed;                        
+                }
+            }
+        }
+
+        private ItemState milestonesState
+        {
+            get
+            {
+                switch (milestonesIndex)
+                {
+                    default:
+                    case 0:
+                        return ItemState.All;
+                    case 1:
+                        return ItemState.Open;
+                    case 2:
+                        return ItemState.Closed;
                 }
             }
         }
@@ -395,6 +425,23 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand<object> _FilterMilestones;
+        public RelayCommand<object> FilterMilestones
+        {
+            get
+            {
+                if (_FilterMilestones == null)
+                {
+                    _FilterMilestones = new RelayCommand<object>((index) =>
+                    {
+                        milestonesIndex = int.Parse(index.ToString());
+                        LoadRepo(repo.FullName);
+                    });
+                }
+                return _FilterMilestones;
+            }
+        }
+
         private RelayCommand<object> _OpenIssue;
         public RelayCommand<object> OpenIssue
         {
@@ -436,8 +483,8 @@ namespace Github.ViewModels
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
                 issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter });
                 pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
+                milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
-                milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name);
                 loading = false;
             }
             catch

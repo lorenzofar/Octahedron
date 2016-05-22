@@ -19,5 +19,10 @@ namespace Github.Views
         {
             filter_pulls_btn.Flyout.ShowAt(filter_pulls_btn);
         }
+
+        private void filter_milestones_btn_Click(object sender, RoutedEventArgs e)
+        {
+            filter_milestones_btn.Flyout.ShowAt(filter_milestones_btn);
+        }
     }
 }

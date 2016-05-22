@@ -14,7 +14,7 @@ namespace Github.Converters
             {
                 default:
                 case ItemState.Open:
-                    if(milestone.DueOn == null)
+                    if (milestone.DueOn == null)
                     {
                         return constants.r_loader.GetString("noDueDate");
                     }
@@ -23,7 +23,7 @@ namespace Github.Converters
                         return String.Format(constants.r_loader.GetString("dueDate"), constants.shortDateFormatter.Format(milestone.DueOn.Value));
                     }
                 case ItemState.Closed:
-                    return String.Format(constants.r_loader.GetString("closedDate"), constants.shortDateFormatter.Format(milestone.ClosedAt.Value));
+                    return String.Format(constants.r_loader.GetString("closedDate"), constants.shortDateFormatter.Format(milestone.ClosedAt.Value), string.Empty);
             }
         }
 

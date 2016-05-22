@@ -192,6 +192,16 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
+            <!--MILESTONES TAB-->
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterMilestones}" CommandParameter="0" Background="{Binding Path=milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterMilestones}" CommandParameter="1" Background="{Binding Path=milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterMilestones}" CommandParameter="2" Background="{Binding Path=milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
         </CommandBar>
     </Grid>
 </Page>

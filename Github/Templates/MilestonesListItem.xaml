@@ -62,6 +62,6 @@
             <TextBlock Text="{Binding CreatedAt, Converter={StaticResource DateConverter}}"/>
         </StackPanel>
         <TextBlock x:Name="milestone_stats" Text="{Binding Converter={StaticResource MilestoneStatsConverter}}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock Grid.Row="2" Text="{Binding Description}" TextWrapping="NoWrap"/>
+        <TextBlock Grid.Row="2" Text="{Binding Description}" Foreground="#999999" TextWrapping="NoWrap"/>
     </Grid>
 </UserControl>
