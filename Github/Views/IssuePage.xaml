@@ -25,6 +25,7 @@
         <converters:MilestoneConverter x:Key="MilestoneConverter"/>
         <converters:DescriptionConverter x:Key="DescriptionConverter"/>
         <converters:ColorBrushConverter x:Key="ColorBrushConverter"/>
+        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -118,6 +119,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
+                        <TextBlock x:Uid="comments_placeholder" TextWrapping="Wrap" Visibility="{Binding comments, ConverterParameter='issueComments', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -157,6 +159,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
+                        <TextBlock x:Uid="labels_placeholder" TextWrapping="Wrap" Visibility="{Binding issue.Labels, ConverterParameter='labels', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Grid Grid.Row="1" x:Name="addLabelGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>

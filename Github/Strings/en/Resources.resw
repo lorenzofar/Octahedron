@@ -354,6 +354,12 @@
   <data name="noDueDate" xml:space="preserve">
     <value>No due date</value>
   </data>
+  <data name="comments_placeholder.Text" xml:space="preserve">
+    <value>There are no comments</value>
+  </data>
+  <data name="labels_placeholder.Text" xml:space="preserve">
+    <value>There are no labels</value>
+  </data>
   <data name="milestones_placeholder.Text" xml:space="preserve">
     <value>There are no milestones</value>
   </data>

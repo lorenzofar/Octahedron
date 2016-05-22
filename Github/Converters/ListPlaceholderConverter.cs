@@ -31,6 +31,16 @@ namespace Github.Converters
                     var cvs = value as IReadOnlyList<Octokit.Milestone>;
                     return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
                 }
+                else if(parameter.ToString() == "issueComments")
+                {
+                    var cvs = value as IReadOnlyList<Octokit.IssueComment>;
+                    return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
+                else if(parameter.ToString() == "labels")
+                {
+                    var cvs = value as IReadOnlyList<Octokit.Label>;
+                    return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
                 else
                 {
                     var cvs = value as List<Octokit.Repository>;
