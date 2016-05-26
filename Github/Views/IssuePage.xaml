@@ -160,7 +160,7 @@
                             </ListView.ItemContainerStyle>
                         </ListView>
                         <TextBlock x:Uid="labels_placeholder" TextWrapping="Wrap" Visibility="{Binding issue.Labels, ConverterParameter='labels', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Grid Grid.Row="1" x:Name="addLabelGrid">
+                        <Grid Grid.Row="1" x:Name="addLabelGrid" Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
@@ -176,7 +176,7 @@
                                     </Flyout>
                                 </Button.Flyout>
                             </Button>
-                            <TextBox x:Uid="labelBox" Text="{Binding labelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="1" BorderThickness="0" MaxHeight="100" ScrollViewer.VerticalScrollBarVisibility="Auto" PlaceholderText="Add a label"/>
+                            <TextBox x:Uid="labelBox" Text="{Binding labelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="1" BorderThickness="0" MaxHeight="100" Padding="8" Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}" ScrollViewer.VerticalScrollBarVisibility="Auto" PlaceholderText="Add a label"/>
                             <Button Command="{Binding AddLabel}" Padding="6" Grid.Column="2" Background="{ThemeResource SystemControlBackgroundAccentBrush}" VerticalAlignment="Stretch">
                                 <Button.Content>
                                     <FontIcon Glyph="&#xE109;" VerticalAlignment="Center"/>
