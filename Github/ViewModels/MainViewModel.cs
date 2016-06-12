@@ -237,25 +237,34 @@ namespace Github.ViewModels
                 {
                     _OpenNotification = new RelayCommand<object>(async(e) =>
                     {
-                        var args = e as ItemClickEventArgs;
-                        var notification = args.ClickedItem as Octokit.Notification;
-                        switch (notification.Subject.Type.ToLower())
+                        try
                         {
-                            default:
-                                break;
-                            case "pullrequest":
-                                break;
-                            case "issue":
-                                var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name)).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
-                                string issueData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{issue.Number}";
-                                App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
-                                break;
-                            case "release":
-                                break;
-                            case "commit":
-                                break;
+                            var args = e as ItemClickEventArgs;
+                            var notification = args.ClickedItem as Octokit.Notification;
+                            switch (notification.Subject.Type.ToLower())
+                            {
+                                default:
+                                    break;
+                                case "pullrequest":
+                                    break;
+                                case "issue":
+                                    loading = true;
+                                    var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.RepositoryIssueRequest { State = Octokit.ItemState.All })).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
+                                    string issueData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{issue.Number}";
+                                    constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(notification.Id));
+                                    loading = false;
+                                    App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
+                                    break;
+                                case "release":
+                                    break;
+                                case "commit":
+                                    break;
+                            }
                         }
-                        System.Diagnostics.Debug.WriteLine(notification.Reason);
+                        catch
+                        {
+                            await communications.ShowDialog("login_error", "error");
+                        }
                     });
                 }
                 return _OpenNotification;
