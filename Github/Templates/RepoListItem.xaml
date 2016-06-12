@@ -19,7 +19,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon VerticalAlignment="Center" Glyph="&#xE82D;" FontSize="28"/>
+        <FontIcon VerticalAlignment="Center" Glyph="&#xF001;" FontSize="28" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
         <StackPanel Margin="6,0" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Text="{Binding Path=Name}"/>
             <TextBlock Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#999999"/>

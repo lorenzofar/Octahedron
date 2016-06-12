@@ -75,7 +75,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <FontIcon Glyph="&#xE7C1;" Margin="0,6" VerticalAlignment="Top"/>
+                            <FontIcon Glyph="&#xF075;" Margin="0,6" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                             <FontIcon Glyph="&#xE13D;" Margin="0,6" Grid.Row="1" VerticalAlignment="Top"/>
                             <FontIcon Glyph="&#xE12A;" Margin="0,6" Grid.Row="2" VerticalAlignment="Top"/>
                             <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,6,0,6" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"/>

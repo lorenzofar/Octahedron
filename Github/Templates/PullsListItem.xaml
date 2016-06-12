@@ -41,13 +41,13 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon Glyph="&#xEC0A;" Foreground="{Binding Converter={StaticResource PullStateConverter}}" VerticalAlignment="Top"/>
+        <FontIcon Glyph="&#xF009;" Foreground="{Binding Converter={StaticResource PullStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
         <StackPanel Margin="12,0" Grid.Column="1" VerticalAlignment="Top">
             <TextBlock Text="{Binding Title}"/>
             <TextBlock Text="{Binding Converter={StaticResource PullDateConverter}}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
         </StackPanel>
         <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2" Margin="12,0">
-            <FontIcon Glyph="&#xE15F;"/>
+            <FontIcon Glyph="&#xF02B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
             <TextBlock Text="{Binding Comments}" Margin="6,0,0,0"/>
         </StackPanel>
         <TextBlock Grid.Column="3" VerticalAlignment="Top" Text="{Binding Number, Converter={StaticResource NumberConverter}}"/>
