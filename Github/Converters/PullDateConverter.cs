@@ -12,8 +12,21 @@ namespace Github.Converters
             {
                 PullRequest pr = value as PullRequest;
                 var user = pr.User.Login;
-                var Date = pr.State == ItemState.Open ? pr.CreatedAt : pr.ClosedAt;
-                return String.Format(Helper.constants.r_loader.GetString(pr.State == ItemState.Open ? "openDate" : "closedDate"), Helper.constants.shortDateFormatter.Format(Date.Value), pr.State == ItemState.Open ? user : string.Empty);
+                if(pr.State == ItemState.Open)
+                {
+                    return String.Format(Helper.constants.r_loader.GetString("openDate"), Helper.constants.shortDateFormatter.Format(pr.CreatedAt.DateTime), user);
+                }
+                else
+                {
+                    if (pr.Merged)
+                    {
+                        return String.Format(Helper.constants.r_loader.GetString("mergeDate"), Helper.constants.shortDateFormatter.Format(pr.MergedAt.Value));
+                    }
+                    else
+                    {
+                        return String.Format(Helper.constants.r_loader.GetString("closedDate"), Helper.constants.shortDateFormatter.Format(pr.ClosedAt.Value), string.Empty);
+                    }
+                }
             }
             else
             {

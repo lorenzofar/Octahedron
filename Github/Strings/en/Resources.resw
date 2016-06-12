@@ -366,6 +366,9 @@
   <data name="contributors_placeholder.Text" xml:space="preserve">
     <value>There are no contributors</value>
   </data>
+  <data name="mergeDate" xml:space="preserve">
+    <value>Merged {0}</value>
+  </data>
   <data name="pullDetail_header.Text" xml:space="preserve">
     <value>PULL REQUEST</value>
   </data>
