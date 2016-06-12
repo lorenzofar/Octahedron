@@ -246,6 +246,11 @@ namespace Github.ViewModels
                                 default:
                                     break;
                                 case "pullrequest":
+                                    loading = true;
+                                    var pull = (await constants.g_client.PullRequest.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.PullRequestRequest { State = Octokit.ItemState.All })).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
+                                    string pullData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{pull.Number}";
+                                    loading = false;
+                                    App.Current.NavigationService.Navigate(typeof(Views.PullPage), pullData);
                                     break;
                                 case "issue":
                                     loading = true;
