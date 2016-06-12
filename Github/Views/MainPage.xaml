@@ -41,7 +41,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <FontIcon Glyph="{Binding Path=Subject.Type, Converter={StaticResource NotificationIconConverter}}"/>
+                            <FontIcon Glyph="{Binding Path=Subject.Type, Converter={StaticResource NotificationIconConverter}}" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                             <StackPanel Grid.Column="1" Margin="12,0">
                                 <TextBlock Text="{Binding Path=Subject.Title}" TextWrapping="Wrap"/>
                                 <TextBlock Foreground="#999999" Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>

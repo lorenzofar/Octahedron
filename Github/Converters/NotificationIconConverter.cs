@@ -13,16 +13,16 @@ namespace Github.Converters
             switch (n_type.ToLower())
             {
                 case "issue":
-                    glyph = "\uE783";
+                    glyph = "\uF026";
                     break;
                 case "pullrequest":
-                    glyph = "\uEC0A";
+                    glyph = "\uF009";
                     break;
                 case "release":
-                    glyph = "\uE8EC";
+                    glyph = "\uF015";
                     break;
                 case "commit":
-                    glyph = "\uE9A1";
+                    glyph = "\uF01F";
                     break;
             }
             return glyph;
