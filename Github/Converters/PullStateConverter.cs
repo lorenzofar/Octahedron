@@ -10,21 +10,28 @@ namespace Github.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            PullRequest pullReq = value as PullRequest;
-            if(pullReq.State == ItemState.Open)
+            if (value != null)
             {
-                return new SolidColorBrush(Color.FromArgb(255, 108, 198, 68));
-            }
-            else
-            {
-                if (pullReq.Merged)
+                PullRequest pullReq = value as PullRequest;
+                if (pullReq.State == ItemState.Open)
                 {
-                    return new SolidColorBrush(Color.FromArgb(255, 110, 84, 148));
+                    return new SolidColorBrush(Color.FromArgb(255, 108, 198, 68));
                 }
                 else
                 {
-                    return new SolidColorBrush(Color.FromArgb(255, 189, 44, 0));
+                    if (pullReq.Merged)
+                    {
+                        return new SolidColorBrush(Color.FromArgb(255, 110, 84, 148));
+                    }
+                    else
+                    {
+                        return new SolidColorBrush(Color.FromArgb(255, 189, 44, 0));
+                    }
                 }
+            }
+            else
+            {
+                return null;
             }
         }
 

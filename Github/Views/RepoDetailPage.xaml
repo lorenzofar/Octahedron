@@ -125,6 +125,11 @@
             <PivotItem Header="PULL">
                 <Grid>
                     <ListView ItemsSource="{Binding Path=pulls}" SelectionMode="None" IsItemClickEnabled="True">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding Path=OpenPull}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:PullsListItem/>

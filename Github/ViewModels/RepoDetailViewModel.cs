@@ -460,6 +460,25 @@ namespace Github.ViewModels
                 return _OpenIssue;
             }
         }
+
+        private RelayCommand<object> _OpenPull;
+        public RelayCommand<object> OpenPull
+        {
+            get
+            {
+                if (_OpenPull == null)
+                {
+                    _OpenPull = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        var pull = args.ClickedItem as PullRequest;
+                        string pullData = $"{repo.Owner.Login}/{repo.Name}/{pull.Number}";
+                        App.Current.NavigationService.Navigate(typeof(Views.PullPage), pullData);
+                    });
+                }
+                return _OpenPull;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)

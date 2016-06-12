@@ -54,6 +54,14 @@
             }
         }
 
+        public PullViewModel Pull
+        {
+            get
+            {
+                return new PullViewModel();
+            }
+        }
+
         public AssignViewModel Assign
         {
             get
