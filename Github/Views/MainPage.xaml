@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
-            <uwp:SwipeListView x:Name="list" SelectionMode="{Binding Path=selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" ItemRightBackground="#73C456">
+            <uwp:SwipeListView x:Name="list" SelectionMode="{Binding Path=selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" IsItemClickEnabled="True" ItemRightBackground="#73C456">
                 <uwp:SwipeListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,12">
@@ -43,7 +43,7 @@
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="{Binding Path=Subject.Type, Converter={StaticResource NotificationIconConverter}}"/>
                             <StackPanel Grid.Column="1" Margin="12,0">
-                                    <TextBlock Text="{Binding Path=Subject.Title}" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Path=Subject.Title}" TextWrapping="Wrap"/>
                                 <TextBlock Foreground="#999999" Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>
                             </StackPanel>
                         </Grid>
@@ -62,20 +62,23 @@
                 </uwp:SwipeListView.ItemLeftBehavior>
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemSwipe">
-                        <core:InvokeCommandAction Command="{Binding Path=MarkNotificationRead}"/>
+                        <core:InvokeCommandAction Command="{Binding MarkNotificationRead}"/>
                     </core:EventTriggerBehavior>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding Path=SelectionChanged}"/>
+                        <core:InvokeCommandAction Command="{Binding SelectionChanged}"/>
+                    </core:EventTriggerBehavior>
+                    <core:EventTriggerBehavior EventName="ItemClick">
+                        <core:InvokeCommandAction Command="{Binding OpenNotification}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
                 <uwp:SwipeListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate x:DataType="models:GroupInfoList">
-                                    <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}"/>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate x:DataType="models:GroupInfoList">
+                                <TextBlock Text="{x:Bind Key}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
                 </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
             <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -92,5 +95,5 @@
             <AppBarButton Command="{Binding Path=CancelSelection}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Cancel" Icon="Cancel"/>
         </CommandBar>
     </Grid>
-    
+
 </Page>

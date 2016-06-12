@@ -228,6 +228,40 @@ namespace Github.ViewModels
             }
         }
 
+        private RelayCommand<object> _OpenNotification;
+        public RelayCommand<object> OpenNotification
+        {
+            get
+            {
+                if(_OpenNotification == null)
+                {
+                    _OpenNotification = new RelayCommand<object>(async(e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        var notification = args.ClickedItem as Octokit.Notification;
+                        switch (notification.Subject.Type.ToLower())
+                        {
+                            default:
+                                break;
+                            case "pullrequest":
+                                break;
+                            case "issue":
+                                var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name)).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
+                                string issueData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{issue.Number}";
+                                App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
+                                break;
+                            case "release":
+                                break;
+                            case "commit":
+                                break;
+                        }
+                        System.Diagnostics.Debug.WriteLine(notification.Reason);
+                    });
+                }
+                return _OpenNotification;
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             LoadNotifications();
