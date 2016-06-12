@@ -251,7 +251,6 @@ namespace Github.ViewModels
                                     loading = true;
                                     var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.RepositoryIssueRequest { State = Octokit.ItemState.All })).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
                                     string issueData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{issue.Number}";
-                                    constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(notification.Id));
                                     loading = false;
                                     App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                                     break;
@@ -260,6 +259,7 @@ namespace Github.ViewModels
                                 case "commit":
                                     break;
                             }
+                            constants.g_client.Activity.Notifications.MarkAsRead(int.Parse(notification.Id));
                         }
                         catch
                         {
