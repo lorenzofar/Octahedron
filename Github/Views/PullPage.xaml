@@ -53,5 +53,9 @@
             </Grid>
         </Grid>
 
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
+        </Viewbox>
+
     </Grid>
 </Page>
