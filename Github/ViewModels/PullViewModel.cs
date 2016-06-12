@@ -9,7 +9,7 @@ namespace Github.ViewModels
 {
     public class PullViewModel : ViewModelBase
     {
-        private string[] issueData { get; set; }
+        private string[] pullData { get; set; }
 
         private bool _loading;
         public bool loading
@@ -63,11 +63,50 @@ namespace Github.ViewModels
             }
         }
 
+        private IReadOnlyList<PullRequestCommit> _commits;
+        public IReadOnlyList<PullRequestCommit> commits
+        {
+            get
+            {
+                return _commits;
+            }
+            set
+            {
+                Set(ref _commits, value);
+            }
+        }
+
+        private IReadOnlyList<PullRequestReviewComment> _comments;
+        public IReadOnlyList<PullRequestReviewComment> comments
+        {
+            get
+            {
+                return _comments;
+            }
+            set
+            {
+                Set(ref _comments, value);
+            }
+        }
+
+        private IReadOnlyList<PullRequestFile> _files;
+        public IReadOnlyList<PullRequestFile> files
+        {
+            get
+            {
+                return _files;
+            }
+            set
+            {
+                Set(ref _files, value);
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (parameter != null)
             {
-                issueData = parameter.ToString().Split('/');
+                pullData = parameter.ToString().Split('/');
                 LoadData();
             }
             return Task.CompletedTask;
@@ -76,8 +115,11 @@ namespace Github.ViewModels
         private async void LoadData()
         {
             loading = true;
-            owner = issueData[0] == App.user;
-            pull = await constants.g_client.PullRequest.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
+            owner = pullData[0] == App.user;
+            pull = await constants.g_client.PullRequest.Get(pullData[0], pullData[1], int.Parse(pullData[2]));
+            commits = await constants.g_client.PullRequest.Commits(pullData[0], pullData[1], int.Parse(pullData[2]));
+            comments = await constants.g_client.PullRequest.Comment.GetAll(pullData[0], pullData[1], int.Parse(pullData[2]));
+            files = await constants.g_client.PullRequest.Files(pullData[0], pullData[1], int.Parse(pullData[2]));
             closeable = owner && pull.State != ItemState.Closed;
             loading = false;
         }
