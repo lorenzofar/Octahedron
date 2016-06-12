@@ -15,7 +15,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel VerticalAlignment="Center" MaxWidth="480" Visibility="{Binding Path=loggingIn, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
-            <!--GITHUB LOGO PLACEHOLDER-->
+            <FontIcon Glyph="&#xF00A;" Margin="12" HorizontalAlignment="Center" FontFamily="ms-appx:/Assets/octicons.ttf#octicons" FontSize="60"/>
             <TextBox x:Uid="username_input" Margin="12,6" Text="{Binding Path=username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <PasswordBox x:Uid="password_input" Margin="12,6" Password="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button x:Uid="login_btn" Margin="12,6" Background="#73C456" HorizontalAlignment="Stretch" Command="{Binding Path=login}"/>
