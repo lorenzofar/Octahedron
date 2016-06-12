@@ -126,6 +126,7 @@
     <Compile Include="Converters\NumberConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />
     <Compile Include="Converters\PopupIndexConverter.cs" />
+    <Compile Include="Converters\PullDateConverter.cs" />
     <Compile Include="Converters\PullStateConverter.cs" />
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />

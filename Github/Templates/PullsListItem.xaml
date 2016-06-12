@@ -11,19 +11,45 @@
     <UserControl.Resources>
         <converters:PullStateConverter x:Key="PullStateConverter"/>
         <converters:NumberConverter x:Key="NumberConverter"/>
+        <converters:PullDateConverter x:Key="PullDateConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,6,6,6">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="comments_panel.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="comments_panel.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon Glyph="&#xEC0A;" Foreground="{Binding Converter={StaticResource PullStateConverter}}" VerticalAlignment="Center"/>
-        <StackPanel Margin="12,0" Grid.Column="1">
-            <TextBlock Text="{Binding Path=Title}"/>
-            <TextBlock Text="{Binding Path=UpdatedAt}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
+        <FontIcon Glyph="&#xEC0A;" Foreground="{Binding Converter={StaticResource PullStateConverter}}" VerticalAlignment="Top"/>
+        <StackPanel Margin="12,0" Grid.Column="1" VerticalAlignment="Top">
+            <TextBlock Text="{Binding Title}"/>
+            <TextBlock Text="{Binding Converter={StaticResource PullDateConverter}}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
         </StackPanel>
-        <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Path=Number, Converter={StaticResource NumberConverter}}"/>
+        <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2" Margin="12,0">
+            <FontIcon Glyph="&#xE15F;"/>
+            <TextBlock Text="{Binding Comments}" Margin="6,0,0,0"/>
+        </StackPanel>
+        <TextBlock Grid.Column="3" VerticalAlignment="Top" Text="{Binding Number, Converter={StaticResource NumberConverter}}"/>
     </Grid>
 </UserControl>
