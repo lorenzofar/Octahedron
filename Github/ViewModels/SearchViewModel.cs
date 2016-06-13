@@ -8,6 +8,7 @@ using Octokit;
 using Helper;
 using Template10.Mvvm;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Controls;
 
 namespace Github.ViewModels
 {
@@ -79,5 +80,75 @@ namespace Github.ViewModels
                 return _Search;
             }
         }
+
+        private RelayCommand<object> _OpenRepo;
+        public RelayCommand<object> OpenRepo
+        {
+            get
+            {
+                if (_OpenRepo == null)
+                {
+                    _OpenRepo = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var repo = args.ClickedItem as Repository;
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
+                        }
+                    });
+                }
+                return _OpenRepo;
+            }
+        }
+
+        private RelayCommand<object> _OpenIssue;
+        public RelayCommand<object> OpenIssue
+        {
+            get
+            {
+                if (_OpenIssue == null)
+                {
+                    _OpenIssue = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var issue = args.ClickedItem as Issue;
+                            string url = issue.Url.ToString();
+                            url = url.Replace("https://api.github.com/repos/", "");
+                            url = url.Replace("/issues", "");
+                            var data = url.Split('/');
+                            string issueData = $"{data[0]}/{data[1]}/{issue.Number}";
+                            App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
+                        }
+                    });
+                }
+                return _OpenIssue;
+            }
+        }
+
+        private RelayCommand<object> _OpenUser;
+        public RelayCommand<object> OpenUser
+        {
+            get
+            {
+                if (_OpenUser == null)
+                {
+                    _OpenUser = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var user = args.ClickedItem as User;
+                            App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), user.Login);
+                        }
+                    });
+                }
+                return _OpenUser;
+            }
+        }
     }
+
+
 }

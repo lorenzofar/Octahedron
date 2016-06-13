@@ -48,7 +48,7 @@
 
             <Pivot Grid.Row="1">
                 <PivotItem x:Uid="repos_pivot">
-                    <ListView ItemsSource="{Binding reposResult}">
+                    <ListView ItemsSource="{Binding reposResult}" SelectionMode="None" IsItemClickEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:RepoListItem/>
@@ -59,6 +59,11 @@
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             </Style>
                         </ListView.ItemContainerStyle>
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding OpenRepo}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                     </ListView>
                 </PivotItem>
                 <!--<PivotItem x:Uid="repos_pivot">
@@ -71,7 +76,7 @@
                 </ListView>
             </PivotItem>-->
                 <PivotItem x:Uid="issues_pivot">
-                    <ListView ItemsSource="{Binding issuesResult}">
+                    <ListView ItemsSource="{Binding issuesResult}" SelectionMode="None" IsItemClickEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:IssuesListItem/>
@@ -82,10 +87,15 @@
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             </Style>
                         </ListView.ItemContainerStyle>
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding OpenIssue}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                     </ListView>
                 </PivotItem>
                 <PivotItem x:Uid="users_pivot">
-                    <ListView ItemsSource="{Binding usersResult}">
+                    <ListView ItemsSource="{Binding usersResult}" SelectionMode="None" IsItemClickEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:UserListItem/>
@@ -96,6 +106,11 @@
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             </Style>
                         </ListView.ItemContainerStyle>
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding OpenUser}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                     </ListView>
                 </PivotItem>
             </Pivot>
