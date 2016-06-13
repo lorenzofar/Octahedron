@@ -11,9 +11,12 @@
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Search}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
@@ -21,13 +24,78 @@
 
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="search_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
-        <Grid Grid.Row="1" Margin="12">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="search_box" PlaceholderText="Search GitHub"/>
-            <Button Command="{Binding Search}" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1" VerticalAlignment="Stretch" Content="&#xE094;" FontFamily="Segoe MDL2 Assets" />
+        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Margin="12,12,12,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="search_box" PlaceholderText="Search GitHub"/>
+                <Button Command="{Binding Search}" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1" VerticalAlignment="Stretch" Content="&#xE094;" FontFamily="Segoe MDL2 Assets" />
+            </Grid>
+
+            <Pivot Grid.Row="1">
+                <PivotItem x:Uid="repos_pivot">
+                    <ListView ItemsSource="{Binding reposResult}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:RepoListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+                <!--<PivotItem x:Uid="repos_pivot">
+                <ListView ItemsSource="{Binding reposResult}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:RepoListItem/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>-->
+                <PivotItem x:Uid="issues_pivot">
+                    <ListView ItemsSource="{Binding issuesResult}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:IssuesListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+                <PivotItem x:Uid="users_pivot">
+                    <ListView ItemsSource="{Binding usersResult}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:UserListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+            </Pivot>
         </Grid>
+
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
+        </Viewbox>
+
     </Grid>
 </Page>

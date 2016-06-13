@@ -372,10 +372,16 @@
   <data name="pullDetail_header.Text" xml:space="preserve">
     <value>PULL REQUEST</value>
   </data>
+  <data name="issues_pivot.Header" xml:space="preserve">
+    <value>ISSUES</value>
+  </data>
   <data name="search_header.Text" xml:space="preserve">
     <value>SEARCH</value>
   </data>
   <data name="search_txt.Text" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="users_pivot.Header" xml:space="preserve">
+    <value>USERS</value>
   </data>
 </root>

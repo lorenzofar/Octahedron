@@ -29,14 +29,14 @@ namespace Github.ViewModels
             }
         }
 
-        private IReadOnlyList<SearchCodeResult> _codeResult;
-        private IReadOnlyList<SearchUsersResult> _usersResult;
-        private IReadOnlyList<SearchRepositoryResult> _reposResult;
-        private IReadOnlyList<SearchIssuesResult> _issuesResult;
-        public IReadOnlyList<SearchCodeResult> codeResult { get { return _codeResult; } set { Set(ref _codeResult, value); } }
-        public IReadOnlyList<SearchUsersResult> usersResult { get { return _usersResult; } set { Set(ref _usersResult, value); } }
-        public IReadOnlyList<SearchRepositoryResult> reposResult { get { return _reposResult; } set { Set(ref _reposResult, value); } }
-        public IReadOnlyList<SearchIssuesResult> issuesResult { get { return _issuesResult; } set { Set(ref _issuesResult, value); } }
+        private IReadOnlyList<SearchCode> _codeResult;
+        private IReadOnlyList<User> _usersResult;
+        private IReadOnlyList<Repository> _reposResult;
+        private IReadOnlyList<Issue> _issuesResult;
+        public IReadOnlyList<SearchCode> codeResult { get { return _codeResult; } set { Set(ref _codeResult, value); } }
+        public IReadOnlyList<User> usersResult { get { return _usersResult; } set { Set(ref _usersResult, value); } }
+        public IReadOnlyList<Repository> reposResult { get { return _reposResult; } set { Set(ref _reposResult, value); } }
+        public IReadOnlyList<Issue> issuesResult { get { return _issuesResult; } set { Set(ref _issuesResult, value); } }
 
         private RelayCommand _Search;
         public RelayCommand Search
@@ -47,7 +47,12 @@ namespace Github.ViewModels
                 {
                     _Search = new RelayCommand(async () =>
                     {
-                        //reposResult = await constants.g_client.Search
+                        loading = true;
+                        reposResult = (await constants.g_client.Search.SearchRepo(new SearchRepositoriesRequest(query))).Items;
+                        //codeResult = (await constants.g_client.Search.SearchCode(new SearchCodeRequest(query))).Items;
+                        issuesResult = (await constants.g_client.Search.SearchIssues(new SearchIssuesRequest(query))).Items;
+                        usersResult = (await constants.g_client.Search.SearchUsers(new SearchUsersRequest(query))).Items;
+                        loading = false;
                     }, () => !string.IsNullOrWhiteSpace(query));
                 }
                 return _Search;
