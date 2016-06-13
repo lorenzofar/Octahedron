@@ -372,6 +372,9 @@
   <data name="pullDetail_header.Text" xml:space="preserve">
     <value>PULL REQUEST</value>
   </data>
+  <data name="search_header.Text" xml:space="preserve">
+    <value>SEARCH</value>
+  </data>
   <data name="search_txt.Text" xml:space="preserve">
     <value>Search</value>
   </data>

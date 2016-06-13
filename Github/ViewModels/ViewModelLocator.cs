@@ -46,6 +46,14 @@
             }
         }
 
+        public SearchViewModel Search
+        {
+            get
+            {
+                return new SearchViewModel();
+            }
+        }
+
         public IssueViewModel Issue
         {
             get
