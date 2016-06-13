@@ -6,6 +6,8 @@
     xmlns:controls="using:Template10.Controls"
     xmlns:converters="using:Github.Converters"
     xmlns:templates="using:Github.Templates"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Search}"
@@ -34,7 +36,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Text="{Binding query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="search_box" PlaceholderText="Search GitHub"/>
+                <TextBox Text="{Binding query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="search_box" PlaceholderText="Search GitHub">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="KeyDown">
+                            <core:InvokeCommandAction Command="{Binding KeyPressed}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </TextBox>
                 <Button Command="{Binding Search}" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1" VerticalAlignment="Stretch" Content="&#xE094;" FontFamily="Segoe MDL2 Assets" />
             </Grid>
 
