@@ -16,7 +16,7 @@ namespace Github.ViewModels
     {
         private bool _loading;
         public bool loading { get { return _loading; } set { Set(ref _loading, value); } }
-
+        
         private string _query;
         public string query
         {

@@ -372,6 +372,9 @@
   <data name="pullDetail_header.Text" xml:space="preserve">
     <value>PULL REQUEST</value>
   </data>
+  <data name="issuesSearch_placeholder.Text" xml:space="preserve">
+    <value>No issues found</value>
+  </data>
   <data name="issues_pivot.Header" xml:space="preserve">
     <value>ISSUES</value>
   </data>
@@ -383,5 +386,8 @@
   </data>
   <data name="users_pivot.Header" xml:space="preserve">
     <value>USERS</value>
+  </data>
+  <data name="users_placeholder.Text" xml:space="preserve">
+    <value>No users found</value>
   </data>
 </root>
