@@ -19,8 +19,9 @@
     <PackageCertificateKeyFile>Github_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>5DDEC8ECC6974A80E34B154774E062B9AC9432F1</PackageCertificateThumbprint>
+    <AppxPackageDir>C:\Users\Lorenzo\Desktop\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -170,6 +171,7 @@
     <Compile Include="ViewModels\PullViewModel.cs" />
     <Compile Include="ViewModels\RepoDetailViewModel.cs" />
     <Compile Include="ViewModels\ReposViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Dialogs\AssignDialog.xaml.cs">
       <DependentUpon>AssignDialog.xaml</DependentUpon>
@@ -197,6 +199,9 @@
     </Compile>
     <Compile Include="Views\ReposPage.xaml.cs">
       <DependentUpon>ReposPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -295,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReposPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
