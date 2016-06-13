@@ -67,7 +67,7 @@
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </ListView>
-                        <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding reposResult, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding reposResult, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </PivotItem>
                 <!--<PivotItem x:Uid="repos_pivot">

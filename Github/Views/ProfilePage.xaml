@@ -20,6 +20,7 @@
         <converters:UserNameConverter x:Key="UserNameConverter"/>
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
+        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -102,75 +103,81 @@
                         </ScrollViewer>
                     </PivotItem>
                     <PivotItem x:Uid="repos_pivot">
-                        <ListView x:Name="repos_listview" ItemsSource="{Binding Path=repoList}" SelectionMode="None" IsItemClickEnabled="True">
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:RepoListItem Margin="-12,0"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                        </ListView>
+                        <Grid>
+                            <ListView x:Name="repos_listview" ItemsSource="{Binding repoList}" SelectionMode="None" IsItemClickEnabled="True">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding OpenRepo}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <templates:RepoListItem Margin="-12,0"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding repoList, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
                     </PivotItem>
-                    
-                    <PivotItem x:Uid="orgs_pivot">
-                    </PivotItem>
-                    
+
                     <PivotItem x:Uid="followers_pivot">
-                        <ListView ItemsSource="{Binding Path=followersList}" IsItemClickEnabled="True" SelectionMode="None">
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}"/>
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:UserListItem/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            </Style>
-                            </ListView.ItemContainerStyle>
-                        </ListView>
+                        <Grid>
+                            <ListView ItemsSource="{Binding followersList}" IsItemClickEnabled="True" SelectionMode="None">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding OpenUser}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <templates:UserListItem/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <TextBlock x:Uid="followers_placeholder" TextWrapping="Wrap" Visibility="{Binding followersList, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
                     </PivotItem>
-                    
+
                     <PivotItem x:Uid="following_pivot">
-                        <ListView ItemsSource="{Binding Path=followingList}" IsItemClickEnabled="True" SelectionMode="None">
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}"/>
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:UserListItem/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                        </ListView>
+                        <Grid>
+                            <ListView ItemsSource="{Binding followingList}" IsItemClickEnabled="True" SelectionMode="None">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding OpenUser}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <templates:UserListItem/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <TextBlock x:Uid="following_placeholder" TextWrapping="Wrap" Visibility="{Binding followingList, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
                     </PivotItem>
                 </Pivot>
             </Grid>
         </Grid>
-        
+
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
         </Viewbox>
-        
+
         <CommandBar IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Grid.Row="2">
             <AppBarButton x:Uid="share_btn" Command="{Binding Path=ShareUser}">
                 <AppBarButton.Icon>

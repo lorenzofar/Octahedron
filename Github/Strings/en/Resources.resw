@@ -372,6 +372,12 @@
   <data name="pullDetail_header.Text" xml:space="preserve">
     <value>PULL REQUEST</value>
   </data>
+  <data name="followers_placeholder.Text" xml:space="preserve">
+    <value>There are no followers</value>
+  </data>
+  <data name="following_placeholder.Text" xml:space="preserve">
+    <value>There are no followed users</value>
+  </data>
   <data name="issuesSearch_placeholder.Text" xml:space="preserve">
     <value>No issues found</value>
   </data>
