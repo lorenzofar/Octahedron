@@ -30,10 +30,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
         <Pivot Grid.Row="1" SelectedIndex="{Binding pivotIndex, Mode=TwoWay}" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
-            <PivotItem x:Uid="info_txt" Header="INFO">
+            <PivotItem>
+                <PivotItem.Header>
+                    <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </PivotItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <StackPanel Padding="12" Background="{StaticResource SystemControlBackgroundAccentBrush}">
@@ -100,7 +103,10 @@
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
-            <PivotItem Header="ISSUES">
+            <PivotItem>
+                <PivotItem.Header>
+                    <FontIcon Glyph="&#xF026;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </PivotItem.Header>
                 <Grid>
                     <ListView ItemsSource="{Binding issues}" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
@@ -122,7 +128,10 @@
                     <TextBlock x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="PULL">
+            <PivotItem>
+                <PivotItem.Header>
+                    <FontIcon Glyph="&#xF009;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </PivotItem.Header>
                 <Grid>
                     <ListView ItemsSource="{Binding pulls}" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
@@ -144,7 +153,10 @@
                     <TextBlock x:Uid="pulls_placeholder" TextWrapping="Wrap" Visibility="{Binding pulls, ConverterParameter='pulls', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="MILESTONES">
+            <PivotItem>
+                <PivotItem.Header>
+                    <FontIcon Glyph="&#xF075;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </PivotItem.Header>
                 <Grid>
                     <ListView ItemsSource="{Binding milestonesList}" SelectionMode="None" >
                         <ListView.ItemTemplate>
