@@ -45,7 +45,7 @@
         </Polygon>
         <Ellipse Grid.Column="2" Width="48" Height="48" VerticalAlignment="Top">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding Path=User.AvatarUrl}"/>
+                <ImageBrush ImageSource="{Binding User.AvatarUrl}"/>
             </Ellipse.Fill>
         </Ellipse>
     </Grid>

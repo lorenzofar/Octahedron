@@ -37,13 +37,13 @@
 
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="issueDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
 
-        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+        <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Background="{Binding Path=issue.State, Converter={StaticResource IssueStateConverter}}">
+            <Grid Background="{Binding issue.State, Converter={StaticResource IssueStateConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
@@ -51,13 +51,13 @@
                 </Grid.ColumnDefinitions>
                 <Ellipse Margin="12" Width="48" Height="48" VerticalAlignment="Center">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding Path=issue.User.AvatarUrl}"/>
+                        <ImageBrush ImageSource="{Binding issue.User.AvatarUrl}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <ScrollViewer Grid.Column="1" VerticalAlignment="Center" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="12">
-                        <TextBlock Text="{Binding Path=issue.Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" MaxHeight="200"/>
-                        <TextBlock Text="{Binding Path=issue, Converter={StaticResource IssueDateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Text="{Binding issue.Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" MaxHeight="200"/>
+                        <TextBlock Text="{Binding issue, Converter={StaticResource IssueDateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
                     </StackPanel>
                 </ScrollViewer>
                 <TextBlock Text="{Binding issue.Number, Converter={StaticResource NumberConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="12" Grid.Column="2" VerticalAlignment="Center"/>
@@ -188,11 +188,11 @@
             </Pivot>
         </Grid>
 
-        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+        <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <AppBarButton x:Uid="assignBtn" IsEnabled="{Binding owner}" x:Name="assignBtn" Icon="AddFriend" Click="assignBtn_Click"/>
             <AppBarButton x:Uid="closeBtn" Command="{Binding CloseIssue}" Label="Close" IsEnabled="{Binding closeable}">
                 <AppBarButton.Icon>

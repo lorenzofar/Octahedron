@@ -20,7 +20,7 @@
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
         <converters:PopupIndexConverter x:Key="PopupIndexConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
-        <CollectionViewSource x:Name="reposCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
+        <CollectionViewSource x:Name="reposCVS" Source="{Binding groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -31,11 +31,11 @@
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="REPOSITORIES" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
-        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+        <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <ListView x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None" IsItemClickEnabled="True">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{Binding Path=OpenRepo}"/>
+                        <core:InvokeCommandAction Command="{Binding OpenRepo}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
                 <ListView.ItemTemplate>
@@ -58,30 +58,30 @@
                     </GroupStyle>
                 </ListView.GroupStyle>
             </ListView>
-            <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         
-        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+        <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=SelectFilter}" CommandParameter="0" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="filter_public" Command="{Binding Path=SelectFilter}" CommandParameter="1" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
-                        <MenuFlyoutItem x:Uid="filter_private" Command="{Binding Path=SelectFilter}" CommandParameter="2" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
-                        <MenuFlyoutItem x:Uid="filter_member" Command="{Binding Path=SelectFilter}" CommandParameter="3" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
-                        <MenuFlyoutItem x:Uid="filter_owner" Command="{Binding Path=SelectFilter}" CommandParameter="4" Background="{Binding Path=filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding SelectFilter}" CommandParameter="0" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_public" Command="{Binding SelectFilter}" CommandParameter="1" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_private" Command="{Binding SelectFilter}" CommandParameter="2" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_member" Command="{Binding SelectFilter}" CommandParameter="3" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
+                        <MenuFlyoutItem x:Uid="filter_owner" Command="{Binding SelectFilter}" CommandParameter="4" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="sort_name" Command="{Binding Path=SelectSort}" CommandParameter="0" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="sort_language" Command="{Binding Path=SelectSort}" CommandParameter="1" Background="{Binding Path=sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="sort_name" Command="{Binding SelectSort}" CommandParameter="0" Background="{Binding sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="sort_language" Command="{Binding SelectSort}" CommandParameter="1" Background="{Binding sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>

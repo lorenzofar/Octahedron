@@ -22,7 +22,7 @@
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
         <converters:NotificationIconConverter x:Key="NotificationIconConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
-        <CollectionViewSource x:Name="notificationsCVS" Source="{Binding Path=groups}" IsSourceGrouped="True" />
+        <CollectionViewSource x:Name="notificationsCVS" Source="{Binding groups}" IsSourceGrouped="True" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -32,8 +32,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
-        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
-            <uwp:SwipeListView x:Name="list" SelectionMode="{Binding Path=selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" IsItemClickEnabled="{Binding selecting, Converter={StaticResource BoolConverter}, ConverterParameter=false}" ItemRightBackground="#73C456">
+        <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <uwp:SwipeListView x:Name="list" SelectionMode="{Binding selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" IsItemClickEnabled="{Binding selecting, Converter={StaticResource BoolConverter}, ConverterParameter=false}" ItemRightBackground="#73C456">
                 <uwp:SwipeListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,12">
@@ -41,10 +41,10 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <FontIcon Glyph="{Binding Path=Subject.Type, Converter={StaticResource NotificationIconConverter}}" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <FontIcon Glyph="{Binding Subject.Type, Converter={StaticResource NotificationIconConverter}}" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                             <StackPanel Grid.Column="1" Margin="12,0">
-                                <TextBlock Text="{Binding Path=Subject.Title}" TextWrapping="Wrap"/>
-                                <TextBlock Foreground="#999999" Text="{Binding Path=UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>
+                                <TextBlock Text="{Binding Subject.Title}" TextWrapping="Wrap"/>
+                                <TextBlock Foreground="#999999" Text="{Binding UpdatedAt, Converter={StaticResource UpdateDateConverter}, ConverterParameter=raw}"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -81,18 +81,18 @@
                     </GroupStyle>
                 </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
-            <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
 
-        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
-            <AppBarButton Command="{Binding Path=SelectItems}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Select" Icon="Bullets"/>
-            <AppBarButton Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Refresh" Icon="Refresh" Command="{Binding Path=RefreshFeed}"/>
-            <AppBarButton Command="{Binding Path=DeleteItems}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Delete" Icon="Delete"/>
-            <AppBarButton Command="{Binding Path=CancelSelection}" Visibility="{Binding Path=selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Cancel" Icon="Cancel"/>
+        <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+            <AppBarButton Command="{Binding SelectItems}" Visibility="{Binding selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Select" Icon="Bullets"/>
+            <AppBarButton Visibility="{Binding selecting, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}" Label="Refresh" Icon="Refresh" Command="{Binding RefreshFeed}"/>
+            <AppBarButton Command="{Binding DeleteItems}" Visibility="{Binding selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Delete" Icon="Delete"/>
+            <AppBarButton Command="{Binding CancelSelection}" Visibility="{Binding selecting, Converter={StaticResource BoolVisibilityConverter}}" Label="Cancel" Icon="Cancel"/>
         </CommandBar>
     </Grid>
 

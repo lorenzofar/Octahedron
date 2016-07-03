@@ -30,7 +30,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="profile_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
-        <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+        <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3.5*"/>
@@ -40,10 +40,10 @@
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Ellipse Width="150" Height="150" MaxHeight="150" MaxWidth="150">
                             <Ellipse.Fill>
-                                <ImageBrush x:Name="user_pic" ImageSource="{Binding Path=user.AvatarUrl}"/>
+                                <ImageBrush x:Name="user_pic" ImageSource="{Binding user.AvatarUrl}"/>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding Path=user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+                        <TextBlock Foreground="White" Margin="0,6,0,0" Text="{Binding user.Name}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
                     </StackPanel>
                 </Viewbox>
             </Grid>
@@ -64,16 +64,16 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <FontIcon Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
-                                    <FontIcon Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
-                                    <FontIcon Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
-                                    <FontIcon Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
-                                    <FontIcon Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
-                                    <TextBlock Visibility="{Binding Path=user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Location}"/>
-                                    <HyperlinkButton Command="{Binding Path=SendMail}" Visibility="{Binding Path=user.Email, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Path=user.Email}"/>
-                                    <HyperlinkButton Command="{Binding Path=OpenBlog}" Visibility="{Binding Path=user.Blog, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Path=user.Blog}"/>
-                                    <TextBlock Visibility="{Binding Path=user.Company, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.Company}"/>
-                                    <TextBlock Visibility="{Binding Path=user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=user.CreatedAt, Converter={StaticResource JoinDateConverter}}"/>
+                                    <FontIcon Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
+                                    <FontIcon Visibility="{Binding user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
+                                    <FontIcon Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
+                                    <FontIcon Visibility="{Binding user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
+                                    <FontIcon Visibility="{Binding user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
+                                    <TextBlock Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding user.Location}"/>
+                                    <HyperlinkButton Command="{Binding SendMail}" Visibility="{Binding user.Email, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Content="{Binding user.Email}"/>
+                                    <HyperlinkButton Command="{Binding OpenBlog}" Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="{Binding user.Blog}"/>
+                                    <TextBlock Visibility="{Binding user.Company, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding user.Company}"/>
+                                    <TextBlock Visibility="{Binding user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding user.CreatedAt, Converter={StaticResource JoinDateConverter}}"/>
                                 </Grid>
                                 <Grid x:Name="stats_grid" Margin="0,24">
                                     <Grid.ColumnDefinitions>
@@ -83,19 +83,19 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0" x:Name="followers_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Followers}"/>
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding user.Followers}"/>
                                         <TextBlock x:Uid="followers_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" x:Name="following_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.Following}"/>
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding user.Following}"/>
                                         <TextBlock x:Uid="following_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" x:Name="repos_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=user.PublicRepos}"/>
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding user.PublicRepos}"/>
                                         <TextBlock x:Uid="repos_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="3" x:Name="starred_panel">
-                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding Path=starredRepos}"/>
+                                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Text="{Binding starredRepos}"/>
                                         <TextBlock x:Uid="starred_caption" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>
@@ -174,17 +174,17 @@
             </Grid>
         </Grid>
 
-        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Grid.Row="2">
-            <AppBarButton x:Uid="share_btn" Command="{Binding Path=ShareUser}">
+        <CommandBar IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}" Grid.Row="2">
+            <AppBarButton x:Uid="share_btn" Command="{Binding ShareUser}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE72D;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarToggleButton x:Uid="follow_btn" Command="{Binding Path=FollowUser}" IsChecked="{Binding Path=following}">
+            <AppBarToggleButton x:Uid="follow_btn" Command="{Binding FollowUser}" IsChecked="{Binding following}">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE8FA;"/>
                 </AppBarToggleButton.Icon>

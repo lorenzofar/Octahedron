@@ -46,9 +46,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon Glyph="&#xF026;" Foreground="{Binding Path=State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+        <FontIcon Glyph="&#xF026;" Foreground="{Binding State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
         <StackPanel Margin="12,0" Grid.Column="1">
-            <TextBlock Text="{Binding Path=Title}" TextWrapping="WrapWholeWords"/>
+            <TextBlock Text="{Binding Title}" TextWrapping="WrapWholeWords"/>
             <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,0,0,3" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
             <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" Content="{Binding Converter={StaticResource IssueLabelsConverter}}"/>
         </StackPanel>
@@ -59,8 +59,8 @@
         </Ellipse>
         <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="3" Margin="12,0">
             <FontIcon Glyph="&#xF02B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
-            <TextBlock Text="{Binding Path=Comments}" Margin="6,0,0,0"/>
+            <TextBlock Text="{Binding Comments}" Margin="6,0,0,0"/>
         </StackPanel>
-        <TextBlock Grid.Column="4" VerticalAlignment="Top" Text="{Binding Path=Number, Converter={StaticResource NumberConverter}}"/>
+        <TextBlock Grid.Column="4" VerticalAlignment="Top" Text="{Binding Number, Converter={StaticResource NumberConverter}}"/>
     </Grid>
 </UserControl>

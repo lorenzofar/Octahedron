@@ -32,29 +32,29 @@
 
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
 
-        <Pivot Grid.Row="1" SelectedIndex="{Binding Path=pivotIndex, Mode=TwoWay}" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+        <Pivot Grid.Row="1" SelectedIndex="{Binding pivotIndex, Mode=TwoWay}" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <PivotItem x:Uid="info_txt" Header="INFO">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <StackPanel Padding="12" Background="{StaticResource SystemControlBackgroundAccentBrush}">
-                            <TextBlock Foreground="White" Text="{Binding Path=repo.Name}" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" />
-                            <TextBlock Foreground="White" Text="{Binding Path=repo.Parent, Converter={StaticResource ForkConverter}}" Visibility="{Binding Path=repo.Parent, Converter={StaticResource InfoConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,6" HorizontalAlignment="Center">
+                            <TextBlock Foreground="White" Text="{Binding repo.Name}" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock Foreground="White" Text="{Binding repo.Parent, Converter={StaticResource ForkConverter}}" Visibility="{Binding repo.Parent, Converter={StaticResource InfoConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,6" HorizontalAlignment="Center">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenParent}" />
+                                    <core:InvokeCommandAction Command="{Binding OpenParent}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             </TextBlock>
-                            <TextBlock Foreground="White" Text="{Binding Path=repo.Owner.Login}" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}">
+                            <TextBlock Foreground="White" Text="{Binding repo.Owner.Login}" HorizontalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenProfile}" />
+                                    <core:InvokeCommandAction Command="{Binding OpenProfile}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             </TextBlock>
-                            <TextBlock Foreground="White" Text="{Binding Path=repo.Language}" HorizontalAlignment="Center" />
+                            <TextBlock Foreground="White" Text="{Binding repo.Language}" HorizontalAlignment="Center" />
                             <ScrollViewer Margin="12" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
-                                <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.Description}" MaxHeight="100" TextWrapping="Wrap" />
+                                <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding repo.Description}" MaxHeight="100" TextWrapping="Wrap" />
                             </ScrollViewer>
                             <Grid Margin="0,6,0,0">
                                 <Grid.ColumnDefinitions>
@@ -63,23 +63,23 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <StackPanel HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.ForksCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding repo.ForksCount}" Style="{ThemeResource TitleTextBlockStyle}" />
                                     <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="forks_txt" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.StargazersCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding repo.StargazersCount}" Style="{ThemeResource TitleTextBlockStyle}" />
                                     <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="stars_txt" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding Path=repo.OpenIssuesCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding repo.OpenIssuesCount}" Style="{ThemeResource TitleTextBlockStyle}" />
                                     <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="issues_txt" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
-                        <ListView Margin="0,12" ItemsSource="{Binding Path=contributorsList}" IsItemClickEnabled="True" SelectionMode="None">
+                        <ListView Margin="0,12" ItemsSource="{Binding contributorsList}" IsItemClickEnabled="True" SelectionMode="None">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Path=OpenUser}" />
+                                    <core:InvokeCommandAction Command="{Binding OpenUser}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             <ListView.Header>
@@ -102,10 +102,10 @@
             </PivotItem>
             <PivotItem Header="ISSUES">
                 <Grid>
-                    <ListView ItemsSource="{Binding Path=issues}" SelectionMode="None" IsItemClickEnabled="True">
+                    <ListView ItemsSource="{Binding issues}" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding Path=OpenIssue}" />
+                                <core:InvokeCommandAction Command="{Binding OpenIssue}" />
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                         <ListView.ItemTemplate>
@@ -119,15 +119,15 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <TextBlock x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
             <PivotItem Header="PULL">
                 <Grid>
-                    <ListView ItemsSource="{Binding Path=pulls}" SelectionMode="None" IsItemClickEnabled="True">
+                    <ListView ItemsSource="{Binding pulls}" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding Path=OpenPull}" />
+                                <core:InvokeCommandAction Command="{Binding OpenPull}" />
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                         <ListView.ItemTemplate>
@@ -141,7 +141,7 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <TextBlock x:Uid="pulls_placeholder" TextWrapping="Wrap" Visibility="{Binding Path=pulls, ConverterParameter='pulls', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="pulls_placeholder" TextWrapping="Wrap" Visibility="{Binding pulls, ConverterParameter='pulls', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
             <PivotItem Header="MILESTONES">
@@ -162,42 +162,42 @@
                 </Grid>
             </PivotItem>
         </Pivot>
-        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loading}" Width="80" Height="80"/>
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
         </Viewbox>
 
-        <CommandBar Grid.Row="2" IsEnabled="{Binding Path=loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+        <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <!--INFO TAB-->
-            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding Path=WatchRepo}" IsChecked="{Binding Path=watched, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
+            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding WatchRepo}" IsChecked="{Binding watched, Mode=TwoWay}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE052;"/>
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
-            <AppBarToggleButton x:Uid="star_btn" Command="{Binding Path=StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding Path=starred, Mode=TwoWay}" Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
+            <AppBarToggleButton x:Uid="star_btn" Command="{Binding StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding starred, Mode=TwoWay}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
             <!--ISSUES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter"  Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssues}" CommandParameter="0" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterIssues}" CommandParameter="1" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
-                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterIssues}" CommandParameter="2" Background="{Binding Path=issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssues}" CommandParameter="0" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterIssues}" CommandParameter="1" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding FilterIssues}" CommandParameter="2" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
                         <MenuFlyoutSeparator/>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterIssuesUser}" CommandParameter="0" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="filter_assigned" Command="{Binding Path=FilterIssuesUser}" CommandParameter="1" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
-                        <MenuFlyoutItem x:Uid="filter_created" Command="{Binding Path=FilterIssuesUser}" CommandParameter="2" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
-                        <MenuFlyoutItem x:Uid="filter_mentioned" Command="{Binding Path=FilterIssuesUser}" CommandParameter="3" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
-                        <MenuFlyoutItem x:Uid="filter_subscribed" Command="{Binding Path=FilterIssuesUser}" CommandParameter="4" Background="{Binding Path=issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssuesUser}" CommandParameter="0" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_assigned" Command="{Binding FilterIssuesUser}" CommandParameter="1" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_created" Command="{Binding FilterIssuesUser}" CommandParameter="2" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_mentioned" Command="{Binding FilterIssuesUser}" CommandParameter="3" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
+                        <MenuFlyoutItem x:Uid="filter_subscribed" Command="{Binding FilterIssuesUser}" CommandParameter="4" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton x:Uid="new_btn" Icon="Add" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
             <!--PULLS TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding Path=pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterPulls}" CommandParameter="0" Background="{Binding Path=pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterPulls}" CommandParameter="1" Background="{Binding Path=pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
-                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterPulls}" CommandParameter="2" Background="{Binding Path=pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterPulls}" CommandParameter="0" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterPulls}" CommandParameter="1" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding FilterPulls}" CommandParameter="2" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
@@ -205,9 +205,9 @@
             <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding Path=FilterMilestones}" CommandParameter="0" Background="{Binding Path=milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
-                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding Path=FilterMilestones}" CommandParameter="1" Background="{Binding Path=milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
-                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding Path=FilterMilestones}" CommandParameter="2" Background="{Binding Path=milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
+                        <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterMilestones}" CommandParameter="0" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
+                        <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterMilestones}" CommandParameter="1" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
+                        <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding FilterMilestones}" CommandParameter="2" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>

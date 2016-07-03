@@ -14,15 +14,15 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel VerticalAlignment="Center" MaxWidth="480" Visibility="{Binding Path=loggingIn, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+        <StackPanel VerticalAlignment="Center" MaxWidth="480" Visibility="{Binding loggingIn, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <FontIcon Glyph="&#xF00A;" Margin="12" HorizontalAlignment="Center" FontFamily="ms-appx:/Assets/octicons.ttf#octicons" FontSize="60"/>
-            <TextBox x:Uid="username_input" Margin="12,6" Text="{Binding Path=username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <PasswordBox x:Uid="password_input" Margin="12,6" Password="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button x:Uid="login_btn" Margin="12,6" Background="#73C456" HorizontalAlignment="Stretch" Command="{Binding Path=login}"/>
+            <TextBox x:Uid="username_input" Margin="12,6" Text="{Binding username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <PasswordBox x:Uid="password_input" Margin="12,6" Password="{Binding password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Uid="login_btn" Margin="12,6" Background="#73C456" HorizontalAlignment="Stretch" Command="{Binding login}"/>
         </StackPanel>
 
-        <StackPanel Visibility="{Binding Path=loggingIn, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding Path=loggingIn}" Foreground="White" Width="50" Height="50"/>
+        <StackPanel Visibility="{Binding loggingIn, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loggingIn}" Foreground="White" Width="50" Height="50"/>
             <TextBlock Margin="0,12,0,0" x:Uid="login_progress"/>
         </StackPanel>
     </Grid>

@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Ellipse Width="48" Height="48" VerticalAlignment="Top">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding Path=User.AvatarUrl}"/>
+                <ImageBrush ImageSource="{Binding User.AvatarUrl}"/>
             </Ellipse.Fill>
         </Ellipse>
         <Polygon Grid.Column="1" Margin="4,24,0,0" Points="0,0 12,0 12,12" VerticalAlignment="Top">

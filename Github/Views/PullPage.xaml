@@ -32,7 +32,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Background="{Binding Path=pull, Converter={StaticResource PullStateConverter}}">
+            <Grid Background="{Binding pull, Converter={StaticResource PullStateConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
