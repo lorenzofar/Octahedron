@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
         <controls:PageHeader Frame="{x:Bind Frame}" Text="GITHUB" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1" Visibility="{Binding Path=loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
-            <uwp:SwipeListView x:Name="list" SelectionMode="{Binding Path=selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" IsItemClickEnabled="True" ItemRightBackground="#73C456">
+            <uwp:SwipeListView x:Name="list" SelectionMode="{Binding Path=selecting, Converter={StaticResource ListSelectionConverter}}" ItemsSource="{Binding Source={StaticResource notificationsCVS}}" IsItemClickEnabled="{Binding selecting, Converter={StaticResource BoolConverter}, ConverterParameter=false}" ItemRightBackground="#73C456">
                 <uwp:SwipeListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,12">
