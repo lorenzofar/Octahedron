@@ -134,7 +134,7 @@ namespace Github.ViewModels
             }
         }
 
-        private ItemState issuesState
+        private ItemStateFilter issuesState
         {
             get
             {
@@ -142,11 +142,11 @@ namespace Github.ViewModels
                 {
                     default:
                     case 0:
-                        return ItemState.All;
+                        return ItemStateFilter.All;
                     case 1:
-                        return ItemState.Open;
+                        return ItemStateFilter.Open;
                     case 2:
-                        return ItemState.Closed;
+                        return ItemStateFilter.Closed;
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace Github.ViewModels
             }
         }
 
-        private ItemState pullsState
+        private ItemStateFilter pullsState
         {
             get
             {
@@ -180,16 +180,16 @@ namespace Github.ViewModels
                 {
                     default:
                     case 0:
-                        return ItemState.All;
+                        return ItemStateFilter.All;
                     case 1:
-                        return ItemState.Open;
+                        return ItemStateFilter.Open;
                     case 2:
-                        return ItemState.Closed;                        
+                        return ItemStateFilter.Closed;                        
                 }
             }
         }
 
-        private ItemState milestonesState
+        private ItemStateFilter milestonesState
         {
             get
             {
@@ -197,11 +197,11 @@ namespace Github.ViewModels
                 {
                     default:
                     case 0:
-                        return ItemState.All;
+                        return ItemStateFilter.All;
                     case 1:
-                        return ItemState.Open;
+                        return ItemStateFilter.Open;
                     case 2:
-                        return ItemState.Closed;
+                        return ItemStateFilter.Closed;
                 }
             }
         }

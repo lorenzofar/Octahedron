@@ -167,11 +167,11 @@ namespace Github.ViewModels
         {
             get
             {
-                if(_OpenBlog == null)
+                if (_OpenBlog == null)
                 {
                     _OpenBlog = new RelayCommand(async () =>
                     {
-                       await Windows.System.Launcher.LaunchUriAsync(new Uri(user.Blog, UriKind.RelativeOrAbsolute));
+                        await Windows.System.Launcher.LaunchUriAsync(new Uri(user.Blog, UriKind.RelativeOrAbsolute));
                     });
                 }
                 return _OpenBlog;
@@ -258,7 +258,7 @@ namespace Github.ViewModels
                 orgsList = await constants.g_client.Organization.GetAll(user.Login);
                 followersList = await constants.g_client.User.Followers.GetAll(user.Login);
                 followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
-		loading = false;
+                loading = false;
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
             }
             catch
