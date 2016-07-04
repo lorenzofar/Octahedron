@@ -386,8 +386,14 @@ namespace Github.ViewModels
                         var args = e as ItemClickEventArgs;
                         if (args != null && args.ClickedItem != null)
                         {
-                            var user = args.ClickedItem as RepositoryContributor;
-                            App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), user.Login);
+                            if (args.ClickedItem.GetType() == typeof(User))
+                            {
+                                App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), ((User)args.ClickedItem).Login);
+                            }
+                            else
+                            {
+                                App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), ((RepositoryContributor)args.ClickedItem).Login);
+                            }
                         }
                     });
                 }

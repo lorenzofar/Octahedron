@@ -162,6 +162,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <ListView ItemsSource="{Binding collaborators}" Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}" x:Uid="members_list" Margin="0,0,0,12" IsItemClickEnabled="True" SelectionMode="None">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding OpenUser}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                         <ListView.Header>
                             <TextBlock x:Uid="members_header" FontWeight="SemiBold" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                         </ListView.Header>
