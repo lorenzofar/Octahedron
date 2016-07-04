@@ -396,4 +396,7 @@
   <data name="users_placeholder.Text" xml:space="preserve">
     <value>No users found</value>
   </data>
+  <data name="members_header.Text" xml:space="preserve">
+    <value>MEMBERS</value>
+  </data>
 </root>

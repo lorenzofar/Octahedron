@@ -15,7 +15,18 @@ namespace Github.ViewModels
 {
     public class RepoDetailViewModel : ViewModelBase
     {
-        private bool owner;
+        private bool _owner;
+        public bool owner
+        {
+            get
+            {
+                return _owner;
+            }
+            set
+            {
+                Set(ref _owner, value);
+            }
+        }
 
         private bool _loading = false;
         public bool loading
@@ -258,6 +269,32 @@ namespace Github.ViewModels
             }
         }
 
+        private IReadOnlyList<RepositoryLanguage> _languages;
+        public IReadOnlyList<RepositoryLanguage> languages
+        {
+            get
+            {
+                return _languages;
+            }
+            set
+            {
+                Set(ref _languages, value);
+            }
+        }
+
+        private IReadOnlyList<User> _collaborators;
+        public IReadOnlyList<User> collaborators
+        {
+            get
+            {
+                return _collaborators;
+            }
+            set
+            {
+                Set(ref _collaborators, value);
+            }
+        }
+
         #region COMMANDS
         private RelayCommand _WatchRepo;
         public RelayCommand WatchRepo
@@ -492,9 +529,9 @@ namespace Github.ViewModels
 
         private async void LoadRepo(object info)
         {
+            loading = true;
             try
             {
-                loading = true;
                 string[] repoInfo = info.ToString().Split('/');
                 repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
@@ -504,13 +541,16 @@ namespace Github.ViewModels
                 pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
                 milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
-                loading = false;
+                if (owner)
+                {
+                    collaborators = await constants.g_client.Repository.Collaborator.GetAll(repo.Owner.Login, repo.Name);
+                }
             }
             catch
             {
-                loading = false;
                 await communications.ShowDialog("login_error", "error");
             }
+            loading = false;
         }
     }
 }
