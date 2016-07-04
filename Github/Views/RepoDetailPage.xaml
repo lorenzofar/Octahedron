@@ -30,7 +30,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repoDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repo.Name}" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
 
         <Pivot Grid.Row="1" SelectedIndex="{Binding pivotIndex, Mode=TwoWay}" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <PivotItem>
@@ -172,6 +172,16 @@
                     </ListView>
                     <TextBlock x:Uid="milestones_placeholder" TextWrapping="Wrap" Visibility="{Binding milestonesList, ConverterParameter='milestones', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </PivotItem.Header>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <FontIcon Glyph="&#xF02F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </PivotItem.Header>
             </PivotItem>
         </Pivot>
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
