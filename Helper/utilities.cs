@@ -71,6 +71,12 @@ namespace Helper
             }
         }        
 
+        public static async Task LogOut()
+        {
+            var vault = new PasswordVault();
+            vault.Remove(GetCredential("login"));
+        }
+
         public static SolidColorBrush ConvertHexToBrush(string hexColor)
         {
             byte r = byte.Parse(hexColor.Substring(0, 2), NumberStyles.HexNumber);
