@@ -4,6 +4,7 @@ using Helper;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace Github.ViewModels
 {
@@ -47,6 +48,26 @@ namespace Github.ViewModels
             set
             {
                 Set(ref _loggingIn, value);
+            }
+        }
+
+        private RelayCommand<object> _KeyPressed;
+        public RelayCommand<object> KeyPressed
+        {
+            get
+            {
+                if (_KeyPressed == null)
+                {
+                    _KeyPressed = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as KeyRoutedEventArgs;
+                        if (args.Key == Windows.System.VirtualKey.Enter)
+                        {
+                            login.Execute(null);
+                        }
+                    });
+                }
+                return _KeyPressed;
             }
         }
 
