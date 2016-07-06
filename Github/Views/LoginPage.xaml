@@ -30,7 +30,7 @@
         </StackPanel>
 
         <StackPanel Visibility="{Binding loggingIn, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding loggingIn}" Foreground="White" Width="50" Height="50"/>
+            <ProgressRing IsActive="{Binding loggingIn}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Width="50" Height="50"/>
             <TextBlock Margin="0,12,0,0" x:Uid="login_progress"/>
         </StackPanel>
     </Grid>
