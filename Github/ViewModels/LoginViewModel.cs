@@ -88,7 +88,8 @@ namespace Github.ViewModels
                             //SAVE CREDENTIALS ON SUCCESFULL LOGIN
                             utilities.SaveCredentials("login", username, password);
                             App.user = (await constants.g_client.User.Current()).Login;
-                            Window.Current.Content = new Views.Shell(Views.LoginPage.nav_service);
+                            App.Current.NavigationService.ClearHistory();
+                            Window.Current.Content = App.shell;
                             App.Current.NavigationService.Navigate(typeof(Views.MainPage));
                         }
                         else

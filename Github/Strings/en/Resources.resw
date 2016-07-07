@@ -399,4 +399,7 @@
   <data name="members_header.Text" xml:space="preserve">
     <value>MEMBERS</value>
   </data>
+  <data name="settings_header.Text" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
 </root>

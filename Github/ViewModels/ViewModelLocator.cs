@@ -85,5 +85,13 @@
                 return new EditIssueCommentViewModel();
             }
         }
+
+        public SettingsViewModel Settings
+        {
+            get
+            {
+                return new SettingsViewModel();
+            }
+        }
     }
 }

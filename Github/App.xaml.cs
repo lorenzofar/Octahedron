@@ -1,5 +1,6 @@
 ﻿using Helper;
 using System.Threading.Tasks;
+using Template10.Services.NavigationService;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
@@ -8,6 +9,7 @@ namespace Github
     sealed partial class App : Template10.Common.BootStrapper
     {
         public static string user { get; set; }
+        public static Views.Shell shell { get; set; }
 
         public App()
         {
@@ -25,6 +27,7 @@ namespace Github
             if ((Window.Current.Content as Views.Shell) == null)
             {
                 var nav = NavigationServiceFactory(BackButton.Attach, ExistingContent.Include);
+                shell = new Views.Shell(nav);
                 var credential = utilities.GetCredential("login");
                 if (credential == null)
                 {
@@ -32,7 +35,7 @@ namespace Github
                 }
                 else
                 {
-                    Window.Current.Content = new Views.Shell(nav);
+                    Window.Current.Content = shell;
                     if (await utilities.LogIn(credential.UserName, credential.Password))
                     {
                         user = (await constants.g_client.User.Current()).Login;

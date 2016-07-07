@@ -172,6 +172,7 @@
     <Compile Include="ViewModels\RepoDetailViewModel.cs" />
     <Compile Include="ViewModels\ReposViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Dialogs\AssignDialog.xaml.cs">
       <DependentUpon>AssignDialog.xaml</DependentUpon>
