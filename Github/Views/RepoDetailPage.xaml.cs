@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Github.Views
 {
@@ -8,6 +9,10 @@ namespace Github.Views
         public RepoDetailPage()
         {
             this.InitializeComponent();
+            Messenger.Default.Register<MvvmMessaging.ReadmeMessage>(this, message =>
+            {
+                readmeView.NavigateToString(message.html);
+            });
         }
 
         private void filter_issues_btn_Click(object sender, RoutedEventArgs e)

@@ -136,6 +136,7 @@
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Converters\UserNameConverter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
+    <Compile Include="MvvmMessaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\CommentReceived.xaml.cs">
       <DependentUpon>CommentReceived.xaml</DependentUpon>

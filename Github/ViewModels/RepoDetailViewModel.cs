@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using Octokit;
 using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Github.ViewModels
 {
@@ -295,6 +296,20 @@ namespace Github.ViewModels
             }
         }
 
+        private string _readme;
+        public string readme
+        {
+            get
+            {
+                return _readme;
+            }
+            set
+            {
+                Set(ref _readme, value);
+                Messenger.Default.Send<MvvmMessaging.ReadmeMessage>(new MvvmMessaging.ReadmeMessage { html = _readme });
+            }
+        }
+
         #region COMMANDS
         private RelayCommand _WatchRepo;
         public RelayCommand WatchRepo
@@ -551,6 +566,8 @@ namespace Github.ViewModels
                 {
                     collaborators = await constants.g_client.Repository.Collaborator.GetAll(repo.Owner.Login, repo.Name);
                 }
+                var rawReadme = await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name);
+                readme = await constants.g_client.Miscellaneous.RenderRawMarkdown(rawReadme.Content.ToString());
             }
             catch
             {

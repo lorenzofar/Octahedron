@@ -38,7 +38,11 @@
                     <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                 </PivotItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
                         <StackPanel Padding="12" Background="{StaticResource SystemControlBackgroundAccentBrush}">
                             <TextBlock Foreground="White" Text="{Binding repo.Name}" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" />
                             <TextBlock Foreground="White" Text="{Binding repo.Parent, Converter={StaticResource ForkConverter}}" Visibility="{Binding repo.Parent, Converter={StaticResource InfoConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,6" HorizontalAlignment="Center">
@@ -79,7 +83,8 @@
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
-                    </StackPanel>
+                        <WebView Grid.Row="1" x:Name="readmeView" Margin="0,12"/>
+                    </Grid>
                 </ScrollViewer>
             </PivotItem>
             <PivotItem>
