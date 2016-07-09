@@ -29,7 +29,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="profile_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding user.Login}" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
         <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
