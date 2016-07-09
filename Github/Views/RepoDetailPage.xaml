@@ -161,54 +161,56 @@
                 <PivotItem.Header>
                     <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                 </PivotItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <ListView ItemsSource="{Binding collaborators}" Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}" x:Uid="members_list" Margin="0,0,0,12" IsItemClickEnabled="True" SelectionMode="None">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding OpenUser}" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                        <ListView.Header>
-                            <TextBlock x:Uid="members_header" FontWeight="SemiBold" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <templates:UserListItem/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView ItemsSource="{Binding collaborators}" Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}" x:Uid="members_list" Margin="0,0,0,12" IsItemClickEnabled="True" SelectionMode="None">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding OpenUser}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                            <ListView.Header>
+                                <TextBlock x:Uid="members_header" FontWeight="SemiBold" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:UserListItem/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
 
-                    <ListView Grid.Row="1" ItemsSource="{Binding contributorsList}" IsItemClickEnabled="True" SelectionMode="None">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding OpenUser}" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                        <ListView.Header>
-                            <TextBlock x:Uid="contributors_header" FontWeight="SemiBold" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <templates:UserListItem/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
-                    <TextBlock Grid.Row="1" x:Uid="contributors_placeholder" TextWrapping="Wrap" Visibility="{Binding contributorsList, ConverterParameter='contributors', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Grid>
+                        <ListView Grid.Row="1" ItemsSource="{Binding contributorsList}" IsItemClickEnabled="True" SelectionMode="None">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding OpenUser}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                            <ListView.Header>
+                                <TextBlock x:Uid="contributors_header" FontWeight="SemiBold" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:UserListItem/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                        <TextBlock Grid.Row="1" x:Uid="contributors_placeholder" TextWrapping="Wrap" Visibility="{Binding contributorsList, ConverterParameter='contributors', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ScrollViewer>
             </PivotItem>
             <PivotItem Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}">
                 <PivotItem.Header>
