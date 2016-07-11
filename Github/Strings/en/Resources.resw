@@ -408,7 +408,19 @@
   <data name="info_header.Text" xml:space="preserve">
     <value>Info</value>
   </data>
+  <data name="issues_header.Text" xml:space="preserve">
+    <value>Issues</value>
+  </data>
   <data name="labels_header.Text" xml:space="preserve">
     <value>Labels</value>
+  </data>
+  <data name="milestones_header.Text" xml:space="preserve">
+    <value>Milestones</value>
+  </data>
+  <data name="people_header.Text" xml:space="preserve">
+    <value>People</value>
+  </data>
+  <data name="pull_header.Text" xml:space="preserve">
+    <value>Pull</value>
   </data>
 </root>

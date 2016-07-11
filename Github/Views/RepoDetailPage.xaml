@@ -24,6 +24,37 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="info_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="issues_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="pull_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="milestones_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="people_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="settings_header.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="info_header.Visibility" Value="Visible"/>
+                        <Setter Target="issues_header.Visibility" Value="Visible"/>
+                        <Setter Target="pull_header.Visibility" Value="Visible"/>
+                        <Setter Target="milestones_header.Visibility" Value="Visible"/>
+                        <Setter Target="people_header.Visibility" Value="Visible"/>
+                        <Setter Target="settings_header.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -35,7 +66,10 @@
         <Pivot Grid.Row="1" SelectedIndex="{Binding pivotIndex, Mode=TwoWay}" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <PivotItem>
                 <PivotItem.Header>
-                    <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="info_header" x:Uid="info_header" Margin="12,0,0,4" Text="Info"/>
+                    </StackPanel>
                 </PivotItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -89,7 +123,10 @@
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <FontIcon Glyph="&#xF026;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF026;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="issues_header" x:Uid="issues_header" Margin="12,0,0,4" Text="Issues"/>
+                    </StackPanel>
                 </PivotItem.Header>
                 <Grid>
                     <ListView ItemsSource="{Binding issues}" SelectionMode="None" IsItemClickEnabled="True">
@@ -114,7 +151,10 @@
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <FontIcon Glyph="&#xF009;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF009;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="pull_header" x:Uid="pull_header" Margin="12,0,0,4" Text="Pull"/>
+                    </StackPanel>
                 </PivotItem.Header>
                 <Grid>
                     <ListView ItemsSource="{Binding pulls}" SelectionMode="None" IsItemClickEnabled="True">
@@ -139,7 +179,10 @@
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <FontIcon Glyph="&#xF075;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF075;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="milestones_header" x:Uid="milestones_header" Margin="12,0,0,4" Text="Milestones"/>
+                    </StackPanel>
                 </PivotItem.Header>
                 <Grid>
                     <ListView ItemsSource="{Binding milestonesList}" SelectionMode="None" >
@@ -159,7 +202,10 @@
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="people_header" x:Uid="people_header" Margin="12,0,0,4" Text="People"/>
+                    </StackPanel>
                 </PivotItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -214,7 +260,10 @@
             </PivotItem>
             <PivotItem Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}">
                 <PivotItem.Header>
-                    <FontIcon Glyph="&#xF02F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF02F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="settings_header" x:Uid="settings_txt" Margin="12,0,0,4" Text="Settings"/>
+                    </StackPanel>
                 </PivotItem.Header>
             </PivotItem>
         </Pivot>
