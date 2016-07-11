@@ -402,4 +402,13 @@
   <data name="settings_header.Text" xml:space="preserve">
     <value>SETTINGS</value>
   </data>
+  <data name="comments_header.Text" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="info_header.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="labels_header.Text" xml:space="preserve">
+    <value>Labels</value>
+  </data>
 </root>

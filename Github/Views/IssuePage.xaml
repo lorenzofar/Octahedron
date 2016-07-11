@@ -29,6 +29,31 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="info_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="comments_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="labels_header.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="info_header.Visibility" Value="Visible"/>
+                        <Setter Target="comments_header.Visibility" Value="Visible"/>
+                        <Setter Target="labels_header.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -63,7 +88,13 @@
                 <TextBlock Text="{Binding issue.Number, Converter={StaticResource NumberConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="12" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
             <Pivot Grid.Row="1">
-                <PivotItem x:Uid="info_pivot" Header="INFO">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF026;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="info_header" x:Uid="info_header" Margin="12,0,0,4" Text="Info"/>
+                        </StackPanel>
+                    </PivotItem.Header>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <Grid VerticalAlignment="Top" Margin="0,12">
                             <Grid.RowDefinitions>
@@ -84,7 +115,13 @@
                         </Grid>
                     </ScrollViewer>
                 </PivotItem>
-                <PivotItem x:Uid="comments_pivot" Header="COMMENTS">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF04F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="comments_header" x:Uid="comments_header" Margin="12,0,0,0" Text="Comments"/>
+                        </StackPanel>
+                    </PivotItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -134,7 +171,13 @@
                         </Grid>
                     </Grid>
                 </PivotItem>
-                <PivotItem x:Uid="labels_pivot" Header="LABELS">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF015;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="labels_header" x:Uid="labels_header" Margin="12,0,0,2" Text="Labels"/>
+                        </StackPanel>
+                    </PivotItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
