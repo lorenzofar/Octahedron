@@ -59,7 +59,7 @@
                         <ListView ItemsSource="{Binding reposResult}" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:RepoListItem/>
+                                    <templates:RepoSearchListItem/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
