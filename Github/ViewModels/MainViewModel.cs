@@ -247,12 +247,12 @@ namespace Github.ViewModels
                                 default:
                                     break;
                                 case "pullrequest":
-                                    var pull = (await constants.g_client.PullRequest.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.PullRequestRequest { State = Octokit.ItemStateFilter.All })).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
+                                    var pull = (await constants.g_client.PullRequest.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.PullRequestRequest { State = Octokit.ItemStateFilter.All })).FirstOrDefault(x => x.Title == notification.Subject.Title);
                                     string pullData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{pull.Number}";
                                     App.Current.NavigationService.Navigate(typeof(Views.PullPage), pullData);
                                     break;
                                 case "issue":
-                                    var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.RepositoryIssueRequest { State = Octokit.ItemStateFilter.All })).Where(x => x.Title == notification.Subject.Title).FirstOrDefault();
+                                    var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.RepositoryIssueRequest { State = Octokit.ItemStateFilter.All })).FirstOrDefault(x => x.Title == notification.Subject.Title);
                                     string issueData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{issue.Number}";
                                     App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                                     break;
