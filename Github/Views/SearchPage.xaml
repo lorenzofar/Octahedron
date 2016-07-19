@@ -48,7 +48,13 @@
             </Grid>
 
             <Pivot Grid.Row="1">
-                <PivotItem x:Uid="repos_pivot">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="repos_header" x:Uid="repos_header" Margin="12,0,0,4" Text="Repos"/>
+                        </StackPanel>
+                    </PivotItem.Header>
                     <Grid>
                         <ListView ItemsSource="{Binding reposResult}" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>
@@ -79,7 +85,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </PivotItem>-->
-                <PivotItem x:Uid="issues_pivot">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF026;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="issues_header" x:Uid="issues_header" Margin="12,0,0,4" Text="Issues"/>
+                        </StackPanel>
+                    </PivotItem.Header>
                     <Grid>
                         <ListView ItemsSource="{Binding issuesResult}" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>
@@ -101,7 +113,13 @@
                         <TextBlock x:Uid="issuesSearch_placeholder" TextWrapping="Wrap" Visibility="{Binding issuesResult, ConverterParameter=issues, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </PivotItem>
-                <PivotItem x:Uid="users_pivot">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="users_header" x:Uid="users_header" Margin="12,0,0,4" Text="Users"/>
+                        </StackPanel>
+                    </PivotItem.Header>
                     <Grid>
                         <ListView ItemsSource="{Binding usersResult}" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>

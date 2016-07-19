@@ -291,9 +291,6 @@
   <data name="comments_pivot.Header" xml:space="preserve">
     <value>COMMENTS</value>
   </data>
-  <data name="labels_pivot.Header" xml:space="preserve">
-    <value>LABELS</value>
-  </data>
   <data name="assignedTo" xml:space="preserve">
     <value>Assigned to {0}</value>
   </data>
@@ -396,9 +393,6 @@
   <data name="users_placeholder.Text" xml:space="preserve">
     <value>No users found</value>
   </data>
-  <data name="members_header.Text" xml:space="preserve">
-    <value>MEMBERS</value>
-  </data>
   <data name="settings_header.Text" xml:space="preserve">
     <value>SETTINGS</value>
   </data>
@@ -422,5 +416,14 @@
   </data>
   <data name="pull_header.Text" xml:space="preserve">
     <value>Pull</value>
+  </data>
+  <data name="members_header.Text" xml:space="preserve">
+    <value>MEMBERS</value>
+  </data>
+  <data name="repos_header.Text" xml:space="preserve">
+    <value>Repos</value>
+  </data>
+  <data name="users_header.Text" xml:space="preserve">
+    <value>Users</value>
   </data>
 </root>
