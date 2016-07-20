@@ -426,4 +426,10 @@
   <data name="users_header.Text" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="followers_header.Text" xml:space="preserve">
+    <value>Followers</value>
+  </data>
+  <data name="following_header.Text" xml:space="preserve">
+    <value>Following</value>
+  </data>
 </root>

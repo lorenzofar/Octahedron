@@ -49,7 +49,13 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Pivot>
-                    <PivotItem x:Uid="info_pivot">
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xF059;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                <TextBlock x:Name="info_header" x:Uid="info_header" Margin="12,0,0,4" Text="Info"/>
+                            </StackPanel>
+                        </PivotItem.Header>
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel>
                                 <Grid x:Name="info_grid">
@@ -64,11 +70,11 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <FontIcon Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xE10F;"/>
-                                    <FontIcon Visibility="{Binding user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xE119;"/>
-                                    <FontIcon Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xE12B;"/>
-                                    <FontIcon Visibility="{Binding user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xE821;"/>
-                                    <FontIcon Visibility="{Binding user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xE121;"/>
+                                    <FontIcon Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xF08D;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                    <FontIcon Visibility="{Binding user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xF03B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                    <FontIcon Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xF0B6;" FontFamily="octicons"/>
+                                    <FontIcon Visibility="{Binding user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xF0D3;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                    <FontIcon Visibility="{Binding user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xF068;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                                     <TextBlock Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding user.Location}"/>
                                     <HyperlinkButton Command="{Binding SendMail}" Visibility="{Binding user.Email, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Content="{Binding user.Email}"/>
                                     <HyperlinkButton Command="{Binding OpenBlog}" Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="{Binding user.Blog}"/>
@@ -102,7 +108,13 @@
                             </StackPanel>
                         </ScrollViewer>
                     </PivotItem>
-                    <PivotItem x:Uid="repos_pivot">
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                <TextBlock x:Name="repos_header" x:Uid="repos_header" Margin="12,0,0,4" Text="Repos"/>
+                            </StackPanel>
+                        </PivotItem.Header>
                         <Grid>
                             <ListView x:Name="repos_listview" ItemsSource="{Binding repoList}" SelectionMode="None" IsItemClickEnabled="True">
                                 <interactivity:Interaction.Behaviors>
@@ -125,7 +137,13 @@
                         </Grid>
                     </PivotItem>
 
-                    <PivotItem x:Uid="followers_pivot">
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                <TextBlock x:Name="followers_header" x:Uid="followers_header" Margin="12,0,0,4" Text="Followers"/>
+                            </StackPanel>
+                        </PivotItem.Header>
                         <Grid>
                             <ListView ItemsSource="{Binding followersList}" IsItemClickEnabled="True" SelectionMode="None">
                                 <interactivity:Interaction.Behaviors>
@@ -148,7 +166,13 @@
                         </Grid>
                     </PivotItem>
 
-                    <PivotItem x:Uid="following_pivot">
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                <TextBlock x:Name="following_header" x:Uid="following_header" Margin="12,0,0,4" Text="Following"/>
+                            </StackPanel>
+                        </PivotItem.Header>
                         <Grid>
                             <ListView ItemsSource="{Binding followingList}" IsItemClickEnabled="True" SelectionMode="None">
                                 <interactivity:Interaction.Behaviors>
