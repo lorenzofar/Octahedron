@@ -17,7 +17,15 @@
                             NavButtonCheckedBackground="{ThemeResource SystemControlBackgroundAccentBrush}"
                             NavButtonHoverBackground="#99999999"
                             HamburgerBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-                            HamburgerForeground="{ThemeResource SystemControlForegroundBaseHighBrush}">
+                            HamburgerForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            BorderBrush="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+                            PaneBorderBrush="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+                            NavButtonCheckedForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            NavButtonForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            NavButtonHoverForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            NavButtonPressedBackground="#88999999"
+                            NavButtonPressedForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                            OpenCloseMode="Swipe">
         <controls:HamburgerMenu.PrimaryButtons>
             <controls:HamburgerButtonInfo PageType="views:MainPage" ClearHistory="True">
                 <StackPanel Orientation="Horizontal">
