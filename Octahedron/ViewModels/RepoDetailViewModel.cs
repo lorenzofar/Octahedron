@@ -310,6 +310,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private IReadOnlyList<RepositoryContent> _content;
+        public IReadOnlyList<RepositoryContent> content
+        {
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                Set(ref _content, value);
+            }
+        }
+
         #region COMMANDS
         private RelayCommand _WatchRepo;
         public RelayCommand WatchRepo
@@ -579,6 +592,7 @@ namespace Octahedron.ViewModels
                 pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
                 milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+                content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login,repo.Name, "./");
                 if (owner)
                 {
                     collaborators = await constants.g_client.Repository.Collaborator.GetAll(repo.Owner.Login, repo.Name);

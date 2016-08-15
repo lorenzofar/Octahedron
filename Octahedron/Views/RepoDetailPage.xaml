@@ -29,6 +29,7 @@
                 <VisualState>
                     <VisualState.Setters>
                         <Setter Target="info_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="code_header.Visibility" Value="Collapsed"/>
                         <Setter Target="issues_header.Visibility" Value="Collapsed"/>
                         <Setter Target="pull_header.Visibility" Value="Collapsed"/>
                         <Setter Target="milestones_header.Visibility" Value="Collapsed"/>
@@ -42,6 +43,7 @@
                 <VisualState>
                     <VisualState.Setters>
                         <Setter Target="info_header.Visibility" Value="Visible"/>
+                        <Setter Target="code_header.Visibility" Value="Visible"/>
                         <Setter Target="issues_header.Visibility" Value="Visible"/>
                         <Setter Target="pull_header.Visibility" Value="Visible"/>
                         <Setter Target="milestones_header.Visibility" Value="Visible"/>
@@ -120,6 +122,23 @@
                         <WebView Grid.Row="1" x:Name="readmeView" Margin="0,12"/>
                     </Grid>
                 </ScrollViewer>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF05F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="code_header" x:Uid="code_header" Margin="12,0,0,4" Text="Code"/>
+                    </StackPanel>
+                </PivotItem.Header>
+                <Grid>
+                    <ListView ItemsSource="{Binding content}" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:ContentItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>                        
+                    </ListView>
+                </Grid>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
@@ -280,7 +299,7 @@
             </AppBarToggleButton>
             <AppBarToggleButton x:Uid="star_btn" Command="{Binding StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding starred, Mode=TwoWay}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
             <!--ISSUES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssues}" CommandParameter="0" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -295,9 +314,9 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddIssue}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddIssue}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}"/>
             <!--PULLS TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterPulls}" CommandParameter="0" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -307,7 +326,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
             <!--MILESTONES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=4}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterMilestones}" CommandParameter="0" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>

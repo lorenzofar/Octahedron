@@ -444,6 +444,9 @@
   <data name="cancel_bar_btn.Label" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="code_header.Text" xml:space="preserve">
+    <value>Code</value>
+  </data>
   <data name="newIssue" xml:space="preserve">
     <value>New issue</value>
   </data>

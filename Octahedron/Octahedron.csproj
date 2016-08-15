@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Converters\AssigneeConverter.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\CodeIconConverter.cs" />
     <Compile Include="Converters\ColorBrushConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
@@ -143,6 +144,9 @@
     </Compile>
     <Compile Include="Templates\CommentSent.xaml.cs">
       <DependentUpon>CommentSent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\ContentItem.xaml.cs">
+      <DependentUpon>ContentItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\IssueCommentsTemplateSelector.cs" />
     <Compile Include="Templates\IssuesListItem.xaml.cs">
@@ -249,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\CommentSent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\ContentItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
