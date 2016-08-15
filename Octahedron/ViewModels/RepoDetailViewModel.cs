@@ -567,6 +567,27 @@ namespace Octahedron.ViewModels
                 return _AddIssue;
             }
         }
+
+        private RelayCommand<object> _OpenContent;
+        public RelayCommand<object> OpenContent
+        {
+            get
+            {
+                if(_OpenContent == null)
+                {
+                    _OpenContent = new RelayCommand<object>(async(e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        var item = args.ClickedItem as RepositoryContent;
+                        if(item.Type == ContentType.Dir)
+                        {
+                            content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, item.Path);
+                        }
+                    });
+                }
+                return _OpenContent;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)

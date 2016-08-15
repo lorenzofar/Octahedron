@@ -136,7 +136,12 @@
                             <DataTemplate>
                                 <templates:ContentItem/>
                             </DataTemplate>
-                        </ListView.ItemTemplate>                        
+                        </ListView.ItemTemplate>
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding OpenContent}" />
+                            </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
                     </ListView>
                 </Grid>
             </PivotItem>
