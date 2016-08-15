@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="Octahedron.Templates.PullsListItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Templates"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:PullStateConverter x:Key="PullStateConverter"/>
+        <converters:NumberConverter x:Key="NumberConverter"/>
+        <converters:PullDateConverter x:Key="PullDateConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="0,6,6,6">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="comments_panel.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="comments_panel.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <FontIcon Glyph="&#xF009;" Foreground="{Binding Converter={StaticResource PullStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+        <StackPanel Margin="12,0" Grid.Column="1" VerticalAlignment="Top">
+            <TextBlock Text="{Binding Title}"/>
+            <TextBlock Text="{Binding Converter={StaticResource PullDateConverter}}" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
+        </StackPanel>
+        <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2" Margin="12,0">
+            <FontIcon Glyph="&#xF02B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+            <TextBlock Text="{Binding Comments}" Margin="6,0,0,0"/>
+        </StackPanel>
+        <TextBlock Grid.Column="3" VerticalAlignment="Top" Text="{Binding Number, Converter={StaticResource NumberConverter}}"/>
+    </Grid>
+</UserControl>

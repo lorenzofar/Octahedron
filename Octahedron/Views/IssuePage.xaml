@@ -1,0 +1,248 @@
+﻿<Page
+    x:Class="Octahedron.Views.IssuePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Views"    
+    xmlns:controls="using:Template10.Controls"
+    xmlns:templates="using:Octahedron.Templates"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:media="using:Syncfusion.UI.Xaml.Controls.Media"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:editors="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Issue}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:IssueStateConverter x:Key="IssueStateConverter"/>
+        <converters:NumberConverter x:Key="NumberConverter"/>
+        <converters:IssueDateConverter x:Key="IssueDateConverter"/>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <converters:BoolConverter x:Key="BoolConverter"/>
+        <converters:AssigneeConverter x:Key="AssigneeConverter"/>
+        <converters:MilestoneConverter x:Key="MilestoneConverter"/>
+        <converters:DescriptionConverter x:Key="DescriptionConverter"/>
+        <converters:ColorBrushConverter x:Key="ColorBrushConverter"/>
+        <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="info_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="comments_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="labels_header.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="info_header.Visibility" Value="Visible"/>
+                        <Setter Target="comments_header.Visibility" Value="Visible"/>
+                        <Setter Target="labels_header.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="issueDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
+
+        <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Background="{Binding issue.State, Converter={StaticResource IssueStateConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Margin="12" Width="48" Height="48" VerticalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding issue.User.AvatarUrl}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <ScrollViewer Grid.Column="1" VerticalAlignment="Center" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="12">
+                        <TextBlock Text="{Binding issue.Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" MaxHeight="200"/>
+                        <TextBlock Text="{Binding issue, Converter={StaticResource IssueDateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+                <TextBlock Text="{Binding issue.Number, Converter={StaticResource NumberConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="12" Grid.Column="2" VerticalAlignment="Center"/>
+            </Grid>
+            <Pivot Grid.Row="1">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF026;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="info_header" x:Uid="info_header" Margin="12,0,0,4" Text="Info"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <Grid VerticalAlignment="Top" Margin="0,12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Glyph="&#xF075;" Margin="0,6" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <FontIcon Glyph="&#xE13D;" Margin="0,6" Grid.Row="1" VerticalAlignment="Top"/>
+                            <FontIcon Glyph="&#xE12A;" Margin="0,6" Grid.Row="2" VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,6,0,6" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding issue.Assignee, Converter={StaticResource AssigneeConverter}}" Margin="12,6,0,6" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="12,6,0,6" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ScrollViewer>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF04F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="comments_header" x:Uid="comments_header" Margin="12,0,0,0" Text="Comments"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView ItemsSource="{Binding comments}" SelectionMode="None">
+                            <ListView.ItemTemplateSelector>
+                                <templates:IssueCommentsTemplateSelector>
+                                    <templates:IssueCommentsTemplateSelector.receivedTemplate>
+                                        <DataTemplate>
+                                            <templates:CommentReceived/>
+                                        </DataTemplate>
+                                    </templates:IssueCommentsTemplateSelector.receivedTemplate>
+                                    <templates:IssueCommentsTemplateSelector.sentTemplate>
+                                        <DataTemplate>
+                                            <Grid x:Name="commentGrid" RightTapped="labelGrid_RightTapped">
+                                                <FlyoutBase.AttachedFlyout>
+                                                    <MenuFlyout>
+                                                        <MenuFlyoutItem x:Uid="editBtn" Text="Edit" Click="editBtn_Click"/>
+                                                        <MenuFlyoutItem x:Uid="removeBtn" Text="Remove" Click="removeCommentBtn_Click"/>
+                                                    </MenuFlyout>
+                                                </FlyoutBase.AttachedFlyout>
+                                                <templates:CommentSent/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </templates:IssueCommentsTemplateSelector.sentTemplate>
+                                </templates:IssueCommentsTemplateSelector>
+                            </ListView.ItemTemplateSelector>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                        <TextBlock x:Uid="comments_placeholder" TextWrapping="Wrap" Visibility="{Binding comments, ConverterParameter='issueComments', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Text="{Binding comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="100" Padding="8" x:Uid="commentBox" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="0" Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}" PlaceholderText="Leave a comment"/>
+                            <Button Command="{Binding SendComment}" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1">
+                                <Button.Content>
+                                    <FontIcon Glyph="&#xE724;" VerticalAlignment="Center"/>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF015;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="labels_header" x:Uid="labels_header" Margin="12,0,0,2" Text="Labels"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView ItemsSource="{Binding issue.Labels}" SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="labelGrid" RightTapped="labelGrid_RightTapped">
+                                        <FlyoutBase.AttachedFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem x:Uid="removeBtn" IsEnabled="{Binding owner}" Text="Remove" Click="removeLabelBtn_Click"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.AttachedFlyout>
+                                        <templates:LabelsListItem/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                        <TextBlock x:Uid="labels_placeholder" TextWrapping="Wrap" Visibility="{Binding issue.Labels, ConverterParameter='labels', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Grid Grid.Row="1" x:Name="addLabelGrid" Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="pickColorBtn" Padding="6" VerticalAlignment="Stretch" Background="{Binding labelColor, Converter={StaticResource ColorBrushConverter}}" Click="pickColorBtn_Click">
+                                <Button.Content>
+                                    <FontIcon Glyph="&#xE104;" VerticalAlignment="Center"/>
+                                </Button.Content>
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <media:SfColorPicker x:Name="colorPicker" SelectedColor="{Binding labelColor, Mode=TwoWay}"/>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+                            <TextBox x:Uid="labelBox" Text="{Binding labelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="1" BorderThickness="0" MaxHeight="100" Padding="8" Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}" ScrollViewer.VerticalScrollBarVisibility="Auto" PlaceholderText="Add a label"/>
+                            <Button Command="{Binding AddLabel}" Padding="6" Grid.Column="2" Background="{ThemeResource SystemControlBackgroundAccentBrush}" VerticalAlignment="Stretch">
+                                <Button.Content>
+                                    <FontIcon Glyph="&#xE109;" VerticalAlignment="Center"/>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+        </Grid>
+
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
+        </Viewbox>
+
+        <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
+            <AppBarButton x:Uid="assignBtn" IsEnabled="{Binding owner}" x:Name="assignBtn" Icon="AddFriend" Click="assignBtn_Click"/>
+            <AppBarButton x:Uid="closeBtn" Command="{Binding CloseIssue}" Label="Close" IsEnabled="{Binding closeable}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE25B;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+
+    </Grid>
+</Page>
