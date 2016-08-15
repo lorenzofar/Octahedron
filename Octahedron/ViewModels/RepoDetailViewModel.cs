@@ -569,6 +569,10 @@ namespace Octahedron.ViewModels
                 var rawReadme = await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name);
                 readme = await constants.g_client.Miscellaneous.RenderRawMarkdown(rawReadme.Content.ToString());
             }
+            catch(ApiException readMeException)
+            {
+
+            }
             catch
             {
                 await communications.ShowDialog("login_error", "error");
