@@ -432,4 +432,25 @@
   <data name="following_header.Text" xml:space="preserve">
     <value>Following</value>
   </data>
+  <data name="accept_bar_btn.Label" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="body_box.Header" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="body_box.PlaceholderText" xml:space="preserve">
+    <value>Type the message</value>
+  </data>
+  <data name="cancel_bar_btn.Label" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="newIssue" xml:space="preserve">
+    <value>New issue</value>
+  </data>
+  <data name="title_box.Header" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="title_box.PlaceholderText" xml:space="preserve">
+    <value>Type the title</value>
+  </data>
 </root>

@@ -62,6 +62,14 @@
             }
         }
 
+        public NewIssueViewModel NewIssue
+        {
+            get
+            {
+                return new NewIssueViewModel();
+            }
+        }
+
         public PullViewModel Pull
         {
             get

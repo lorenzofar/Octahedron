@@ -537,6 +537,23 @@ namespace Octahedron.ViewModels
                 return _OpenPull;
             }
         }
+
+        private RelayCommand _AddIssue;
+        public RelayCommand AddIssue
+        {
+            get
+            {
+                if(_AddIssue == null)
+                {
+                    _AddIssue = new RelayCommand(() =>
+                    {
+                        string repoData = $"{repo.Owner.Login}/{repo.Name}/{repo.Id}";
+                        App.Current.NavigationService.Navigate(typeof(Views.NewIssuePage), repoData);
+                    });
+                }
+                return _AddIssue;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)

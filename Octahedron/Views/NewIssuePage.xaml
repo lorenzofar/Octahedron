@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="Octahedron.Views.NewIssuePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Views"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=NewIssue}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <converters:NewIssueConverter x:Key="NewIssueConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repoData[1], Converter={StaticResource NewIssueConverter}}" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <StackPanel Margin="12">
+                <TextBox Text="{Binding title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="title_box" Header="Title" PlaceholderText="Type the title" AcceptsReturn="True"/>
+                <TextBox Text="{Binding body, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="body_box" Header="Body" PlaceholderText="Type the message" AcceptsReturn="True" Margin="0,12,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
+        </Viewbox>
+
+        <CommandBar Grid.Row="2">
+            <AppBarButton x:Uid="accept_bar_btn" Icon="Accept" Command="{Binding AddIssue}"/>
+            <AppBarButton x:Uid="cancel_bar_btn" Icon="Cancel" Command="{Binding Cancel}"/>
+        </CommandBar>
+
+    </Grid>
+</Page>

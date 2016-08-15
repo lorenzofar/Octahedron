@@ -295,7 +295,7 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Uid="new_btn" Icon="Add" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddIssue}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=1}"/>
             <!--PULLS TAB-->
             <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
                 <AppBarButton.Flyout>

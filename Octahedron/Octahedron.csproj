@@ -125,6 +125,7 @@
     <Compile Include="Converters\MilestoneConverter.cs" />
     <Compile Include="Converters\MilestoneProgressConverter.cs" />
     <Compile Include="Converters\MilestoneStatsConverter.cs" />
+    <Compile Include="Converters\NewIssueConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NumberConverter.cs" />
     <Compile Include="Converters\PivotBarConverter.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewIssueViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\PullViewModel.cs" />
     <Compile Include="ViewModels\RepoDetailViewModel.cs" />
@@ -191,6 +193,9 @@
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewIssuePage.xaml.cs">
+      <DependentUpon>NewIssuePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -292,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewIssuePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
