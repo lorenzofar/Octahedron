@@ -456,4 +456,7 @@
   <data name="title_box.PlaceholderText" xml:space="preserve">
     <value>Type the title</value>
   </data>
+  <data name="goUp_txt.Text" xml:space="preserve">
+    <value>Go up</value>
+  </data>
 </root>

@@ -21,6 +21,7 @@
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
+        <converters:ContentPathConverter x:Key="ContentPathConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -35,6 +36,7 @@
                         <Setter Target="milestones_header.Visibility" Value="Collapsed"/>
                         <Setter Target="people_header.Visibility" Value="Collapsed"/>
                         <Setter Target="settings_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="goUp_txt.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
@@ -49,6 +51,7 @@
                         <Setter Target="milestones_header.Visibility" Value="Visible"/>
                         <Setter Target="people_header.Visibility" Value="Visible"/>
                         <Setter Target="settings_header.Visibility" Value="Visible"/>
+                        <Setter Target="goUp_txt.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="720"/>
@@ -131,7 +134,24 @@
                     </StackPanel>
                 </PivotItem.Header>
                 <Grid>
-                    <ListView ItemsSource="{Binding content}" SelectionMode="None" IsItemClickEnabled="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid BorderThickness="0,0,0,2" BorderBrush="#999999">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding content[0], Converter={StaticResource ContentPathConverter}}" VerticalAlignment="Center" Style="{ThemeResource FlyoutPickerTitleTextBlockStyle}"/>
+                        <Button Grid.Column="1" Background="Transparent" Command="{Binding GoUpContent}">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xE110;"/>
+                                <TextBlock x:Name="goUp_txt" x:Uid="goUp_txt" Text="Go up" Margin="8,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                    <ListView ItemsSource="{Binding content}" Grid.Row="1" SelectionMode="None" IsItemClickEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:ContentItem/>

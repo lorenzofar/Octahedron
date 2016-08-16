@@ -111,6 +111,7 @@
     <Compile Include="Converters\BoolConverter.cs" />
     <Compile Include="Converters\CodeIconConverter.cs" />
     <Compile Include="Converters\ColorBrushConverter.cs" />
+    <Compile Include="Converters\ContentPathConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
     <Compile Include="Converters\DueDateConverter.cs" />

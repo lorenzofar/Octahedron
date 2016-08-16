@@ -588,6 +588,30 @@ namespace Octahedron.ViewModels
                 return _OpenContent;
             }
         }
+
+        private RelayCommand _GoUpContent;
+        public RelayCommand GoUpContent
+        {
+            get
+            {
+                if(_GoUpContent == null)
+                {
+                    _GoUpContent = new RelayCommand(async() =>
+                    {
+                        var rawPath = content[0].Path;                        
+                        var tempPath = $"./{rawPath.Replace($"/{content[0].Name}", "")}";
+                        var path_split = tempPath.Split('/');
+                        var path = "";
+                        for(int i = 0; i < path_split.Length - 1; i++)
+                        {
+                            path += $"{path_split[i]}/";
+                        }
+                        content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, path);
+                    });
+                }
+                return _GoUpContent;
+            }
+        }
         #endregion
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
