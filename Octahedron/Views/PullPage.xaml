@@ -5,6 +5,7 @@
     xmlns:local="using:Octahedron.Views"
     xmlns:controls="using:Template10.Controls"
     xmlns:converters="using:Octahedron.Converters"
+    xmlns:templates="using:Octahedron.Templates"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Pull}"
@@ -51,6 +52,60 @@
                 </ScrollViewer>
                 <TextBlock Text="{Binding pull.Number, Converter={StaticResource NumberConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="12" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
+            <Pivot Grid.Row="1">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF059;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="info_header" x:Uid="info_header" Margin="12,0,0,4" Text="Info"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF04F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="comments_header" x:Uid="comments_header" Margin="12,0,0,4" Text="Comments"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF01F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="commits_header" x:Uid="commits_header" Margin="12,0,0,4" Text="Commits"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF04D;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="files_header" x:Uid="files_header" Margin="12,0,0,4" Text="Files"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                    <ListView ItemsSource="{Binding files}" SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:ChangedFilesItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF015;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                            <TextBlock x:Name="labels_header" x:Uid="labels_header" Margin="12,0,0,4" Text="Labels"/>
+                        </StackPanel>
+                    </PivotItem.Header>
+                </PivotItem>
+            </Pivot>
         </Grid>
 
         <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
