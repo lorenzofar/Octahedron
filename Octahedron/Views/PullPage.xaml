@@ -84,7 +84,7 @@
                             <TextBlock x:Name="files_header" x:Uid="files_header" Margin="12,0,0,4" Text="Files"/>
                         </StackPanel>
                     </PivotItem.Header>
-                    <ListView ItemsSource="{Binding files}" SelectionMode="None">
+                    <ListView ItemsSource="{Binding files}" Margin="-12,0" SelectionMode="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:ChangedFilesItem/>

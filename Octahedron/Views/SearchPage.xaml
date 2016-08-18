@@ -56,7 +56,7 @@
                         </StackPanel>
                     </PivotItem.Header>
                     <Grid>
-                        <ListView ItemsSource="{Binding reposResult}" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView ItemsSource="{Binding reposResult}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <templates:RepoSearchListItem/>
@@ -93,7 +93,7 @@
                         </StackPanel>
                     </PivotItem.Header>
                     <Grid>
-                        <ListView ItemsSource="{Binding issuesResult}" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView ItemsSource="{Binding issuesResult}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <templates:IssuesListItem/>
@@ -121,7 +121,7 @@
                         </StackPanel>
                     </PivotItem.Header>
                     <Grid>
-                        <ListView ItemsSource="{Binding usersResult}" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView ItemsSource="{Binding usersResult}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <templates:UserListItem/>

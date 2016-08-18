@@ -127,7 +127,7 @@
                             <RowDefinition/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <ListView ItemsSource="{Binding comments}" SelectionMode="None">
+                        <ListView ItemsSource="{Binding comments}" Margin="-12,0" SelectionMode="None">
                             <ListView.ItemTemplateSelector>
                                 <templates:IssueCommentsTemplateSelector>
                                     <templates:IssueCommentsTemplateSelector.receivedTemplate>
@@ -183,7 +183,7 @@
                             <RowDefinition/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <ListView ItemsSource="{Binding issue.Labels}" SelectionMode="None">
+                        <ListView ItemsSource="{Binding issue.Labels}" Margin="-12,0" SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid x:Name="labelGrid" RightTapped="labelGrid_RightTapped">

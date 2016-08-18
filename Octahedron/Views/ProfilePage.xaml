@@ -116,7 +116,7 @@
                             </StackPanel>
                         </PivotItem.Header>
                         <Grid>
-                            <ListView x:Name="repos_listview" ItemsSource="{Binding repoList}" SelectionMode="None" IsItemClickEnabled="True">
+                            <ListView x:Name="repos_listview" ItemsSource="{Binding repoList}" Margin="0,0,-12,0" SelectionMode="None" IsItemClickEnabled="True">
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="ItemClick">
                                         <core:InvokeCommandAction Command="{Binding OpenRepo}"/>
@@ -145,7 +145,7 @@
                             </StackPanel>
                         </PivotItem.Header>
                         <Grid>
-                            <ListView ItemsSource="{Binding followersList}" IsItemClickEnabled="True" SelectionMode="None">
+                            <ListView ItemsSource="{Binding followersList}" Margin="-12,0" IsItemClickEnabled="True" SelectionMode="None">
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="ItemClick">
                                         <core:InvokeCommandAction Command="{Binding OpenUser}"/>
@@ -174,7 +174,7 @@
                             </StackPanel>
                         </PivotItem.Header>
                         <Grid>
-                            <ListView ItemsSource="{Binding followingList}" IsItemClickEnabled="True" SelectionMode="None">
+                            <ListView ItemsSource="{Binding followingList}" Margin="-12,0" IsItemClickEnabled="True" SelectionMode="None">
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="ItemClick">
                                         <core:InvokeCommandAction Command="{Binding OpenUser}"/>

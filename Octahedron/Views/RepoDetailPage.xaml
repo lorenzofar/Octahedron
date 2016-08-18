@@ -151,7 +151,7 @@
                             </StackPanel>
                         </Button>
                     </Grid>
-                    <ListView ItemsSource="{Binding content}" Grid.Row="1" SelectionMode="None" IsItemClickEnabled="True">
+                    <ListView ItemsSource="{Binding content}" Margin="-12,0" Grid.Row="1" SelectionMode="None" IsItemClickEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:ContentItem/>
@@ -173,7 +173,7 @@
                     </StackPanel>
                 </PivotItem.Header>
                 <Grid>
-                    <ListView ItemsSource="{Binding issues}" SelectionMode="None" IsItemClickEnabled="True">
+                    <ListView ItemsSource="{Binding issues}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="ItemClick">
                                 <core:InvokeCommandAction Command="{Binding OpenIssue}" />
@@ -201,7 +201,7 @@
                     </StackPanel>
                 </PivotItem.Header>
                 <Grid>
-                    <ListView ItemsSource="{Binding pulls}" SelectionMode="None" IsItemClickEnabled="True">
+                    <ListView ItemsSource="{Binding pulls}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="ItemClick">
                                 <core:InvokeCommandAction Command="{Binding OpenPull}" />
@@ -229,7 +229,7 @@
                     </StackPanel>
                 </PivotItem.Header>
                 <Grid>
-                    <ListView ItemsSource="{Binding milestonesList}" SelectionMode="None" >
+                    <ListView ItemsSource="{Binding milestonesList}" Margin="-12,0" SelectionMode="None" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <templates:MilestonesListItem/>
