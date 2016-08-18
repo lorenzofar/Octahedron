@@ -12,5 +12,10 @@ namespace Octahedron
         {
             public string html { get; set; }
         }
+
+        public class ProfileIconMessage
+        {
+            public string url { get; set; }
+        }
     }
 }

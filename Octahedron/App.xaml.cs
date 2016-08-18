@@ -1,4 +1,5 @@
-﻿using Helper;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Helper;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.ApplicationModel.Activation;
@@ -8,7 +9,7 @@ namespace Octahedron
 {
     sealed partial class App : Template10.Common.BootStrapper
     {
-        public static string user { get; set; }
+        public static Octokit.User user { get; set; }
         public static Views.Shell shell { get; set; }
 
         public App()
@@ -38,7 +39,8 @@ namespace Octahedron
                     Window.Current.Content = shell;
                     if (await utilities.LogIn(credential.UserName, credential.Password))
                     {
-                        user = (await constants.g_client.User.Current()).Login;
+                        user = await constants.g_client.User.Current();
+                        Messenger.Default.Send<MvvmMessaging.ProfileIconMessage>(new MvvmMessaging.ProfileIconMessage { url = user.AvatarUrl });
                         NavigationService.Navigate(typeof(Views.MainPage), null);
                     }
                     else

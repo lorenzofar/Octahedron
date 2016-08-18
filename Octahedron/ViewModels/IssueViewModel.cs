@@ -287,7 +287,7 @@ namespace Octahedron.ViewModels
             try
             {
                 loading = true;
-                owner = issueData[0] == App.user;
+                owner = issueData[0] == App.user.Login;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
                 closeable = owner && issue.State != ItemState.Closed;

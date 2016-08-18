@@ -4,11 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Octahedron.Views"
     xmlns:controls="using:Template10.Controls"
+    xmlns:converters="using:Octahedron.Converters"
     xmlns:views="using:Octahedron.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Shell}"
     mc:Ignorable="d">
-
+    
     <controls:HamburgerMenu x:Name="Menu" 
                             VisualStateNarrowMinWidth="0" 
                             VisualStateNormalMinWidth="720" 
@@ -49,8 +51,12 @@
         <controls:HamburgerMenu.SecondaryButtons>
             <controls:HamburgerButtonInfo PageType="views:ProfilePage">
                 <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE13D;" VerticalAlignment="Center" Width="48" Height="48" />
-                    <TextBlock x:Uid="profile_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                    <Ellipse VerticalAlignment="Center" Margin="12" Width="28" Height="28">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="profileIcon"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:Uid="profile_txt" VerticalAlignment="Center" Margin="8, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
             <controls:HamburgerButtonInfo PageType="views:SettingsPage">

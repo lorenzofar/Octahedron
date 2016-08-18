@@ -115,7 +115,7 @@ namespace Octahedron.ViewModels
         private async void LoadData()
         {
             loading = true;
-            owner = pullData[0] == App.user;
+            owner = pullData[0] == App.user.Login;
             pull = await constants.g_client.PullRequest.Get(pullData[0], pullData[1], int.Parse(pullData[2]));
             commits = await constants.g_client.PullRequest.Commits(pullData[0], pullData[1], int.Parse(pullData[2]));
             comments = await constants.g_client.PullRequest.Comment.GetAll(pullData[0], pullData[1], int.Parse(pullData[2]));

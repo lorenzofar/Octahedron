@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Helper;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml;
@@ -87,7 +88,8 @@ namespace Octahedron.ViewModels
                         {
                             //SAVE CREDENTIALS ON SUCCESFULL LOGIN
                             utilities.SaveCredentials("login", username, password);
-                            App.user = (await constants.g_client.User.Current()).Login;
+                            App.user = await constants.g_client.User.Current();
+                            Messenger.Default.Send<MvvmMessaging.ProfileIconMessage>(new MvvmMessaging.ProfileIconMessage { url = App.user.AvatarUrl });
                             App.Current.NavigationService.ClearHistory();
                             Window.Current.Content = App.shell;
                             App.Current.NavigationService.Navigate(typeof(Views.MainPage));

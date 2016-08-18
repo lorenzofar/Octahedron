@@ -17,7 +17,7 @@ namespace Octahedron.Templates
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
             IssueComment comments = (IssueComment)item;
-            if (comments.User.Login == App.user)
+            if (comments.User.Login == App.user.Login)
             {
                 return sentTemplate;
             }
