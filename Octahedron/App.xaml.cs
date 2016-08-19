@@ -15,7 +15,7 @@ namespace Octahedron
         public App()
         {
             this.InitializeComponent();
-            SplashFactory = e => new Views.Splash(e);
+            //SplashFactory = e => new Views.Splash(e);
         }
 
         public override Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
