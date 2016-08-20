@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Helper;
+using Microsoft.HockeyApp;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.ApplicationModel.Activation;
@@ -15,6 +16,7 @@ namespace Octahedron
         public App()
         {
             this.InitializeComponent();
+            HockeyClient.Current.Configure("d15374afd2ee4377851f1dc8e26e2d69");
             //SplashFactory = e => new Views.Splash(e);
         }
 
