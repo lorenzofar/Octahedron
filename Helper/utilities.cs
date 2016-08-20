@@ -52,7 +52,7 @@ namespace Helper
             try
             {
                 var g_credentials = new Credentials(username, password);
-                var g_connection = new Connection(new ProductHeaderValue("GithubUWP"))
+                var g_connection = new Connection(new ProductHeaderValue("Octahedron"))
                 {
                     Credentials = g_credentials
                 };
