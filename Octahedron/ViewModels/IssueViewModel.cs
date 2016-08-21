@@ -274,7 +274,7 @@ namespace Octahedron.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            if (parameter != null)
+            if (parameter != null && mode != NavigationMode.Back)
             {
                 issueData = parameter.ToString().Split('/');
                 LoadData();

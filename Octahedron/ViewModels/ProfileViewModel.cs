@@ -238,7 +238,10 @@ namespace Octahedron.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            LoadData(parameter);
+            if (mode != NavigationMode.Back)
+            {
+                LoadData(parameter);
+            }
             this.dataTransferManager = DataTransferManager.GetForCurrentView();
             this.dataTransferManager.DataRequested += OnDataRequested;
             return base.OnNavigatedToAsync(parameter, mode, state);

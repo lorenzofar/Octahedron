@@ -618,7 +618,11 @@ namespace Octahedron.ViewModels
         {
             if (parameter != null)
             {
-                LoadRepo(parameter);
+                if (repo == null || parameter.ToString() != $"{repo.Owner.Login}/{repo.Name}")
+                {
+                    System.Diagnostics.Debug.WriteLine(App.Current.NavigationService.CurrentPageType);
+                    LoadRepo(parameter);
+                }
             }
             return Task.CompletedTask;
         }

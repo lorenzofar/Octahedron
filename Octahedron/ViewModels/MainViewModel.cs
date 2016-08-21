@@ -275,7 +275,7 @@ namespace Octahedron.ViewModels
         }
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
-        {
+        {            
             LoadNotifications();
             return base.OnNavigatedToAsync(parameter, mode, state);
         }

@@ -140,7 +140,10 @@ namespace Octahedron.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            LoadRepos();
+            if (mode != NavigationMode.Back)
+            {
+                LoadRepos();
+            }
             return base.OnNavigatedToAsync(parameter, mode, state);
         }
 
