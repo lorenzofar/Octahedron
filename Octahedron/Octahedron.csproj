@@ -110,6 +110,7 @@
     <Compile Include="Converters\ChangesNumberConverter.cs" />
     <Compile Include="Converters\CodeIconConverter.cs" />
     <Compile Include="Converters\ColorBrushConverter.cs" />
+    <Compile Include="Converters\CommitInfoConverter.cs" />
     <Compile Include="Converters\ContentPathConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Converters\PopupIndexConverter.cs" />
     <Compile Include="Converters\PullDateConverter.cs" />
     <Compile Include="Converters\PullStateConverter.cs" />
+    <Compile Include="Converters\ShaTrimmer.cs" />
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Converters\UserNameConverter.cs" />
@@ -147,6 +149,9 @@
     </Compile>
     <Compile Include="Templates\CommentSent.xaml.cs">
       <DependentUpon>CommentSent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\PullCommitListItem.xaml.cs">
+      <DependentUpon>PullCommitListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\ContentItem.xaml.cs">
       <DependentUpon>ContentItem.xaml</DependentUpon>
@@ -264,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\CommentSent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\PullCommitListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

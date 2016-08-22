@@ -76,6 +76,18 @@
                             <TextBlock x:Name="commits_header" x:Uid="commits_header" Margin="12,0,0,4" Text="Commits"/>
                         </StackPanel>
                     </PivotItem.Header>
+                    <ListView ItemsSource="{Binding commits}" Margin="-12,0" SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:PullCommitListItem/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header>
