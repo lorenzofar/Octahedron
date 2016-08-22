@@ -238,7 +238,7 @@ namespace Octahedron.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            if (mode != NavigationMode.Back)
+            if (mode != NavigationMode.Back || parameter == null || parameter.ToString() != user.Login)
             {
                 LoadData(parameter);
             }
