@@ -4,7 +4,10 @@ using Microsoft.HockeyApp;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using System;
+using Windows.Foundation.Metadata;
 
 namespace Octahedron
 {
@@ -18,7 +21,16 @@ namespace Octahedron
             this.InitializeComponent();
             var viewModelLocator = new ViewModels.ViewModelLocator();
             HockeyClient.Current.Configure("d15374afd2ee4377851f1dc8e26e2d69");
+            HideStatusBar();
             //SplashFactory = e => new Views.Splash(e);
+        }
+
+        private async void HideStatusBar()
+        {
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                await StatusBar.GetForCurrentView().HideAsync();
+            }
         }
 
         public override Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
