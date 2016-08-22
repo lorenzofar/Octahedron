@@ -40,7 +40,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon VerticalAlignment="Center" Glyph="&#xF001;" FontSize="28" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+        <FontIcon VerticalAlignment="Center" Glyph="{Binding Converter={StaticResource RepoIconConverter}}" FontSize="28" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
         <StackPanel Margin="6,0" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Text="{Binding Name}"/>
             <TextBlock Text="{Binding UpdatedAt, Converter={StaticResource UpdateDateConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#999999"/>
