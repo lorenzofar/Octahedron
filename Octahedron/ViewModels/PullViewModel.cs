@@ -1,9 +1,12 @@
 ﻿using Helper;
+using Octahedron.Models;
 using Octokit;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Windows.UI.Xaml.Navigation;
+using System.Linq;
 
 namespace Octahedron.ViewModels
 {
@@ -102,6 +105,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private ObservableCollection<GroupInfoList> _groups = new ObservableCollection<GroupInfoList>();
+        public ObservableCollection<GroupInfoList> groups
+        {
+            get
+            {
+                return _groups;
+            }
+            set
+            {
+                Set(ref _groups, value);
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (parameter != null && mode != NavigationMode.Back)
@@ -118,10 +134,30 @@ namespace Octahedron.ViewModels
             owner = pullData[0] == App.user.Login;
             pull = await constants.g_client.PullRequest.Get(pullData[0], pullData[1], int.Parse(pullData[2]));
             commits = await constants.g_client.PullRequest.Commits(pullData[0], pullData[1], int.Parse(pullData[2]));
+            GroupCommitsList();
             comments = await constants.g_client.PullRequest.Comment.GetAll(pullData[0], pullData[1], int.Parse(pullData[2]));
             files = await constants.g_client.PullRequest.Files(pullData[0], pullData[1], int.Parse(pullData[2]));
             closeable = owner && pull.State != ItemState.Closed;
             loading = false;
+        }
+
+        private void GroupCommitsList()
+        {
+            groups.Clear();
+            var query = from item in commits
+                        group item by constants.shortDateFormatter.Format(item.Commit.Committer.Date) into r
+                        orderby r.Key
+                        select new { GroupName = r.Key, Items = r };
+            foreach (var g in query)
+            {
+                GroupInfoList info = new GroupInfoList();
+                info.Key = g.GroupName;
+                foreach (var item in g.Items)
+                {
+                    info.Add(item);
+                }
+                groups.Add(info);
+            }
         }
     }
 }

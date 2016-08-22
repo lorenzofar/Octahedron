@@ -12,7 +12,7 @@
 
     <UserControl.Resources>
         <converters:ShaTrimmer x:Key="ShaTrimmer"/>
-        <converters:CommitInfoConverter x:Key="CommitInfoConverter"/>
+        <converters:CommitInfoConverter x:Key="CommitInfoConverter"/>        
     </UserControl.Resources>
 
     <Grid Margin="0,12">
