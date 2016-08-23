@@ -386,7 +386,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
             <!--MILESTONES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=4}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterMilestones}" CommandParameter="0" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
