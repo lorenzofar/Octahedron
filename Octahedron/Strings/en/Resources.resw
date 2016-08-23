@@ -459,4 +459,7 @@
   <data name="goUp_txt.Text" xml:space="preserve">
     <value>Go up</value>
   </data>
+  <data name="history_header.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
 </root>

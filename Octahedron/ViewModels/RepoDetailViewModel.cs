@@ -11,6 +11,8 @@ using Octokit;
 using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Messaging;
+using Octahedron.Models;
+using System.Collections.ObjectModel;
 
 namespace Octahedron.ViewModels
 {
@@ -293,6 +295,32 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _collaborators, value);
+            }
+        }
+
+        private IReadOnlyList<GitHubCommit> _commits;
+        public IReadOnlyList<GitHubCommit> commits
+        {
+            get
+            {
+                return _commits;
+            }
+            set
+            {
+                Set(ref _commits, value);
+            }
+        }
+
+        private ObservableCollection<GroupInfoList> _commitGroups = new ObservableCollection<GroupInfoList>();
+        public ObservableCollection<GroupInfoList> commitGroups
+        {
+            get
+            {
+                return _commitGroups;
+            }
+            set
+            {
+                Set(ref _commitGroups, value);
             }
         }
 
@@ -641,6 +669,8 @@ namespace Octahedron.ViewModels
                 pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
                 milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+                commits = await constants.g_client.Repository.Commit.GetAll(repo.Owner.Login, repo.Name);
+                GroupCommitsList();
                 content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login,repo.Name, "./");
                 if (owner)
                 {
@@ -658,6 +688,25 @@ namespace Octahedron.ViewModels
                 await communications.ShowDialog("login_error", "error");
             }
             loading = false;
+        }
+
+        private void GroupCommitsList()
+        {
+            commitGroups.Clear();
+            var query = from item in commits
+                        group item by constants.shortDateFormatter.Format(item.Commit.Committer.Date) into r
+                        orderby r.Key descending
+                        select new { GroupName = r.Key, Items = r };
+            foreach (var g in query)
+            {
+                GroupInfoList info = new GroupInfoList();
+                info.Key = g.GroupName;
+                foreach (var item in g.Items)
+                {
+                    info.Add(item);
+                }
+                commitGroups.Add(info);
+            }
         }
     }
 }

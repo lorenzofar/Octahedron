@@ -14,6 +14,11 @@ namespace Octahedron.Converters
                 var commit = value as PullRequestCommit;
                 return $"{commit.Commit.Committer.Name} - {constants.shortDateFormatter.Format(commit.Commit.Committer.Date)}";
             }
+            else if(parameter != null && parameter.ToString() == "repo")
+            {
+                var commit = value as GitHubCommit;
+                return $"{commit.Commit.Committer.Name} - {constants.shortDateFormatter.Format(commit.Commit.Committer.Date)}";
+            }
             else
             {
                 var commit = value as Commit;

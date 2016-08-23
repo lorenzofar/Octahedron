@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Octahedron.Templates.PullCommitListItem"
+    x:Class="Octahedron.Templates.RepoCommitListItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Octahedron.Templates"
@@ -12,7 +12,7 @@
 
     <UserControl.Resources>
         <converters:ShaTrimmer x:Key="ShaTrimmer"/>
-        <converters:CommitInfoConverter x:Key="CommitInfoConverter"/>        
+        <converters:CommitInfoConverter x:Key="CommitInfoConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,12">
@@ -45,16 +45,17 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <FontIcon Glyph="&#xF01F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons" VerticalAlignment="Top"/>
+        <FontIcon Glyph="&#xF01F;" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="12,0">
             <TextBlock FontWeight="SemiBold" Text="{Binding Commit.Message}"/>
-            <TextBlock Text="{Binding Converter={StaticResource CommitInfoConverter}, ConverterParameter=pull}" Foreground="#999999"/>
+            <TextBlock Text="{Binding Converter={StaticResource CommitInfoConverter}, ConverterParameter=repo}" Foreground="#999999"/>
         </StackPanel>
         <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2">
             <FontIcon Glyph="&#xF02B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
             <TextBlock Text="{Binding Commit.CommentCount}" Margin="6,0,0,0"/>
         </StackPanel>
-        <TextBlock Grid.Column="3" x:Name="sha_panel" Margin="12,0,0,0" VerticalAlignment="Top" Text="{Binding Sha, Converter={StaticResource ShaTrimmer}}" ToolTipService.ToolTip="{Binding Sha}"/>
+        <TextBlock Grid.Column="3" x:Name="sha_panel" Margin="12,0" VerticalAlignment="Top" Text="{Binding Sha, Converter={StaticResource ShaTrimmer}}" ToolTipService.ToolTip="{Binding Sha}"/>
+
     </Grid>
-    
+
 </UserControl>

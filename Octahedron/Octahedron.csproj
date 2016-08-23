@@ -170,6 +170,9 @@
     <Compile Include="Templates\PullsListItem.xaml.cs">
       <DependentUpon>PullsListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Templates\RepoCommitListItem.xaml.cs">
+      <DependentUpon>RepoCommitListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Templates\RepoSearchListItem.xaml.cs">
       <DependentUpon>RepoSearchListItem.xaml</DependentUpon>
     </Compile>
@@ -294,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\PullsListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\RepoCommitListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
