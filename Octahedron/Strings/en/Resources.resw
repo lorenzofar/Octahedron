@@ -151,7 +151,7 @@
     <value>Joined on {0} at {1}</value>
   </data>
   <data name="updateDate" xml:space="preserve">
-    <value>Updated {0} - {1}</value>
+    <value>Updated {0}</value>
   </data>
   <data name="credentials_error" xml:space="preserve">
     <value>Username or password is not correct</value>

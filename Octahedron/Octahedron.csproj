@@ -139,6 +139,7 @@
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Converters\UserNameConverter.cs" />
+    <Compile Include="Helpers\DateFormatter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
     <Compile Include="MvvmMessaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -379,9 +380,7 @@
       <Name>Helper</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Syncfusion.SfColorPickers.UWP, Version=14.2460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
