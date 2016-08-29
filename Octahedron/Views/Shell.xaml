@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Shell}"
     mc:Ignorable="d">
-    
+
     <controls:HamburgerMenu x:Name="Menu" 
                             VisualStateNarrowMinWidth="0" 
                             VisualStateNormalMinWidth="720" 
@@ -31,19 +31,19 @@
         <controls:HamburgerMenu.PrimaryButtons>
             <controls:HamburgerButtonInfo PageType="views:MainPage" ClearHistory="True">
                 <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE10F;" VerticalAlignment="Center" Width="48" Height="48" />
+                    <FontIcon Glyph="&#xF08D;" VerticalAlignment="Center" Width="48" Height="48" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                     <TextBlock x:Uid="home_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
             <controls:HamburgerButtonInfo PageType="views:ReposPage">
                 <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE82D;" VerticalAlignment="Center" Width="48" Height="48" />
+                    <FontIcon Glyph="&#xF001;" VerticalAlignment="Center" Width="48" Height="48" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                     <TextBlock x:Uid="repos_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
             <controls:HamburgerButtonInfo PageType="views:SearchPage">
                 <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE094;" VerticalAlignment="Center" Width="48" Height="48" />
+                    <FontIcon Glyph="&#xF02E;" VerticalAlignment="Center" Width="48" Height="48" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                     <TextBlock x:Uid="search_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
@@ -61,7 +61,7 @@
             </controls:HamburgerButtonInfo>
             <controls:HamburgerButtonInfo PageType="views:SettingsPage">
                 <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Setting" VerticalAlignment="Center" Width="48" Height="48" />
+                    <FontIcon Glyph="&#xF02F;"  VerticalAlignment="Center" Width="48" Height="48" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                     <TextBlock x:Uid="settings_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
