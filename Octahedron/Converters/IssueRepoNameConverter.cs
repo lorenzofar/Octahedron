@@ -1,15 +1,17 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Octokit;
+using System;
 using Windows.UI.Xaml.Data;
 
 namespace Octahedron.Converters
 {
-    class InfoDisplayConverter : IValueConverter
+    public class IssueRepoNameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return value == null || value.ToString() == "" ? Visibility.Collapsed : Visibility.Visible;
+            var issue = value as Issue;
+            var url = issue.Url.AbsoluteUri;
+            var splitUrl = url.Split('/');
+            return splitUrl[5];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

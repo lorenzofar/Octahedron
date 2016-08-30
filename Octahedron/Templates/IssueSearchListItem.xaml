@@ -1,0 +1,74 @@
+﻿<UserControl
+    x:Class="Octahedron.Templates.IssueSearchListItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Templates"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <converters:IssueStateConverter x:Key="IssueStateConverter"/>
+        <converters:NumberConverter x:Key="NumberConverter"/>
+        <converters:IssueDateConverter x:Key="IssueDateConverter"/>
+        <converters:InfoDisplayConverter x:Key="InfoDisplayConverter"/>
+        <converters:IssueRepoNameConverter x:Key="IssueRepoNameConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="0,12,4,12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="opener_icon.Visibility" Value="Collapsed"/>
+                        <Setter Target="opener_txt.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="opener_icon.Visibility" Value="Visible"/>
+                        <Setter Target="opener_txt.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <FontIcon Glyph="&#xF026;" Foreground="{Binding State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+        <Grid Margin="8,-4,0,0" Grid.Column="1" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Title}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Number, Converter={StaticResource NumberConverter}}" Foreground="#888888" FontWeight="SemiBold"/>
+            </Grid>
+            <TextBlock Grid.Row="1" Text="{Binding Body}" Visibility="{Binding Body, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" TextWrapping="Wrap" TextTrimming="WordEllipsis" MaxLines="4"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+                <FontIcon Glyph="&#xF001;" Foreground="#888888" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                <TextBlock Text="{Binding Converter={StaticResource IssueRepoNameConverter}}" Foreground="#888888"/>
+                <FontIcon x:Name="opener_icon" Glyph="&#xF018;" Foreground="#888888" Margin="12,0,0,0" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                <TextBlock x:Name="opener_txt" Text="{Binding Converter={StaticResource IssueDateConverter}}" Foreground="#888888"/>
+                <FontIcon Glyph="&#xF04F;" Foreground="#888888" Margin="12,0,4,0" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                <TextBlock Text="{Binding Comments}" Foreground="#888888"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -93,10 +93,10 @@
                         </StackPanel>
                     </PivotItem.Header>
                     <Grid>
-                        <ListView ItemsSource="{Binding issuesResult}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
+                        <ListView ItemsSource="{Binding issuesResult}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:IssuesListItem/>
+                                    <templates:IssueSearchListItem/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
