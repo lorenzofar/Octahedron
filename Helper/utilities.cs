@@ -118,26 +118,30 @@ namespace Helper
                     var hours = currentDate.Subtract(date).Hours;
                     if (hours == 0)
                     {
-                        return "just now";
+                        return constants.r_loader.GetString("justNow");
                     }
                     else
                     {
-                        return $"{hours} hours ago";
+                        return String.Format(constants.r_loader.GetString("timeAgo"), hours, constants.r_loader.GetString(hours == 1 ? "hour" : "hours"));
                     }
+                }
+                else if(daysSpan == 1)
+                {
+                    return constants.r_loader.GetString("yesterday");
                 }
                 else if (daysSpan < 30)
                 {
                     var days = Math.Round(daysSpan);
-                    return $"{days} days ago";
+                    return String.Format(constants.r_loader.GetString("timeAgo"), days, constants.r_loader.GetString(days == 1 ? "day" : "days"));
                 }
                 else
                 {
-                    return $"on {months[date.Month - 1]} {date.Day}";
+                    return String.Format(constants.r_loader.GetString("onDate"), $"{months[date.Month - 1]} {date.Day}");
                 }
             }
             else
             {
-                return $"on {months[date.Month - 1]} {date.Day}, {date.Year}";
+                return String.Format(constants.r_loader.GetString("onDate"), $"{months[date.Month - 1]} {date.Day}, {date.Year}");
             }
         }
     }
