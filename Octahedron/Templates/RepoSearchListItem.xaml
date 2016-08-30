@@ -10,6 +10,7 @@
 
     <UserControl.Resources>
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <converters:InfoDisplayConverter x:Key="InfoDisplayConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,12">
@@ -19,8 +20,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Top">
             <TextBlock Text="{Binding FullName}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock Text="{Binding Description}" Margin="0,6" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}"/>
-            <TextBlock Text="{Binding PushedAt, Converter={StaticResource UpdateDateConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#888888"/>
+            <TextBlock Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}"/>
+            <TextBlock Text="{Binding PushedAt, Converter={StaticResource UpdateDateConverter}}" Margin="0,8,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#888888"/>
         </StackPanel>
         <StackPanel Margin="12,0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
             <TextBlock Text="{Binding Language}" Foreground="#888888" FontWeight="SemiBold"/>
