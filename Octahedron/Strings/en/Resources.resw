@@ -280,7 +280,7 @@
     <value>Logging In</value>
   </data>
   <data name="openDate" xml:space="preserve">
-    <value>Opened {0} by {1}</value>
+    <value>Opened by {0} {1}</value>
   </data>
   <data name="issueDetail_header.Text" xml:space="preserve">
     <value>ISSUE</value>

@@ -1,4 +1,5 @@
-﻿using Octokit;
+﻿using Helper;
+using Octokit;
 using System;
 using Windows.UI.Xaml.Data;
 
@@ -13,7 +14,7 @@ namespace Octahedron.Converters
                 Issue issue = value as Issue;
                 var user = issue.User.Login;
                 var Date = issue.State == ItemState.Open ? issue.CreatedAt : issue.ClosedAt;
-                return String.Format(Helper.constants.r_loader.GetString(issue.State == ItemState.Open ? "openDate" : "closedDate"), Helper.constants.shortDateFormatter.Format(Date.Value), issue.State == ItemState.Open ? user : string.Empty);
+                return String.Format(constants.r_loader.GetString(issue.State == ItemState.Open ? "openDate" : "closedDate"), issue.State == ItemState.Open ? user : string.Empty, utilities.FormatDate(Date.Value.DateTime));
             }
             else
             {
