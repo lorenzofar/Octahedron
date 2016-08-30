@@ -10,26 +10,57 @@
 
     <UserControl.Resources>
         <converters:UpdateDateConverter x:Key="UpdateDateConverter"/>
+        <converters:InfoDisplayConverter x:Key="InfoDisplayConverter"/>
         <converters:RepoIconConverter x:Key="RepoIconConverter"/>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
     </UserControl.Resources>
-    
-    <Grid>
+
+    <Grid Margin="0,12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="forks_icon.Visibility" Value="Collapsed"/>
+                        <Setter Target="forks_txt.Visibility" Value="Collapsed"/>
+                        <Setter Target="description_txt.MaxLines" Value="1"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="forks_icon.Visibility" Value="Visible"/>
+                        <Setter Target="forks_txt.Visibility" Value="Visible"/>
+                        <Setter Target="description_txt.MaxLines" Value="4"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <FontIcon VerticalAlignment="Center" Glyph="{Binding Converter={StaticResource RepoIconConverter}}" FontSize="28" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
-        <StackPanel Margin="6,0" Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock Text="{Binding Name}"/>
-            <TextBlock Text="{Binding PushedAt, Converter={StaticResource UpdateDateConverter}}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#999999"/>
+        <StackPanel Margin="0,-4,0,0" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                <Grid Background="#FFEFC6" Margin="12,4,12,0" VerticalAlignment="Center" Visibility="{Binding Private, Converter={StaticResource BoolVisibilityConverter}}">
+                    <TextBlock x:Uid="private_txt" Margin="4,0" Foreground="Black" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                </Grid>
+            </StackPanel>
+            <TextBlock x:Name="description_txt" Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
+            <TextBlock Text="{Binding PushedAt, Converter={StaticResource UpdateDateConverter}}" Margin="0,8,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#888888"/>
         </StackPanel>
-        <TextBlock Margin="6,0" Text="{Binding Language}" Grid.Column="2" VerticalAlignment="Center"/>
-        <StackPanel Margin="12,0" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding StargazersCount}"/>
-            <FontIcon Margin="3,0" Glyph="&#xE735;" Foreground="Gold"/>
+        <StackPanel Margin="12,0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBlock Text="{Binding Language}" Foreground="#888888" FontWeight="SemiBold"/>
+            <FontIcon Margin="12,0,0,0" Glyph="&#xF02A;" Foreground="#888888" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+            <TextBlock Text="{Binding StargazersCount}" Foreground="#888888" FontWeight="SemiBold"/>
+            <FontIcon x:Name="forks_icon" Margin="12,0,0,0" Glyph="&#xF020;" Foreground="#888888" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+            <TextBlock x:Name="forks_txt" Text="{Binding ForksCount}" Foreground="#888888" FontWeight="SemiBold"/>
         </StackPanel>
     </Grid>
-    
+
 </UserControl>

@@ -483,6 +483,9 @@
   <data name="onDate" xml:space="preserve">
     <value>on {0}</value>
   </data>
+  <data name="private_txt.Text" xml:space="preserve">
+    <value>Private</value>
+  </data>
   <data name="timeAgo" xml:space="preserve">
     <value>{0} {1} ago</value>
   </data>
