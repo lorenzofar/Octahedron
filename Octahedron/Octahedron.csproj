@@ -139,7 +139,6 @@
     <Compile Include="Converters\UpdateDateConverter.cs" />
     <Compile Include="Converters\JoinDateConverter.cs" />
     <Compile Include="Converters\UserNameConverter.cs" />
-    <Compile Include="Helpers\DateFormatter.cs" />
     <Compile Include="Models\GroupInfoList.cs" />
     <Compile Include="MvvmMessaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
