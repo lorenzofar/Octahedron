@@ -107,31 +107,39 @@ namespace Helper
 
         private static string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
-        public static string FormatDate(DateTime date)
+        public static string FormatDate(DateTime rawDate)
         {
             var currentDate = DateTime.Now.ToUniversalTime();
+            var date = rawDate.ToUniversalTime();
             if (currentDate.Year == date.Year)
             {
-                var daysSpan = currentDate.Subtract(date).TotalDays;
-                if (daysSpan < 1)
+                var days = currentDate.Subtract(date).Days;
+                if (days < 1)
                 {
                     var hours = currentDate.Subtract(date).Hours;
                     if (hours == 0)
                     {
-                        return constants.r_loader.GetString("justNow");
+                        var minutes = currentDate.Subtract(date).Minutes;
+                        if (minutes == 0)
+                        {
+                            return constants.r_loader.GetString("justNow");
+                        }
+                        else
+                        {
+                            return String.Format(constants.r_loader.GetString("timeAgo"), minutes, constants.r_loader.GetString(minutes == 1 ? "minute" : "minutes"));
+                        }
                     }
                     else
                     {
                         return String.Format(constants.r_loader.GetString("timeAgo"), hours, constants.r_loader.GetString(hours == 1 ? "hour" : "hours"));
                     }
                 }
-                else if(daysSpan == 1)
+                else if(days == 1)
                 {
                     return constants.r_loader.GetString("yesterday");
                 }
-                else if (daysSpan < 30)
+                else if (days < 30)
                 {
-                    var days = Math.Round(daysSpan);
                     return String.Format(constants.r_loader.GetString("timeAgo"), days, constants.r_loader.GetString(days == 1 ? "day" : "days"));
                 }
                 else

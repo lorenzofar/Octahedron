@@ -492,4 +492,10 @@
   <data name="yesterday" xml:space="preserve">
     <value>yesterday</value>
   </data>
+  <data name="minute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
 </root>
