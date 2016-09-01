@@ -148,7 +148,7 @@
     <value>Username or email</value>
   </data>
   <data name="joinDate" xml:space="preserve">
-    <value>Joined on {0} at {1}</value>
+    <value>Joined {0}</value>
   </data>
   <data name="updateDate" xml:space="preserve">
     <value>Updated {0}</value>
