@@ -348,6 +348,7 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _content, value);
+                GoUpContent.RaiseCanExecuteChanged();
             }
         }
 
@@ -635,6 +636,10 @@ namespace Octahedron.ViewModels
                             path += $"{path_split[i]}/";
                         }
                         content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, path);
+                    }, () =>
+                    {
+                        var path = content[0].Path;
+                        return $"./{content[0].Name}" != $"./{content[0].Path}";
                     });
                 }
                 return _GoUpContent;
