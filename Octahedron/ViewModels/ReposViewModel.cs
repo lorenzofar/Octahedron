@@ -110,7 +110,7 @@ namespace Octahedron.ViewModels
                     {
                         int index = int.Parse(parameter.ToString());
                         sortIndex = index;
-                        LoadRepos();
+                        GroupList();
                     });
                 }
                 return _SelectSort;
