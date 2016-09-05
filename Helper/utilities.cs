@@ -105,6 +105,24 @@ namespace Helper
             return $"{r}{g}{b}";
         }
 
+        public enum colorType
+        {
+            Dark,
+            Light
+        }
+
+        public static colorType CheckColorType(Color color)
+        {
+            if(color.R * 0.2126 + color.G * 0.7152 + color.B * 0.0722 > 255 / 2)
+            {
+                return colorType.Light;
+            }
+            else
+            {
+                return colorType.Dark;
+            }
+        }
+
         private static string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
         public static string FormatDate(DateTime rawDate)
