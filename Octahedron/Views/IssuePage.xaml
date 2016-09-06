@@ -9,6 +9,7 @@
     xmlns:media="using:Syncfusion.UI.Xaml.Controls.Media"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behaviors="using:Template10.Behaviors"
     xmlns:editors="using:Syncfusion.UI.Xaml.Controls.Input"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -36,6 +37,7 @@
                         <Setter Target="info_header.Visibility" Value="Collapsed"/>
                         <Setter Target="comments_header.Visibility" Value="Collapsed"/>
                         <Setter Target="labels_header.Visibility" Value="Collapsed"/>
+                        <Setter Target="events_header.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
@@ -46,6 +48,7 @@
                         <Setter Target="info_header.Visibility" Value="Visible"/>
                         <Setter Target="comments_header.Visibility" Value="Visible"/>
                         <Setter Target="labels_header.Visibility" Value="Visible"/>
+                        <Setter Target="events_header.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="720"/>
@@ -53,7 +56,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -137,13 +140,18 @@
                                     </templates:IssueCommentsTemplateSelector.receivedTemplate>
                                     <templates:IssueCommentsTemplateSelector.sentTemplate>
                                         <DataTemplate>
-                                            <Grid x:Name="commentGrid" RightTapped="labelGrid_RightTapped">
+                                            <Grid x:Name="commentGrid">
                                                 <FlyoutBase.AttachedFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem x:Uid="editBtn" Text="Edit" Click="editBtn_Click"/>
                                                         <MenuFlyoutItem x:Uid="removeBtn" Text="Remove" Click="removeCommentBtn_Click"/>
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>
+                                                <interactivity:Interaction.Behaviors>
+                                                    <core:EventTriggerBehavior EventName="RightTapped">
+                                                        <behaviors:OpenFlyoutAction/>
+                                                    </core:EventTriggerBehavior>
+                                                </interactivity:Interaction.Behaviors>
                                                 <templates:CommentSent/>
                                             </Grid>
                                         </DataTemplate>
@@ -186,12 +194,17 @@
                         <ListView ItemsSource="{Binding issue.Labels}" Margin="-12,0" SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid x:Name="labelGrid" RightTapped="labelGrid_RightTapped">
+                                    <Grid x:Name="labelGrid">
                                         <FlyoutBase.AttachedFlyout>
                                             <MenuFlyout>
                                                 <MenuFlyoutItem x:Uid="removeBtn" IsEnabled="{Binding owner}" Text="Remove" Click="removeLabelBtn_Click"/>
                                             </MenuFlyout>
                                         </FlyoutBase.AttachedFlyout>
+                                        <interactivity:Interaction.Behaviors>
+                                            <core:EventTriggerBehavior EventName="RightTapped">
+                                                <behaviors:OpenFlyoutAction />
+                                            </core:EventTriggerBehavior>
+                                        </interactivity:Interaction.Behaviors>
                                         <templates:LabelsListItem/>
                                     </Grid>
                                 </DataTemplate>
@@ -209,15 +222,20 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="pickColorBtn" Padding="6" VerticalAlignment="Stretch" Background="{Binding labelColor, Converter={StaticResource ColorBrushConverter}}" Click="pickColorBtn_Click">
+                            <Button x:Name="pickColorBtn" Padding="6" VerticalAlignment="Stretch" Background="{Binding labelColor, Converter={StaticResource ColorBrushConverter}}">
                                 <Button.Content>
                                     <FontIcon Glyph="&#xE104;" VerticalAlignment="Center"/>
                                 </Button.Content>
-                                <Button.Flyout>
+                                <FlyoutBase.AttachedFlyout>
                                     <Flyout>
                                         <media:SfColorPicker x:Name="colorPicker" SelectedColor="{Binding labelColor, Mode=TwoWay}"/>
                                     </Flyout>
-                                </Button.Flyout>
+                                </FlyoutBase.AttachedFlyout>
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Click">
+                                        <behaviors:OpenFlyoutAction />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
                             </Button>
                             <TextBox x:Uid="labelBox" Text="{Binding labelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="1" BorderThickness="0" MaxHeight="100" Padding="8" Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}" ScrollViewer.VerticalScrollBarVisibility="Auto" PlaceholderText="Add a label"/>
                             <Button Command="{Binding AddLabel}" Padding="6" Grid.Column="2" Background="{ThemeResource SystemControlBackgroundAccentBrush}" VerticalAlignment="Stretch">

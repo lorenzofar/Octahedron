@@ -9,6 +9,7 @@
     xmlns:models="using:Octahedron.Models"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behaviors="using:Template10.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RepoDetail}"
@@ -359,8 +360,8 @@
             </AppBarToggleButton>
             <AppBarToggleButton x:Uid="star_btn" Command="{Binding StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding starred, Mode=TwoWay}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
             <!--ISSUES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Click="filter_issues_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
-                <AppBarButton.Flyout>
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
+                <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssues}" CommandParameter="0" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterIssues}" CommandParameter="1" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
@@ -372,28 +373,43 @@
                         <MenuFlyoutItem x:Uid="filter_mentioned" Command="{Binding FilterIssuesUser}" CommandParameter="3" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
                         <MenuFlyoutItem x:Uid="filter_subscribed" Command="{Binding FilterIssuesUser}" CommandParameter="4" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
                     </MenuFlyout>
-                </AppBarButton.Flyout>
+                </FlyoutBase.AttachedFlyout>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <behaviors:OpenFlyoutAction />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </AppBarButton>
             <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddIssue}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}"/>
             <!--PULLS TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Click="filter_pulls_btn_Click" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
-                <AppBarButton.Flyout>
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
+                <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterPulls}" CommandParameter="0" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterPulls}" CommandParameter="1" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                         <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding FilterPulls}" CommandParameter="2" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
                     </MenuFlyout>
-                </AppBarButton.Flyout>
+                </FlyoutBase.AttachedFlyout>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <behaviors:OpenFlyoutAction />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </AppBarButton>
             <!--MILESTONES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Click="filter_milestones_btn_Click" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}">
-                <AppBarButton.Flyout>
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}">
+                <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterMilestones}" CommandParameter="0" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterMilestones}" CommandParameter="1" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                         <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding FilterMilestones}" CommandParameter="2" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
                     </MenuFlyout>
-                </AppBarButton.Flyout>
+                </FlyoutBase.AttachedFlyout>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <behaviors:OpenFlyoutAction />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </AppBarButton>
         </CommandBar>
     </Grid>

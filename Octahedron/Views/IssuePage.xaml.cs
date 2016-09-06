@@ -12,11 +12,6 @@ namespace Octahedron.Views
             this.InitializeComponent();
         }
 
-        private void pickColorBtn_Click(object sender, RoutedEventArgs e)
-        {
-            pickColorBtn.Flyout.ShowAt(pickColorBtn);
-        }
-
         private void removeLabelBtn_Click(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
@@ -25,17 +20,6 @@ namespace Octahedron.Views
             {
                 var viewmodel = DataContext as ViewModels.IssueViewModel;
                 viewmodel?.RemoveLabel.Execute(label.Name);
-            }
-        }
-
-        private void labelGrid_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            var viewmodel = DataContext as ViewModels.IssueViewModel;
-            if (viewmodel.owner)
-            {
-                var senderElement = sender as FrameworkElement;
-                var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
-                flyoutBase.ShowAt(senderElement);
             }
         }
 

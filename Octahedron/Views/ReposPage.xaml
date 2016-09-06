@@ -9,6 +9,7 @@
     xmlns:converters="using:Octahedron.Converters"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behaviors="using:Template10.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Repos}"
@@ -66,8 +67,8 @@
         </Viewbox>
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
-            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Click="filter_btn_Click" Icon="Filter">
-                <AppBarButton.Flyout>
+            <AppBarButton x:Name="filter_btn" x:Uid="filter_btn" Icon="Filter">
+                <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding SelectFilter}" CommandParameter="0" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="filter_public" Command="{Binding SelectFilter}" CommandParameter="1" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
@@ -75,15 +76,25 @@
                         <MenuFlyoutItem x:Uid="filter_member" Command="{Binding SelectFilter}" CommandParameter="3" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
                         <MenuFlyoutItem x:Uid="filter_owner" Command="{Binding SelectFilter}" CommandParameter="4" Background="{Binding filterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
                     </MenuFlyout>
-                </AppBarButton.Flyout>
+                </FlyoutBase.AttachedFlyout>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <behaviors:OpenFlyoutAction />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </AppBarButton>
-            <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Click="sort_btn_Click" Icon="Sort">
-                <AppBarButton.Flyout>
+            <AppBarButton x:Name="sort_btn" x:Uid="sort_btn" Icon="Sort">
+                <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="sort_name" Command="{Binding SelectSort}" CommandParameter="0" Background="{Binding sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="sort_language" Command="{Binding SelectSort}" CommandParameter="1" Background="{Binding sortIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                     </MenuFlyout>
-                </AppBarButton.Flyout>
+                </FlyoutBase.AttachedFlyout>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <behaviors:OpenFlyoutAction />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </AppBarButton>
         </CommandBar>
 
