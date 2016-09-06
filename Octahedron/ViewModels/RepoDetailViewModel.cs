@@ -1,18 +1,15 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Helper;
+using Octahedron.Models;
+using Octokit;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using Template10.Services.NavigationService;
-using Helper;
-using Windows.UI.Xaml.Navigation;
-using Octokit;
-using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight.Messaging;
-using Octahedron.Models;
-using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Navigation;
 
 namespace Octahedron.ViewModels
 {
@@ -670,11 +667,11 @@ namespace Octahedron.ViewModels
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
-                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter });
-                pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState });
-                milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness });
+                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter }, new ApiOptions { PageSize = 50, PageCount = 1 });
+                pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState }, new ApiOptions { PageSize = 50, PageCount = 1 });
+                milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness }, new ApiOptions { PageSize = 50, PageCount = 1 });
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
-                commits = await constants.g_client.Repository.Commit.GetAll(repo.Owner.Login, repo.Name);
+                commits = await constants.g_client.Repository.Commit.GetAll(repo.Owner.Login, repo.Name, new ApiOptions { PageSize = 50, PageCount = 1});
                 GroupCommitsList();
                 content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login,repo.Name, "./");
                 if (owner)
