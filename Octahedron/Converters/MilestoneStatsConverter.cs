@@ -13,7 +13,7 @@ namespace Octahedron.Converters
             int open = milestone.OpenIssues;
             int closed = milestone.ClosedIssues;
             int total = open + closed;
-            int percentage = (closed * 100) / total;
+            int percentage = total != 0 ? (closed * 100) / total : 0;
             return String.Format(constants.r_loader.GetString("milestoneStats"), percentage, open, closed);
         }
 
