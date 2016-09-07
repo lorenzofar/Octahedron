@@ -40,26 +40,6 @@ namespace Octahedron.ViewModels
         public IReadOnlyList<Repository> reposResult { get { return _reposResult; } set { Set(ref _reposResult, value); } }
         public IReadOnlyList<Issue> issuesResult { get { return _issuesResult; } set { Set(ref _issuesResult, value); } }
 
-        private RelayCommand<object> _KeyPressed;
-        public RelayCommand<object> KeyPressed
-        {
-            get
-            {
-                if (_KeyPressed == null)
-                {
-                    _KeyPressed = new RelayCommand<object>((e) =>
-                    {
-                        var args = e as KeyRoutedEventArgs;
-                        if (args.Key == Windows.System.VirtualKey.Enter)
-                        {
-                            Search.Execute(null);
-                        }
-                    });
-                }
-                return _KeyPressed;
-            }
-        }
-
         private RelayCommand _Search;
         public RelayCommand Search
         {

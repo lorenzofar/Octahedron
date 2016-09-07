@@ -8,6 +8,7 @@
     xmlns:templates="using:Octahedron.Templates"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behaviors="using:Template10.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Search}"
@@ -39,9 +40,9 @@
                 </Grid.ColumnDefinitions>
                 <TextBox Text="{Binding query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="search_box" PlaceholderText="Search GitHub">
                     <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="KeyDown">
-                            <core:InvokeCommandAction Command="{Binding KeyPressed}"/>
-                        </core:EventTriggerBehavior>
+                        <behaviors:KeyBehavior Key="Enter">
+                            <core:InvokeCommandAction Command="{Binding Search}"/>
+                        </behaviors:KeyBehavior>
                     </interactivity:Interaction.Behaviors>
                 </TextBox>
                 <Button Command="{Binding Search}" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1" VerticalAlignment="Stretch" Content="&#xE094;" FontFamily="Segoe MDL2 Assets" />
