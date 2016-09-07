@@ -14,21 +14,45 @@
     </UserControl.Resources>
 
     <Grid Margin="0,12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="forks_icon.Visibility" Value="Collapsed"/>
+                        <Setter Target="forks_txt.Visibility" Value="Collapsed"/>
+                        <Setter Target="description_txt.MaxLines" Value="2"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="forks_icon.Visibility" Value="Visible"/>
+                        <Setter Target="forks_txt.Visibility" Value="Visible"/>
+                        <Setter Target="description_txt.MaxLines" Value="4"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Top">
             <TextBlock Text="{Binding FullName}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis" MaxLines="4"/>
+            <TextBlock x:Name="description_txt" Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
             <TextBlock Text="{Binding PushedAt, Converter={StaticResource UpdateDateConverter}}" Margin="0,8,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#888888"/>
         </StackPanel>
         <StackPanel Margin="12,0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
             <TextBlock Text="{Binding Language}" Foreground="#888888" FontWeight="SemiBold"/>
             <FontIcon Margin="12,0,0,0" Glyph="&#xF02A;" Foreground="#888888" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
             <TextBlock Text="{Binding StargazersCount}" Foreground="#888888" FontWeight="SemiBold"/>
-            <FontIcon Margin="12,0,0,0" Glyph="&#xF020;" Foreground="#888888" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
-            <TextBlock Text="{Binding ForksCount}" Foreground="#888888" FontWeight="SemiBold"/>
+            <FontIcon x:Name="forks_icon" Margin="12,0,0,0" Glyph="&#xF020;" Foreground="#888888" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+            <TextBlock x:Name="forks_txt" Text="{Binding ForksCount}" Foreground="#888888" FontWeight="SemiBold"/>
         </StackPanel>
     </Grid>
 
