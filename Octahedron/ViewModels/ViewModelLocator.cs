@@ -15,6 +15,7 @@
             Pull = new PullViewModel();
             Assign = new AssignViewModel();
             Settings = new SettingsViewModel();
+            NoInternet = new NoInternetViewModel();
         }
 
         public MainViewModel Main { get; set; }
@@ -46,5 +47,7 @@
         }
 
         public SettingsViewModel Settings { get; set; }
+
+        public NoInternetViewModel NoInternet { get; set; }
     }
 }

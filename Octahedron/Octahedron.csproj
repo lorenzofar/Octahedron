@@ -192,6 +192,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NewIssueViewModel.cs" />
+    <Compile Include="ViewModels\NoInternetViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\PullViewModel.cs" />
     <Compile Include="ViewModels\RepoDetailViewModel.cs" />
@@ -216,6 +217,9 @@
     </Compile>
     <Compile Include="Views\NewIssuePage.xaml.cs">
       <DependentUpon>NewIssuePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoInternetPage.xaml.cs">
+      <DependentUpon>NoInternetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -345,6 +349,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewIssuePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoInternetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

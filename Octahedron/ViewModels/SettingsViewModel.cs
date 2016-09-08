@@ -2,7 +2,6 @@
 using Helper;
 using Template10.Mvvm;
 using Windows.UI.Xaml;
-using static Template10.Common.BootStrapper;
 
 namespace Octahedron.ViewModels
 {
@@ -19,7 +18,7 @@ namespace Octahedron.ViewModels
                     {
                         await utilities.LogOut();
                         App.Current.NavigationService.ClearHistory();
-                        Window.Current.Content = new Views.LoginPage(App.Current.NavigationService);
+                        Window.Current.Content = new Views.LoginPage();
                     });
                 }
                 return _LogOut;

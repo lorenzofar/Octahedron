@@ -84,7 +84,7 @@ namespace Octahedron.ViewModels
                         //LOG IN TO GITHUB
                         loggingIn = true;
                         var login_result = await utilities.LogIn(username, password);
-                        if (login_result)
+                        if (login_result == utilities.LoginResult.success)
                         {
                             //SAVE CREDENTIALS ON SUCCESFULL LOGIN
                             utilities.SaveCredentials("login", username, password);

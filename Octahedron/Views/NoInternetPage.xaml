@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="Octahedron.Views.NoInternetPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Views"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=NoInternet}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel VerticalAlignment="Center" Visibility="{Binding loggingIn, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <FontIcon Glyph="&#xE128;" FontSize="40" FontFamily="Segoe MDL2 Assets"/>
+            <TextBlock x:Uid="noInternet_txt_1" HorizontalAlignment="Center" Margin="0,12,0,0" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <TextBlock x:Uid="noInternet_txt_2" HorizontalAlignment="Center" Margin="0,12" TextWrapping="Wrap"/>
+            <Button x:Uid="refreshPage_btn" Command="{Binding Refresh}" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding loggingIn, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding loggingIn}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Width="50" Height="50"/>
+            <TextBlock Margin="0,12,0,0" x:Uid="login_progress"/>
+        </StackPanel>
+    </Grid>
+</Page>

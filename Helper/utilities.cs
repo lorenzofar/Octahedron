@@ -48,7 +48,14 @@ namespace Helper
             }
         }
 
-        public static async Task<bool> LogIn(string username, string password)
+        public enum LoginResult
+        {
+            success,
+            wrongCredentials,
+            connectionError
+        }
+
+        public static async Task<LoginResult> LogIn(string username, string password)
         {
             try
             {
@@ -59,16 +66,15 @@ namespace Helper
                 };
                 constants.g_client = new GitHubClient(g_connection);
                 var user = await constants.g_client.User.Current();
-                return true;
+                return LoginResult.success;
             }
             catch(AuthorizationException)
             {
-                await communications.ShowDialog("credentials_error", "error");
-                return false;
+                return LoginResult.wrongCredentials;
             }
             catch
             {
-                return false;
+                return LoginResult.connectionError;
             }
         }        
 

@@ -47,21 +47,27 @@ namespace Octahedron
                 var credential = utilities.GetCredential("login");
                 if (credential == null)
                 {
-                    Window.Current.Content = new Views.LoginPage(nav);
+                    Window.Current.Content = new Views.LoginPage();
                 }
                 else
                 {
                     Window.Current.Content = shell;
-                    if (await utilities.LogIn(credential.UserName, credential.Password))
+                    var loginResult = await utilities.LogIn(credential.UserName, credential.Password);
+                    if (loginResult == utilities.LoginResult.success)
                     {
                         user = await constants.g_client.User.Current();
                         Messenger.Default.Send<MvvmMessaging.ProfileIconMessage>(new MvvmMessaging.ProfileIconMessage { url = user.AvatarUrl });
                         NavigationService.Navigate(typeof(Views.MainPage), null);
                     }
+                    else if (loginResult == utilities.LoginResult.wrongCredentials)
+                    {
+                        await communications.ShowDialog("credentials_error", "error");
+                        await utilities.LogOut();
+                        Window.Current.Content = new Views.LoginPage();
+                    }
                     else
                     {
-                        await Helper.communications.ShowDialog("login_error", "error");
-                        App.Current.Exit();
+                        Window.Current.Content = new Views.NoInternetPage();
                     }
                 }
             }

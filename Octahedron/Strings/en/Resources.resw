@@ -498,4 +498,13 @@
   <data name="minutes" xml:space="preserve">
     <value>minutes</value>
   </data>
+  <data name="noInternet_txt_1.Text" xml:space="preserve">
+    <value>I can't connect</value>
+  </data>
+  <data name="noInternet_txt_2.Text" xml:space="preserve">
+    <value>Please check your internet connection</value>
+  </data>
+  <data name="refreshPage_btn.Content" xml:space="preserve">
+    <value>Refresh the page</value>
+  </data>
 </root>
