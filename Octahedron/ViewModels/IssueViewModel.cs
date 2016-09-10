@@ -1,13 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Helper;
 using Octokit;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using Windows.Storage;
 using Windows.UI;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 namespace Octahedron.ViewModels
@@ -65,6 +63,19 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _issue, value);
+            }
+        }
+
+        private IReadOnlyList<EventInfo> _events;
+        public IReadOnlyList<EventInfo> events
+        {
+            get
+            {
+                return _events;
+            }
+            set
+            {
+                Set(ref _events, value);
             }
         }
 
@@ -290,6 +301,19 @@ namespace Octahedron.ViewModels
                 owner = issueData[0] == App.user.Login;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
+                events = (await constants.g_client.Issue.Events.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2])))
+                    .Where(x => x.Event == EventInfoState.Assigned ||
+                                x.Event == EventInfoState.Closed ||
+                                x.Event == EventInfoState.Demilestoned ||
+                                x.Event == EventInfoState.Labeled ||
+                                x.Event == EventInfoState.Locked ||
+                                x.Event == EventInfoState.Milestoned ||
+                                x.Event == EventInfoState.Referenced ||
+                                x.Event == EventInfoState.Renamed ||
+                                x.Event == EventInfoState.Reopened ||
+                                x.Event == EventInfoState.Unassigned ||
+                                x.Event == EventInfoState.Unlabeled ||
+                                x.Event == EventInfoState.Unlocked).ToList();
                 closeable = owner && issue.State != ItemState.Closed;
                 loading = false;
             }

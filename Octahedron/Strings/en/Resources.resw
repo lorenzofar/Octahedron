@@ -498,6 +498,12 @@
   <data name="minutes" xml:space="preserve">
     <value>minutes</value>
   </data>
+  <data name="events_header.Text" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="events_placeholder.Text" xml:space="preserve">
+    <value>There are no events</value>
+  </data>
   <data name="noInternet_txt_1.Text" xml:space="preserve">
     <value>I can't connect</value>
   </data>
@@ -506,5 +512,8 @@
   </data>
   <data name="refreshPage_btn.Content" xml:space="preserve">
     <value>Refresh the page</value>
+  </data>
+  <data name="added" xml:space="preserve">
+    <value>added</value>
   </data>
 </root>

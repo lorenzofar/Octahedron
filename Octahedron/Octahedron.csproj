@@ -115,6 +115,8 @@
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
     <Compile Include="Converters\DueDateConverter.cs" />
+    <Compile Include="Converters\EventConverter.cs" />
+    <Compile Include="Converters\EventIconConverter.cs" />
     <Compile Include="Converters\ForkConverter.cs" />
     <Compile Include="Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Converters\HexBrushConverter.cs" />
@@ -151,6 +153,9 @@
     </Compile>
     <Compile Include="Templates\CommentSent.xaml.cs">
       <DependentUpon>CommentSent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\EventListItem.xaml.cs">
+      <DependentUpon>EventListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\IssueSearchListItem.xaml.cs">
       <DependentUpon>IssueSearchListItem.xaml</DependentUpon>
@@ -283,6 +288,10 @@
     <Page Include="Templates\CommentSent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\EventListItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Templates\IssueSearchListItem.xaml">
       <Generator>MSBuild:Compile</Generator>
