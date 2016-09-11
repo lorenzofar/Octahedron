@@ -27,8 +27,8 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <StackPanel Margin="12">
-                <TextBox Text="{Binding title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="title_box" Header="Title" PlaceholderText="Type the title" AcceptsReturn="True"/>
-                <TextBox Text="{Binding body, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="body_box" Header="Body" PlaceholderText="Type the message" AcceptsReturn="True" Margin="0,12,0,0"/>
+                <TextBox Text="{Binding title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="title_box" Header="Title" PlaceholderText="Type the title" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <TextBox Text="{Binding body, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Uid="body_box" Header="Body" PlaceholderText="Type the message" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,12,0,0"/>
             </StackPanel>
         </ScrollViewer>
 
