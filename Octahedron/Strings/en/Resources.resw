@@ -552,6 +552,9 @@
   <data name="notifications_progress" xml:space="preserve">
     <value>Loading notifications</value>
   </data>
+  <data name="openNotification_progress" xml:space="preserve">
+    <value>Opening notification</value>
+  </data>
   <data name="pulls_progress" xml:space="preserve">
     <value>Loading pull requests</value>
   </data>

@@ -251,6 +251,7 @@ namespace Octahedron.ViewModels
                     _OpenNotification = new RelayCommand<object>(async(e) =>
                     {
                         loading = true;
+                        loadingProgress = constants.r_loader.GetString("openNotification_progress");
                         try
                         {
                             var args = e as ItemClickEventArgs;
@@ -260,13 +261,19 @@ namespace Octahedron.ViewModels
                                 default:
                                     break;
                                 case "pullrequest":
-                                    var pull = (await constants.g_client.PullRequest.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.PullRequestRequest { State = Octokit.ItemStateFilter.All })).FirstOrDefault(x => x.Title == notification.Subject.Title);
-                                    string pullData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{pull.Number}";
+                                    string pullUrl = notification.Subject.Url;
+                                    pullUrl = pullUrl.Replace("https://api.github.com/repos/", "");
+                                    pullUrl = pullUrl.Replace("/pulls", "");
+                                    var pullRawData = pullUrl.Split('/');
+                                    string pullData = $"{pullRawData[0]}/{pullRawData[1]}/{pullRawData[2]}";
                                     App.Current.NavigationService.Navigate(typeof(Views.PullPage), pullData);
                                     break;
                                 case "issue":
-                                    var issue = (await constants.g_client.Issue.GetAllForRepository(notification.Repository.Owner.Login, notification.Repository.Name, new Octokit.RepositoryIssueRequest { State = Octokit.ItemStateFilter.All })).FirstOrDefault(x => x.Title == notification.Subject.Title);
-                                    string issueData = $"{notification.Repository.Owner.Login}/{notification.Repository.Name}/{issue.Number}";
+                                    string issueUrl = notification.Subject.Url;
+                                    issueUrl = issueUrl.Replace("https://api.github.com/repos/", "");
+                                    issueUrl = issueUrl.Replace("/issues", "");
+                                    var issueRawData = issueUrl.Split('/');
+                                    string issueData = $"{issueRawData[0]}/{issueRawData[1]}/{issueRawData[2]}";
                                     App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                                     break;
                                 case "release":
