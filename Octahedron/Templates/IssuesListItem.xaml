@@ -48,8 +48,8 @@
         </Grid.ColumnDefinitions>
         <FontIcon Glyph="&#xF026;" Foreground="{Binding State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
         <StackPanel Margin="12,0" Grid.Column="1">
-            <TextBlock Text="{Binding Title}" TextWrapping="WrapWholeWords"/>
-            <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,0,0,3" Foreground="#999999" Style="{ThemeResource CaptionTextBlockStyle}"/>
+            <TextBlock Text="{Binding Title}" TextWrapping="WrapWholeWords" MaxLines="4"/>
+            <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,0,0,4" Foreground="#888888" Style="{ThemeResource CaptionTextBlockStyle}"/>
             <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" Content="{Binding Converter={StaticResource IssueLabelsConverter}}"/>
         </StackPanel>
         <Ellipse Visibility="{Binding Assignee, Converter={StaticResource InfoDisplayConverter}}" Grid.Column="2" Margin="12,0" x:Name="assignee_icon" Width="24" Height="24" VerticalAlignment="Top">
@@ -61,6 +61,6 @@
             <FontIcon Glyph="&#xF02B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
             <TextBlock Text="{Binding Comments}" Margin="6,0,0,0"/>
         </StackPanel>
-        <TextBlock Grid.Column="4" VerticalAlignment="Top" Text="{Binding Number, Converter={StaticResource NumberConverter}}"/>
+        <TextBlock Grid.Column="4" VerticalAlignment="Top" Text="{Binding Number, Converter={StaticResource NumberConverter}}" Foreground="#888888"/>
     </Grid>
 </UserControl>
