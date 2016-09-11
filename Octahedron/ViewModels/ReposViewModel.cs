@@ -1,16 +1,14 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using Helper;
+using Octahedron.Models;
+using Octokit;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using GalaSoft.MvvmLight.Command;
-using Octahedron.Models;
-using System.Collections.ObjectModel;
-using Octokit;
-using Windows.UI.Xaml.Navigation;
-using Helper;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Octahedron.ViewModels
 {
@@ -52,6 +50,19 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _loading, value);
+            }
+        }
+
+        private string _loadingProgress;
+        public string loadingProgress
+        {
+            get
+            {
+                return _loadingProgress;
+            }
+            set
+            {
+                Set(ref _loadingProgress, value);
             }
         }
 
@@ -152,6 +163,7 @@ namespace Octahedron.ViewModels
             try
             {
                 loading = true;
+                loadingProgress = constants.r_loader.GetString("repositories_progress");
                 var r_list = await constants.g_client.Repository.GetAllForCurrent(new RepositoryRequest { Type = repoType });
                 repos = null;
                 repos = r_list.ToList();

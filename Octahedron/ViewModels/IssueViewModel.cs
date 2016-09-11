@@ -27,6 +27,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private string _loadingProgress;
+        public string loadingProgress
+        {
+            get
+            {
+                return _loadingProgress;
+            }
+            set
+            {
+                Set(ref _loadingProgress, value);
+            }
+        }
+
         private bool _owner;
         public bool owner
         {
@@ -298,9 +311,12 @@ namespace Octahedron.ViewModels
             try
             {
                 loading = true;
+                loadingProgress = constants.r_loader.GetString("info_progress");
                 owner = issueData[0] == App.user.Login;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
+                loadingProgress = constants.r_loader.GetString("comments_progress");
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
+                loadingProgress = constants.r_loader.GetString("events_progress");
                 events = (await constants.g_client.Issue.Events.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2])))
                     .Where(x => x.Event == EventInfoState.Assigned ||
                                 x.Event == EventInfoState.Closed ||

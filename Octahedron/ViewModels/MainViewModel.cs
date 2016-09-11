@@ -88,6 +88,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private string _loadingProgress;
+        public string loadingProgress
+        {
+            get
+            {
+                return _loadingProgress;
+            }
+            set
+            {
+                Set(ref _loadingProgress, value);
+            }
+        }
+
         private RelayCommand<object> _SelectionChanged;
         public RelayCommand<object> SelectionChanged
         {
@@ -285,6 +298,7 @@ namespace Octahedron.ViewModels
             try
             {
                 loading = true;
+                loadingProgress = constants.r_loader.GetString("notifications_progress");
                 var n_list = await constants.g_client.Activity.Notifications.GetAllForCurrent(new Octokit.NotificationsRequest { Before = DateTime.Now });
                 notifications = null;
                 notifications = n_list.ToList();

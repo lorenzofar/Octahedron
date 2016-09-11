@@ -145,9 +145,12 @@
             </Pivot>
         </Grid>
 
-        <Viewbox Grid.Row="1" Margin="12" MaxHeight="80" MaxWidth="80" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ProgressRing IsActive="{Binding loading}" Width="80" Height="80"/>
-        </Viewbox>
+        <StackPanel Grid.Row="1" Margin="12" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Viewbox MaxHeight="60" MaxWidth="60">
+                <ProgressRing IsActive="{Binding loading}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Width="60" Height="60"/>
+            </Viewbox>
+            <TextBlock Margin="0,12,0,0" Text="{Binding loadingProgress}"/>
+        </StackPanel>
 
     </Grid>
 </Page>

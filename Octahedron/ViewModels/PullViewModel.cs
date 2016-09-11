@@ -27,6 +27,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private string _loadingProgress;
+        public string loadingProgress
+        {
+            get
+            {
+                return _loadingProgress;
+            }
+            set
+            {
+                Set(ref _loadingProgress, value);
+            }
+        }
+
         private bool _owner;
         public bool owner
         {
@@ -131,13 +144,17 @@ namespace Octahedron.ViewModels
         private async void LoadData()
         {
             loading = true;
+            loadingProgress = constants.r_loader.GetString("info_progress");
             owner = pullData[0] == App.user.Login;
+            closeable = owner && pull.State != ItemState.Closed;
             pull = await constants.g_client.PullRequest.Get(pullData[0], pullData[1], int.Parse(pullData[2]));
+            loadingProgress = constants.r_loader.GetString("commits_progress");
             commits = await constants.g_client.PullRequest.Commits(pullData[0], pullData[1], int.Parse(pullData[2]));
             GroupCommitsList();
+            loadingProgress = constants.r_loader.GetString("comments_progress");
             comments = await constants.g_client.PullRequest.Comment.GetAll(pullData[0], pullData[1], int.Parse(pullData[2]));
-            files = await constants.g_client.PullRequest.Files(pullData[0], pullData[1], int.Parse(pullData[2]));
-            closeable = owner && pull.State != ItemState.Closed;
+            loadingProgress = constants.r_loader.GetString("changedFiles_progress");
+            files = await constants.g_client.PullRequest.Files(pullData[0], pullData[1], int.Parse(pullData[2]));            
             loading = false;
         }
 

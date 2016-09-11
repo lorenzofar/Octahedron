@@ -41,6 +41,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private string _loadingProgress;
+        public string loadingProgress
+        {
+            get
+            {
+                return _loadingProgress;
+            }
+            set
+            {
+                Set(ref _loadingProgress, value);
+            }
+        }
+
         private Repository _repo;
         public Repository repo
         {
@@ -663,16 +676,23 @@ namespace Octahedron.ViewModels
             try
             {
                 string[] repoInfo = info.ToString().Split('/');
+                loadingProgress = constants.r_loader.GetString("info_progress");
                 repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
+                loadingProgress = constants.r_loader.GetString("issues_progress");
                 issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter }, new ApiOptions { PageSize = 50, PageCount = 1 });
+                loadingProgress = constants.r_loader.GetString("pulls_progress");
                 pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState }, new ApiOptions { PageSize = 50, PageCount = 1 });
+                loadingProgress = constants.r_loader.GetString("milestones_progress");
                 milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness }, new ApiOptions { PageSize = 50, PageCount = 1 });
+                loadingProgress = constants.r_loader.GetString("contributors_progress");
                 contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+                loadingProgress = constants.r_loader.GetString("commits_progress");
                 commits = await constants.g_client.Repository.Commit.GetAll(repo.Owner.Login, repo.Name, new ApiOptions { PageSize = 50, PageCount = 1});
                 GroupCommitsList();
+                loadingProgress = constants.r_loader.GetString("code_progress");
                 content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login,repo.Name, "./");
                 if (owner)
                 {

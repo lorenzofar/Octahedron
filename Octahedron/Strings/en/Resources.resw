@@ -516,4 +516,49 @@
   <data name="added" xml:space="preserve">
     <value>added</value>
   </data>
+  <data name="changedFiles_progress" xml:space="preserve">
+    <value>Loading changed files</value>
+  </data>
+  <data name="code_progress" xml:space="preserve">
+    <value>Loading code</value>
+  </data>
+  <data name="comments_progress" xml:space="preserve">
+    <value>Loading comments</value>
+  </data>
+  <data name="commits_progress" xml:space="preserve">
+    <value>Loading commits</value>
+  </data>
+  <data name="contributors_progress" xml:space="preserve">
+    <value>Loading contributors</value>
+  </data>
+  <data name="events_progress" xml:space="preserve">
+    <value>Loading events</value>
+  </data>
+  <data name="followers_progress" xml:space="preserve">
+    <value>Loading followers</value>
+  </data>
+  <data name="following_progress" xml:space="preserve">
+    <value>Loading followed</value>
+  </data>
+  <data name="info_progress" xml:space="preserve">
+    <value>Loading info</value>
+  </data>
+  <data name="issues_progress" xml:space="preserve">
+    <value>Loading issues</value>
+  </data>
+  <data name="milestones_progress" xml:space="preserve">
+    <value>Loading milestones</value>
+  </data>
+  <data name="notifications_progress" xml:space="preserve">
+    <value>Loading notifications</value>
+  </data>
+  <data name="pulls_progress" xml:space="preserve">
+    <value>Loading pull requests</value>
+  </data>
+  <data name="repositories_progress" xml:space="preserve">
+    <value>Loading repositories</value>
+  </data>
+  <data name="users_progress" xml:space="preserve">
+    <value>Loading users</value>
+  </data>
 </root>

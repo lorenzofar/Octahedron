@@ -1,13 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Octokit;
 using Helper;
+using Octokit;
+using System.Collections.Generic;
 using Template10.Mvvm;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 
 namespace Octahedron.ViewModels
@@ -16,7 +11,20 @@ namespace Octahedron.ViewModels
     {
         private bool _loading;
         public bool loading { get { return _loading; } set { Set(ref _loading, value); } }
-        
+
+        private string _loadingProgress;
+        public string loadingProgress
+        {
+            get
+            {
+                return _loadingProgress;
+            }
+            set
+            {
+                Set(ref _loadingProgress, value);
+            }
+        }
+
         private string _query;
         public string query
         {
@@ -50,9 +58,12 @@ namespace Octahedron.ViewModels
                     _Search = new RelayCommand(async () =>
                     {
                         loading = true;
+                        loadingProgress = constants.r_loader.GetString("repositories_progress");
                         reposResult = (await constants.g_client.Search.SearchRepo(new SearchRepositoriesRequest(query))).Items;
                         //codeResult = (await constants.g_client.Search.SearchCode(new SearchCodeRequest(query))).Items;
+                        loadingProgress = constants.r_loader.GetString("issues_progress");
                         issuesResult = (await constants.g_client.Search.SearchIssues(new SearchIssuesRequest(query))).Items;
+                        loadingProgress = constants.r_loader.GetString("users_progress");
                         usersResult = (await constants.g_client.Search.SearchUsers(new SearchUsersRequest(query))).Items;
                         loading = false;
                     }, () => !string.IsNullOrWhiteSpace(query));
