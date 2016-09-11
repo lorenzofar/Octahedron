@@ -26,7 +26,8 @@
                         <Setter Target="milestone_stats.Visibility" Value="Collapsed"/>
                         <Setter Target="milestone_progress.(Grid.Row)" Value="3"/>
                         <Setter Target="milestone_progress.(Grid.Column)" Value="0"/>
-                        <Setter Target="milestone_description.Margin" Value="0,0,0,6"/>
+                        <Setter Target="milestone_description.Margin" Value="0,6,0,0"/>
+                        <Setter Target="milestone_progress.Margin" Value="0,6,0,0"/>
                         <Setter Target="right_col.Width" Value="0"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
@@ -39,6 +40,7 @@
                         <Setter Target="milestone_progress.(Grid.Row)" Value="0"/>
                         <Setter Target="milestone_progress.(Grid.Column)" Value="1"/>
                         <Setter Target="milestone_description.Margin" Value="0"/>
+                        <Setter Target="milestone_progress.Margin" Value="0"/>
                         <Setter Target="right_col.Width" Value="1*"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
@@ -65,6 +67,6 @@
             <TextBlock Text="{Binding CreatedAt, Converter={StaticResource DateConverter}}"/>
         </StackPanel>
         <TextBlock x:Name="milestone_stats" Text="{Binding Converter={StaticResource MilestoneStatsConverter}}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock x:Name="milestone_description" Grid.Row="2" Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Foreground="#999999" TextWrapping="NoWrap"/>
+        <TextBlock x:Name="milestone_description" Grid.Row="2" Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Foreground="#888888" TextWrapping="NoWrap"/>
     </Grid>
 </UserControl>
