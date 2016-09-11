@@ -43,7 +43,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Top">
-            <TextBlock Text="{Binding FullName}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <TextBlock Text="{Binding FullName}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,-4,0,0"/>
             <TextBlock x:Name="description_txt" Text="{Binding Description}" Visibility="{Binding Description, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
             <TextBlock Text="{Binding PushedAt, Converter={StaticResource UpdateDateConverter}}" Margin="0,8,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="#888888"/>
         </StackPanel>

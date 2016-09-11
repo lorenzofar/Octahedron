@@ -46,7 +46,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <FontIcon Glyph="&#xF026;" Foreground="{Binding State, Converter={StaticResource IssueStateConverter}}" VerticalAlignment="Top" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
-        <Grid Margin="8,-4,0,0" Grid.Column="1" VerticalAlignment="Top">
+        <Grid Margin="8,0,0,0" Grid.Column="1" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -57,7 +57,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding Title}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}"/>
+                <TextBlock Text="{Binding Title}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Margin="0,-6,0,0"/>
                 <TextBlock Grid.Column="1" Text="{Binding Number, Converter={StaticResource NumberConverter}}" Foreground="#888888" FontWeight="SemiBold"/>
             </Grid>
             <TextBlock Grid.Row="1" Text="{Binding Body}" Visibility="{Binding Body, Converter={StaticResource InfoDisplayConverter}}" Margin="0,8,0,0" TextWrapping="Wrap" TextTrimming="WordEllipsis" MaxLines="4"/>
