@@ -88,7 +88,7 @@ namespace Octahedron.ViewModels
                             var repoData = new Dictionary<int, string>();
                             repoData.Add(0, repo.Owner.Login);
                             repoData.Add(1, repo.Name);
-                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repoData);
                         }
                     });
                 }
