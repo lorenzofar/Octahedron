@@ -21,11 +21,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Ellipse Width="36" Height="36" Fill="#888888"/>
-        <FontIcon Glyph="{Binding Event, Converter={StaticResource EventIconConverter}}" Margin="4,0,0,0" VerticalAlignment="Center" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+        <FontIcon Glyph="{Binding Event, Converter={StaticResource EventIconConverter}}" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
 
         <Grid Margin="12,0" Grid.Column="1">
-            <ContentPresenter Content="{Binding Converter={StaticResource EventConverter}}" VerticalAlignment="Center"/>
+            <ContentPresenter Content="{Binding Converter={StaticResource EventConverter}}"/>
         </Grid>
     </Grid>
 </UserControl>
