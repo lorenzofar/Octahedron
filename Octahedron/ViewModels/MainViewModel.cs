@@ -265,7 +265,11 @@ namespace Octahedron.ViewModels
                                     pullUrl = pullUrl.Replace("https://api.github.com/repos/", "");
                                     pullUrl = pullUrl.Replace("/pulls", "");
                                     var pullRawData = pullUrl.Split('/');
-                                    string pullData = $"{pullRawData[0]}/{pullRawData[1]}/{pullRawData[2]}";
+                                    var pullData = new Dictionary<int, string>();
+                                    for(int i = 0; i<3; i++)
+                                    {
+                                        pullData.Add(i, pullRawData[i]);
+                                    }
                                     App.Current.NavigationService.Navigate(typeof(Views.PullPage), pullData);
                                     break;
                                 case "issue":
@@ -273,7 +277,11 @@ namespace Octahedron.ViewModels
                                     issueUrl = issueUrl.Replace("https://api.github.com/repos/", "");
                                     issueUrl = issueUrl.Replace("/issues", "");
                                     var issueRawData = issueUrl.Split('/');
-                                    string issueData = $"{issueRawData[0]}/{issueRawData[1]}/{issueRawData[2]}";
+                                    var issueData = new Dictionary<int, string>();
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        issueData.Add(i, issueRawData[i]);
+                                    }
                                     App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                                     break;
                                 case "release":

@@ -220,7 +220,10 @@ namespace Octahedron.ViewModels
                         if (args != null && args.ClickedItem != null)
                         {
                             var repo = args.ClickedItem as Repository;
-                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
+                            var repoData = new Dictionary<int, string>();
+                            repoData.Add(0, repo.Owner.Login);
+                            repoData.Add(1, repo.Name);
+                            App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repoData);
                         }
                     });
                 }

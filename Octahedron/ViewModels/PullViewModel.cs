@@ -12,7 +12,7 @@ namespace Octahedron.ViewModels
 {
     public class PullViewModel : ViewModelBase
     {
-        private string[] pullData { get; set; }
+        private Dictionary<int, string> pullData { get; set; }
 
         private bool _loading;
         public bool loading
@@ -135,7 +135,7 @@ namespace Octahedron.ViewModels
         {
             if (parameter != null && mode != NavigationMode.Back)
             {
-                pullData = parameter.ToString().Split('/');
+                pullData = parameter as Dictionary<int, string>;
                 LoadData();
             }
             return Task.CompletedTask;

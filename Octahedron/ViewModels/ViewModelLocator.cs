@@ -11,7 +11,6 @@
             RepoDetail = new RepoDetailViewModel();
             Search = new SearchViewModel();
             Issue = new IssueViewModel();
-            NewIssue = new NewIssueViewModel();
             Pull = new PullViewModel();
             Assign = new AssignViewModel();
             Settings = new SettingsViewModel();
@@ -32,7 +31,13 @@
 
         public IssueViewModel Issue { get; set; }
 
-        public NewIssueViewModel NewIssue { get; set; }
+        public NewIssueViewModel NewIssue
+        {
+            get
+            {
+                return new NewIssueViewModel();
+            }
+        }
 
         public PullViewModel Pull { get; set; }
 

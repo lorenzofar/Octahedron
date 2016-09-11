@@ -567,4 +567,16 @@
   <data name="lockBtn.Label" xml:space="preserve">
     <value>Lock</value>
   </data>
+  <data name="editBtn_bar.Label" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="addIssue_progress" xml:space="preserve">
+    <value>Adding issue</value>
+  </data>
+  <data name="editIssue" xml:space="preserve">
+    <value>Edit issue</value>
+  </data>
+  <data name="editIssue_progress" xml:space="preserve">
+    <value>Updating issue</value>
+  </data>
 </root>

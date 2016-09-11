@@ -563,7 +563,10 @@ namespace Octahedron.ViewModels
                     {
                         var args = e as ItemClickEventArgs;
                         var issue = args.ClickedItem as Issue;
-                        string issueData = $"{repo.Owner.Login}/{repo.Name}/{issue.Number}";
+                        var issueData = new Dictionary<int, string>();
+                        issueData.Add(0, repo.Owner.Login);
+                        issueData.Add(1, repo.Name);
+                        issueData.Add(2, issue.Number.ToString());
                         App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                     });
                 }
@@ -582,7 +585,10 @@ namespace Octahedron.ViewModels
                     {
                         var args = e as ItemClickEventArgs;
                         var pull = args.ClickedItem as PullRequest;
-                        string pullData = $"{repo.Owner.Login}/{repo.Name}/{pull.Number}";
+                        var pullData = new Dictionary<int, string>();
+                        pullData.Add(0, repo.Owner.Login);
+                        pullData.Add(1, repo.Name);
+                        pullData.Add(2, pull.Number.ToString());
                         App.Current.NavigationService.Navigate(typeof(Views.PullPage), pullData);
                     });
                 }
@@ -599,8 +605,13 @@ namespace Octahedron.ViewModels
                 {
                     _AddIssue = new RelayCommand(() =>
                     {
-                        string repoData = $"{repo.Owner.Login}/{repo.Name}/{repo.Id}";
-                        App.Current.NavigationService.Navigate(typeof(Views.NewIssuePage), repoData);
+                        var request = new Dictionary<string, string>();
+                        request.Add("kind", "0"); //SET REQUEST KIND TO NEW
+                        request.Add("owner", repo.Owner.Login);
+                        request.Add("name", repo.Name);
+                        request.Add("id", repo.Id.ToString());
+                        request.Add("issueNumber", null);
+                        App.Current.NavigationService.Navigate(typeof(Views.NewIssuePage), request);
                     });
                 }
                 return _AddIssue;
@@ -661,9 +672,9 @@ namespace Octahedron.ViewModels
         {
             if (parameter != null)
             {
-                if (repo == null || parameter.ToString() != $"{repo.Owner.Login}/{repo.Name}")
+                var data = parameter as Dictionary<int, string>;
+                if (repo == null || (data[0] != repo.Owner.Login || data[1] != repo.Name))
                 {
-                    System.Diagnostics.Debug.WriteLine(App.Current.NavigationService.CurrentPageType);
                     LoadRepo(parameter);
                 }
             }
@@ -675,7 +686,7 @@ namespace Octahedron.ViewModels
             loading = true;
             try
             {
-                string[] repoInfo = info.ToString().Split('/');
+                var repoInfo = info as Dictionary<int, string>;
                 loadingProgress = constants.r_loader.GetString("info_progress");
                 repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;

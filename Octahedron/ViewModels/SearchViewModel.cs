@@ -85,6 +85,9 @@ namespace Octahedron.ViewModels
                         if (args != null && args.ClickedItem != null)
                         {
                             var repo = args.ClickedItem as Repository;
+                            var repoData = new Dictionary<int, string>();
+                            repoData.Add(0, repo.Owner.Login);
+                            repoData.Add(1, repo.Name);
                             App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.FullName);
                         }
                     });
@@ -109,8 +112,12 @@ namespace Octahedron.ViewModels
                             string url = issue.Url.ToString();
                             url = url.Replace("https://api.github.com/repos/", "");
                             url = url.Replace("/issues", "");
-                            var data = url.Split('/');
-                            string issueData = $"{data[0]}/{data[1]}/{issue.Number}";
+                            var issueRawData = url.Split('/');
+                            var issueData = new Dictionary<int, string>();
+                            for (int i = 0; i < 3; i++)
+                            {
+                                issueData.Add(i, issueRawData[i]);
+                            }
                             App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                         }
                     });

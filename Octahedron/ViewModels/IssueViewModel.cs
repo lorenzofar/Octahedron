@@ -12,7 +12,7 @@ namespace Octahedron.ViewModels
 {
     public class IssueViewModel : ViewModelBase
     {
-        private string[] issueData { get; set; }
+        private Dictionary<int, string> issueData { get; set; }
 
         private bool _loading;
         public bool loading
@@ -97,9 +97,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_CloseIssue == null)
+                if (_CloseIssue == null)
                 {
-                    _CloseIssue = new RelayCommand(async() =>
+                    _CloseIssue = new RelayCommand(async () =>
                     {
                         await constants.g_client.Issue.Update(issueData[0], issueData[1], int.Parse(issueData[2]), new IssueUpdate { State = ItemState.Closed });
                         LoadData();
@@ -114,9 +114,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_AssignIssue == null)
+                if (_AssignIssue == null)
                 {
-                    _AssignIssue = new RelayCommand<string>(async(string assignee) =>
+                    _AssignIssue = new RelayCommand<string>(async (string assignee) =>
                     {
                         try
                         {
@@ -144,13 +144,35 @@ namespace Octahedron.ViewModels
             {
                 if (_LockIssue == null)
                 {
-                    _LockIssue = new RelayCommand(async() =>
+                    _LockIssue = new RelayCommand(async () =>
                     {
                         await constants.g_client.Issue.Lock(issueData[0], issueData[1], int.Parse(issueData[2]));
                         LoadData();
                     });
                 }
                 return _LockIssue;
+            }
+        }
+
+        private RelayCommand _EditIssue;
+        public RelayCommand EditIssue
+        {
+            get
+            {
+                if (_EditIssue == null)
+                {
+                    _EditIssue = new RelayCommand(() =>
+                    {
+                        var request = new Dictionary<string, string>();
+                        request.Add("kind", "1"); //SET REQUEST KIND TO EDIT
+                        request.Add("owner", issueData[0]);
+                        request.Add("name", issueData[1]);
+                        request.Add("id", null);
+                        request.Add("issueNumber", issue.Number.ToString());
+                        App.Current.NavigationService.Navigate(typeof(Views.NewIssuePage), request);
+                    });
+                }
+                return _EditIssue;
             }
         }
 
@@ -205,9 +227,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_RemoveComment == null)
+                if (_RemoveComment == null)
                 {
-                    _RemoveComment = new RelayCommand<object>(async(object comment) =>
+                    _RemoveComment = new RelayCommand<object>(async (object comment) =>
                     {
                         await constants.g_client.Issue.Comment.Delete(issueData[0], issueData[1], int.Parse(comment.ToString()));
                         LoadData();
@@ -222,9 +244,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_EditComment == null)
+                if (_EditComment == null)
                 {
-                    _EditComment = new RelayCommand<object>(async(object commentInfo) =>
+                    _EditComment = new RelayCommand<object>(async (object commentInfo) =>
                     {
                         string[] info = commentInfo as string[];
                         await constants.g_client.Issue.Comment.Update(issueData[0], issueData[1], int.Parse(info[0]), info[1]);
@@ -298,9 +320,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_RemoveLabel == null)
+                if (_RemoveLabel == null)
                 {
-                    _RemoveLabel = new RelayCommand<object>(async(object label) =>
+                    _RemoveLabel = new RelayCommand<object>(async (object label) =>
                     {
                         await constants.g_client.Issue.Labels.RemoveFromIssue(issueData[0], issueData[1], int.Parse(issueData[2]), label.ToString());
                         LoadData();
@@ -317,7 +339,7 @@ namespace Octahedron.ViewModels
         {
             if (parameter != null && mode != NavigationMode.Back)
             {
-                issueData = parameter.ToString().Split('/');
+                issueData = parameter as Dictionary<int, string>;
                 LoadData();
             }
             return Task.CompletedTask;
