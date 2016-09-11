@@ -564,4 +564,7 @@
   <data name="users_progress" xml:space="preserve">
     <value>Loading users</value>
   </data>
+  <data name="lockBtn.Label" xml:space="preserve">
+    <value>Lock</value>
+  </data>
 </root>

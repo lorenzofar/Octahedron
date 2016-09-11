@@ -137,6 +137,23 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private RelayCommand _LockIssue;
+        public RelayCommand LockIssue
+        {
+            get
+            {
+                if (_LockIssue == null)
+                {
+                    _LockIssue = new RelayCommand(async() =>
+                    {
+                        await constants.g_client.Issue.Lock(issueData[0], issueData[1], int.Parse(issueData[2]));
+                        LoadData();
+                    });
+                }
+                return _LockIssue;
+            }
+        }
+
         #region COMMENTS
         private IReadOnlyList<IssueComment> _comments;
         public IReadOnlyList<IssueComment> comments
