@@ -1,15 +1,13 @@
-﻿using Helper;
-using Octahedron.ViewModels;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
 
 namespace Octahedron.Converters
 {
-    public class NewIssueConverter : IValueConverter
+    public class CapitalizeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {            
-            return $"{constants.r_loader.GetString(NewIssueViewModel.editing ? "editIssue" : "newIssue")} - {value}".ToUpper();
+        {
+            return value.ToString().ToUpper();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

@@ -27,7 +27,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="pullDetail_header" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720" />
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="pullDetail_header" Style="{StaticResource pageHeader}"/>
 
         <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <Grid.RowDefinitions>

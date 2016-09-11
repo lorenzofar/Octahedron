@@ -579,4 +579,10 @@
   <data name="editIssue_progress" xml:space="preserve">
     <value>Updating issue</value>
   </data>
+  <data name="notifications_header.Text" xml:space="preserve">
+    <value>NOTIFICATIONS</value>
+  </data>
+  <data name="repositories_header.Text" xml:space="preserve">
+    <value>REPOSITORIES</value>
+  </data>
 </root>

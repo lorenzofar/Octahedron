@@ -13,6 +13,7 @@
     <Page.Resources>
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:NewIssueConverter x:Key="NewIssueConverter"/>
+        <converters:CapitalizeConverter x:Key="CapitalizeConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -22,7 +23,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repoData[1], Converter={StaticResource NewIssueConverter}}" FontWeight="Bold" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repoData[1], Converter={StaticResource NewIssueConverter}}" Style="{StaticResource pageHeader}"/>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <StackPanel Margin="12">

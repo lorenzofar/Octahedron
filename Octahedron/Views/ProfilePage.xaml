@@ -21,6 +21,7 @@
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
         <converters:ListPlaceholderConverter x:Key="ListPlaceholderConverter"/>
+        <converters:CapitalizeConverter x:Key="CapitalizeConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -29,7 +30,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding user.Login}" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding user.Login, Converter={StaticResource CapitalizeConverter}}" Style="{StaticResource pageHeader}"/>
         <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>

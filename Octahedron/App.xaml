@@ -4,10 +4,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Octahedron"
     xmlns:common="using:Template10.Common"
+    xmlns:controls="using:Template10.Controls"
     xmlns:viewModels="using:Octahedron.ViewModels">
 
     <common:BootStrapper.Resources>
         <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
+        
+        <!--STYLES-->
+        <Style x:Key="pageHeader" TargetType="controls:PageHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BackButtonVisibility" Value="Collapsed"/>
+            <Setter Property="VisualStateNarrowMinWidth" Value="0"/>
+            <Setter Property="VisualStateNormalMinWidth" Value="720"/>
+        </Style>
+        
     </common:BootStrapper.Resources>
 
 </common:BootStrapper>

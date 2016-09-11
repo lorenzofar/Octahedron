@@ -30,7 +30,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:PageHeader Frame="{x:Bind Frame}" Text="REPOSITORIES" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="repositories_header" Style="{StaticResource pageHeader}"/>
 
         <Grid Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <ListView x:Name="repos_listview" ItemsSource="{Binding Source={StaticResource reposCVS}}" SelectionMode="None" IsItemClickEnabled="True">

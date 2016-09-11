@@ -24,6 +24,7 @@
         <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <converters:BoolConverter x:Key="BoolConverter"/>
         <converters:ContentPathConverter x:Key="ContentPathConverter"/>
+        <converters:CapitalizeConverter x:Key="CapitalizeConverter"/>
         <CollectionViewSource x:Name="commitsCVS" Source="{Binding commitGroups}" IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -71,7 +72,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repo.Name}" BackButtonVisibility="Collapsed" VisualStateNarrowMinWidth="0" VisualStateNormalMinWidth="720"/>
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repo.Name, Converter={StaticResource CapitalizeConverter}}" Style="{StaticResource pageHeader}"/>
 
         <Pivot Grid.Row="1" SelectedIndex="{Binding pivotIndex, Mode=TwoWay}" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <PivotItem>

@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Converters\AssigneeConverter.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\CapitalizeConverter.cs" />
     <Compile Include="Converters\ChangesNumberConverter.cs" />
     <Compile Include="Converters\CodeIconConverter.cs" />
     <Compile Include="Converters\ColorBrushConverter.cs" />
