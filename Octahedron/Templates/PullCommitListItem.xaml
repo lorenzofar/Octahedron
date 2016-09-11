@@ -47,7 +47,7 @@
 
         <FontIcon Glyph="&#xF01F;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons" VerticalAlignment="Top"/>
         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="12,0">
-            <TextBlock FontWeight="SemiBold" Text="{Binding Commit.Message}"/>
+            <TextBlock FontWeight="SemiBold" Text="{Binding Commit.Message}" TextWrapping="Wrap"/>
             <TextBlock Text="{Binding Converter={StaticResource CommitInfoConverter}, ConverterParameter=pull}" Foreground="#999999"/>
         </StackPanel>
         <StackPanel x:Name="comments_panel" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2">
