@@ -86,7 +86,7 @@
                 </Ellipse>
                 <StackPanel Margin="0,12" Grid.Column="1" VerticalAlignment="Center" >
                     <ScrollViewer x:Name="title_panel" VerticalScrollBarVisibility="Auto">
-                        <TextBlock Text="{Binding issue.Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="{Binding issue.Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap"/>
                     </ScrollViewer>
                     <TextBlock Text="{Binding issue, Converter={StaticResource IssueDateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
                 </StackPanel>
