@@ -66,6 +66,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private bool _locked;
+        public bool locked
+        {
+            get
+            {
+                return _locked;
+            }
+            set
+            {
+                Set(ref _locked, value);
+            }
+        }
+
         private Issue _issue;
         public Issue issue
         {
@@ -146,7 +159,14 @@ namespace Octahedron.ViewModels
                 {
                     _LockIssue = new RelayCommand(async () =>
                     {
-                        await constants.g_client.Issue.Lock(issueData[0], issueData[1], int.Parse(issueData[2]));
+                        if (locked)
+                        {
+                            await constants.g_client.Issue.Lock(issueData[0], issueData[1], int.Parse(issueData[2]));
+                        }
+                        else
+                        {
+                            await constants.g_client.Issue.Unlock(issueData[0], issueData[1], int.Parse(issueData[2]));
+                        }
                         LoadData();
                     });
                 }
@@ -353,6 +373,7 @@ namespace Octahedron.ViewModels
                 loadingProgress = constants.r_loader.GetString("info_progress");
                 owner = issueData[0] == App.user.Login;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
+                locked = issue.Locked;
                 loadingProgress = constants.r_loader.GetString("comments_progress");
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
                 loadingProgress = constants.r_loader.GetString("events_progress");
