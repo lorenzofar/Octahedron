@@ -52,7 +52,7 @@
             <TextBlock Text="{Binding Converter={StaticResource IssueDateConverter}}" Margin="0,0,0,4" Foreground="#888888" Style="{ThemeResource CaptionTextBlockStyle}"/>
             <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" Content="{Binding Converter={StaticResource IssueLabelsConverter}}"/>
         </StackPanel>
-        <Ellipse Visibility="{Binding Assignee, Converter={StaticResource InfoDisplayConverter}}" Grid.Column="2" Margin="12,0" x:Name="assignee_icon" Width="24" Height="24" VerticalAlignment="Top">
+        <Ellipse Visibility="{Binding Assignee, Converter={StaticResource InfoDisplayConverter}}" ToolTipService.ToolTip="{Binding Assignee.Login}" Grid.Column="2" Margin="12,0" x:Name="assignee_icon" Width="24" Height="24" VerticalAlignment="Top">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding Assignee.AvatarUrl}"/>
             </Ellipse.Fill>
