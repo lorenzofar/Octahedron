@@ -73,7 +73,7 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="0" Grid.Column="0" Glyph="&#xF08D;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                                     <FontIcon Visibility="{Binding user.Email, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="1" Grid.Column="0" Glyph="&#xF03B;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
-                                    <FontIcon Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xF0B6;" FontFamily="octicons"/>
+                                    <FontIcon Visibility="{Binding user.Blog, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="2" Grid.Column="0" Glyph="&#xF0B6;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                                     <FontIcon Visibility="{Binding user.Company, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="3" Grid.Column="0" Glyph="&#xF0D3;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                                     <FontIcon Visibility="{Binding user.CreatedAt, Converter={StaticResource DisplayConverter}}" Margin="6" Grid.Row="4" Grid.Column="0" Glyph="&#xF068;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                                     <TextBlock Visibility="{Binding user.Location, Converter={StaticResource DisplayConverter}}" Margin="12,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding user.Location}"/>
