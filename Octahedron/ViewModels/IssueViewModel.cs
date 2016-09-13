@@ -53,6 +53,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private bool _creator;
+        public bool creator
+        {
+            get
+            {
+                return _creator;
+            }
+            set
+            {
+                Set(ref _creator, value);
+            }
+        }
+
         private bool _closeable;
         public bool closeable
         {
@@ -374,6 +387,8 @@ namespace Octahedron.ViewModels
                 owner = issueData[0] == App.user.Login;
                 issue = await constants.g_client.Issue.Get(issueData[0], issueData[1], int.Parse(issueData[2]));
                 locked = issue.Locked;
+                creator = issue.User.Login == App.user.Login;
+                closeable = creator && issue.State != ItemState.Closed;
                 loadingProgress = constants.r_loader.GetString("comments_progress");
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
                 loadingProgress = constants.r_loader.GetString("events_progress");
@@ -390,7 +405,6 @@ namespace Octahedron.ViewModels
                                 x.Event == EventInfoState.Unassigned ||
                                 x.Event == EventInfoState.Unlabeled ||
                                 x.Event == EventInfoState.Unlocked).ToList();
-                closeable = owner && issue.State != ItemState.Closed;
                 loading = false;
             }
             catch
