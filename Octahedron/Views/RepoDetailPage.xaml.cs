@@ -1,6 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight.Messaging;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace Octahedron.Views
 {
@@ -9,10 +7,6 @@ namespace Octahedron.Views
         public RepoDetailPage()
         {
             this.InitializeComponent();
-            Messenger.Default.Register<MvvmMessaging.ReadmeMessage>(this, message =>
-            {
-                readmeView.NavigateToString(message.html);
-            });
         }
     }
 }

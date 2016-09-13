@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Octahedron_StoreKey.pfx</PackageCertificateKeyFile>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>17A54216B2FAC437DD1090A0E218AB151AD93ECD</PackageCertificateThumbprint>
@@ -418,6 +418,10 @@
     <Reference Include="Syncfusion.SfShared.UWP, Version=14.2460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Assemblies for Universal Windows\10.0\Syncfusion.SfShared.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="UniversalMarkdown, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\UniversalMarkdown\UniversalMarkdown\bin\Release\UniversalMarkdown.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -344,7 +344,7 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _readme, value);
-                Messenger.Default.Send<MvvmMessaging.ReadmeMessage>(new MvvmMessaging.ReadmeMessage { html = _readme });
+                //Messenger.Default.Send<MvvmMessaging.ReadmeMessage>(new MvvmMessaging.ReadmeMessage { html = _readme });
             }
         }
 
@@ -692,6 +692,7 @@ namespace Octahedron.ViewModels
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
+                readme = (await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name)).Content;
                 loadingProgress = constants.r_loader.GetString("issues_progress");
                 issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter }, new ApiOptions { PageSize = 50, PageCount = 1 });
                 loadingProgress = constants.r_loader.GetString("pulls_progress");
@@ -709,8 +710,6 @@ namespace Octahedron.ViewModels
                 {
                     collaborators = await constants.g_client.Repository.Collaborator.GetAll(repo.Owner.Login, repo.Name);
                 }
-                var rawReadme = await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name);
-                readme = await constants.g_client.Miscellaneous.RenderRawMarkdown(rawReadme.Content.ToString());
             }
             catch(ApiException readMeException)
             {

@@ -10,6 +10,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:behaviors="using:Template10.Behaviors"
+    xmlns:markdown="using:UniversalMarkdown"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RepoDetail}"
@@ -128,7 +129,7 @@
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
-                        <WebView Grid.Row="1" x:Name="readmeView" Margin="0,12"/>
+                        <markdown:MarkdownTextBlock x:Name="readme" Markdown="{Binding readme}" Grid.Row="1" Margin="0,12"/>
                     </Grid>
                 </ScrollViewer>
             </PivotItem>
