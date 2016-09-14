@@ -778,6 +778,7 @@ namespace Octahedron.ViewModels
             issuesFilterIndex = 0;
             pullsIndex = 1;
             milestonesIndex = 1;
+            readme = string.Empty;
             try
             {
                 var repoInfo = info as Dictionary<int, string>;
