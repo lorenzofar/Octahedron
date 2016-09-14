@@ -762,7 +762,7 @@ namespace Octahedron.ViewModels
             loading = true;
             pivotIndex = 0;
             issuesIndex = 1;
-            issuesFilterIndex = 1;
+            issuesFilterIndex = 0;
             pullsIndex = 1;
             milestonesIndex = 1;
             try

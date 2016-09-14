@@ -378,12 +378,12 @@
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssues}" CommandParameter="0" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="filter_open" Command="{Binding FilterIssues}" CommandParameter="1" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                         <MenuFlyoutItem x:Uid="filter_closed" Command="{Binding FilterIssues}" CommandParameter="2" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
-                        <MenuFlyoutSeparator/>
+                        <!--<MenuFlyoutSeparator/>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssuesUser}" CommandParameter="0" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
                         <MenuFlyoutItem x:Uid="filter_assigned" Command="{Binding FilterIssuesUser}" CommandParameter="1" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=1}"/>
                         <MenuFlyoutItem x:Uid="filter_created" Command="{Binding FilterIssuesUser}" CommandParameter="2" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=2}"/>
                         <MenuFlyoutItem x:Uid="filter_mentioned" Command="{Binding FilterIssuesUser}" CommandParameter="3" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=3}"/>
-                        <MenuFlyoutItem x:Uid="filter_subscribed" Command="{Binding FilterIssuesUser}" CommandParameter="4" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>
+                        <MenuFlyoutItem x:Uid="filter_subscribed" Command="{Binding FilterIssuesUser}" CommandParameter="4" Background="{Binding issuesFilterIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=4}"/>-->
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <interactivity:Interaction.Behaviors>
