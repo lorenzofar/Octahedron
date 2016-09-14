@@ -585,4 +585,7 @@
   <data name="repositories_header.Text" xml:space="preserve">
     <value>REPOSITORIES</value>
   </data>
+  <data name="removed" xml:space="preserve">
+    <value>removed</value>
+  </data>
 </root>
