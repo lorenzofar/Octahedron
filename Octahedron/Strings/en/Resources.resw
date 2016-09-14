@@ -585,6 +585,15 @@
   <data name="repositories_header.Text" xml:space="preserve">
     <value>REPOSITORIES</value>
   </data>
+  <data name="eventAssigned" xml:space="preserve">
+    <value>assigned to</value>
+  </data>
+  <data name="eventSelfAssigned" xml:space="preserve">
+    <value>self-assigned this</value>
+  </data>
+  <data name="eventUnAssigned" xml:space="preserve">
+    <value>unassigned </value>
+  </data>
   <data name="removed" xml:space="preserve">
     <value>removed</value>
   </data>

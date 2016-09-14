@@ -23,7 +23,14 @@ namespace Octahedron.Converters
                 {
                     case EventInfoState.Assigned:
                     case EventInfoState.Unassigned:
-                        return null;
+                        StackPanel assignPanel = new StackPanel();
+                        StackPanel assignTextPanel = new StackPanel { Orientation = Orientation.Horizontal };
+                        assignTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        assignTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString(eventType == EventInfoState.Assigned ? eventInfo.Assignee.Login == eventInfo.Actor.Login ? "eventSelfAssigned" : "eventAssigned" : "eventUnassigned"), Margin = new Thickness(6, 0, 6, 0) });
+                        assignTextPanel.Children.Add(new TextBlock { Text = eventInfo.Assignee.Login, FontWeight = FontWeights.Bold, Visibility = eventInfo.Assignee.Login == eventInfo.Actor.Login ? Visibility.Collapsed : Visibility.Visible });
+                        assignPanel.Children.Add(assignTextPanel);
+                        assignPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return assignPanel;
                     case EventInfoState.Labeled:
                     case EventInfoState.Unlabeled:
                         StackPanel panel = new StackPanel();
