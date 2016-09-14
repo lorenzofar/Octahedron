@@ -718,7 +718,7 @@ namespace Octahedron.ViewModels
         private async Task LoadIssues()
         {
             loadingProgress = constants.r_loader.GetString("issues_progress");
-            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter }, new ApiOptions { PageSize = 50, PageCount = 1 });
+            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState}, new ApiOptions { PageSize = 50, PageCount = 1 });
         }
 
         private async Task LoadPulls()
