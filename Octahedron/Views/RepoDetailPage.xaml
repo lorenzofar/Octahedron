@@ -129,7 +129,13 @@
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
-                        <markdown:MarkdownTextBlock x:Name="readme" Markdown="{Binding readme}" Grid.Row="1" Margin="0,12"/>
+                        <markdown:MarkdownTextBlock x:Name="readme" Markdown="{Binding readme}" Grid.Row="1" Margin="0,12">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="OnMarkdownLinkTapped">
+                                    <core:InvokeCommandAction Command="{Binding HandleReadmeClick}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </markdown:MarkdownTextBlock>
                     </Grid>
                 </ScrollViewer>
             </PivotItem>
