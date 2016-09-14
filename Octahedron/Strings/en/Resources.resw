@@ -597,4 +597,7 @@
   <data name="removed" xml:space="preserve">
     <value>removed</value>
   </data>
+  <data name="branches_progress" xml:space="preserve">
+    <value>Loading branches</value>
+  </data>
 </root>

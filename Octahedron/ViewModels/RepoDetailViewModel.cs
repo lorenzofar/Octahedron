@@ -364,6 +364,19 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private IReadOnlyList<Branch> _branches;
+        public IReadOnlyList<Branch> branches
+        {
+            get
+            {
+                return _branches;
+            }
+            set
+            {
+                Set(ref _branches, value);
+            }
+        }
+
         #region COMMANDS
         private RelayCommand _WatchRepo;
         public RelayCommand WatchRepo
@@ -774,6 +787,8 @@ namespace Octahedron.ViewModels
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
                 readme = (await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name)).Content;
+                loadingProgress = constants.r_loader.GetString("branches_progress");
+                branches = await constants.g_client.Repository.Branch.GetAll(repo.Id);
                 await LoadIssues();
                 await LoadPulls();
                 await LoadMilestones();
