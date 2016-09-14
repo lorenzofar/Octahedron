@@ -482,7 +482,10 @@ namespace Octahedron.ViewModels
                 {
                     _OpenParent = new RelayCommand<object>((e) =>
                     {
-                        App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repo.Parent.FullName);
+                        var repoData = new Dictionary<int, string>();
+                        repoData.Add(0, repo.Parent.Owner.Login);
+                        repoData.Add(1, repo.Parent.Name);
+                        App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repoData);
                     });
                 }
                 return _OpenParent;
@@ -496,7 +499,7 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterIssues == null)
                 {
-                    _FilterIssues = new RelayCommand<object>(async(index) =>
+                    _FilterIssues = new RelayCommand<object>(async (index) =>
                     {
                         loading = true;
                         issuesIndex = int.Parse(index.ToString());
@@ -515,7 +518,7 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterIssuesUser == null)
                 {
-                    _FilterIssuesUser = new RelayCommand<object>(async(index) =>
+                    _FilterIssuesUser = new RelayCommand<object>(async (index) =>
                     {
                         loading = true;
                         issuesFilterIndex = int.Parse(index.ToString());
@@ -534,7 +537,7 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterPulls == null)
                 {
-                    _FilterPulls = new RelayCommand<object>(async(index) =>
+                    _FilterPulls = new RelayCommand<object>(async (index) =>
                     {
                         loading = true;
                         pullsIndex = int.Parse(index.ToString());
@@ -553,7 +556,7 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterMilestones == null)
                 {
-                    _FilterMilestones = new RelayCommand<object>(async(index) =>
+                    _FilterMilestones = new RelayCommand<object>(async (index) =>
                     {
                         loading = true;
                         milestonesIndex = int.Parse(index.ToString());
@@ -685,9 +688,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_HandleReadmeClick == null)
+                if (_HandleReadmeClick == null)
                 {
-                    _HandleReadmeClick = new RelayCommand<object>(async(e) =>
+                    _HandleReadmeClick = new RelayCommand<object>(async (e) =>
                     {
                         var args = e as OnMarkdownLinkTappedArgs;
                         await Windows.System.Launcher.LaunchUriAsync(new Uri(args.Link));
