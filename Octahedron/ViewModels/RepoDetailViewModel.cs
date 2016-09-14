@@ -787,7 +787,6 @@ namespace Octahedron.ViewModels
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
-                readme = (await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name)).Content;
                 loadingProgress = constants.r_loader.GetString("branches_progress");
                 branches = await constants.g_client.Repository.Branch.GetAll(repo.Id);
                 await LoadIssues();
@@ -796,6 +795,7 @@ namespace Octahedron.ViewModels
                 await LoadContributors();
                 await LoadCommits();
                 await LoadContent();
+                readme = (await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name)).Content;
             }
             catch (ApiException readMeException)
             {
