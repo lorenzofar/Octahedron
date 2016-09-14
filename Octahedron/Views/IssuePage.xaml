@@ -79,7 +79,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Ellipse Margin="12" Width="48" Height="48" VerticalAlignment="Center">
+                <Ellipse Margin="12" Width="48" Height="48" ToolTipService.ToolTip="{Binding issue.User.Login}" VerticalAlignment="Center">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding issue.User.AvatarUrl}"/>
                     </Ellipse.Fill>
