@@ -1,4 +1,5 @@
-﻿using Octokit;
+﻿using Helper;
+using Octokit;
 using System;
 using Windows.UI.Xaml.Data;
 
@@ -11,20 +12,19 @@ namespace Octahedron.Converters
             if (value != null)
             {
                 PullRequest pr = value as PullRequest;
-                var user = pr.User.Login;
-                if(pr.State == ItemState.Open)
+                if (pr.State == ItemState.Open)
                 {
-                    return String.Format(Helper.constants.r_loader.GetString("openDate"), Helper.constants.shortDateFormatter.Format(pr.CreatedAt.DateTime), user);
+                    return String.Format(constants.r_loader.GetString("openDate"), pr.User.Login, utilities.FormatDate(pr.CreatedAt.DateTime));
                 }
                 else
                 {
                     if (pr.Merged)
                     {
-                        return String.Format(Helper.constants.r_loader.GetString("mergeDate"), Helper.constants.shortDateFormatter.Format(pr.MergedAt.Value));
+                        return String.Format(constants.r_loader.GetString("mergeDate"), pr.MergedBy.Login, utilities.FormatDate(pr.MergedAt.Value.DateTime));
                     }
                     else
                     {
-                        return String.Format(Helper.constants.r_loader.GetString("closedDate"), Helper.constants.shortDateFormatter.Format(pr.ClosedAt.Value), string.Empty);
+                        return String.Format(constants.r_loader.GetString("closedDate"), string.Empty, utilities.FormatDate(pr.ClosedAt.Value.DateTime));
                     }
                 }
             }
