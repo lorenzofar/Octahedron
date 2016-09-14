@@ -20,12 +20,12 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Ellipse Width="48" Height="48" VerticalAlignment="Top">
+        <Ellipse Width="36" Height="36" VerticalAlignment="Top">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding User.AvatarUrl}"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Polygon Grid.Column="1" Margin="4,24,0,0" Points="0,0 12,0 12,12" VerticalAlignment="Top">
+        <Polygon Grid.Column="1" Margin="4,18,0,0" Points="0,0 12,0 12,12" VerticalAlignment="Top">
             <Polygon.Fill>
                 <SolidColorBrush Color="{ThemeResource SystemListLowColor}"/>
             </Polygon.Fill>
@@ -36,13 +36,13 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="{Binding Body}" Margin="12" TextWrapping="Wrap"/>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="0,0,0,6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Margin="12,6" HorizontalAlignment="Left" Text="{Binding CreatedAt, Converter={StaticResource DateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                <TextBlock Grid.Column="1" Margin="12,6" HorizontalAlignment="Right" Text="{Binding User.Login}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                <TextBlock Grid.Column="0" Margin="12,0" HorizontalAlignment="Left" Text="{Binding CreatedAt, Converter={StaticResource DateConverter}}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                <TextBlock Grid.Column="1" Margin="12,0" HorizontalAlignment="Right" Text="{Binding User.Login}" Foreground="{ThemeResource SystemBaseMediumColor}" Style="{ThemeResource CaptionTextBlockStyle}"/>
             </Grid>
         </Grid>
     </Grid>
