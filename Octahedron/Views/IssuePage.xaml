@@ -11,6 +11,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:behaviors="using:Template10.Behaviors"
     xmlns:editors="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:markdown="using:UniversalMarkdown"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Issue}"
@@ -120,7 +121,7 @@
                                 <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,6,0,6" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding issue.Assignee, Converter={StaticResource AssigneeConverter}}" Margin="12,6,0,6" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
                             </Grid>
-                            <TextBlock Text="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="0,12" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center"/>
+                            <markdown:MarkdownTextBlock Markdown="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="0,12" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"/>
                         </Grid>
                     </ScrollViewer>
                 </PivotItem>

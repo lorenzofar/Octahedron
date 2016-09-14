@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Octahedron.Templates"
     xmlns:converters="using:Octahedron.Converters"
+    xmlns:markdown="using:UniversalMarkdown"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -28,7 +29,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Body}" Margin="12" TextWrapping="Wrap"/>
+            <markdown:MarkdownTextBlock Markdown="{Binding Body}" Margin="12" TextWrapping="Wrap"/>
             <Grid Grid.Row="1" Margin="0,0,0,6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
