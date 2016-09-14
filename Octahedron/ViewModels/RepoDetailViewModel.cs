@@ -208,7 +208,7 @@ namespace Octahedron.ViewModels
                     case 1:
                         return ItemStateFilter.Open;
                     case 2:
-                        return ItemStateFilter.Closed;                        
+                        return ItemStateFilter.Closed;
                 }
             }
         }
@@ -413,7 +413,10 @@ namespace Octahedron.ViewModels
                             {
                                 await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
                             }
-                            LoadRepo(repo.FullName);
+                            var repoData = new Dictionary<int, string>();
+                            repoData.Add(0, repo.Owner.Login);
+                            repoData.Add(1, repo.Name);
+                            LoadRepo(repoData);
                         }
                         catch
                         {
@@ -491,10 +494,12 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterIssues == null)
                 {
-                    _FilterIssues = new RelayCommand<object>((index) =>
+                    _FilterIssues = new RelayCommand<object>(async(index) =>
                     {
+                        loading = true;
                         issuesIndex = int.Parse(index.ToString());
-                        LoadRepo(repo.FullName);
+                        await LoadIssues();
+                        loading = false;
                     });
                 }
                 return _FilterIssues;
@@ -508,10 +513,12 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterIssuesUser == null)
                 {
-                    _FilterIssuesUser = new RelayCommand<object>((index) =>
+                    _FilterIssuesUser = new RelayCommand<object>(async(index) =>
                     {
+                        loading = true;
                         issuesFilterIndex = int.Parse(index.ToString());
-                        LoadRepo(repo.FullName);
+                        await LoadIssues();
+                        loading = false;
                     });
                 }
                 return _FilterIssuesUser;
@@ -525,10 +532,12 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterPulls == null)
                 {
-                    _FilterPulls = new RelayCommand<object>((index) =>
+                    _FilterPulls = new RelayCommand<object>(async(index) =>
                     {
+                        loading = true;
                         pullsIndex = int.Parse(index.ToString());
-                        LoadRepo(repo.FullName);
+                        await LoadPulls();
+                        loading = false;
                     });
                 }
                 return _FilterPulls;
@@ -542,10 +551,12 @@ namespace Octahedron.ViewModels
             {
                 if (_FilterMilestones == null)
                 {
-                    _FilterMilestones = new RelayCommand<object>((index) =>
+                    _FilterMilestones = new RelayCommand<object>(async(index) =>
                     {
+                        loading = true;
                         milestonesIndex = int.Parse(index.ToString());
-                        LoadRepo(repo.FullName);
+                        await LoadMilestones();
+                        loading = false;
                     });
                 }
                 return _FilterMilestones;
@@ -557,7 +568,7 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_OpenIssue == null)
+                if (_OpenIssue == null)
                 {
                     _OpenIssue = new RelayCommand<object>((e) =>
                     {
@@ -601,7 +612,7 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_AddIssue == null)
+                if (_AddIssue == null)
                 {
                     _AddIssue = new RelayCommand(() =>
                     {
@@ -623,13 +634,13 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_OpenContent == null)
+                if (_OpenContent == null)
                 {
-                    _OpenContent = new RelayCommand<object>(async(e) =>
+                    _OpenContent = new RelayCommand<object>(async (e) =>
                     {
                         var args = e as ItemClickEventArgs;
                         var item = args.ClickedItem as RepositoryContent;
-                        if(item.Type == ContentType.Dir)
+                        if (item.Type == ContentType.Dir)
                         {
                             content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, item.Path);
                         }
@@ -644,15 +655,15 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_GoUpContent == null)
+                if (_GoUpContent == null)
                 {
-                    _GoUpContent = new RelayCommand(async() =>
+                    _GoUpContent = new RelayCommand(async () =>
                     {
-                        var rawPath = content[0].Path;                        
+                        var rawPath = content[0].Path;
                         var tempPath = $"./{rawPath.Replace($"/{content[0].Name}", "")}";
                         var path_split = tempPath.Split('/');
                         var path = "";
-                        for(int i = 0; i < path_split.Length - 1; i++)
+                        for (int i = 0; i < path_split.Length - 1; i++)
                         {
                             path += $"{path_split[i]}/";
                         }
@@ -665,6 +676,49 @@ namespace Octahedron.ViewModels
                 }
                 return _GoUpContent;
             }
+        }
+        #endregion
+
+        #region LISTS LOADING
+        private async Task LoadIssues()
+        {
+            loadingProgress = constants.r_loader.GetString("issues_progress");
+            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter }, new ApiOptions { PageSize = 50, PageCount = 1 });
+        }
+
+        private async Task LoadPulls()
+        {
+            loadingProgress = constants.r_loader.GetString("pulls_progress");
+            pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState }, new ApiOptions { PageSize = 50, PageCount = 1 });
+        }
+
+        private async Task LoadMilestones()
+        {
+            loadingProgress = constants.r_loader.GetString("milestones_progress");
+            milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness }, new ApiOptions { PageSize = 50, PageCount = 1 });
+        }
+
+        private async Task LoadContributors()
+        {
+            loadingProgress = constants.r_loader.GetString("contributors_progress");
+            contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
+            if (owner)
+            {
+                collaborators = await constants.g_client.Repository.Collaborator.GetAll(repo.Owner.Login, repo.Name);
+            }
+        }
+
+        private async Task LoadCommits()
+        {
+            loadingProgress = constants.r_loader.GetString("commits_progress");
+            commits = await constants.g_client.Repository.Commit.GetAll(repo.Owner.Login, repo.Name, new ApiOptions { PageSize = 50, PageCount = 1 });
+            GroupCommitsList();
+        }
+
+        private async Task LoadContent()
+        {
+            loadingProgress = constants.r_loader.GetString("code_progress");
+            content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, "./");
         }
         #endregion
 
@@ -684,6 +738,11 @@ namespace Octahedron.ViewModels
         private async void LoadRepo(object info)
         {
             loading = true;
+            pivotIndex = 0;
+            issuesIndex = 1;
+            issuesFilterIndex = 1;
+            pullsIndex = 1;
+            milestonesIndex = 1;
             try
             {
                 var repoInfo = info as Dictionary<int, string>;
@@ -693,25 +752,14 @@ namespace Octahedron.ViewModels
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
                 readme = (await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name)).Content;
-                loadingProgress = constants.r_loader.GetString("issues_progress");
-                issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState, Filter = issuesFilter }, new ApiOptions { PageSize = 50, PageCount = 1 });
-                loadingProgress = constants.r_loader.GetString("pulls_progress");
-                pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState }, new ApiOptions { PageSize = 50, PageCount = 1 });
-                loadingProgress = constants.r_loader.GetString("milestones_progress");
-                milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness }, new ApiOptions { PageSize = 50, PageCount = 1 });
-                loadingProgress = constants.r_loader.GetString("contributors_progress");
-                contributorsList = await constants.g_client.Repository.GetAllContributors(repo.Owner.Login, repo.Name);
-                loadingProgress = constants.r_loader.GetString("commits_progress");
-                commits = await constants.g_client.Repository.Commit.GetAll(repo.Owner.Login, repo.Name, new ApiOptions { PageSize = 50, PageCount = 1});
-                GroupCommitsList();
-                loadingProgress = constants.r_loader.GetString("code_progress");
-                content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login,repo.Name, "./");
-                if (owner)
-                {
-                    collaborators = await constants.g_client.Repository.Collaborator.GetAll(repo.Owner.Login, repo.Name);
-                }
+                await LoadIssues();
+                await LoadPulls();
+                await LoadMilestones();
+                await LoadContributors();
+                await LoadCommits();
+                await LoadContent();
             }
-            catch(ApiException readMeException)
+            catch (ApiException readMeException)
             {
 
             }
