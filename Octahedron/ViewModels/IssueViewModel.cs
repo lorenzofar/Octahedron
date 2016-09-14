@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Windows.UI;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Octahedron.ViewModels
@@ -315,8 +316,29 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _labelName, value);
+                UpdateSuggestions();
                 AddLabel.RaiseCanExecuteChanged();
             }
+        }
+
+        private IReadOnlyList<Label> rawSuggestedLabels { get; set; }
+
+        private IReadOnlyList<Label> _suggestedLabels;
+        public IReadOnlyList<Label> suggestedLabels
+        {
+            get
+            {
+                return _suggestedLabels;
+            }
+            set
+            {
+                Set(ref _suggestedLabels, value);
+            }
+        }
+
+        private void UpdateSuggestions()
+        {
+            suggestedLabels = rawSuggestedLabels.Where(x => x.Name.Contains(labelName)).ToList();
         }
 
         private RelayCommand _AddLabel;
@@ -365,7 +387,24 @@ namespace Octahedron.ViewModels
             }
         }
 
-
+        private RelayCommand<object> _ChooseLabelSuggestion;
+        public RelayCommand<object> ChooseLabelSuggestion
+        {
+            get
+            {
+                if(_ChooseLabelSuggestion == null)
+                {
+                    _ChooseLabelSuggestion = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as AutoSuggestBoxSuggestionChosenEventArgs;
+                        var label = args.SelectedItem as Label;
+                        labelName = label.Name;
+                        labelColor = utilities.ConvertHexToColor(label.Color);
+                    });
+                }
+                return _ChooseLabelSuggestion;
+            }
+        }
         #endregion;                
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
@@ -389,6 +428,7 @@ namespace Octahedron.ViewModels
                 locked = issue.Locked;
                 creator = issue.User.Login == App.user.Login;
                 closeable = creator && issue.State != ItemState.Closed;
+                rawSuggestedLabels = await constants.g_client.Issue.Labels.GetAllForRepository(issueData[0], issueData[1]);
                 loadingProgress = constants.r_loader.GetString("comments_progress");
                 comments = await constants.g_client.Issue.Comment.GetAllForIssue(issueData[0], issueData[1], int.Parse(issueData[2]));
                 loadingProgress = constants.r_loader.GetString("events_progress");
