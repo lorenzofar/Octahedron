@@ -53,27 +53,57 @@ namespace Octahedron.Converters
                         StackPanel closedPanel = new StackPanel();
                         StackPanel closedTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
                         closedTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
-                        closedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString( eventInfo.CommitId == null ? "eventClosed" : "eventClosedCommit"), Margin = new Thickness(6, 0, 6, 0) });
-                        if(eventInfo.CommitId != null)
+                        closedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString(eventInfo.CommitId == null ? "eventClosed" : "eventClosedCommit"), Margin = new Thickness(6, 0, 6, 0) });
+                        if (eventInfo.CommitId != null)
                         {
-                            string sha = eventInfo.CommitId;
-                            closedTextPanel.Children.Add(new TextBlock { Text = sha.Remove(7), FontWeight = FontWeights.Bold });
+                            closedTextPanel.Children.Add(new TextBlock { Text = eventInfo.CommitId.Remove(7), FontWeight = FontWeights.Bold });
                         }
                         closedPanel.Children.Add(closedTextPanel);
                         closedPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
                         return closedPanel;
                     case EventInfoState.Demilestoned:
                     case EventInfoState.Milestoned:
-                        return null;
+                        StackPanel milestonePanel = new StackPanel();
+                        StackPanel milestoneTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        milestoneTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        milestoneTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString(eventType == EventInfoState.Milestoned ? "milestoneEvent" : "demilestoneEvent"), Margin = new Thickness(6, 0, 6, 0) });
+                        milestonePanel.Children.Add(milestoneTextPanel);
+                        milestonePanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return milestonePanel;
                     case EventInfoState.Locked:
                     case EventInfoState.Unlocked:
-                        return null;
+                        StackPanel lockedPanel = new StackPanel();
+                        StackPanel lockedTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        lockedTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        lockedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString(eventType == EventInfoState.Locked ? "lockedEvent" : "unlockedEvent"), Margin = new Thickness(6, 0, 6, 0) });
+                        lockedPanel.Children.Add(lockedTextPanel);
+                        lockedPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return lockedPanel;
                     case EventInfoState.Referenced:
-                        return null;
+                        StackPanel referencedPanel = new StackPanel();
+                        StackPanel referencedTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        referencedTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        referencedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString("referencedEvent"), Margin = new Thickness(6, 0, 6, 0) });
+                        referencedTextPanel.Children.Add(new TextBlock { Text = eventInfo.CommitId.Remove(7), FontWeight = FontWeights.Bold });
+                        referencedPanel.Children.Add(referencedTextPanel);
+                        referencedPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return referencedPanel;
                     case EventInfoState.Renamed:
-                        return null;
+                        StackPanel renamedPanel = new StackPanel();
+                        StackPanel renamedTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        renamedTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        renamedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString("renamedEvent"), Margin = new Thickness(6, 0, 6, 0) });
+                        renamedPanel.Children.Add(renamedTextPanel);
+                        renamedPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return renamedPanel;
                     case EventInfoState.Reopened:
-                        return null;
+                        StackPanel reopenedPanel = new StackPanel();
+                        StackPanel reopenedTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        reopenedTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        reopenedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString("reopenedEvent"), Margin = new Thickness(6, 0, 6, 0) });
+                        reopenedPanel.Children.Add(reopenedTextPanel);
+                        reopenedPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return reopenedPanel;
                     default:
                         return null;
                 };

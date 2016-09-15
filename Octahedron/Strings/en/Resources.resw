@@ -633,4 +633,25 @@
   <data name="eventClosedCommit" xml:space="preserve">
     <value>closed this with</value>
   </data>
+  <data name="demilestoneEvent" xml:space="preserve">
+    <value>removed from milestone</value>
+  </data>
+  <data name="lockedEvent" xml:space="preserve">
+    <value>locked this</value>
+  </data>
+  <data name="milestoneEvent" xml:space="preserve">
+    <value>added to milestone</value>
+  </data>
+  <data name="referencedEvent" xml:space="preserve">
+    <value>referenced in</value>
+  </data>
+  <data name="renamedEvent" xml:space="preserve">
+    <value>renamed this</value>
+  </data>
+  <data name="reopenedEvent" xml:space="preserve">
+    <value>reopened this</value>
+  </data>
+  <data name="unlockedEvent" xml:space="preserve">
+    <value>unlocked this</value>
+  </data>
 </root>
