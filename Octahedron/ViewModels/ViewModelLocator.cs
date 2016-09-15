@@ -54,5 +54,13 @@
         public SettingsViewModel Settings { get; set; }
 
         public NoInternetViewModel NoInternet { get; set; }
+
+        public NewMilestoneViewModel NewMilestone
+        {
+            get
+            {
+                return new NewMilestoneViewModel();
+            }
+        }
     }
 }

@@ -423,6 +423,7 @@
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </AppBarButton>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddMilestone}" IsEnabled="{Binding owner}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}"/>
         </CommandBar>
     </Grid>
 </Page>

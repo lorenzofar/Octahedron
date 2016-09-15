@@ -647,6 +647,28 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private RelayCommand _AddMilestone;
+        public RelayCommand AddMilestone
+        {
+            get
+            {
+                if (_AddMilestone == null)
+                {
+                    _AddMilestone = new RelayCommand(() =>
+                    {
+                        var request = new Dictionary<string, string>();
+                        request.Add("kind", "0"); //SET REQUEST KIND TO NEW
+                        request.Add("owner", repo.Owner.Login);
+                        request.Add("name", repo.Name);
+                        request.Add("id", repo.Id.ToString());
+                        request.Add("milestoneNumber", null);
+                        App.Current.NavigationService.Navigate(typeof(Views.NewMilestonePage), request);
+                    });
+                }
+                return _AddMilestone;
+            }
+        }
+
         private RelayCommand<object> _OpenContent;
         public RelayCommand<object> OpenContent
         {

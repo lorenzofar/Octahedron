@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="Octahedron.Views.NewMilestonePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Views"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=NewMilestone}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <converters:BoolConverter x:Key="BoolConverter"/>
+        <converters:NewMIlestoneConverter x:Key="NewMilestoneConverter"/>
+        <converters:DateTimeToOffsetConverter x:Key="DateTimeToOffsetConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repoData[1], Converter={StaticResource NewMilestoneConverter}}" Style="{StaticResource pageHeader}"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="12">
+            <StackPanel>
+                <TextBox x:Uid="titleBox" Text="{Binding title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Uid="descriptionBox" Text="{Binding description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,12"/>
+                <StackPanel Orientation="Horizontal">
+                    <DatePicker x:Uid="dueDatePicker" Date="{Binding dueDate, Converter={StaticResource DateTimeToOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Command="{Binding ClearDueDate}" VerticalAlignment="Bottom" Background="Transparent" Margin="12,0,0,0">
+                        <Button.Content>
+                            <SymbolIcon Symbol="Delete"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Margin="12" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Viewbox MaxHeight="60" MaxWidth="60">
+                <ProgressRing IsActive="{Binding loading}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Width="60" Height="60"/>
+            </Viewbox>
+            <TextBlock Margin="0,12,0,0" Text="{Binding loadingProgress}"/>
+        </StackPanel>
+
+        <CommandBar Grid.Row="2" >
+            <AppBarButton x:Uid="accept_bar_btn" Command="{Binding CreateMilestone}" Icon="Accept"/>
+            <AppBarButton x:Uid="cancel_bar_btn" Command="{Binding Cancel}" Icon="Cancel"/>
+        </CommandBar>
+    </Grid>
+
+
+</Page>

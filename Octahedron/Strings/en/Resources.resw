@@ -600,4 +600,31 @@
   <data name="branches_progress" xml:space="preserve">
     <value>Loading branches</value>
   </data>
+  <data name="addMilestone_progress" xml:space="preserve">
+    <value>Creating milestone</value>
+  </data>
+  <data name="descriptionBox.Header" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="descriptionBox.PlaceholderText" xml:space="preserve">
+    <value>Type the description</value>
+  </data>
+  <data name="dueDatePicker.Header" xml:space="preserve">
+    <value>Due date</value>
+  </data>
+  <data name="editMilestone" xml:space="preserve">
+    <value>Edit milestone</value>
+  </data>
+  <data name="editMilestone_progress" xml:space="preserve">
+    <value>Updating milestone</value>
+  </data>
+  <data name="newMilestone" xml:space="preserve">
+    <value>New milestone</value>
+  </data>
+  <data name="titleBox.Header" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="titleBox.PlaceholderText" xml:space="preserve">
+    <value>Type the title</value>
+  </data>
 </root>

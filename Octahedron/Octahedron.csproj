@@ -114,6 +114,7 @@
     <Compile Include="Converters\CommitInfoConverter.cs" />
     <Compile Include="Converters\ContentPathConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\DateTimeToOffsetConverter.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
     <Compile Include="Converters\DueDateConverter.cs" />
     <Compile Include="Converters\EventConverter.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Converters\MilestoneConverter.cs" />
     <Compile Include="Converters\MilestoneProgressConverter.cs" />
     <Compile Include="Converters\MilestoneStatsConverter.cs" />
+    <Compile Include="Converters\NewMilestoneConverter.cs" />
     <Compile Include="Converters\NewIssueConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NumberConverter.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewMilestoneViewModel.cs" />
     <Compile Include="ViewModels\NewIssueViewModel.cs" />
     <Compile Include="ViewModels\NoInternetViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
@@ -223,6 +226,9 @@
     </Compile>
     <Compile Include="Views\NewIssuePage.xaml.cs">
       <DependentUpon>NewIssuePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewMilestonePage.xaml.cs">
+      <DependentUpon>NewMilestonePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NoInternetPage.xaml.cs">
       <DependentUpon>NoInternetPage.xaml</DependentUpon>
@@ -359,6 +365,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewIssuePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewMilestonePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
