@@ -131,19 +131,18 @@ namespace Helper
 
         private static string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
-        public static string FormatDate(DateTime rawDate)
+        public static string FormatDate(DateTime date)
         {
             var currentDate = DateTime.Now.ToUniversalTime();
-            var date = rawDate.ToUniversalTime();
             if (currentDate.Year == date.Year)
             {
                 var days = currentDate.Subtract(date).Days;
                 if (days < 1)
                 {
-                    var hours = currentDate.Subtract(date).Hours;
+                    var hours = Math.Round(currentDate.Subtract(date).TotalHours);
                     if (hours == 0)
                     {
-                        var minutes = currentDate.Subtract(date).Minutes;
+                        var minutes = Math.Round(currentDate.Subtract(date).TotalMinutes);
                         if (minutes == 0)
                         {
                             return constants.r_loader.GetString("justNow");
