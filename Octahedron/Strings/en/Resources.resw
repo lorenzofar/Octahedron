@@ -654,4 +654,13 @@
   <data name="unlockedEvent" xml:space="preserve">
     <value>unlocked this</value>
   </data>
+  <data name="assignDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="assignDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="assignDialog.Title" xml:space="preserve">
+    <value>ASSIGN ISSUE</value>
+  </data>
 </root>

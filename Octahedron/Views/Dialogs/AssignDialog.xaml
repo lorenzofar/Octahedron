@@ -10,6 +10,7 @@
     xmlns:templates="using:Octahedron.Templates"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Assign}"
     mc:Ignorable="d"
+    x:Uid="assignDialog"
     Title="ASSIGN ISSUE"
     PrimaryButtonText="Assign"
     SecondaryButtonText="Cancel"
