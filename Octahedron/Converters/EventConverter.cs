@@ -50,7 +50,18 @@ namespace Octahedron.Converters
                         panel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
                         return panel;
                     case EventInfoState.Closed:
-                        return null;
+                        StackPanel closedPanel = new StackPanel();
+                        StackPanel closedTextPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        closedTextPanel.Children.Add(new TextBlock { Text = eventInfo.Actor.Login, FontWeight = FontWeights.Bold });
+                        closedTextPanel.Children.Add(new TextBlock { Text = constants.r_loader.GetString( eventInfo.CommitId == null ? "eventClosed" : "eventClosedCommit"), Margin = new Thickness(6, 0, 6, 0) });
+                        if(eventInfo.CommitId != null)
+                        {
+                            string sha = eventInfo.CommitId;
+                            closedTextPanel.Children.Add(new TextBlock { Text = sha.Remove(7), FontWeight = FontWeights.Bold });
+                        }
+                        closedPanel.Children.Add(closedTextPanel);
+                        closedPanel.Children.Add(new TextBlock { Text = utilities.FormatDate(eventInfo.CreatedAt.DateTime), Foreground = grayBrush, Style = (Style)App.Current.Resources["CaptionTextBlockStyle"] });
+                        return closedPanel;
                     case EventInfoState.Demilestoned:
                     case EventInfoState.Milestoned:
                         return null;

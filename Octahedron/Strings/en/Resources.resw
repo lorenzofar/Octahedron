@@ -627,4 +627,10 @@
   <data name="titleBox.PlaceholderText" xml:space="preserve">
     <value>Type the title</value>
   </data>
+  <data name="eventClosed" xml:space="preserve">
+    <value>closed this</value>
+  </data>
+  <data name="eventClosedCommit" xml:space="preserve">
+    <value>closed this with</value>
+  </data>
 </root>
