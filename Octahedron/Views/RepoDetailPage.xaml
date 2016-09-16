@@ -157,7 +157,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding content[0], Converter={StaticResource ContentPathConverter}}" VerticalAlignment="Center" Style="{ThemeResource FlyoutPickerTitleTextBlockStyle}"/>
-                        <Button Grid.Column="1" Background="Transparent" Command="{Binding GoUpContent}">
+                        <Button Grid.Column="1" Background="Transparent" Command="{Binding GoUpContent}" Style="{StaticResource TransparentButton}">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon Glyph="&#xE110;"/>
                                 <TextBlock x:Name="goUp_txt" x:Uid="goUp_txt" Text="Go up" Margin="8,0"/>
