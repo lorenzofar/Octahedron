@@ -164,6 +164,9 @@
     <Compile Include="Templates\IssueSearchListItem.xaml.cs">
       <DependentUpon>IssueSearchListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Templates\OrganizationsListItem.xaml.cs">
+      <DependentUpon>OrganizationsListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Templates\PullCommitListItem.xaml.cs">
       <DependentUpon>PullCommitListItem.xaml</DependentUpon>
     </Compile>
@@ -304,6 +307,10 @@
     <Page Include="Templates\IssueSearchListItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\OrganizationsListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\PullCommitListItem.xaml">
       <SubType>Designer</SubType>

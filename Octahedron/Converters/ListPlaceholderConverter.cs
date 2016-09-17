@@ -56,6 +56,11 @@ namespace Octahedron.Converters
                     var cvs = value as IReadOnlyList<Octokit.EventInfo>;
                     return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
                 }
+                else if (parameter.ToString() == "orgs")
+                {
+                    var cvs = value as IReadOnlyList<Octokit.Organization>;
+                    return cvs.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
                 else
                 {
                     var cvs = value as List<Octokit.Repository>;

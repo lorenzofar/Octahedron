@@ -69,16 +69,16 @@ namespace Octahedron.ViewModels
             }
         }
 
-        private IReadOnlyList<Organization> _orgsList;
-        public IReadOnlyList<Organization> orgsList
+        private IReadOnlyList<Organization> _organizations;
+        public IReadOnlyList<Organization> organizations
         {
             get
             {
-                return _orgsList;
+                return _organizations;
             }
             set
             {
-                Set(ref _orgsList, value);
+                Set(ref _organizations, value);
             }
         }
 
@@ -276,6 +276,8 @@ namespace Octahedron.ViewModels
                 loadingProgress = constants.r_loader.GetString("repositories_progress");
                 var repos = await constants.g_client.Repository.GetAllForUser(user.Login);
                 repoList = repos.OrderByDescending(x => x.UpdatedAt).ToList();
+                loadingProgress = constants.r_loader.GetString("organizations_progress");
+                organizations = username == null ? await constants.g_client.Organization.GetAllForCurrent() : await constants.g_client.Organization.GetAll(username.ToString());
                 loadingProgress = constants.r_loader.GetString("followers_progress");
                 followersList = await constants.g_client.User.Followers.GetAll(user.Login);
                 loadingProgress = constants.r_loader.GetString("following_progress");

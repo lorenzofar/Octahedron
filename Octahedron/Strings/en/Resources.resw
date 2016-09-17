@@ -672,4 +672,13 @@
   <data name="previousPage.Text" xml:space="preserve">
     <value>Previous page</value>
   </data>
+  <data name="organizations_header.Text" xml:space="preserve">
+    <value>Orgs</value>
+  </data>
+  <data name="organizations_placeholder.Text" xml:space="preserve">
+    <value>There are no organizations</value>
+  </data>
+  <data name="organizations_progress" xml:space="preserve">
+    <value>Loading organizations</value>
+  </data>
 </root>
