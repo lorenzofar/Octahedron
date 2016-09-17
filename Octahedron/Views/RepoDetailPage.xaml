@@ -80,7 +80,7 @@
 
         <controls:PageHeader Frame="{x:Bind Frame}" Content="{Binding repo.Name, Converter={StaticResource CapitalizeConverter}}" Style="{StaticResource pageHeader}"/>
 
-        <Pivot Grid.Row="1" SelectedIndex="{Binding pivotIndex, Mode=TwoWay}" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+        <Pivot Grid.Row="1" x:Name="pivot" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
             <PivotItem>
                 <PivotItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -398,14 +398,14 @@
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <!--INFO TAB-->
-            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding WatchRepo}" IsChecked="{Binding watched, Mode=TwoWay}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
+            <AppBarToggleButton x:Uid="watch_btn" Command="{Binding WatchRepo}" IsChecked="{Binding watched, Mode=TwoWay}" Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE052;"/>
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
-            <AppBarToggleButton x:Uid="star_btn" Command="{Binding StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding starred, Mode=TwoWay}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
+            <AppBarToggleButton x:Uid="star_btn" Command="{Binding StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding starred, Mode=TwoWay}" Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
             <!--ISSUES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Icon="Filter"  Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterIssues}" CommandParameter="0" Background="{Binding issuesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -425,9 +425,9 @@
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </AppBarButton>
-            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddIssue}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}"/>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddIssue}" Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}"/>
             <!--PULLS TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Icon="Filter"  Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_pulls_btn" Icon="Filter"  Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=3}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterPulls}" CommandParameter="0" Background="{Binding pullsIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -442,7 +442,7 @@
                 </interactivity:Interaction.Behaviors>
             </AppBarButton>
             <!--MILESTONES TAB-->
-            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Icon="Filter" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}">
+            <AppBarButton x:Uid="filter_btn" x:Name="filter_milestones_btn" Icon="Filter" Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="filter_all" Command="{Binding FilterMilestones}" CommandParameter="0" Background="{Binding milestonesIndex, Converter={StaticResource PopupIndexConverter}, ConverterParameter=0}"/>
@@ -456,7 +456,7 @@
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </AppBarButton>
-            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddMilestone}" IsEnabled="{Binding owner}" Visibility="{Binding pivotIndex, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}"/>
+            <AppBarButton x:Uid="new_btn" Icon="Add" Command="{Binding AddMilestone}" IsEnabled="{Binding owner}" Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=5}"/>
         </CommandBar>
     </Grid>
 </Page>

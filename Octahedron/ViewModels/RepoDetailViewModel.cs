@@ -95,19 +95,6 @@ namespace Octahedron.ViewModels
             }
         }
 
-        private int _pivotIndex = 0;
-        public int pivotIndex
-        {
-            get
-            {
-                return _pivotIndex;
-            }
-            set
-            {
-                Set(ref _pivotIndex, value);
-            }
-        }
-
         private int _issuesIndex = 1;
         public int issuesIndex
         {
@@ -849,7 +836,6 @@ namespace Octahedron.ViewModels
         private async void LoadRepo(object info)
         {
             loading = true;
-            pivotIndex = 0;
             issuesIndex = 1;
             issuesFilterIndex = 0;
             pullsIndex = 1;
