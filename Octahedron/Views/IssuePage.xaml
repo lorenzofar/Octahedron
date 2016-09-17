@@ -171,7 +171,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
-                        <TextBlock x:Uid="comments_placeholder" TextWrapping="Wrap" Visibility="{Binding comments, ConverterParameter='issueComments', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="comments_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding comments, ConverterParameter='issueComments', Converter={StaticResource ListPlaceholderConverter}}"/>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -206,7 +206,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
-                        <TextBlock x:Uid="events_placeholder" TextWrapping="Wrap" Visibility="{Binding events, ConverterParameter='events', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="events_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding events, ConverterParameter='events', Converter={StaticResource ListPlaceholderConverter}}"/>
                     </Grid>
                 </PivotItem>
                 <PivotItem>
@@ -245,7 +245,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
-                        <TextBlock x:Uid="labels_placeholder" TextWrapping="Wrap" Visibility="{Binding issue.Labels, ConverterParameter='labels', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="labels_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding issue.Labels, ConverterParameter='labels', Converter={StaticResource ListPlaceholderConverter}}"/>
                         <Grid Grid.Row="1" x:Name="addLabelGrid" Visibility="{Binding owner, Converter={StaticResource BoolVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>

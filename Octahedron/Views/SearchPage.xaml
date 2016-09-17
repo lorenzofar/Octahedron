@@ -74,7 +74,7 @@
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </ListView>
-                        <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding reposResult, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="repos_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding reposResult, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}"/>
                     </Grid>
                 </PivotItem>
                 <!--<PivotItem x:Uid="repos_pivot">
@@ -111,7 +111,7 @@
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </ListView>
-                        <TextBlock x:Uid="issuesSearch_placeholder" TextWrapping="Wrap" Visibility="{Binding issuesResult, ConverterParameter=issues, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="issuesSearch_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding issuesResult, ConverterParameter=issues, Converter={StaticResource ListPlaceholderConverter}}"/>
                     </Grid>
                 </PivotItem>
                 <PivotItem>
@@ -139,7 +139,7 @@
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </ListView>
-                        <TextBlock x:Uid="users_placeholder" TextWrapping="Wrap" Visibility="{Binding usersResult, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Uid="users_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding usersResult, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}"/>
                     </Grid>
                 </PivotItem>
             </Pivot>

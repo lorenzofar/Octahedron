@@ -81,7 +81,7 @@
                     </GroupStyle>
                 </uwp:SwipeListView.GroupStyle>
             </uwp:SwipeListView>
-            <TextBlock x:Uid="notifications_placeholder" TextWrapping="Wrap" Visibility="{Binding notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="notifications_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding notifications, ConverterParameter='main', Converter={StaticResource ListPlaceholderConverter}}"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="12" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">

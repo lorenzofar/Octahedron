@@ -17,6 +17,12 @@
             <Setter Property="VisualStateNarrowMinWidth" Value="0"/>
             <Setter Property="VisualStateNormalMinWidth" Value="720"/>
         </Style>
+        <Style x:Key="ListPlaceholder" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="#888888"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
         <Style x:Key="TransparentButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>

@@ -59,7 +59,7 @@
                     </GroupStyle>
                 </ListView.GroupStyle>
             </ListView>
-            <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="repos_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding repos, ConverterParameter='repos', Converter={StaticResource ListPlaceholderConverter}}"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="12" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">

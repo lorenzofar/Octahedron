@@ -134,7 +134,7 @@
                                     </Style>
                                 </ListView.ItemContainerStyle>
                             </ListView>
-                            <TextBlock x:Uid="repos_placeholder" TextWrapping="Wrap" Visibility="{Binding repoList, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock x:Uid="repos_placeholder"  Style="{StaticResource ListPlaceholder}" Visibility="{Binding repoList, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}"/>
                         </Grid>
                     </PivotItem>
 
@@ -158,7 +158,7 @@
                                     </Style>
                                 </ListView.ItemContainerStyle>
                             </ListView>
-                            <TextBlock x:Uid="organizations_placeholder" TextWrapping="Wrap" Visibility="{Binding organizations, ConverterParameter=orgs, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock x:Uid="organizations_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding organizations, ConverterParameter=orgs, Converter={StaticResource ListPlaceholderConverter}}"/>
                         </Grid>
                     </PivotItem>
 
@@ -187,7 +187,7 @@
                                     </Style>
                                 </ListView.ItemContainerStyle>
                             </ListView>
-                            <TextBlock x:Uid="followers_placeholder" TextWrapping="Wrap" Visibility="{Binding followersList, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock x:Uid="followers_placeholder"  Style="{StaticResource ListPlaceholder}" Visibility="{Binding followersList, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}"/>
                         </Grid>
                     </PivotItem>
 
@@ -216,7 +216,7 @@
                                     </Style>
                                 </ListView.ItemContainerStyle>
                             </ListView>
-                            <TextBlock x:Uid="following_placeholder" TextWrapping="Wrap" Visibility="{Binding followingList, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock x:Uid="following_placeholder" Style="{StaticResource ListPlaceholder}" Visibility="{Binding followingList, ConverterParameter=users, Converter={StaticResource ListPlaceholderConverter}}"/>
                         </Grid>
                     </PivotItem>
                 </Pivot>
