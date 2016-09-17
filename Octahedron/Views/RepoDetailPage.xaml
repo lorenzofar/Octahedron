@@ -26,6 +26,7 @@
         <converters:BoolConverter x:Key="BoolConverter"/>
         <converters:ContentPathConverter x:Key="ContentPathConverter"/>
         <converters:CapitalizeConverter x:Key="CapitalizeConverter"/>
+        <converters:ListPageConverter x:Key="ListPageConverter"/>
         <CollectionViewSource x:Name="commitsCVS" Source="{Binding commitGroups}" IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -43,6 +44,8 @@
                         <Setter Target="people_header.Visibility" Value="Collapsed"/>
                         <Setter Target="settings_header.Visibility" Value="Collapsed"/>
                         <Setter Target="goUp_txt.Visibility" Value="Collapsed"/>
+                        <Setter Target="previousPageIssues.Visibility" Value="Collapsed"/>
+                        <Setter Target="nextPageIssues.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
@@ -59,6 +62,8 @@
                         <Setter Target="people_header.Visibility" Value="Visible"/>
                         <Setter Target="settings_header.Visibility" Value="Visible"/>
                         <Setter Target="goUp_txt.Visibility" Value="Visible"/>
+                        <Setter Target="previousPageIssues.Visibility" Value="Visible"/>
+                        <Setter Target="nextPageIssues.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="720"/>
@@ -66,7 +71,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -124,7 +129,7 @@
                                     <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="stars_txt" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding repo.OpenIssuesCount}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{Binding repo.OpenIssuesCount}" Style="{ThemeResource TitleTextBlockStyle}" /> 
                                     <TextBlock Foreground="White" HorizontalAlignment="Center" x:Uid="issues_txt" />
                                 </StackPanel>
                             </Grid>
@@ -174,7 +179,7 @@
                             <core:EventTriggerBehavior EventName="ItemClick">
                                 <core:InvokeCommandAction Command="{Binding OpenContent}" />
                             </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
+                        </interactivity:Interaction.Behaviors>
                     </ListView>
                 </Grid>
             </PivotItem>
@@ -186,7 +191,35 @@
                     </StackPanel>
                 </PivotItem.Header>
                 <Grid>
-                    <ListView ItemsSource="{Binding issues}" Margin="-12,0" SelectionMode="None" IsItemClickEnabled="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid BorderThickness="0,0,0,1" BorderBrush="#888888">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding issuesPage, Converter={StaticResource ListPageConverter}}" VerticalAlignment="Center" Style="{ThemeResource FlyoutPickerTitleTextBlockStyle}"/>
+                        <Button Grid.Column="1" Command="{Binding PreviousIssuesPage}" Style="{StaticResource TransparentButton}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon Glyph="&#xE00E;"/>
+                                    <TextBlock x:Name="previousPageIssues" x:Uid="previousPage"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="2" Command="{Binding NextIssuesPage}" Margin="6,0,0,0" Style="{StaticResource TransparentButton}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="nextPageIssues" x:Uid="nextPage"/>
+                                    <FontIcon Glyph="&#xE00F;"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <ListView Grid.Row="1" ItemsSource="{Binding issues}" Margin="-12,6" SelectionMode="None" IsItemClickEnabled="True">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="ItemClick">
                                 <core:InvokeCommandAction Command="{Binding OpenIssue}" />
@@ -203,7 +236,7 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <TextBlock x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" x:Uid="issues_placeholder" TextWrapping="Wrap" Visibility="{Binding issues, ConverterParameter='issues', Converter={StaticResource ListPlaceholderConverter}}" Foreground="#999999" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </PivotItem>
             <PivotItem>

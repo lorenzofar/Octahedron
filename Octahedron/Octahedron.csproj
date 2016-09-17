@@ -127,6 +127,7 @@
     <Compile Include="Converters\IssueLabelsConverter.cs" />
     <Compile Include="Converters\IssueRepoNameConverter.cs" />
     <Compile Include="Converters\IssueStateConverter.cs" />
+    <Compile Include="Converters\ListPageConverter.cs" />
     <Compile Include="Converters\ListPlaceholderConverter.cs" />
     <Compile Include="Converters\ListSelectionConverter.cs" />
     <Compile Include="Converters\MilestoneConverter.cs" />

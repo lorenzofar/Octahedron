@@ -232,6 +232,60 @@ namespace Octahedron.ViewModels
             }
         }
 
+        #region PAGES
+        private int _issuesPage = 1;
+        public int issuesPage
+        {
+            get
+            {
+                return _issuesPage;
+            }
+            set
+            {
+                Set(ref _issuesPage, value);
+                PreviousIssuesPage.RaiseCanExecuteChanged();
+                NextIssuesPage.RaiseCanExecuteChanged();
+            }
+        }
+
+        private RelayCommand _PreviousIssuesPage;
+        public RelayCommand PreviousIssuesPage
+        {
+            get
+            {
+                if(_PreviousIssuesPage == null)
+                {
+                    _PreviousIssuesPage = new RelayCommand(async() =>
+                    {
+                        issuesPage--;
+                        loading = true;
+                        await LoadIssues();
+                        loading = false;
+                    }, () => issuesPage > 1);
+                }
+                return _PreviousIssuesPage;
+            }
+        }
+        private RelayCommand _NextIssuesPage;
+        public RelayCommand NextIssuesPage
+        {
+            get
+            {
+                if (_NextIssuesPage == null)
+                {
+                    _NextIssuesPage = new RelayCommand(async() =>
+                    {
+                        issuesPage++;
+                        loading = true;
+                        await LoadIssues();
+                        loading = false;
+                    }, () => 50*issuesPage < repo.OpenIssuesCount);
+                }
+                return _NextIssuesPage;
+            }
+        }
+        #endregion
+
         private IReadOnlyList<Issue> _issues;
         public IReadOnlyList<Issue> issues
         {
@@ -740,7 +794,7 @@ namespace Octahedron.ViewModels
         private async Task LoadIssues()
         {
             loadingProgress = constants.r_loader.GetString("issues_progress");
-            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState}, new ApiOptions { PageSize = 50, PageCount = 1 });
+            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState}, new ApiOptions { PageSize = 50, PageCount = 1, StartPage = issuesPage });
         }
 
         private async Task LoadPulls()

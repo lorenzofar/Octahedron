@@ -663,4 +663,13 @@
   <data name="assignDialog.Title" xml:space="preserve">
     <value>ASSIGN ISSUE</value>
   </data>
+  <data name="listPage" xml:space="preserve">
+    <value>Page {0}</value>
+  </data>
+  <data name="nextPage.Text" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="previousPage.Text" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
 </root>
