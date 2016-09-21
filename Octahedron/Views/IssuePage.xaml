@@ -40,8 +40,10 @@
                         <Setter Target="labels_header.Visibility" Value="Collapsed"/>
                         <Setter Target="events_header.Visibility" Value="Collapsed"/>
                         <Setter Target="title_panel.MaxHeight" Value="100"/>
+                        <Setter Target="lockPrimaryBtn.Visibility" Value="Collapsed"/>
+                        <Setter Target="lockSecondaryBtn.Visibility" Value="Visible"/>
                     </VisualState.Setters>
-                    <VisualState.StateTriggers>
+                    <VisualState.StateTriggers> 
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                 </VisualState>
@@ -52,6 +54,8 @@
                         <Setter Target="labels_header.Visibility" Value="Visible"/>
                         <Setter Target="events_header.Visibility" Value="Visible"/>
                         <Setter Target="title_panel.MaxHeight" Value="200"/>
+                        <Setter Target="lockPrimaryBtn.Visibility" Value="Visible"/>
+                        <Setter Target="lockSecondaryBtn.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="720"/>
@@ -300,7 +304,7 @@
         <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <AppBarButton x:Uid="assignBtn" IsEnabled="{Binding owner}" x:Name="assignBtn" Icon="AddFriend" Click="assignBtn_Click"/>
             <AppBarButton x:Uid="editBtn_bar" IsEnabled="{Binding creator}" Command="{Binding EditIssue}" Icon="Edit"/>
-            <AppBarToggleButton x:Uid="lockBtn" IsEnabled="{Binding owner}" IsChecked="{Binding locked, Mode=TwoWay}" Command="{Binding LockIssue}">
+            <AppBarToggleButton x:Name="lockPrimaryBtn" x:Uid="lockBtn" IsEnabled="{Binding owner}" IsChecked="{Binding locked, Mode=TwoWay}" Command="{Binding LockIssue}">
                 <AppBarToggleButton.Icon>
                     <FontIcon Glyph="&#xE1F6;"/>
                 </AppBarToggleButton.Icon>
@@ -310,6 +314,9 @@
                     <FontIcon Glyph="&#xE25B;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
+            <CommandBar.SecondaryCommands>
+                <AppBarToggleButton x:Name="lockSecondaryBtn" x:Uid="lockBtn" IsEnabled="{Binding owner}" IsChecked="{Binding locked, Mode=TwoWay}" Command="{Binding LockIssue}"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
 
     </Grid>
