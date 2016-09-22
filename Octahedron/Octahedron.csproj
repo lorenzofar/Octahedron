@@ -198,6 +198,7 @@
     <Compile Include="Templates\UserListItem.xaml.cs">
       <DependentUpon>UserListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AssignMilestoneViewModel.cs" />
     <Compile Include="ViewModels\AssignViewModel.cs" />
     <Compile Include="ViewModels\EditIssueCommentViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
@@ -215,6 +216,9 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Dialogs\AssignDialog.xaml.cs">
       <DependentUpon>AssignDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\AssignMilestoneDialog.xaml.cs">
+      <DependentUpon>AssignMilestoneDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\EditIssueCommentDialog.xaml.cs">
       <DependentUpon>EditIssueCommentDialog.xaml</DependentUpon>
@@ -353,6 +357,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\AssignDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\AssignMilestoneDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

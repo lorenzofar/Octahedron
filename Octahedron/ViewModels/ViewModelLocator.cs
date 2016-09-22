@@ -62,5 +62,13 @@
                 return new NewMilestoneViewModel();
             }
         }
+
+        public AssignMilestoneViewModel AddMilestone
+        {
+            get
+            {
+                return new AssignMilestoneViewModel();
+            }
+        }
     }
 }

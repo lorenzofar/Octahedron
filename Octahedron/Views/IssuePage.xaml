@@ -303,6 +303,11 @@
 
         <CommandBar Grid.Row="2" IsEnabled="{Binding loading, Converter={StaticResource BoolConverter}, ConverterParameter=false}">
             <AppBarButton x:Uid="assignBtn" IsEnabled="{Binding owner}" x:Name="assignBtn" Icon="AddFriend" Click="assignBtn_Click"/>
+            <AppBarButton x:Uid="milestoneBtn_bar" IsEnabled="{Binding owner}" x:Name="milestoneBtn" Click="milestoneBtn_Click" FontFamily="ms-appx:/Assets/octicons.ttf#octicons">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xF075;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton x:Uid="editBtn_bar" IsEnabled="{Binding creator}" Command="{Binding EditIssue}" Icon="Edit"/>
             <AppBarToggleButton x:Name="lockPrimaryBtn" x:Uid="lockBtn" IsEnabled="{Binding owner}" IsChecked="{Binding locked, Mode=TwoWay}" Command="{Binding LockIssue}">
                 <AppBarToggleButton.Icon>

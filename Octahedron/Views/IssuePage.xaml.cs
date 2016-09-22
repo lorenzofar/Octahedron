@@ -45,5 +45,10 @@ namespace Octahedron.Views
             Octokit.IssueComment comment = (Octokit.IssueComment)element.DataContext;
             new Dialogs.EditIssueCommentDialog(this.DataContext, comment).ShowAsync();
         }
+        
+        private void milestoneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new Dialogs.AssignMilestoneDialog(this.DataContext).ShowAsync();
+        }
     }
 }

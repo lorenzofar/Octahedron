@@ -681,4 +681,16 @@
   <data name="organizations_progress" xml:space="preserve">
     <value>Loading organizations</value>
   </data>
+  <data name="assignMilestoneDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="assignMilestoneDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="assignMilestoneDialog.Title" xml:space="preserve">
+    <value>ADD TO MILESTONE</value>
+  </data>
+  <data name="milestoneBtn_bar.Label" xml:space="preserve">
+    <value>Milestone</value>
+  </data>
 </root>

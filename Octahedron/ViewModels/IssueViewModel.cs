@@ -13,7 +13,7 @@ namespace Octahedron.ViewModels
 {
     public class IssueViewModel : ViewModelBase
     {
-        private Dictionary<int, string> issueData { get; set; }
+        public Dictionary<int, string> issueData { get; set; }
 
         private bool _loading;
         public bool loading
@@ -161,6 +161,24 @@ namespace Octahedron.ViewModels
                     });
                 }
                 return _AssignIssue;
+            }
+        }
+
+        private RelayCommand<object> _AddToMilestone;
+        public RelayCommand<object> AddToMilestone
+        {
+            get
+            {
+                if (_AddToMilestone == null)
+                {
+                    _AddToMilestone = new RelayCommand<object>(async (m) =>
+                    {
+                        var milestone = m as Milestone;
+                        await constants.g_client.Issue.Update(issueData[0], issueData[1], int.Parse(issueData[2]), new IssueUpdate { Milestone = milestone.Number });
+                        LoadData();
+                    });
+                }
+                return _AddToMilestone;
             }
         }
 
@@ -392,7 +410,7 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_ChooseLabelSuggestion == null)
+                if (_ChooseLabelSuggestion == null)
                 {
                     _ChooseLabelSuggestion = new RelayCommand<object>((e) =>
                     {
