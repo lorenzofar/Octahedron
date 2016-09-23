@@ -693,4 +693,7 @@
   <data name="milestoneBtn_bar.Label" xml:space="preserve">
     <value>Milestone</value>
   </data>
+  <data name="refreshBtn_bar.Label" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>

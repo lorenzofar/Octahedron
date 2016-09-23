@@ -17,6 +17,8 @@ namespace Octahedron.ViewModels
 {
     public class RepoDetailViewModel : ViewModelBase
     {
+        private Dictionary<int, string> repoData { get; set; }
+
         private bool _owner;
         public bool owner
         {
@@ -469,10 +471,7 @@ namespace Octahedron.ViewModels
                             {
                                 await constants.g_client.Activity.Starring.StarRepo(repo.Owner.Login, repo.Name);
                             }
-                            var repoData = new Dictionary<int, string>();
-                            repoData.Add(0, repo.Owner.Login);
-                            repoData.Add(1, repo.Name);
-                            LoadRepo(repoData);
+                            LoadRepo();
                         }
                         catch
                         {
@@ -775,6 +774,22 @@ namespace Octahedron.ViewModels
                 return _HandleReadmeClick;
             }
         }
+
+        private RelayCommand _Refresh;
+        public RelayCommand Refresh
+        {
+            get
+            {
+                if(_Refresh == null)
+                {
+                    _Refresh = new RelayCommand(() =>
+                    {
+                        LoadRepo();
+                    });
+                }
+                return _Refresh;
+            }
+        }
         #endregion
 
         #region LISTS LOADING
@@ -824,16 +839,16 @@ namespace Octahedron.ViewModels
         {
             if (parameter != null)
             {
-                var data = parameter as Dictionary<int, string>;
-                if (repo == null || (data[0] != repo.Owner.Login || data[1] != repo.Name))
+                repoData = parameter as Dictionary<int, string>;
+                if (repo == null || (repoData[0] != repo.Owner.Login || repoData[1] != repo.Name))
                 {
-                    LoadRepo(parameter);
+                    LoadRepo();
                 }
             }
             return Task.CompletedTask;
         }
 
-        private async void LoadRepo(object info)
+        private async void LoadRepo()
         {
             loading = true;
             issuesIndex = 1;
@@ -843,9 +858,8 @@ namespace Octahedron.ViewModels
             readme = string.Empty;
             try
             {
-                var repoInfo = info as Dictionary<int, string>;
                 loadingProgress = constants.r_loader.GetString("info_progress");
-                repo = await constants.g_client.Repository.Get(repoInfo[0], repoInfo[1]);
+                repo = await constants.g_client.Repository.Get(repoData[0], repoData[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
