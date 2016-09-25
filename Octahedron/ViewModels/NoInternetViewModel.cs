@@ -33,7 +33,7 @@ namespace Octahedron.ViewModels
                         loggingIn = true;
                         var credential = utilities.GetCredential("login");
                         var loginResult = await utilities.LogIn(credential.UserName, credential.Password);
-                        if(loginResult == utilities.LoginResult.success)
+                        if (loginResult == utilities.LoginResult.success)
                         {
                             App.user = await constants.g_client.User.Current();
                             Messenger.Default.Send<MvvmMessaging.ProfileIconMessage>(new MvvmMessaging.ProfileIconMessage { url = App.user.AvatarUrl });
@@ -41,7 +41,10 @@ namespace Octahedron.ViewModels
                             Window.Current.Content = App.shell;
                             App.Current.NavigationService.Navigate(typeof(Views.MainPage));
                         }
-                        loggingIn = false;
+                        else
+                        {
+                            loggingIn = false;
+                        }
                     });
                 }
                 return _Refresh;
