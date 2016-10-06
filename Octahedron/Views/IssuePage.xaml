@@ -231,7 +231,7 @@
                                     <Grid x:Name="labelGrid">
                                         <FlyoutBase.AttachedFlyout>
                                             <MenuFlyout>
-                                                <MenuFlyoutItem x:Uid="removeBtn" IsEnabled="{Binding owner}" Text="Remove" Click="removeLabelBtn_Click"/>
+                                                <MenuFlyoutItem x:Uid="removeBtn" IsEnabled="{Binding owner}" DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Issue}" Text="Remove" Click="removeLabelBtn_Click"/>
                                             </MenuFlyout>
                                         </FlyoutBase.AttachedFlyout>
                                         <interactivity:Interaction.Behaviors>
