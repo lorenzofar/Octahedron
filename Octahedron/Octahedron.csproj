@@ -198,6 +198,7 @@
     <Compile Include="Templates\UserListItem.xaml.cs">
       <DependentUpon>UserListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Templates\UsersSearchResultsTemplateSelector.cs" />
     <Compile Include="ViewModels\AssignMilestoneViewModel.cs" />
     <Compile Include="ViewModels\AssignViewModel.cs" />
     <Compile Include="ViewModels\EditIssueCommentViewModel.cs" />
