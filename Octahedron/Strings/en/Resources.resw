@@ -418,7 +418,7 @@
     <value>Pull</value>
   </data>
   <data name="members_header.Text" xml:space="preserve">
-    <value>MEMBERS</value>
+    <value>People</value>
   </data>
   <data name="repos_header.Text" xml:space="preserve">
     <value>Repos</value>
@@ -695,5 +695,14 @@
   </data>
   <data name="refreshBtn_bar.Label" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="members_progress" xml:space="preserve">
+    <value>Loading members</value>
+  </data>
+  <data name="teams_header.Text" xml:space="preserve">
+    <value>Teams</value>
+  </data>
+  <data name="teams_progress" xml:space="preserve">
+    <value>Loading teams</value>
   </data>
 </root>

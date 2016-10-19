@@ -134,6 +134,47 @@ namespace Octahedron.ViewModels
             }
         }
 
+        #region ORGANIZATION
+        private bool _member = false;
+        public bool member
+        {
+            get
+            {
+                return _member;
+            }
+            set
+            {
+                Set(ref _member, value);
+            }
+        }
+
+        private IReadOnlyList<Team> _teams;
+        public IReadOnlyList<Team> teams
+        {
+            get
+            {
+                return _teams;
+            }
+            set
+            {
+                Set(ref _teams, value);
+            }
+        }
+
+        private IReadOnlyList<User> _members;
+        public IReadOnlyList<User> members
+        {
+            get
+            {
+                return _members;
+            }
+            set
+            {
+                Set(ref _members, value);
+            }
+        }
+        #endregion
+
         private RelayCommand _ShareUser;
         public RelayCommand ShareUser
         {
@@ -270,18 +311,32 @@ namespace Octahedron.ViewModels
                 loading = true;
                 loadingProgress = constants.r_loader.GetString("info_progress");
                 user = username == null ? await constants.g_client.User.Current() : await constants.g_client.User.Get(username.ToString());
-                owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
-                FollowUser.RaiseCanExecuteChanged();
-                following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);
                 loadingProgress = constants.r_loader.GetString("repositories_progress");
                 var repos = await constants.g_client.Repository.GetAllForUser(user.Login);
                 repoList = repos.OrderByDescending(x => x.UpdatedAt).ToList();
-                loadingProgress = constants.r_loader.GetString("organizations_progress");
-                organizations = username == null ? await constants.g_client.Organization.GetAllForCurrent() : await constants.g_client.Organization.GetAll(username.ToString());
-                loadingProgress = constants.r_loader.GetString("followers_progress");
-                followersList = await constants.g_client.User.Followers.GetAll(user.Login);
-                loadingProgress = constants.r_loader.GetString("following_progress");
-                followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
+                if (user.Type == AccountType.Organization)
+                {
+                    member = await constants.g_client.Organization.Member.CheckMember(username.ToString(), App.user.Login);
+                    loadingProgress = constants.r_loader.GetString("members_progress");
+                    members = await constants.g_client.Organization.Member.GetAll(username.ToString());
+                    if (member)
+                    {
+                        loadingProgress = constants.r_loader.GetString("teams_progress");
+                        teams = await constants.g_client.Organization.Team.GetAll(username.ToString());
+                    }
+                }
+                else
+                {
+                    owner_profile = user.Login == (await constants.g_client.User.Current()).Login ? true : false;
+                    FollowUser.RaiseCanExecuteChanged();
+                    following = await constants.g_client.User.Followers.IsFollowingForCurrent(user.Login);
+                    loadingProgress = constants.r_loader.GetString("organizations_progress");
+                    organizations = username == null ? await constants.g_client.Organization.GetAllForCurrent() : await constants.g_client.Organization.GetAll(username.ToString());
+                    loadingProgress = constants.r_loader.GetString("followers_progress");
+                    followersList = await constants.g_client.User.Followers.GetAll(user.Login);
+                    loadingProgress = constants.r_loader.GetString("following_progress");
+                    followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
+                }
                 loading = false;
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
             }

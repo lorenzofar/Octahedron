@@ -139,7 +139,8 @@ namespace Octahedron.ViewModels
                         if (args != null && args.ClickedItem != null)
                         {
                             var user = args.ClickedItem as User;
-                            App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), user.Login);
+                            
+                            App.Current.NavigationService.Navigate(user.Type == AccountType.User ? typeof(Views.ProfilePage) : typeof(Views.OrganizationPage), user.Login);
                         }
                     });
                 }
