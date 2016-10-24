@@ -20,7 +20,14 @@
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="settings_header" Style="{StaticResource pageHeader}"/>
 
         <Grid Grid.Row="1">
-            <Button Margin="12" Content="LOGOUT" Command="{Binding LogOut}"/>
         </Grid>
+
+        <CommandBar Grid.Row="2">
+            <AppBarButton x:Uid="logout_btn" Command="{Binding LogOut}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE7E8;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
     </Grid>
 </Page>

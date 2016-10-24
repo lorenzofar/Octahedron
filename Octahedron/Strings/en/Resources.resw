@@ -705,4 +705,7 @@
   <data name="teams_progress" xml:space="preserve">
     <value>Loading teams</value>
   </data>
+  <data name="logout_btn.Label" xml:space="preserve">
+    <value>Logout</value>
+  </data>
 </root>
