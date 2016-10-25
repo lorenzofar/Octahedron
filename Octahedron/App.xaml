@@ -9,7 +9,8 @@
 
     <common:BootStrapper.Resources>
         <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
-        
+        <SolidColorBrush x:Key="github_green" Color="#73C456"/>
+
         <!--STYLES-->
         <Style x:Key="pageHeader" TargetType="controls:PageHeader">
             <Setter Property="FontWeight" Value="Bold"/>

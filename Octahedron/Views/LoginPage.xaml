@@ -26,7 +26,7 @@
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </PasswordBox>
-            <Button x:Uid="login_btn" Margin="12,6" Background="#73C456" HorizontalAlignment="Stretch" Command="{Binding login}"/>
+            <Button x:Uid="login_btn" Margin="12,6" Background="{StaticResource github_green}" HorizontalAlignment="Stretch" Command="{Binding login}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding loggingIn, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
