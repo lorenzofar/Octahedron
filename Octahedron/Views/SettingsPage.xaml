@@ -10,7 +10,31 @@
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Settings}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="profile_header.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="profile_header.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -19,8 +43,34 @@
         
         <controls:PageHeader Frame="{x:Bind Frame}" x:Uid="settings_header" Style="{StaticResource pageHeader}"/>
 
-        <Grid Grid.Row="1">
-        </Grid>
+        <Pivot Grid.Row="1" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}, ConverterParameter=false}">
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF018;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                        <TextBlock x:Name="profile_header" x:Uid="profile_txt" Margin="12,0,0,4" Text="Info"/>
+                    </StackPanel>
+                </PivotItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBox x:Uid="name_box" Text="{Binding name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox x:Uid="bio_box" Text="{Binding bio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="120" TextWrapping="Wrap" Margin="0,6"/>
+                        <TextBox x:Uid="url_box" Text="{Binding blog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox x:Uid="company_box" Text="{Binding company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6"/>
+                        <TextBox x:Uid="location_box" Text="{Binding location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox x:Uid="hireable_box" IsChecked="{Binding hireable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6"/>
+                        <Button x:Uid="profileUpdate_btn" Background="{StaticResource github_green}" Command="{Binding UpdateProfile}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+
+        <StackPanel Grid.Row="1" Margin="12" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Viewbox MaxHeight="60" MaxWidth="60">
+                <ProgressRing IsActive="{Binding loading}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Width="60" Height="60"/>
+            </Viewbox>
+            <TextBlock Margin="0,12,0,0" Text="{Binding loadingProgress}"/>
+        </StackPanel>
 
         <CommandBar Grid.Row="2">
             <AppBarButton x:Uid="logout_btn" Command="{Binding LogOut}">

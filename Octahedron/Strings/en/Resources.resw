@@ -708,4 +708,37 @@
   <data name="logout_btn.Label" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="bio_box.Header" xml:space="preserve">
+    <value>Bio</value>
+  </data>
+  <data name="bio_box.PlaceholderText" xml:space="preserve">
+    <value>Tell a little about yourself</value>
+  </data>
+  <data name="company_box.Header" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="email_box.Header" xml:space="preserve">
+    <value>Public email</value>
+  </data>
+  <data name="hireable_box.Content" xml:space="preserve">
+    <value>Available for hire</value>
+  </data>
+  <data name="loadingSettings_progress" xml:space="preserve">
+    <value>Loading settings</value>
+  </data>
+  <data name="location_box.Header" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="name_box.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="profileUpdate_btn.Content" xml:space="preserve">
+    <value>Update profile</value>
+  </data>
+  <data name="updateProfile_progress" xml:space="preserve">
+    <value>Updating profile</value>
+  </data>
+  <data name="url_box.Header" xml:space="preserve">
+    <value>Url</value>
+  </data>
 </root>
