@@ -54,12 +54,19 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <TextBox x:Uid="name_box" Text="{Binding name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox x:Uid="bio_box" Text="{Binding bio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="120" TextWrapping="Wrap" Margin="0,6"/>
-                        <TextBox x:Uid="url_box" Text="{Binding blog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox x:Uid="company_box" Text="{Binding company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6"/>
-                        <TextBox x:Uid="location_box" Text="{Binding location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <CheckBox x:Uid="hireable_box" IsChecked="{Binding hireable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6"/>
-                        <Button x:Uid="profileUpdate_btn" Background="{StaticResource github_green}" Command="{Binding UpdateProfile}"/>
+                        <ComboBox x:Uid="email_box" ItemsSource="{Binding emails}" SelectedValue="{Binding selectedEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Email}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBox x:Uid="bio_box" Text="{Binding bio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="120" TextWrapping="Wrap"/>
+                        <TextBox x:Uid="url_box" Text="{Binding blog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6"/>
+                        <TextBox x:Uid="company_box" Text="{Binding company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox x:Uid="location_box" Text="{Binding location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6"/>
+                        <CheckBox x:Uid="hireable_box" IsChecked="{Binding hireable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button x:Uid="profileUpdate_btn" Background="{StaticResource github_green}" Command="{Binding UpdateProfile}" Margin="0,6"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

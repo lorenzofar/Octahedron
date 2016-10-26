@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using Helper;
+using Octokit;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Template10.Mvvm;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -73,18 +75,6 @@ namespace Octahedron.ViewModels
                 Set(ref _company, value);
             }
         }
-        private string _email;
-        public string email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                Set(ref _email, value);
-            }
-        }
         private string _location;
         public string location
         {
@@ -122,6 +112,32 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private IReadOnlyList<EmailAddress> _emails;
+        public IReadOnlyList<EmailAddress> emails
+        {
+            get
+            {
+                return _emails;
+            }
+            set
+            {
+                Set(ref _emails, value);
+            }
+        }
+        
+        private EmailAddress _selectedEmail;
+        public EmailAddress selectedEmail
+        {
+            get
+            {
+                return _selectedEmail;
+            }
+            set
+            {
+                Set(ref _selectedEmail, value);
+            }
+        }
+
         private RelayCommand _UpdateProfile;
         public RelayCommand UpdateProfile
         {
@@ -138,7 +154,7 @@ namespace Octahedron.ViewModels
                             Bio = bio,
                             Blog = blog,
                             Company = company,
-                            Email = email,
+                            Email = selectedEmail.Email,
                             Hireable = hireable,
                             Location = location,
                             Name = name
@@ -175,10 +191,11 @@ namespace Octahedron.ViewModels
             loading = true;
             loadingProgress = constants.r_loader.GetString("loadingSettings_progress");
             App.user = await constants.g_client.User.Current();
+            emails = (await constants.g_client.User.Email.GetAll()).OrderByDescending(x => x.Email == App.user.Email).ToList();
+            selectedEmail = emails.FirstOrDefault(x => x.Email == App.user.Email);
             bio = App.user.Bio;
             blog = App.user.Blog;
             company = App.user.Company;
-            email = App.user.Email;
             location = App.user.Location;
             name = App.user.Name;
             hireable = App.user.Hireable == null ? false : App.user.Hireable.Value;
