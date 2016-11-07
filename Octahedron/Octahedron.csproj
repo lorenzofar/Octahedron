@@ -443,17 +443,17 @@
   <ItemGroup>
     <Reference Include="Syncfusion.SfColorPickers.UWP, Version=14.2460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Assemblies for Universal Windows\10.0\Syncfusion.SfColorPickers.UWP.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.52\Assemblies for Universal Windows\10.0\Syncfusion.SfColorPickers.UWP.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfInput.UWP, Version=14.2460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Assemblies for Universal Windows\10.0\Syncfusion.SfInput.UWP.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.52\Assemblies for Universal Windows\10.0\Syncfusion.SfInput.UWP.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfShared.UWP, Version=14.2460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Assemblies for Universal Windows\10.0\Syncfusion.SfShared.UWP.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.52\Assemblies for Universal Windows\10.0\Syncfusion.SfShared.UWP.dll</HintPath>
     </Reference>
-    <Reference Include="UniversalMarkdown, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="UniversalMarkdown, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\UniversalMarkdown\UniversalMarkdown\bin\Release\UniversalMarkdown.dll</HintPath>
     </Reference>
