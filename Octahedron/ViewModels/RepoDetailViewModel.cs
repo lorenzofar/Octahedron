@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using UniversalMarkdown;
+using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -723,6 +724,16 @@ namespace Octahedron.ViewModels
                         if (item.Type == ContentType.Dir)
                         {
                             content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, item.Path);
+                        }
+                        else if(item.Type == ContentType.File)
+                        {
+                            loading = true;
+                            loadingProgress = constants.r_loader.GetString("download_progress");
+                            StorageFile downloaded_file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(item.Name, CreationCollisionOption.GenerateUniqueName);
+                            var download_result = await utilities.DownloadFile(item.DownloadUrl, downloaded_file);
+                            await Windows.System.Launcher.LaunchFileAsync(await ApplicationData.Current.TemporaryFolder.GetFileAsync(downloaded_file.Name));
+                            loading = false;
+                            
                         }
                     });
                 }

@@ -741,4 +741,7 @@
   <data name="url_box.Header" xml:space="preserve">
     <value>Url</value>
   </data>
+  <data name="download_progress" xml:space="preserve">
+    <value>Downloading from Github</value>
+  </data>
 </root>
