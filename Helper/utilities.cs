@@ -2,7 +2,9 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.Networking.BackgroundTransfer;
 using Windows.Security.Credentials;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 
@@ -68,7 +70,7 @@ namespace Helper
                 var user = await constants.g_client.User.Current();
                 return LoginResult.success;
             }
-            catch(AuthorizationException)
+            catch (AuthorizationException)
             {
                 return LoginResult.wrongCredentials;
             }
@@ -76,7 +78,7 @@ namespace Helper
             {
                 return LoginResult.connectionError;
             }
-        }        
+        }
 
         public static async Task LogOut()
         {
@@ -119,7 +121,7 @@ namespace Helper
 
         public static colorType CheckColorType(Color color)
         {
-            if(color.R * 0.2126 + color.G * 0.7152 + color.B * 0.0722 > 255 / 2)
+            if (color.R * 0.2126 + color.G * 0.7152 + color.B * 0.0722 > 255 / 2)
             {
                 return colorType.Light;
             }
@@ -157,7 +159,7 @@ namespace Helper
                         return String.Format(constants.r_loader.GetString("timeAgo"), hours, constants.r_loader.GetString(hours == 1 ? "hour" : "hours"));
                     }
                 }
-                else if(days == 1)
+                else if (days == 1)
                 {
                     return constants.r_loader.GetString("yesterday");
                 }
@@ -173,6 +175,27 @@ namespace Helper
             else
             {
                 return String.Format(constants.r_loader.GetString("onDate"), $"{months[date.Month - 1]} {date.Day}, {date.Year}");
+            }
+        }
+
+        /// <summary>
+        /// Download a file from the provided url
+        /// </summary>
+        /// <param name="url">The download url</param>
+        /// <param name="file">The file to save the download in</param>
+        /// <returns></returns>
+        public static async Task<bool> DownloadFile(Uri url, StorageFile file)
+        {
+            try
+            {
+                var downloader = new BackgroundDownloader();
+                var download_operation = downloader.CreateDownload(url, file);
+                var download_result = await download_operation.StartAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
