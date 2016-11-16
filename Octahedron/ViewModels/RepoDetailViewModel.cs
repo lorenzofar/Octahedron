@@ -732,6 +732,8 @@ namespace Octahedron.ViewModels
                             StorageFile downloaded_file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(item.Name, CreationCollisionOption.GenerateUniqueName);
                             var download_result = await utilities.DownloadFile(item.DownloadUrl, downloaded_file);
                             await Windows.System.Launcher.LaunchFileAsync(await ApplicationData.Current.TemporaryFolder.GetFileAsync(downloaded_file.Name));
+                            loadingProgress = constants.r_loader.GetString("file_opening");
+                            await Task.Delay(500);
                             loading = false;
                             
                         }

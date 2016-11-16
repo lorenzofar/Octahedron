@@ -744,4 +744,7 @@
   <data name="download_progress" xml:space="preserve">
     <value>Downloading from Github</value>
   </data>
+  <data name="file_opening" xml:space="preserve">
+    <value>Opening the file</value>
+  </data>
 </root>
