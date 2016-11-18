@@ -404,6 +404,7 @@
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
             <AppBarToggleButton x:Uid="star_btn" Command="{Binding StarRepo}" Margin="6,0,0,0" Icon="Favorite" IsChecked="{Binding starred, Mode=TwoWay}" Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
+            <AppBarButton x:Uid="download_btn" Command="{Binding DownloadZip}" Icon="Download"  Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=0}"/>
             <AppBarButton x:Uid="refreshBtn_bar" Command="{Binding Refresh}" Icon="Refresh"/>
             <!--ISSUES TAB-->
             <AppBarButton x:Uid="filter_btn" x:Name="filter_issues_btn" Icon="Filter"  Visibility="{Binding SelectedIndex, ElementName=pivot, Converter={StaticResource PivotBarConverter}, ConverterParameter=2}">

@@ -747,4 +747,10 @@
   <data name="file_opening" xml:space="preserve">
     <value>Opening the file</value>
   </data>
+  <data name="downloadRepo_progress" xml:space="preserve">
+    <value>Downloading repo</value>
+  </data>
+  <data name="download_btn.Label" xml:space="preserve">
+    <value>Download</value>
+  </data>
 </root>

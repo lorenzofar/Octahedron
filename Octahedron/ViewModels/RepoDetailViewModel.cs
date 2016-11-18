@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using Helper;
 using Octahedron.Models;
 using Octokit;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using UniversalMarkdown;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -768,6 +768,34 @@ namespace Octahedron.ViewModels
                     });
                 }
                 return _GoUpContent;
+            }
+        }
+
+        private RelayCommand _DownloadZip;
+        public RelayCommand DownloadZip
+        {
+            get
+            {
+                if(_DownloadZip == null)
+                {
+                    _DownloadZip = new RelayCommand(async() =>
+                    {
+                        FileSavePicker file_picker = new FileSavePicker()
+                        {
+                            DefaultFileExtension = ".zip",
+                            SuggestedFileName = $"{repo.Name}-{repo.DefaultBranch}",
+                            SuggestedStartLocation = PickerLocationId.Downloads
+                        };
+                        file_picker.FileTypeChoices.Add("Zip archive", new List<string>() { ".zip" });
+                        StorageFile file = await file_picker.PickSaveFileAsync();
+                        loading = true;
+                        loadingProgress = constants.r_loader.GetString("downloadRepo_progress");
+                        var archive = await constants.g_client.Repository.Content.GetArchive(repo.Id, ArchiveFormat.Zipball);
+                        await FileIO.WriteBytesAsync(file, archive);
+                        loading = false;
+                    });
+                }
+                return _DownloadZip;
             }
         }
 
