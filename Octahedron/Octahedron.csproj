@@ -20,8 +20,8 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>17A54216B2FAC437DD1090A0E218AB151AD93ECD</PackageCertificateThumbprint>
-    <AppxPackageDir>C:\Users\Lorenzo\Desktop\</AppxPackageDir>
+    <PackageCertificateThumbprint>0D77E44B09A3BBD608DCDFBD9E6F9DCDD65A74B8</PackageCertificateThumbprint>
+    <AppxPackageDir>C:\Users\lorig\Desktop\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -98,6 +98,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Octahedron_StoreKey.pfx" />
+    <None Include="Octahedron_TemporaryKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
