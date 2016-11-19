@@ -788,11 +788,14 @@ namespace Octahedron.ViewModels
                         };
                         file_picker.FileTypeChoices.Add("Zip archive", new List<string>() { ".zip" });
                         StorageFile file = await file_picker.PickSaveFileAsync();
-                        loading = true;
-                        loadingProgress = constants.r_loader.GetString("downloadRepo_progress");
-                        var archive = await constants.g_client.Repository.Content.GetArchive(repo.Id, ArchiveFormat.Zipball);
-                        await FileIO.WriteBytesAsync(file, archive);
-                        loading = false;
+                        if (file != null)
+                        {
+                            loading = true;
+                            loadingProgress = constants.r_loader.GetString("downloadRepo_progress");
+                            var archive = await constants.g_client.Repository.Content.GetArchive(repo.Id, ArchiveFormat.Zipball);
+                            await FileIO.WriteBytesAsync(file, archive);
+                            loading = false;
+                        }
                     });
                 }
                 return _DownloadZip;
