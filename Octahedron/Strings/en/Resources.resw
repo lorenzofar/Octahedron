@@ -753,4 +753,10 @@
   <data name="download_btn.Label" xml:space="preserve">
     <value>Download</value>
   </data>
+  <data name="fork_btn.Label" xml:space="preserve">
+    <value>Fork</value>
+  </data>
+  <data name="fork_progress" xml:space="preserve">
+    <value>Forking this repository</value>
+  </data>
 </root>

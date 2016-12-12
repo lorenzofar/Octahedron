@@ -484,6 +484,29 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private RelayCommand _ForkRepo;
+        public RelayCommand ForkRepo
+        {
+            get
+            {
+                if(_ForkRepo == null)
+                {
+                    _ForkRepo = new RelayCommand(async() =>
+                    {
+                        loading = true;
+                        loadingProgress = constants.r_loader.GetString("fork_progress");
+                        Repository fork = await constants.g_client.Repository.Forks.Create(repo.Id, new NewRepositoryFork());
+                        var repoData = new Dictionary<int, string>();
+                        repoData.Add(0, fork.Owner.Login);
+                        repoData.Add(1, fork.Name);
+                        loading = false;
+                        App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repoData);
+                    }, () => !owner);
+                }
+                return _ForkRepo;
+            }
+        }
+
         private RelayCommand _OpenProfile;
         public RelayCommand OpenProfile
         {
@@ -905,6 +928,7 @@ namespace Octahedron.ViewModels
                 loadingProgress = constants.r_loader.GetString("info_progress");
                 repo = await constants.g_client.Repository.Get(repoData[0], repoData[1]);
                 owner = repo.Owner.Login == (await constants.g_client.User.Current()).Login ? true : false;
+                ForkRepo.RaiseCanExecuteChanged();
                 watched = await constants.g_client.Activity.Watching.CheckWatched(repo.Owner.Login, repo.Name);
                 starred = await constants.g_client.Activity.Starring.CheckStarred(repo.Owner.Login, repo.Name);
                 loadingProgress = constants.r_loader.GetString("branches_progress");
