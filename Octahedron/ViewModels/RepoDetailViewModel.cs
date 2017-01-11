@@ -956,13 +956,13 @@ namespace Octahedron.ViewModels
         {
             commitGroups.Clear();
             var query = from item in commits
-                        group item by constants.shortDateFormatter.Format(item.Commit.Committer.Date) into r
+                        group item by item.Commit.Committer.Date.Date into r
                         orderby r.Key descending
                         select new { GroupName = r.Key, Items = r };
             foreach (var g in query)
             {
                 GroupInfoList info = new GroupInfoList();
-                info.Key = g.GroupName;
+                info.Key = constants.shortDateFormatter.Format(g.GroupName);
                 foreach (var item in g.Items)
                 {
                     info.Add(item);
