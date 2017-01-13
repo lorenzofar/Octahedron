@@ -146,7 +146,12 @@
                             </StackPanel>
                         </PivotItem.Header>
                         <Grid>
-                            <ListView ItemsSource="{Binding organizations}" Margin="-12,0" IsItemClickEnabled="True" SelectionMode="None">                                
+                            <ListView ItemsSource="{Binding organizations}" Margin="-12,0" IsItemClickEnabled="True" SelectionMode="None">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding OpenOrganization}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <templates:OrganizationsListItem/>

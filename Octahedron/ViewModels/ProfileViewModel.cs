@@ -307,6 +307,27 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private RelayCommand<object> _OpenOrganization;
+        public RelayCommand<object> OpenOrganization
+        {
+            get
+            {
+                if (_OpenOrganization == null)
+                {
+                    _OpenOrganization = new RelayCommand<object>((e) =>
+                    {
+                        var args = e as ItemClickEventArgs;
+                        if (args != null && args.ClickedItem != null)
+                        {
+                            var org = args.ClickedItem as Organization;
+                            App.Current.NavigationService.Navigate(typeof(Views.OrganizationPage), org.Login);
+                        }
+                    });
+                }
+                return _OpenOrganization;
+            }
+        }
+
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (mode != NavigationMode.Back || parameter == null || parameter.ToString() != user.Login)
