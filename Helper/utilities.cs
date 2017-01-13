@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Security.Credentials;
 using Windows.Storage;
@@ -196,6 +197,26 @@ namespace Helper
             catch
             {
                 return false;
+            }
+        }
+
+        public static async Task<Color> GetDominantColor(string imagePath)
+        {
+            StorageFile image_file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("profilePic", CreationCollisionOption.GenerateUniqueName);
+            var download = await DownloadFile(new Uri(imagePath), image_file);
+            if (download)
+            {
+                var colorThief = new ColorThiefDotNet.ColorThief();
+                var stream = await image_file.OpenReadAsync();
+                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                var color = await colorThief.GetColor(decoder);
+                var brushColor = Color.FromArgb(color.Color.A, color.Color.R, color.Color.G, color.Color.B);
+                await image_file.DeleteAsync();
+                return brushColor;
+            }
+            else
+            {
+                return Colors.Transparent;
             }
         }
     }

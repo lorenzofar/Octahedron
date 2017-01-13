@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "ksemenenko.ColorThief": "1.1.0.2",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Octokit": "0.23.0"
   },
