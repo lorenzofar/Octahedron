@@ -36,7 +36,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="4.5*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" >
+            <Grid Grid.Row="0" Background="{Binding background}" >
                 <Viewbox Margin="0,12" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Ellipse Width="120" Height="120" MaxHeight="120" MaxWidth="120">

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Octahedron.ViewModels
@@ -53,6 +54,19 @@ namespace Octahedron.ViewModels
             set
             {
                 Set(ref _user, value);
+            }
+        }
+
+        private SolidColorBrush _background;
+        public SolidColorBrush background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                Set(ref _background, value);
             }
         }
 
@@ -337,6 +351,7 @@ namespace Octahedron.ViewModels
                     loadingProgress = constants.r_loader.GetString("following_progress");
                     followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
                 }
+                background = new SolidColorBrush(await utilities.GetDominantColor(user.AvatarUrl));
                 loading = false;
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
             }
