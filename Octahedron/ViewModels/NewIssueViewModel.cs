@@ -103,10 +103,12 @@ namespace Octahedron.ViewModels
                             update.Body = body;
                             issue = await constants.g_client.Issue.Update(repoData[0], repoData[1], editingIssue.Number, update);
                         }
-                        var issueData = new Dictionary<int, string>();
-                        issueData.Add(0, repoData[0]);
-                        issueData.Add(1, repoData[1]);
-                        issueData.Add(2, issue.Number.ToString());
+                        var issueData = new Dictionary<int, string>
+                        {
+                            { 0, repoData[0] },
+                            { 1, repoData[1] },
+                            { 2, issue.Number.ToString() }
+                        };
                         App.Current.NavigationService.Navigate(typeof(Views.IssuePage), issueData);
                         loading = false;
                     }, () => !string.IsNullOrWhiteSpace(title));

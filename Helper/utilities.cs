@@ -81,10 +81,11 @@ namespace Helper
             }
         }
 
-        public static async Task LogOut()
+        public static Task LogOut()
         {
             var vault = new PasswordVault();
             vault.Remove(GetCredential("login"));
+            return Task.CompletedTask;
         }
 
         public static SolidColorBrush ConvertHexToBrush(string hexColor)

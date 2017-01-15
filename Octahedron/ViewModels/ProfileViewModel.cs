@@ -271,13 +271,14 @@ namespace Octahedron.ViewModels
                 {
                     _OpenRepo = new RelayCommand<object>((e) =>
                     {
-                        var args = e as ItemClickEventArgs;
-                        if (args != null && args.ClickedItem != null)
+                        if (e is ItemClickEventArgs args && args.ClickedItem != null)
                         {
                             var repo = args.ClickedItem as Repository;
-                            var repoData = new Dictionary<int, string>();
-                            repoData.Add(0, repo.Owner.Login);
-                            repoData.Add(1, repo.Name);
+                            var repoData = new Dictionary<int, string>
+                            {
+                                { 0, repo.Owner.Login },
+                                { 1, repo.Name }
+                            };
                             App.Current.NavigationService.Navigate(typeof(Views.RepoDetailPage), repoData);
                         }
                     });
@@ -295,8 +296,7 @@ namespace Octahedron.ViewModels
                 {
                     _OpenUser = new RelayCommand<object>((e) =>
                     {
-                        var args = e as ItemClickEventArgs;
-                        if (args != null && args.ClickedItem != null)
+                        if (e is ItemClickEventArgs args && args.ClickedItem != null)
                         {
                             var user = args.ClickedItem as User;
                             App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), user.Login);
@@ -316,8 +316,7 @@ namespace Octahedron.ViewModels
                 {
                     _OpenOrganization = new RelayCommand<object>((e) =>
                     {
-                        var args = e as ItemClickEventArgs;
-                        if (args != null && args.ClickedItem != null)
+                        if (e is ItemClickEventArgs args && args.ClickedItem != null)
                         {
                             var org = args.ClickedItem as Organization;
                             App.Current.NavigationService.Navigate(typeof(Views.OrganizationPage), org.Login);
