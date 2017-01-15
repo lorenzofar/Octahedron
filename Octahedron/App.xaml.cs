@@ -22,7 +22,7 @@ namespace Octahedron
             var viewModelLocator = new ViewModels.ViewModelLocator();
             HockeyClient.Current.Configure("d15374afd2ee4377851f1dc8e26e2d69");
             //HideStatusBar();
-            //SplashFactory = e => new Views.Splash(e);
+            SplashFactory = e => new Views.Splash(e);
         }
 
         private async void HideStatusBar()
