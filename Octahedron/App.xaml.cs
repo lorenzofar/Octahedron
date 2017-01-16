@@ -1,17 +1,17 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Helper;
 using Microsoft.HockeyApp;
+using System;
 using System.Threading.Tasks;
-using Template10.Services.NavigationService;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation.Metadata;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using System;
-using Windows.Foundation.Metadata;
+using Template10.Common;
 
 namespace Octahedron
 {
-    sealed partial class App : Template10.Common.BootStrapper
+    sealed partial class App : BootStrapper
     {
         public static Octokit.User user { get; set; }
         public static Views.Shell shell { get; set; }
@@ -19,7 +19,7 @@ namespace Octahedron
         public App()
         {
             this.InitializeComponent();
-            var viewModelLocator = new ViewModels.ViewModelLocator();
+            new ViewModels.ViewModelLocator();
             HockeyClient.Current.Configure("d15374afd2ee4377851f1dc8e26e2d69");
             //HideStatusBar();
             SplashFactory = e => new Views.Splash(e);
@@ -56,8 +56,8 @@ namespace Octahedron
                     if (loginResult == utilities.LoginResult.success)
                     {
                         user = await constants.g_client.User.Current();
-                        Messenger.Default.Send<MvvmMessaging.ProfileIconMessage>(new MvvmMessaging.ProfileIconMessage { url = user.AvatarUrl });
-                        NavigationService.Navigate(typeof(Views.MainPage), null);
+                        Messenger.Default.Send(new MvvmMessaging.ProfileIconMessage { url = user.AvatarUrl });
+                        NavigationService.Navigate(typeof(Views.MainPage));
                     }
                     else if (loginResult == utilities.LoginResult.wrongCredentials)
                     {

@@ -68,7 +68,7 @@ namespace Helper
                     Credentials = g_credentials
                 };
                 constants.g_client = new GitHubClient(g_connection);
-                var user = await constants.g_client.User.Current();
+                await constants.g_client.User.Current();
                 return LoginResult.success;
             }
             catch (AuthorizationException)
@@ -133,7 +133,7 @@ namespace Helper
             }
         }
 
-        private static string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        private static readonly string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
         public static string FormatDate(DateTime date)
         {
@@ -176,7 +176,7 @@ namespace Helper
             }
             else
             {
-                return String.Format(constants.r_loader.GetString("onDate"), $"{months[date.Month - 1]} {date.Day}, {date.Year}");
+                return string.Format(constants.r_loader.GetString("onDate"), $"{months[date.Month - 1]} {date.Day}, {date.Year}");
             }
         }
 
@@ -192,7 +192,7 @@ namespace Helper
             {
                 var downloader = new BackgroundDownloader();
                 var download_operation = downloader.CreateDownload(url, file);
-                var download_result = await download_operation.StartAsync();
+                await download_operation.StartAsync();
                 return true;
             }
             catch

@@ -83,18 +83,14 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_ConfirmAssignment == null)
+                return _ConfirmAssignment ?? (_ConfirmAssignment = new RelayCommand(() =>
                 {
-                    _ConfirmAssignment = new RelayCommand(() =>
+                    if (selectedIndex != -1)
                     {
-                        if (selectedIndex != -1)
-                        {
-                            var viewModel = AssignMilestoneDialog.dataContext as IssueViewModel;
-                            viewModel.AddToMilestone.Execute(milestones[selectedIndex]);
-                        }
-                    });
-                }
-                return _ConfirmAssignment;
+                        var viewModel = AssignMilestoneDialog.dataContext as IssueViewModel;
+                        viewModel.AddToMilestone.Execute(milestones[selectedIndex]);
+                    }
+                }));
             }
         }
     }

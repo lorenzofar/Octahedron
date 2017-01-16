@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 

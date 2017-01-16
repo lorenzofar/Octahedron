@@ -8,7 +8,7 @@ namespace Octahedron.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return value == null ? constants.r_loader.GetString("noDescription") : value;
+            return value ?? constants.r_loader.GetString("noDescription");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

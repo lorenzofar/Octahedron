@@ -31,44 +31,20 @@
 
         public IssueViewModel Issue { get; set; }
 
-        public NewIssueViewModel NewIssue
-        {
-            get
-            {
-                return new NewIssueViewModel();
-            }
-        }
+        public NewIssueViewModel NewIssue => new NewIssueViewModel();
 
         public PullViewModel Pull { get; set; }
 
         public AssignViewModel Assign { get; set; }
 
-        public EditIssueCommentViewModel EditIssueComment
-        {
-            get
-            {
-                return new EditIssueCommentViewModel();
-            }
-        }
+        public EditIssueCommentViewModel EditIssueComment => new EditIssueCommentViewModel();
 
         public SettingsViewModel Settings { get; set; }
 
         public NoInternetViewModel NoInternet { get; set; }
 
-        public NewMilestoneViewModel NewMilestone
-        {
-            get
-            {
-                return new NewMilestoneViewModel();
-            }
-        }
+        public NewMilestoneViewModel NewMilestone => new NewMilestoneViewModel();
 
-        public AssignMilestoneViewModel AddMilestone
-        {
-            get
-            {
-                return new AssignMilestoneViewModel();
-            }
-        }
+        public AssignMilestoneViewModel AddMilestone => new AssignMilestoneViewModel();
     }
 }

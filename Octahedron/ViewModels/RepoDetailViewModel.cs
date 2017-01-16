@@ -243,9 +243,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_PreviousIssuesPage == null)
+                if (_PreviousIssuesPage == null)
                 {
-                    _PreviousIssuesPage = new RelayCommand(async() =>
+                    _PreviousIssuesPage = new RelayCommand(async () =>
                     {
                         issuesPage--;
                         loading = true;
@@ -263,13 +263,13 @@ namespace Octahedron.ViewModels
             {
                 if (_NextIssuesPage == null)
                 {
-                    _NextIssuesPage = new RelayCommand(async() =>
+                    _NextIssuesPage = new RelayCommand(async () =>
                     {
                         issuesPage++;
                         loading = true;
                         await LoadIssues();
                         loading = false;
-                    }, () => 50*issuesPage < repo.OpenIssuesCount);
+                    }, () => 50 * issuesPage < repo.OpenIssuesCount);
                 }
                 return _NextIssuesPage;
             }
@@ -489,9 +489,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_ForkRepo == null)
+                if (_ForkRepo == null)
                 {
-                    _ForkRepo = new RelayCommand(async() =>
+                    _ForkRepo = new RelayCommand(async () =>
                     {
                         loading = true;
                         loadingProgress = constants.r_loader.GetString("fork_progress");
@@ -748,17 +748,20 @@ namespace Octahedron.ViewModels
                         {
                             content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, item.Path);
                         }
-                        else if(item.Type == ContentType.File)
+                        else if (item.Type == ContentType.File)
                         {
                             loading = true;
                             loadingProgress = constants.r_loader.GetString("download_progress");
                             StorageFile downloaded_file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(item.Name, CreationCollisionOption.GenerateUniqueName);
                             var download_result = await utilities.DownloadFile(item.DownloadUrl, downloaded_file);
-                            await Windows.System.Launcher.LaunchFileAsync(await ApplicationData.Current.TemporaryFolder.GetFileAsync(downloaded_file.Name));
-                            loadingProgress = constants.r_loader.GetString("file_opening");
-                            await Task.Delay(500);
+                            if (download_result)
+                            {
+                                await Windows.System.Launcher.LaunchFileAsync(
+                                    await ApplicationData.Current.TemporaryFolder.GetFileAsync(downloaded_file.Name));
+                                loadingProgress = constants.r_loader.GetString("file_opening");
+                                await Task.Delay(500);
+                            }
                             loading = false;
-                            
                         }
                     });
                 }
@@ -786,7 +789,6 @@ namespace Octahedron.ViewModels
                         content = await constants.g_client.Repository.Content.GetAllContents(repo.Owner.Login, repo.Name, path);
                     }, () =>
                     {
-                        var path = content[0].Path;
                         return $"./{content[0].Name}" != $"./{content[0].Path}";
                     });
                 }
@@ -799,9 +801,9 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_DownloadZip == null)
+                if (_DownloadZip == null)
                 {
-                    _DownloadZip = new RelayCommand(async() =>
+                    _DownloadZip = new RelayCommand(async () =>
                     {
                         FileSavePicker file_picker = new FileSavePicker()
                         {
@@ -847,7 +849,7 @@ namespace Octahedron.ViewModels
         {
             get
             {
-                if(_Refresh == null)
+                if (_Refresh == null)
                 {
                     _Refresh = new RelayCommand(() =>
                     {
@@ -863,7 +865,7 @@ namespace Octahedron.ViewModels
         private async Task LoadIssues()
         {
             loadingProgress = constants.r_loader.GetString("issues_progress");
-            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState}, new ApiOptions { PageSize = 50, PageCount = 1, StartPage = issuesPage });
+            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState }, new ApiOptions { PageSize = 50, PageCount = 1, StartPage = issuesPage });
         }
 
         private async Task LoadPulls()
@@ -941,9 +943,8 @@ namespace Octahedron.ViewModels
                 await LoadContent();
                 readme = (await constants.g_client.Repository.Content.GetReadme(repo.Owner.Login, repo.Name)).Content;
             }
-            catch (ApiException readMeException)
+            catch (ApiException)
             {
-
             }
             catch
             {

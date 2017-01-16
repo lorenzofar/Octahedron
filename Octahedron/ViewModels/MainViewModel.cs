@@ -15,10 +15,6 @@ namespace Octahedron.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
-        {
-        }
-
         private List<Octokit.Notification> _notifications;
         public List<Octokit.Notification> notifications
         {

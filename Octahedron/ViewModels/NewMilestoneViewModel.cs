@@ -127,7 +127,6 @@ namespace Octahedron.ViewModels
                     {
                         loading = true;
                         loadingProgress = constants.r_loader.GetString(editing ? "editMilestone_progress" : "addMilestone_progress");
-                        Milestone milestone = new Milestone();
                         if (!editing)
                         {
                             NewMilestone newMilestone = new NewMilestone(title) { Description = description };
@@ -135,7 +134,7 @@ namespace Octahedron.ViewModels
                             {
                                 newMilestone.DueOn = new DateTimeOffset(dueDate.Value);
                             }
-                            milestone = await constants.g_client.Issue.Milestone.Create(int.Parse(repoData[2]), newMilestone);
+                            await constants.g_client.Issue.Milestone.Create(int.Parse(repoData[2]), newMilestone);
                         }
                         else
                         {
@@ -144,7 +143,7 @@ namespace Octahedron.ViewModels
                             {
                                 update.DueOn = new DateTimeOffset(dueDate.Value);
                             }
-                            milestone = await constants.g_client.Issue.Milestone.Update(int.Parse(repoData[2]), editingMilestone.Number, update);
+                            await constants.g_client.Issue.Milestone.Update(int.Parse(repoData[2]), editingMilestone.Number, update);
                         }
                         loading = false;
                         App.Current.NavigationService.GoBack(); //JUST A PLACEHOLDER, IT SHOULD OPEN THE MILESTONE'S PAGE
