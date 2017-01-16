@@ -196,6 +196,9 @@
     <Compile Include="Templates\RepoListItem.xaml.cs">
       <DependentUpon>RepoListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Templates\TeamListItem.xaml.cs">
+      <DependentUpon>TeamListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Templates\UserListItem.xaml.cs">
       <DependentUpon>UserListItem.xaml</DependentUpon>
     </Compile>
@@ -354,6 +357,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Templates\RepoListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\TeamListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

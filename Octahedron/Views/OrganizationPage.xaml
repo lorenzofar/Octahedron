@@ -20,7 +20,7 @@
         <converters:CapitalizeConverter x:Key="CapitalizeConverter"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"> 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -84,6 +84,35 @@
                     <PivotItem>
                         <PivotItem.Header>
                             <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xF001;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                                <TextBlock x:Name="repos_header" x:Uid="repos_header" Margin="12,0,0,4" Text="Repos"/>
+                            </StackPanel>
+                        </PivotItem.Header>
+                        <Grid>
+                            <ListView x:Name="repos_listview" ItemsSource="{Binding repoList}" Margin="0,0,-12,0" SelectionMode="None" IsItemClickEnabled="True">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding OpenRepo}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <templates:RepoListItem Margin="-12,0"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <TextBlock x:Uid="repos_placeholder"  Style="{StaticResource ListPlaceholder}" Visibility="{Binding repoList, ConverterParameter=repos, Converter={StaticResource ListPlaceholderConverter}}"/>
+                        </Grid>
+                    </PivotItem>
+
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <StackPanel Orientation="Horizontal">
                                 <FontIcon Glyph="&#xF037;" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
                                 <TextBlock x:Name="members_header" x:Uid="members_header" Margin="12,0,0,4" Text="Members"/>
                             </StackPanel>
@@ -117,6 +146,21 @@
                                 <TextBlock x:Name="teams_header" x:Uid="teams_header" Margin="12,0,0,4" Text="Teams"/>
                             </StackPanel>
                         </PivotItem.Header>
+                        <Grid>
+                            <ListView ItemsSource="{Binding teams}" Margin="-12,0" IsItemClickEnabled="True" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <templates:TeamListItem/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <TextBlock x:Uid="teams_placeholder"  Style="{StaticResource ListPlaceholder}" Visibility="{Binding teams, ConverterParameter=teams, Converter={StaticResource ListPlaceholderConverter}}"/>
+                        </Grid>
                     </PivotItem>
                 </Pivot>
             </Grid>
@@ -128,7 +172,7 @@
             </Viewbox>
             <TextBlock Margin="0,12,0,0" Text="{Binding loadingProgress}"/>
         </StackPanel>
-        
-        
+
+
     </Grid>
 </Page>

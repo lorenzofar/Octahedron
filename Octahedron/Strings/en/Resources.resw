@@ -759,4 +759,7 @@
   <data name="fork_progress" xml:space="preserve">
     <value>Forking this repository</value>
   </data>
+  <data name="teams_placeholder.Text" xml:space="preserve">
+    <value>There are no teams</value>
+  </data>
 </root>
