@@ -88,6 +88,11 @@
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding issue.User.AvatarUrl}"/>
                     </Ellipse.Fill>
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding OpenCreator}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
                 </Ellipse>
                 <StackPanel Margin="0,12" Grid.Column="1" VerticalAlignment="Center" >
                     <ScrollViewer x:Name="title_panel" VerticalScrollBarVisibility="Auto">

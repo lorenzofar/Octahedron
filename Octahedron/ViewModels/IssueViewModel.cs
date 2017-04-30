@@ -247,6 +247,22 @@ namespace Octahedron.ViewModels
             }
         }
 
+        private RelayCommand _OpenCreator;
+        public RelayCommand OpenCreator
+        {
+            get
+            {
+                if (_OpenCreator == null)
+                {
+                    _OpenCreator = new RelayCommand(() =>
+                    {
+                        App.Current.NavigationService.Navigate(typeof(Views.ProfilePage), issue.User.Login);
+                    });
+                }
+                return _OpenCreator;
+            }
+        }
+
         #region COMMENTS
         private IReadOnlyList<IssueComment> _comments;
         public IReadOnlyList<IssueComment> comments
