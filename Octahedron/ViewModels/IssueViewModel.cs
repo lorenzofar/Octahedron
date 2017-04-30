@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Helper;
 using Octokit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Template10.Mvvm;
+using UniversalMarkdown;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -225,6 +227,23 @@ namespace Octahedron.ViewModels
                     });
                 }
                 return _EditIssue;
+            }
+        }
+
+        private RelayCommand<object> _HandleReadmeClick;
+        public RelayCommand<object> HandleReadmeClick
+        {
+            get
+            {
+                if (_HandleReadmeClick == null)
+                {
+                    _HandleReadmeClick = new RelayCommand<object>(async (e) =>
+                    {
+                        var args = e as OnMarkdownLinkTappedArgs;
+                        await Windows.System.Launcher.LaunchUriAsync(new Uri(args.Link));
+                    });
+                }
+                return _HandleReadmeClick;
             }
         }
 

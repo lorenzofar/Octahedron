@@ -125,7 +125,13 @@
                                 <TextBlock Text="{Binding issue.Milestone, Converter={StaticResource MilestoneConverter}}" Margin="12,6,0,6" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding issue.Assignee, Converter={StaticResource AssigneeConverter}}" Margin="12,6,0,6" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
                             </Grid>
-                            <markdown:MarkdownTextBlock Markdown="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="0,12" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"/>
+                            <markdown:MarkdownTextBlock Markdown="{Binding issue.Body, Converter={StaticResource DescriptionConverter}}" Margin="0,12" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="OnMarkdownLinkTapped">
+                                        <core:InvokeCommandAction Command="{Binding HandleReadmeClick}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </markdown:MarkdownTextBlock>
                         </Grid>
                     </ScrollViewer>
                 </PivotItem>
