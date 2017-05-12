@@ -762,4 +762,16 @@
   <data name="teams_placeholder.Text" xml:space="preserve">
     <value>There are no teams</value>
   </data>
+  <data name="activity_progress" xml:space="preserve">
+    <value>Loading activity</value>
+  </data>
+  <data name="activity_txt.Text" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="activity_personal_pivot.Header" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="activity_public_pivot.Header" xml:space="preserve">
+    <value>Feed</value>
+  </data>
 </root>

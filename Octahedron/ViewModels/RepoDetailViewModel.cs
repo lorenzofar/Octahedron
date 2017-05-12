@@ -269,7 +269,7 @@ namespace Octahedron.ViewModels
                         loading = true;
                         await LoadIssues();
                         loading = false;
-                    }, () => 50 * issuesPage < repo.OpenIssuesCount);
+                    }, () => issues.Count >= 25);
                 }
                 return _NextIssuesPage;
             }
@@ -865,19 +865,19 @@ namespace Octahedron.ViewModels
         private async Task LoadIssues()
         {
             loadingProgress = constants.r_loader.GetString("issues_progress");
-            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState }, new ApiOptions { PageSize = 50, PageCount = 1, StartPage = issuesPage });
+            issues = await constants.g_client.Issue.GetAllForRepository(repo.Owner.Login, repo.Name, new RepositoryIssueRequest() { State = issuesState }, new ApiOptions { PageSize = 25, PageCount = 1, StartPage = issuesPage });
         }
 
         private async Task LoadPulls()
         {
             loadingProgress = constants.r_loader.GetString("pulls_progress");
-            pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState }, new ApiOptions { PageSize = 50, PageCount = 1 });
+            pulls = await constants.g_client.PullRequest.GetAllForRepository(repo.Owner.Login, repo.Name, new PullRequestRequest { State = pullsState }, new ApiOptions { PageSize = 25, PageCount = 1 });
         }
 
         private async Task LoadMilestones()
         {
             loadingProgress = constants.r_loader.GetString("milestones_progress");
-            milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness }, new ApiOptions { PageSize = 50, PageCount = 1 });
+            milestonesList = await constants.g_client.Issue.Milestone.GetAllForRepository(repo.Owner.Login, repo.Name, new MilestoneRequest { State = milestonesState, SortProperty = MilestoneSort.Completeness }, new ApiOptions { PageSize = 25, PageCount = 1 });
         }
 
         private async Task LoadContributors()

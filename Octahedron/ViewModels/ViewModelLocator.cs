@@ -46,5 +46,7 @@
         public NewMilestoneViewModel NewMilestone => new NewMilestoneViewModel();
 
         public AssignMilestoneViewModel AddMilestone => new AssignMilestoneViewModel();
+
+        public ActivityViewModel Activity => new ActivityViewModel();
     }
 }

@@ -47,6 +47,12 @@
                     <TextBlock x:Uid="search_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
                 </StackPanel>
             </controls:HamburgerButtonInfo>
+            <controls:HamburgerButtonInfo PageType="views:ActivityPage">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xF085;" VerticalAlignment="Center" Width="48" Height="48" FontFamily="ms-appx:/Assets/octicons.ttf#octicons"/>
+                    <TextBlock x:Uid="activity_txt" VerticalAlignment="Center" Margin="12, 0, 0, 0" />
+                </StackPanel>
+            </controls:HamburgerButtonInfo>
         </controls:HamburgerMenu.PrimaryButtons>
         <controls:HamburgerMenu.SecondaryButtons>
             <controls:HamburgerButtonInfo PageType="views:ProfilePage">

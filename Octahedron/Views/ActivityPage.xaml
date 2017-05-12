@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="Octahedron.Views.ActivityPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Octahedron.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Octahedron.Converters"
+    xmlns:templates ="using:Octahedron.Templates"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Activity}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <PivotItem x:Uid="activity_personal_pivot">
+                <ListView ItemsSource="{Binding user_activity}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:ActivityItem/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </PivotItem>
+            <PivotItem x:Uid="activity_public_pivot">
+                <ListView ItemsSource="{Binding public_activity}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:ActivityItem/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </PivotItem>
+        </Pivot>
+
+        <StackPanel Grid.Row="1" Margin="12" Visibility="{Binding loading, Converter={StaticResource BoolVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Viewbox MaxHeight="60" MaxWidth="60">
+                <ProgressRing IsActive="{Binding loading}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Width="60" Height="60"/>
+            </Viewbox>
+            <TextBlock Margin="0,12,0,0" Text="{Binding loadingProgress}"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
