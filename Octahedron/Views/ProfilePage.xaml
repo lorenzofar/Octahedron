@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:Octahedron.Converters"
     xmlns:templates="using:Octahedron.Templates"
@@ -36,7 +37,20 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="4.5*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{Binding background}" >
+            <Grid Grid.Row="0" x:Name="blurBackground">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Blur
+                        x:Name="blurBehavior"
+                        Value="10"
+                        Duration="0"
+                        Delay="0"
+                        AutomaticallyStart="True" />
+                </interactivity:Interaction.Behaviors>
+                <Grid.Background>
+                    <ImageBrush ImageSource="{Binding user.AvatarUrl}" Stretch="UniformToFill"/>
+                </Grid.Background>
+            </Grid>
+            <Grid Grid.Row="0">
                 <Viewbox Margin="0,12" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Ellipse Width="120" Height="120" MaxHeight="120" MaxWidth="120">

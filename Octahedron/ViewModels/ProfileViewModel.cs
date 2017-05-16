@@ -57,6 +57,7 @@ namespace Octahedron.ViewModels
             }
         }
 
+        /*
         private SolidColorBrush _background;
         public SolidColorBrush background
         {
@@ -69,6 +70,7 @@ namespace Octahedron.ViewModels
                 Set(ref _background, value);
             }
         }
+        */
 
         private IReadOnlyList<Repository> _repoList;
         public IReadOnlyList<Repository> repoList
@@ -371,7 +373,7 @@ namespace Octahedron.ViewModels
                     loadingProgress = constants.r_loader.GetString("following_progress");
                     followingList = await constants.g_client.User.Followers.GetAllFollowing(user.Login);
                 }
-                background = new SolidColorBrush(await utilities.GetDominantColor(user.AvatarUrl));
+                //background = new SolidColorBrush(await utilities.GetDominantColor(user.AvatarUrl));
                 loading = false;
                 starredRepos = (await constants.g_client.Activity.Starring.GetAllForUser(user.Login)).Count;
             }
